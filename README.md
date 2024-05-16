@@ -39,6 +39,8 @@ An elegant App designed to help you capture, organize, and store your thoughts, 
 
 ## Development
 
+## web
+
 After clone the repo, in the root dir:
 
 ```bash
@@ -51,6 +53,19 @@ pnpm run build:packages
 copy apps/web/.env.local.example apps/web/.env.local
 
 # start web service
+pnpm dev
+```
+
+## desktop
+
+After clone the repo, in the root dir:
+
+```bash
+# Install the dependencies
+pnpm install
+
+pnpm run build:packages
+
 pnpm dev
 ```
 
