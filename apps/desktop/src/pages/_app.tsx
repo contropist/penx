@@ -17,6 +17,7 @@ import { app } from '@tauri-apps/api'
 import { emit, listen } from '@tauri-apps/api/event'
 import { AppEvent, isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
+import { modeAtom } from '~/hooks/useMode'
 
 initFower()
 
@@ -45,10 +46,24 @@ async function hideOnBlur() {
   const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
   const mainWindow = WebviewWindow.getByLabel('main')
 
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener('keydown', async (event) => {
+    const mode = store.get(modeAtom)
+
     if (event.key === 'Escape') {
-      mainWindow?.hide()
-      appEmitter.emit('ON_MAIN_WINDOW_HIDE')
+      if (mode === 'EDITOR') {
+        await invoke('set_window_properties', {
+          resizable: false,
+          width: 750.0,
+          height: 470.0,
+          focus: true,
+        })
+
+        await appWindow?.center()
+        store.set(modeAtom, 'COMMAND')
+      } else {
+        mainWindow?.hide()
+        appEmitter.emit('ON_MAIN_WINDOW_HIDE')
+      }
     }
   })
 

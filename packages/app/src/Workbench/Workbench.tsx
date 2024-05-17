@@ -60,7 +60,7 @@ export const Workbench = () => {
       <TagHubModal />
       <RowModal />
 
-      <Box h-100vh toLeft black flex-1 relative>
+      <Box h-100vh toLeft black flex-1 relative bgWhite>
         {!isBackedUp && session && name === 'NODE' && <BackupMnemonicTips />}
 
         <Box toLeft relative borderRight borderNeutral200--T40>

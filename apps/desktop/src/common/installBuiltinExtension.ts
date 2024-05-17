@@ -15,6 +15,7 @@ export async function installBuiltinExtension() {
     name: 'PenX',
     version: '0.0.0',
     assets: {},
+    isDeveloping: false,
     commands: [
       {
         name: 'clipboard-history',

@@ -30,8 +30,6 @@ export function useQueryCommands() {
   const { data } = useQuery(['commands'], async () => {
     const extensions = await db.listExtensions()
 
-    console.log('=========extensions:', extensions)
-
     return extensions.reduce((acc, cur) => {
       return [
         ...acc,

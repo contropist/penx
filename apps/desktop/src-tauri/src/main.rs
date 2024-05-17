@@ -23,11 +23,11 @@ use window_shadows::set_shadow;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-use rusqlite::{params, Connection, ParamsFromIter, Result, ToSql};
+use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 
 use tauri::{
-    api, AppHandle, CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu,
-    SystemTrayMenuItem, Window,
+    AppHandle, CustomMenuItem, LogicalSize, Manager, Size, SystemTray, SystemTrayEvent,
+    SystemTrayMenu, SystemTrayMenuItem, Window,
 };
 
 struct AppState {
@@ -65,12 +65,10 @@ fn create_system_tray() -> SystemTray {
     let quit = CustomMenuItem::new("Quit".to_string(), "Quit");
     let show = CustomMenuItem::new("Show".to_string(), "Show");
     let hide = CustomMenuItem::new("Hide".to_string(), "Hide");
-    let editor = CustomMenuItem::new("Editor".to_string(), "Editor");
     let preferences = CustomMenuItem::new("Preferences".to_string(), "Preferences");
     let tray_menu = SystemTrayMenu::new()
         .add_item(show)
         .add_item(hide)
-        .add_item(editor)
         .add_item(preferences)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
@@ -90,6 +88,20 @@ fn on_button_clicked() -> String {
 #[tauri::command]
 fn greet(name: &str) {
     hello::say_hello(name)
+}
+
+#[tauri::command]
+fn set_window_properties(window: Window, resizable: bool, width: f64, height: f64, focus: bool) {
+    window.set_resizable(resizable).unwrap();
+    window
+        .set_size(Size::Logical(LogicalSize { width, height }))
+        .unwrap();
+
+    let _ = window.center();
+
+    if focus {
+        window.set_focus().unwrap();
+    }
 }
 
 #[get("/")]
@@ -144,7 +156,11 @@ pub async fn start_server(app: AppHandle, conn: Connection) -> std::io::Result<(
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard::init()) // add this line
-        .invoke_handler(tauri::generate_handler![on_button_clicked, greet,])
+        .invoke_handler(tauri::generate_handler![
+            on_button_clicked,
+            greet,
+            set_window_properties,
+        ])
         .system_tray(create_system_tray())
         .on_system_tray_event(|app, event| match event {
             SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
@@ -154,13 +170,6 @@ fn main() {
                 }
                 "Show" => {
                     let window = app.get_window("main").unwrap();
-                    window.show().unwrap();
-                    window.center().unwrap();
-                }
-                "Editor" => {
-                    let window = app.get_window("dev_editor").unwrap();
-                    // let window = app.get_window("editor").unwrap();
-                    window.emit("MenuEditorClicked", Some("Yes")).unwrap();
                     window.show().unwrap();
                     window.center().unwrap();
                 }

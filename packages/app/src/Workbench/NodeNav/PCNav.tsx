@@ -14,6 +14,7 @@ export const PCNav = () => {
   if (!node) return null
   return (
     <Box
+      data-tauri-drag-region
       h={WORKBENCH_NAV_HEIGHT}
       sticky
       top0

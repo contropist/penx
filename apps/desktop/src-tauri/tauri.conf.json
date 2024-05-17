@@ -38,6 +38,8 @@
         "hide": true,
         "setFocus": true,
         "setSize": true,
+        "setPosition": false,
+        "setResizable": true,
         "center": true,
         "setSkipTaskbar": true,
         "startDragging": true

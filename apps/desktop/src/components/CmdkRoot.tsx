@@ -16,6 +16,7 @@ import {
   StyledCommandList,
 } from './CommandComponets'
 import { ListItemUI } from './ListItemUI'
+import { ToggleModeButton } from './ToggleModeButton'
 
 const windowHeight = 470
 const inputHeight = 54
@@ -121,6 +122,7 @@ export const CmdkRoot = () => {
             }
           }}
         />
+        <ToggleModeButton mr3 />
       </Box>
       <Box h={bodyHeight} overflowAuto>
         {isCommandApp && currentCommand && (

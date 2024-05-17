@@ -55,6 +55,7 @@ export const Sidebar = memo(
 
     return (
       <Box
+        data-tauri-drag-region
         column
         // borderRight
         // borderGray100
