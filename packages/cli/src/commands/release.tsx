@@ -49,7 +49,7 @@ class Command {
   handler = async (args: ArgumentsCamelCase<Args>) => {
     const config = readConfig()
 
-    console.log('=========config:', config)
+    // console.log('=========config:', config)
 
     if (!config.user || !config.token) {
       console.log(

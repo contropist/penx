@@ -1,10 +1,11 @@
 import { Box, styled } from '@fower/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Command } from 'cmdk'
 import { Button, Skeleton, Spinner } from 'uikit'
 import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
 import { Manifest } from '@penx/model'
+import { IExtension } from '@penx/model-types'
 import { trpc } from '@penx/trpc-client'
 import { fetchInstallationJSON } from '~/common/fetchInstallationJSON'
 import { ListItemIcon } from '../ListItemIcon'
@@ -14,10 +15,17 @@ const StyledCommandItem = styled(Command.Item)
 
 interface ExtensionItemProps {
   item: RouterOutputs['extension']['all'][0]
+  extensions: IExtension[]
 }
 
-function ExtensionItem({ item }: ExtensionItemProps) {
+function ExtensionItem({ item, extensions }: ExtensionItemProps) {
   const manifest = new Manifest(item.manifest as any)
+  const installed = !!extensions.find((e) => e.slug === manifest.id)
+
+  const { refetch } = useQuery({
+    queryKey: ['extension', 'installed'],
+    queryFn: () => db.listExtensions(),
+  })
 
   const { mutateAsync, isLoading } = useMutation({
     mutationKey: ['extension', item.id],
@@ -58,13 +66,15 @@ function ExtensionItem({ item }: ExtensionItemProps) {
       <Button
         colorScheme="black"
         size="sm"
-        disabled={isLoading}
-        onClick={() => {
-          mutateAsync()
+        // w-80
+        disabled={isLoading || installed}
+        onClick={async () => {
+          await mutateAsync()
+          refetch()
         }}
       >
-        {isLoading && <Spinner white />}
-        <Box>Install</Box>
+        {isLoading && <Spinner white square4 />}
+        {installed ? 'Installed' : 'Install'}
       </Button>
     </StyledCommandItem>
   )
@@ -72,6 +82,11 @@ function ExtensionItem({ item }: ExtensionItemProps) {
 
 export function Marketplace() {
   const { data = [], isLoading } = trpc.extension.all.useQuery()
+
+  const { data: extensions = [] } = useQuery({
+    queryKey: ['extension', 'installed'],
+    queryFn: () => db.listExtensions(),
+  })
 
   if (isLoading)
     return (
@@ -85,7 +100,11 @@ export function Marketplace() {
   return (
     <StyledCommandList flex-1 p2>
       <Command.Group>
-        {data?.map((item) => <ExtensionItem key={item.id} item={item} />)}
+        {data?.map((item) => {
+          return (
+            <ExtensionItem key={item.id} item={item} extensions={extensions} />
+          )
+        })}
       </Command.Group>
     </StyledCommandList>
   )

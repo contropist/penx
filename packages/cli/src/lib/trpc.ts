@@ -11,7 +11,7 @@ export async function getTRPC(env?: Env) {
     env = config.env
   }
 
-  BASE_URL = getBaseURL('local')
+  BASE_URL = getBaseURL(env)
 
   const config = readConfig()
 
