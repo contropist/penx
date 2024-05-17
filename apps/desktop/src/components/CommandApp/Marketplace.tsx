@@ -1,6 +1,5 @@
 import { Box, styled } from '@fower/react'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { Command } from 'cmdk'
 import { Button, Skeleton, Spinner } from 'uikit'
 import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
@@ -8,10 +7,8 @@ import { Manifest } from '@penx/model'
 import { IExtension } from '@penx/model-types'
 import { trpc } from '@penx/trpc-client'
 import { fetchInstallationJSON } from '~/common/fetchInstallationJSON'
+import { StyledCommandGroup, StyledCommandItem } from '../CommandComponets'
 import { ListItemIcon } from '../ListItemIcon'
-
-const StyledCommandList = styled(Command.List)
-const StyledCommandItem = styled(Command.Item)
 
 interface ExtensionItemProps {
   item: RouterOutputs['extension']['all'][0]
@@ -90,7 +87,7 @@ export function Marketplace() {
 
   if (isLoading)
     return (
-      <Box flex-1 p2 column gap1>
+      <Box column gap1>
         <Skeleton h-64 />
         <Skeleton h-64 />
         <Skeleton h-64 />
@@ -98,14 +95,12 @@ export function Marketplace() {
     )
 
   return (
-    <StyledCommandList flex-1 p2>
-      <Command.Group>
-        {data?.map((item) => {
-          return (
-            <ExtensionItem key={item.id} item={item} extensions={extensions} />
-          )
-        })}
-      </Command.Group>
-    </StyledCommandList>
+    <StyledCommandGroup>
+      {data?.map((item) => {
+        return (
+          <ExtensionItem key={item.id} item={item} extensions={extensions} />
+        )
+      })}
+    </StyledCommandGroup>
   )
 }

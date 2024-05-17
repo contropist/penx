@@ -12,12 +12,12 @@ export class PenxDB extends Dexie {
   constructor() {
     // super('PenxDB')
     super('penx-local')
-    this.version(15).stores({
+    this.version(16).stores({
       // Primary key and indexed props
       space: 'id, name, userId',
       node: 'id, spaceId, databaseId, type, date, [type+spaceId+databaseId], [type+spaceId], [type+databaseId]',
       file: 'id, googleDriveFileId, fileHash',
-      extension: 'id, slug',
+      extension: 'id, slug, isDeveloping',
     })
   }
 
@@ -41,6 +41,7 @@ export class PenxDB extends Dexie {
         id: uniqueId(),
         spaceId: '',
         slug,
+        isDeveloping: false,
         createdAt: new Date(),
         updatedAt: new Date(),
         ...data,

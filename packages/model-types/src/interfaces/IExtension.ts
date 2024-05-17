@@ -29,6 +29,8 @@ export interface IExtension {
 
   author?: string
 
+  isDeveloping: boolean
+
   createdAt: Date
 
   updatedAt: Date

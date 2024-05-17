@@ -8,7 +8,12 @@ export const itemsAtom = atom<ListItem[]>([])
 
 export function useItems() {
   const [items, setItems] = useAtom(itemsAtom)
-  return { items, setItems }
+  return {
+    items,
+    developingItems: items.filter((item) => item.data?.isDeveloping),
+    productionItems: items.filter((item) => !item.data?.isDeveloping),
+    setItems,
+  }
 }
 
 export const commandsAtom = atom<ListItem[]>([])
@@ -24,6 +29,9 @@ export function useQueryCommands() {
 
   const { data } = useQuery(['commands'], async () => {
     const extensions = await db.listExtensions()
+
+    console.log('=========extensions:', extensions)
+
     return extensions.reduce((acc, cur) => {
       return [
         ...acc,
@@ -45,6 +53,7 @@ export function useQueryCommands() {
             data: {
               commandName: item.name,
               extensionSlug: cur.slug,
+              isDeveloping: cur.isDeveloping,
             },
           }
         }),

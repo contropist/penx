@@ -1,30 +1,45 @@
 import { useRef, useState } from 'react'
-import SVG from 'react-inlinesvg'
-import { Box, css, styled } from '@fower/react'
+import { Box } from '@fower/react'
 import { Command } from 'cmdk'
 import { ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
-import { EventType, ListItem } from 'penx'
-// import { Command } from '@penx/cmdk'
+import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useCommands, useItems, useQueryCommands } from '~/hooks/useItems'
 import { useReset } from '~/hooks/useReset'
 import { CommandApp } from './CommandApp/CommandApp'
+import {
+  StyledCommand,
+  StyledCommandInput,
+  StyledCommandList,
+} from './CommandComponets'
 import { ListItemUI } from './ListItemUI'
 
-const StyledCommand = styled(Command)
-const StyledCommandInput = styled(Command.Input)
-const StyledCommandList = styled(Command.List)
+const windowHeight = 470
+const inputHeight = 54
+const footerHeight = 48
+const bodyHeight = windowHeight - inputHeight - footerHeight
 
 export const CmdkRoot = () => {
   const [q, setQ] = useState('')
-  const { items, setItems } = useItems()
+  const { developingItems, productionItems, setItems } = useItems()
+  const { ui } = useCommandAppUI()
+
+  // console.log(
+  //   '=========developingItems, productionItems:',
+  //   developingItems,
+  //   productionItems,
+  // )
+
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
 
-  const { position, isRoot, isCommandApp, setPosition } = useCommandPosition()
+  const { position, isRoot, isCommandApp, setPosition, backToRoot } =
+    useCommandPosition()
   const { currentCommand } = useCurrentCommand()
+  const handleSelect = useHandleSelect()
 
   useQueryCommands()
 
@@ -58,7 +73,14 @@ export const CmdkRoot = () => {
     >
       <Box toCenterY borderBottom borderGray200>
         {isCommandApp && (
-          <Box pl3 mr--8>
+          <Box
+            pl3
+            mr--8
+            cursorPointer
+            onClick={() => {
+              backToRoot()
+            }}
+          >
             <ArrowLeft size={20}></ArrowLeft>
           </Box>
         )}
@@ -70,7 +92,7 @@ export const CmdkRoot = () => {
           toCenterY
           bgTransparent
           w-100p
-          h-54
+          h={inputHeight}
           px3
           placeholderGray400
           textBase
@@ -81,6 +103,7 @@ export const CmdkRoot = () => {
           onValueChange={(v) => {
             setQ(v)
             if (v === '') {
+              console.log('===========commands:', commands)
               setItems(commands)
             }
           }}
@@ -92,32 +115,61 @@ export const CmdkRoot = () => {
               //   handleSelect(item, String(b))
               // }
               if (!q && isCommandApp) {
-                setPosition('ROOT')
+                backToRoot()
+                console.log('backToRoot........')
               }
             }
           }}
         />
       </Box>
-      <Box flex-1>
-        {isCommandApp && currentCommand && <CommandApp />}
-        <StyledCommandList flex-1 p2={isRoot}>
-          <Command.Group>
-            {isRoot &&
-              items.map((item, index) => {
-                return <ListItemUI key={index} item={item} />
-              })}
-          </Command.Group>
-        </StyledCommandList>
+      <Box h={bodyHeight} overflowAuto>
+        {isCommandApp && currentCommand && (
+          <StyledCommandList p2>
+            <CommandApp />
+          </StyledCommandList>
+        )}
+        {isRoot && (
+          <>
+            <StyledCommandList p2>
+              {developingItems.length > 0 && (
+                <Command.Group heading="Development">
+                  {developingItems.map((item, index) => {
+                    return (
+                      <ListItemUI
+                        key={index}
+                        item={item}
+                        onSelect={(item) => handleSelect(item)}
+                      />
+                    )
+                  })}
+                </Command.Group>
+              )}
+              <Command.Group heading={isRoot ? 'Suggestions' : undefined}>
+                {isRoot &&
+                  productionItems.map((item, index) => {
+                    return (
+                      <ListItemUI
+                        key={index}
+                        item={item}
+                        onSelect={(item) => handleSelect(item)}
+                      />
+                    )
+                  })}
+              </Command.Group>
+            </StyledCommandList>
+          </>
+        )}
       </Box>
 
       <Box
         data-tauri-drag-region
-        h-48
+        h={footerHeight}
         borderTop
         borderNeutral200
         toCenterY
         px4
         toBetween
+        bgWhite
       >
         <Image
           src="/logo/128x128.png"

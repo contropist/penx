@@ -50,7 +50,7 @@ class Command {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: manifest.id,
+          id: `$DEVELOPING-${manifest.id}`,
           name: manifest.name,
           version: manifest.version || '',
           icon: manifest.icon,

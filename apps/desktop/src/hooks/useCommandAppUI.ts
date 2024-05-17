@@ -25,5 +25,10 @@ export const uiAtom = atom<CommandAppUI>({} as CommandAppUI)
 
 export function useCommandAppUI() {
   const [ui, setUI] = useAtom(uiAtom)
-  return { ui, setUI }
+
+  return {
+    ui,
+    isList: ui.type === 'list',
+    setUI,
+  }
 }

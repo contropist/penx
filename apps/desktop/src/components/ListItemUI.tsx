@@ -1,20 +1,14 @@
-import SVG from 'react-inlinesvg'
-import { Box, css, styled } from '@fower/react'
-import { Command } from 'cmdk'
-import Image from 'next/image'
+import { Box, styled } from '@fower/react'
 import { ListItem } from 'penx'
-import { useHandleSelect } from '~/hooks/useHandleSelect'
+import { StyledCommandItem } from './CommandComponets'
 import { ListItemIcon } from './ListItemIcon'
-
-const StyledCommandItem = styled(Command.Item)
 
 interface ListItemUIProps {
   item: ListItem
+  onSelect?: (item: ListItem) => void
 }
 
-export const ListItemUI = ({ item }: ListItemUIProps) => {
-  const handleSelect = useHandleSelect()
-
+export const ListItemUI = ({ item, onSelect }: ListItemUIProps) => {
   const title = typeof item.title === 'string' ? item.title : item.title.value
 
   const subtitle =
@@ -32,10 +26,10 @@ export const ListItemUI = ({ item }: ListItemUIProps) => {
       black
       value={title}
       onSelect={() => {
-        handleSelect(item)
+        onSelect?.(item)
       }}
       onClick={() => {
-        handleSelect(item)
+        onSelect?.(item)
       }}
     >
       <Box toCenterY gap2>

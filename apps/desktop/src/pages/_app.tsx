@@ -92,6 +92,7 @@ async function init() {
       // console.log('======payload:', payload)
 
       await db.upsertExtension(payload.id, {
+        isDeveloping: true,
         name: payload.name,
         commands,
         assets,

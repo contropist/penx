@@ -4,10 +4,8 @@ import { db } from '@penx/local-db'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
-import { useItems } from './useItems'
 
 export function useHandleSelect() {
-  const { setItems } = useItems()
   const { setUI } = useCommandAppUI()
   const { setPosition } = useCommandPosition()
   const { setCurrentCommand } = useCurrentCommand()
@@ -29,7 +27,7 @@ export function useHandleSelect() {
 
       let worker: Worker
       if (command.isBuiltIn) {
-        console.log('name........:', command)
+        // console.log('name........:', command)
 
         if (command.name === 'clipboard-history') {
           worker = new Worker(
@@ -64,8 +62,6 @@ export function useHandleSelect() {
             type: 'list-item',
             ...item,
           }))
-
-          setItems(newItems)
 
           setUI({
             type: 'list',
