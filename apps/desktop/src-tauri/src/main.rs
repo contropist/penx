@@ -136,7 +136,7 @@ pub async fn start_server(app: AppHandle, conn: Connection) -> std::io::Result<(
             .service(index)
             .service(upsert_extension)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 14159))?
     .run()
     .await
 }
