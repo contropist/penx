@@ -36,14 +36,14 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       GoogleProvider({
         clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-        authorization: {
-          params: {
-            scope:
-              'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.file',
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
+        // authorization: {
+        //   params: {
+        //     scope:
+        //       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.file',
+        //     access_type: 'offline',
+        //     prompt: 'consent',
+        //   },
+        // },
         httpOptions: {
           timeout: 10 * 1000,
         },
@@ -130,20 +130,10 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     callbacks: {
       async signIn({ user, account, profile }) {
         // await initSpace(user.id, user.name!)
-
         return true
       },
 
       async jwt({ token, account, user, profile, trigger, session }) {
-        console.log(
-          'jwt user=======:',
-          user,
-          'account:',
-          account,
-          'profile:',
-          profile,
-        )
-
         if (trigger === 'update') {
           if (session?.earlyAccessCode) {
             token.earlyAccessCode = session?.earlyAccessCode

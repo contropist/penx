@@ -1,4 +1,5 @@
 import { Octokit } from 'octokit'
+import chalk from 'chalk'
 import ora from 'ora'
 import jetpack from 'fs-jetpack'
 import yargs, { ArgumentsCamelCase } from 'yargs'
@@ -9,6 +10,7 @@ import { getTRPC } from '../lib/trpc'
 import { getManifest } from '../lib/getManifest'
 import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
+import { readConfig } from '../lib/utils'
 
 type Args = {}
 
@@ -45,7 +47,19 @@ class Command {
   }
 
   handler = async (args: ArgumentsCamelCase<Args>) => {
-    this.trpc = await getTRPC('local')
+    const config = readConfig()
+
+    console.log('=========config:', config)
+
+    if (!config.user || !config.token) {
+      console.log(
+        chalk.yellow('Please login first, try to login by command:'),
+        chalk.green('penx login'),
+      )
+      return
+    }
+
+    this.trpc = await getTRPC()
 
     await buildExtension({
       onSuccess: async () => {

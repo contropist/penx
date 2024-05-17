@@ -12,6 +12,7 @@ export default function LoginWithGoogleButton() {
   // Get error message added by next/auth in URL.
   const searchParams = useSearchParams()
   const error = searchParams?.get('error')
+  const from = searchParams?.get('from')
 
   useEffect(() => {
     const errorMessage = Array.isArray(error) ? error.pop() : error
@@ -25,9 +26,12 @@ export default function LoginWithGoogleButton() {
       colorScheme="white"
       cursorNotAllowed={loading}
       w-240
-      onClick={() => {
+      onClick={async () => {
         setLoading(true)
-        signIn('google')
+        const callbackUrl = from || `${window.location.origin}`
+        console.log('========callbackUrl:', callbackUrl)
+
+        await signIn('google', { callbackUrl })
       }}
     >
       {loading ? <Spinner /> : <IconGoogle size={20} />}
