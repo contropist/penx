@@ -1,20 +1,22 @@
-import { input, renderList } from 'penx'
+import { renderList } from 'penx'
 
-renderList([
-  {
-    title: 'hack news 1...x',
-    actions: [
-      {
-        type: 'OpenInBrowser',
-        url: 'https://www.google.com',
-      },
-      {
-        type: 'CopyToClipboard',
-        content: 'hello world',
-      },
-    ],
-  },
-  {
-    title: 'world',
-  },
-])
+export function main() {
+  renderList([
+    {
+      title: 'hack news #1!!',
+      actions: [
+        {
+          type: 'OpenInBrowser',
+          url: 'https://www.google.com',
+        },
+        {
+          type: 'CopyToClipboard',
+          content: 'hello world',
+        },
+      ],
+    },
+    {
+      title: 'world',
+    },
+  ])
+}

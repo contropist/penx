@@ -1,3 +1,5 @@
 import { renderMarkdown } from 'penx'
 
-renderMarkdown('# hello world! 123')
+export async function main() {
+  renderMarkdown('# hello world!')
+}

@@ -44,20 +44,18 @@ export function useHandleSelect() {
       } else {
         // console.log('=========command?.code:, ', command?.code)
 
-        const closeCode = `
+        const extraCode = `
           self.onmessage = (event) => {
             if (event.data === 'BACK_TO_ROOT') {
               self.close()
             }
           }
+          self.input = '${input}';
         `
 
-        let blob = new Blob(
-          [`self.input = '${input}'\n` + command?.code + closeCode],
-          {
-            type: 'application/javascript',
-          },
-        )
+        let blob = new Blob([command?.code + extraCode], {
+          type: 'application/javascript',
+        })
         const url = URL.createObjectURL(blob)
         worker = new Worker(url)
       }

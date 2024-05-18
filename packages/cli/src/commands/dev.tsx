@@ -37,6 +37,7 @@ class Command {
     for (const command of manifest.commands) {
       const codePath = join(process.cwd(), 'dist', `${command.name}.js`)
       const code = jetpack.read(codePath, 'utf8')
+
       command.code = code
       command.icon = await iconToString(command.icon)
     }
