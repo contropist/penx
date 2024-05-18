@@ -15,7 +15,7 @@ import { ClientOnly } from '~/components/ClientOnly'
 import '@glideapps/glide-data-grid/dist/index.css'
 import { app } from '@tauri-apps/api'
 import { emit, listen } from '@tauri-apps/api/event'
-import { AppEvent, isServer } from '@penx/constants'
+import { isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
 import { modeAtom } from '~/hooks/useMode'
 
@@ -99,7 +99,7 @@ async function init() {
   const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
 
   if (appWindow.label === 'main') {
-    listen(AppEvent.UPSERT_EXTENSION, async (data) => {
+    listen('UPSERT_EXTENSION', async (data) => {
       const payload = data.payload as Payload
       const commands = JSON.parse(payload.commands || '[]')
       const assets = JSON.parse(payload.assets || '{}')
@@ -116,6 +116,12 @@ async function init() {
       })
     })
   }
+
+  listen('OPEN_WINDOW', (data) => {
+    console.log('open window==========:', data.payload)
+    appWindow.show()
+    appWindow.setFocus()
+  })
 
   listen('PreferencesClicked', (data) => {
     console.log('PreferencesClicked==========:', data.payload)

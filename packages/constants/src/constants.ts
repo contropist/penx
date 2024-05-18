@@ -166,7 +166,3 @@ export enum CliLoginStatus {
   CONFIRMED = 'CONFIRMED',
   INIT = 'INIT',
 }
-
-export enum AppEvent {
-  UPSERT_EXTENSION = 'UPSERT_EXTENSION',
-}

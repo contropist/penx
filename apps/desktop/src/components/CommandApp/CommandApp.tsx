@@ -48,9 +48,5 @@ export function CommandApp({}: CommandAppProps) {
     )
   }
 
-  return (
-    <Box>
-      <Spinner></Spinner>
-    </Box>
-  )
+  return null
 }

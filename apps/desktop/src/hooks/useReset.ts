@@ -6,13 +6,13 @@ import { useCommands, useItems } from './useItems'
 export function useReset(setQ: Dispatch<SetStateAction<string>>) {
   const { items, setItems } = useItems()
   const { commands } = useCommands()
-  const { setUI } = useCommandAppUI()
 
   useEffect(() => {
     function reset() {
-      setItems(commands)
+      if (commands.length) {
+        setItems(commands)
+      }
       setQ('')
-      // setUI('')
     }
 
     appEmitter.on('ON_MAIN_WINDOW_HIDE', reset)

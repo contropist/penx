@@ -25,8 +25,9 @@ const bodyHeight = windowHeight - inputHeight - footerHeight
 
 export const CmdkRoot = () => {
   const [q, setQ] = useState('')
-  const { developingItems, productionItems, setItems } = useItems()
-  const { ui } = useCommandAppUI()
+  const { items, developingItems, productionItems, setItems } = useItems()
+
+  console.log('========items:', items)
 
   // console.log(
   //   '=========developingItems, productionItems:',

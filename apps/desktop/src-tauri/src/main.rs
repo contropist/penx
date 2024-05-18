@@ -26,9 +26,19 @@ use serde_json::json;
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 
 use tauri::{
-    AppHandle, CustomMenuItem, LogicalSize, Manager, Size, SystemTray, SystemTrayEvent,
+    AppHandle, CustomMenuItem, LogicalSize, Manager, Runtime, Size, SystemTray, SystemTrayEvent,
     SystemTrayMenu, SystemTrayMenuItem, Window,
 };
+
+#[cfg(target_os = "macos")]
+use cocoa::appkit::{NSWindow, NSWindowButton, NSWindowStyleMask, NSWindowTitleVisibility};
+
+#[cfg(target_os = "macos")]
+use objc::runtime::YES;
+
+#[cfg(target_os = "macos")]
+#[macro_use]
+extern crate objc;
 
 struct AppState {
     app_name: String,
@@ -109,6 +119,13 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello, World!")
 }
 
+#[get("/open-window")]
+async fn open_window(app: web::Data<AppHandle>) -> impl Responder {
+    let window = app.get_window("main").unwrap();
+    window.emit("OPEN_WINDOW", Some("Yes")).unwrap();
+    HttpResponse::Ok().body("Open window!")
+}
+
 #[post("/api/upsert-extension")]
 async fn upsert_extension(
     input: web::Json<UpsertExtensionInput>,
@@ -146,11 +163,56 @@ pub async fn start_server(app: AppHandle, conn: Connection) -> std::io::Result<(
             // .app_data(db.clone())
             .wrap(middleware::Logger::default())
             .service(index)
+            .service(open_window)
             .service(upsert_extension)
     })
     .bind(("127.0.0.1", 14159))?
     .run()
     .await
+}
+
+pub trait WindowExt {
+    #[cfg(target_os = "macos")]
+    fn set_transparent_titlebar(&self, title_transparent: bool, remove_toolbar: bool);
+}
+
+impl<R: Runtime> WindowExt for Window<R> {
+    #[cfg(target_os = "macos")]
+    fn set_transparent_titlebar(&self, title_transparent: bool, remove_tool_bar: bool) {
+        unsafe {
+            let id = self.ns_window().unwrap() as cocoa::base::id;
+            NSWindow::setTitlebarAppearsTransparent_(id, cocoa::base::YES);
+            let mut style_mask = id.styleMask();
+            style_mask.set(
+                NSWindowStyleMask::NSFullSizeContentViewWindowMask,
+                title_transparent,
+            );
+
+            id.setStyleMask_(style_mask);
+
+            if remove_tool_bar {
+                let close_button = id.standardWindowButton_(NSWindowButton::NSWindowCloseButton);
+                let _: () = msg_send![close_button, setHidden: YES];
+                let min_button =
+                    id.standardWindowButton_(NSWindowButton::NSWindowMiniaturizeButton);
+                let _: () = msg_send![min_button, setHidden: YES];
+                let zoom_button = id.standardWindowButton_(NSWindowButton::NSWindowZoomButton);
+                let _: () = msg_send![zoom_button, setHidden: YES];
+            }
+
+            id.setTitleVisibility_(if title_transparent {
+                NSWindowTitleVisibility::NSWindowTitleHidden
+            } else {
+                NSWindowTitleVisibility::NSWindowTitleVisible
+            });
+
+            id.setTitlebarAppearsTransparent_(if title_transparent {
+                cocoa::base::YES
+            } else {
+                cocoa::base::NO
+            });
+        }
+    }
 }
 
 fn main() {
@@ -195,10 +257,12 @@ fn main() {
 
             thread::spawn(move || start_server(*boxed_handle, *boxed_conn).unwrap());
 
-            let main_window = app.get_window("main").unwrap();
-            set_shadow(&main_window, true).expect("Unsupported platform!");
+            let window = app.get_window("main").unwrap();
 
-            // main_window.show().unwrap();
+            // set_shadow(&window, true).expect("Unsupported platform!");
+
+            #[cfg(target_os = "macos")]
+            window.set_transparent_titlebar(true, true);
 
             Ok(())
         })
