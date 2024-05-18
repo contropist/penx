@@ -1,6 +1,7 @@
 import { EventType, ListItem } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { db } from '@penx/local-db'
+import { workerStore } from '~/common/workerStore'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
@@ -43,12 +44,26 @@ export function useHandleSelect() {
       } else {
         // console.log('=========command?.code:, ', command?.code)
 
-        let blob = new Blob([`self.input = '${input}'\n` + command?.code], {
-          type: 'application/javascript',
-        })
+        const closeCode = `
+          self.onmessage = (event) => {
+            if (event.data === 'BACK_TO_ROOT') {
+              self.close()
+            }
+          }
+        `
+
+        let blob = new Blob(
+          [`self.input = '${input}'\n` + command?.code + closeCode],
+          {
+            type: 'application/javascript',
+          },
+        )
         const url = URL.createObjectURL(blob)
         worker = new Worker(url)
       }
+
+      workerStore.currentWorker = worker
+
       // worker.terminate()
 
       item.data.commandName && worker.postMessage(item.data.commandName)

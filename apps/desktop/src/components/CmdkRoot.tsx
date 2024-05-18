@@ -117,7 +117,6 @@ export const CmdkRoot = () => {
               // }
               if (!q && isCommandApp) {
                 backToRoot()
-                console.log('backToRoot........')
               }
             }
           }}

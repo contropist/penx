@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "counter",
   "private": true,
   "scripts": {
     "dev": "penx dev",
