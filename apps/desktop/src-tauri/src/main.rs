@@ -25,6 +25,8 @@ use serde_json::json;
 
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 
+use std::error::Error;
+use std::process::{Command, Output};
 use tauri::{
     AppHandle, CustomMenuItem, LogicalSize, Manager, Runtime, Size, SystemTray, SystemTrayEvent,
     SystemTrayMenu, SystemTrayMenuItem, Window,
@@ -83,6 +85,36 @@ fn create_system_tray() -> SystemTray {
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
     SystemTray::new().with_menu(tray_menu)
+}
+
+pub fn run_applescript_sync(
+    script: &str,
+    human_readable_output: bool,
+) -> Result<String, Box<dyn Error>> {
+    if cfg!(not(target_os = "macos")) {
+        return Err("macOS only".into());
+    }
+
+    let output_arguments = if human_readable_output {
+        Vec::new()
+    } else {
+        vec!["-ss"]
+    };
+
+    let output = Command::new("osascript")
+        .args(["-e", script])
+        .args(&output_arguments)
+        .output()?;
+
+    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
+
+#[tauri::command]
+async fn run_applescript(script: &str) -> Result<String, String> {
+    match run_applescript_sync(script, true) {
+        Ok(output) => Ok(output),
+        Err(err) => Err(err.to_string()),
+    }
 }
 
 #[tauri::command]
@@ -221,6 +253,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             on_button_clicked,
             greet,
+            run_applescript,
             set_window_properties,
         ])
         .system_tray(create_system_tray())
@@ -259,7 +292,7 @@ fn main() {
 
             let window = app.get_window("main").unwrap();
 
-            // set_shadow(&window, true).expect("Unsupported platform!");
+            set_shadow(&window, true).expect("Unsupported platform!");
 
             #[cfg(target_os = "macos")]
             window.set_transparent_titlebar(true, true);

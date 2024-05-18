@@ -1,5 +1,12 @@
 import { useRef, useState } from 'react'
 import { Box } from '@fower/react'
+import {
+  isPermissionGranted,
+  requestPermission,
+  sendNotification,
+} from '@tauri-apps/api/notification'
+import { Command as ShellCommand } from '@tauri-apps/api/shell'
+import { invoke } from '@tauri-apps/api/tauri'
 import { Command } from 'cmdk'
 import { ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
@@ -181,7 +188,35 @@ export const CmdkRoot = () => {
           style={{ borderRadius: 6 }}
         />
         <Box data-tauri-drag-region flex-1 h-100p></Box>
-        <Box textSM gray400>
+        <Box
+          textSM
+          gray400
+          cursorPointer
+          onClick={async () => {
+            const script =
+              'display notification "Hello World" with title "Notification" sound name "Tink" subtitle "This is a subtitle"'
+
+            const script2 =
+              'display notification "Hello World" with title "Notification"'
+
+            const res = await invoke('run_applescript', {
+              script: script2,
+              human_readable_output: true,
+            })
+            console.log('=========res:', res)
+
+            return
+            let permissionGranted = await isPermissionGranted()
+            if (!permissionGranted) {
+              const permission = await requestPermission()
+              permissionGranted = permission === 'granted'
+            }
+            if (permissionGranted) {
+              sendNotification('Tauri is awesome!')
+              // sendNotification({ title: 'TAURI', body: 'Tauri is awesome!' })
+            }
+          }}
+        >
           CMD+K
         </Box>
       </Box>

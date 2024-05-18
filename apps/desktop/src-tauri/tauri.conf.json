@@ -27,11 +27,15 @@
         "all": true
       },
       "shell": {
+        "all": true,
         "open": true
       },
       "http": {
         "all": true,
         "request": true
+      },
+      "notification": {
+        "all": true
       },
       "window": {
         "all": true
