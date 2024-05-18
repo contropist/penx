@@ -163,6 +163,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <TrpcProvider>
           <ToastContainer position="bottom-right" />
           <Component {...pageProps} />
+          <div id="portal" />
         </TrpcProvider>
       </StoreProvider>
     </ClientOnly>

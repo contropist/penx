@@ -41,7 +41,8 @@ export default function Home() {
       left0
       right0
       rounded2XL
-      bgTransparent
+      // bgTransparent
+      bgWhite
       overflowHidden
     >
       {!isBoarded && (
