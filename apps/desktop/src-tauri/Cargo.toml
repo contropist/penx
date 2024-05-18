@@ -1,6 +1,6 @@
 [package]
 name = "penx"
-version = "0.3.12"
+version = "0.3.13"
 description = "Your personal database"
 authors = ["0xZion"]
 license = ""
@@ -35,6 +35,7 @@ tauri-plugin-clipboard = "0.6.10"
 window-shadows = "0.2.2"
 
 # MacOS
+[target."cfg(target_os = \"macos\")".dependencies]
 cocoa = "0.24.1"
 objc = "0.2.7"
 
