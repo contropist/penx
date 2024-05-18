@@ -3,13 +3,21 @@ import { Box, css } from '@fower/react'
 import Image from 'next/image'
 
 interface ListItemIconProps {
-  icon: string
+  icon: string | number
   size?: number
 }
 
 export function ListItemIcon({ icon, size = 20 }: ListItemIconProps) {
   if (!icon) {
     return <Box square={size} bgNeutral300 rounded-6></Box>
+  }
+
+  if (typeof icon === 'number') {
+    return (
+      <Box square={size} bgNeutral300 rounded-6 toCenter textXS>
+        {icon}
+      </Box>
+    )
   }
 
   if (icon.startsWith('/')) {

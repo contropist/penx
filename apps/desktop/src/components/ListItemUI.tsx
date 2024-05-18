@@ -1,14 +1,14 @@
-import { Box, styled } from '@fower/react'
+import { Box, FowerHTMLProps, styled } from '@fower/react'
 import { ListItem } from 'penx'
-import { StyledCommandItem } from './CommandComponets'
+import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
 
-interface ListItemUIProps {
+interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   item: ListItem
   onSelect?: (item: ListItem) => void
 }
 
-export const ListItemUI = ({ item, onSelect }: ListItemUIProps) => {
+export const ListItemUI = ({ item, onSelect, ...rest }: ListItemUIProps) => {
   const title = typeof item.title === 'string' ? item.title : item.title.value
 
   const subtitle =
@@ -20,7 +20,7 @@ export const ListItemUI = ({ item, onSelect }: ListItemUIProps) => {
       toCenterY
       toBetween
       px2
-      py3
+      h-40
       gap2
       roundedLG
       black
@@ -31,11 +31,12 @@ export const ListItemUI = ({ item, onSelect }: ListItemUIProps) => {
       onClick={() => {
         onSelect?.(item)
       }}
+      {...rest}
     >
       <Box toCenterY gap2>
         <ListItemIcon icon={item.icon as string} />
-        <Box text-15>{title}</Box>
-        <Box textSM gray500>
+        <Box text-14>{title}</Box>
+        <Box text-13 gray500>
           {subtitle}
         </Box>
       </Box>

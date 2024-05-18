@@ -92,6 +92,14 @@ export function useHandleSelect() {
           })
         }
 
+        if (event.data?.type === EventType.Loading) {
+          const content = event.data.content as any
+          setUI({
+            type: 'loading',
+            data: content,
+          })
+        }
+
         if (event.data?.type === 'marketplace') {
           setUI({ type: 'marketplace' })
         }

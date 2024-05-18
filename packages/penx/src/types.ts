@@ -2,7 +2,7 @@ type URL = string
 type Asset = string
 type Icon = string
 
-export type ImageLike = URL | Asset | Icon
+export type ImageLike = URL | Asset | Icon | number
 
 export type OpenInBrowser = {
   type: 'OpenInBrowser'

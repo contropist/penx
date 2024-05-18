@@ -14,7 +14,7 @@ import {
   StyledCommand,
   StyledCommandInput,
   StyledCommandList,
-} from './CommandComponets'
+} from './CommandComponents'
 import { ListItemUI } from './ListItemUI'
 import { ToggleModeButton } from './ToggleModeButton'
 
@@ -123,7 +123,7 @@ export const CmdkRoot = () => {
         />
         <ToggleModeButton mr3 />
       </Box>
-      <Box h={bodyHeight} overflowAuto>
+      <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp && currentCommand && (
           <StyledCommandList p2>
             <CommandApp />

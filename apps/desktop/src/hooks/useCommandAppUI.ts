@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai'
-import { ListItem } from 'penx'
+import { ListItem, LoadingType } from 'penx'
 
 type MarketplaceUI = {
   type: 'marketplace'
@@ -7,6 +7,7 @@ type MarketplaceUI = {
 
 type LoadingUI = {
   type: 'loading'
+  data: LoadingType
 }
 
 type MarkdownUI = {

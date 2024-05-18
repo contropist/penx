@@ -7,7 +7,7 @@ import { Manifest } from '@penx/model'
 import { IExtension } from '@penx/model-types'
 import { trpc } from '@penx/trpc-client'
 import { fetchInstallationJSON } from '~/common/fetchInstallationJSON'
-import { StyledCommandGroup, StyledCommandItem } from '../CommandComponets'
+import { StyledCommandGroup, StyledCommandItem } from '../CommandComponents'
 import { ListItemIcon } from '../ListItemIcon'
 
 interface ExtensionItemProps {
