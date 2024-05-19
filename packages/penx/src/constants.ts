@@ -4,6 +4,5 @@ export enum EventType {
   Loading = 'Loading.',
 
   RunAppScript = 'RunAppScript',
-
   RunAppScriptResult = 'RunAppScriptResult',
 }

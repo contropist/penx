@@ -38,7 +38,10 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
 
         if (entries.includes(args.path)) {
           const modifiedContents = `${contents}\nmain();`
-          return { contents: modifiedContents }
+          return {
+            contents: modifiedContents,
+            loader: 'ts',
+          }
         }
         return null
       })
@@ -53,7 +56,6 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     platform: 'browser',
     tsconfig: join(cwd, 'tsconfig.json'),
     logLevel: 'debug',
-    loader: { '.ts': 'ts' },
     treeShaking: true,
   } as esbuild.BuildOptions
 

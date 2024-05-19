@@ -51,6 +51,7 @@ export function useQueryCommands() {
             data: {
               commandName: item.name,
               extensionSlug: cur.slug,
+              extensionIcon: cur.assets?.[cur.icon as string],
               isDeveloping: cur.isDeveloping,
             },
           }

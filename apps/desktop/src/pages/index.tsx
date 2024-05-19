@@ -13,7 +13,7 @@ import {
   RecoveryPhraseLoginProvider,
 } from '@penx/widget'
 import { installBuiltinExtension } from '~/common/installBuiltinExtension'
-import { CmdkRoot } from '~/components/CmdkRoot'
+import { CommandPalette } from '~/components/CommandPalette/CommandPalette'
 import { DesktopWelcome } from '~/components/DesktopWelcome'
 import { EditorModeApp } from '~/components/EditorModeApp'
 import { useMode } from '~/hooks/useMode'
@@ -55,7 +55,7 @@ export default function Home() {
           }}
         />
       )}
-      {isBoarded && (isEditor ? <EditorModeApp /> : <CmdkRoot />)}
+      {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)}
     </Box>
   )
 }

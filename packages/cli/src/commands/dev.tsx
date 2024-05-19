@@ -27,8 +27,6 @@ class Command {
     })
   }
 
-  private getIcon = async (iconName = '') => {}
-
   private handleBuildSuccess = async () => {
     const manifest = getManifest()
 

@@ -3,7 +3,7 @@ import { Box } from '@fower/react'
 import { Spinner } from 'uikit'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
-import { StyledCommandGroup, StyledCommandList } from '../CommandComponents'
+import { StyledCommandGroup } from '../CommandComponents'
 import { ListItemUI } from '../ListItemUI'
 import { Marketplace } from './Marketplace'
 

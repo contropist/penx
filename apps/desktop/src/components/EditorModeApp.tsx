@@ -1,7 +1,6 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { Box } from '@fower/react'
 import { useQuery } from '@tanstack/react-query'
-import Head from 'next/head'
 import { EditorApp } from '@penx/app'
 import { appEmitter } from '@penx/event'
 import { SessionProvider, useSession } from '@penx/session'
