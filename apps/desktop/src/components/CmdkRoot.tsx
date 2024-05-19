@@ -34,7 +34,7 @@ export const CmdkRoot = () => {
   const [q, setQ] = useState('')
   const { items, developingItems, productionItems, setItems } = useItems()
 
-  console.log('========items:', items)
+  // console.log('========items:', items)
 
   // console.log(
   //   '=========developingItems, productionItems:',
@@ -200,6 +200,7 @@ export const CmdkRoot = () => {
               'display notification "Hello World" with title "Notification"'
 
             const res = await invoke('run_applescript', {
+              // script: 'return "unicorn"',
               script: script2,
               human_readable_output: true,
             })

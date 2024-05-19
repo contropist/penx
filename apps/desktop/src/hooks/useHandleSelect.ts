@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/tauri'
 import { EventType, ListItem } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { db } from '@penx/local-db'
@@ -12,6 +13,8 @@ export function useHandleSelect() {
   const { setCurrentCommand } = useCurrentCommand()
 
   return async (item: ListItem, input = '') => {
+    const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
+
     if (item.type === 'command') {
       // if (!q) setQ(item.title as string)
 
@@ -67,6 +70,18 @@ export function useHandleSelect() {
       item.data.commandName && worker.postMessage(item.data.commandName)
 
       worker.onmessage = async (event: MessageEvent<any>) => {
+        if (event.data.type === EventType.RunAppScript) {
+          const result = await invoke('run_applescript', {
+            script: event.data.script,
+            human_readable_output: true,
+          })
+
+          event.ports[0].postMessage({
+            type: EventType.RunAppScriptResult,
+            result,
+          })
+        }
+
         if (event.data?.type === EventType.RenderList) {
           const list: ListItem[] = event.data.items || []
           console.log('event--------:', event.data.items)
