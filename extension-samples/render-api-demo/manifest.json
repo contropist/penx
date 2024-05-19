@@ -1,0 +1,56 @@
+{
+  "name": "Render Api Demo",
+  "id": "render-api-demo",
+  "description": "",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "render-markdown",
+      "title": "Render Markdown",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "render-loading",
+      "title": "Render Loading",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "render-list",
+      "title": "Render List",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "render-grid",
+      "title": "Render Grid",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "render-form",
+      "title": "Render Form",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "render-table",
+      "title": "Render Table",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "clipboard",
+      "title": "Clipboard",
+      "subtitle": "",
+      "description": ""
+    },
+    {
+      "name": "run-apple-script",
+      "title": "Run apple script",
+      "subtitle": "",
+      "description": ""
+    }
+  ]
+}

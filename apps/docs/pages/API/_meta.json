@@ -1,1 +1,10 @@
-{}
+{
+  "renderMarkdown": "renderMarkdown",
+  "renderLoading": "renderLoading",
+  "renderList": "renderList",
+  "renderGrid": "renderGrid",
+  "renderTable": "renderTable",
+  "renderForm": "renderForm",
+  "clipboard": "clipboard",
+  "runAppScript": "runAppScript"
+}

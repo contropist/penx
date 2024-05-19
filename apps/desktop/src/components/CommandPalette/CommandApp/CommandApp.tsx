@@ -1,5 +1,5 @@
 import Markdown from 'react-markdown'
-import { Box } from '@fower/react'
+import { Box, css } from '@fower/react'
 import { Spinner } from 'uikit'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
@@ -23,7 +23,27 @@ export function CommandApp({}: CommandAppProps) {
   }
 
   if (ui.type === 'markdown') {
-    return <Markdown>{ui.content}</Markdown>
+    return (
+      <Markdown
+        className={css(['p1'])}
+        components={{
+          h1: (props) => {
+            return <Box as="h1" mb2 {...props} />
+          },
+          h2: (props) => {
+            return <Box as="h2" mb2 {...props} />
+          },
+          ul: (props) => {
+            return <Box as="ul" pl2 listInside listDisc {...(props as any)} />
+          },
+          li: (props) => {
+            return <Box as="li" py1 {...(props as any)} />
+          },
+        }}
+      >
+        {ui.content}
+      </Markdown>
+    )
   }
 
   if (ui.type === 'marketplace') {

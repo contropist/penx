@@ -1,8 +1,8 @@
 import { EventType } from './constants'
 
-export function renderMarkdown(text: string) {
+export function renderMarkdown(content: string) {
   postMessage({
     type: EventType.RenderMarkdown,
-    content: text,
+    content,
   })
 }

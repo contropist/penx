@@ -58,8 +58,6 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           }
         }}
         onKeyDown={(e) => {
-          console.log('key=======:', e)
-
           if (e.key === 'Backspace' || e.key === 'delete') {
             if (!q && isCommandApp) {
               backToRoot()

@@ -14,7 +14,7 @@ import { SearchBar } from './SearchBar'
 
 const windowHeight = 470
 const searchBarHeight = 54
-const footerHeight = 48
+const footerHeight = 40
 const bodyHeight = windowHeight - searchBarHeight - footerHeight
 
 export const CommandPalette = () => {
@@ -64,7 +64,7 @@ export const CommandPalette = () => {
       <SearchBar searchBarHeight={searchBarHeight} q={q} setQ={setQ} />
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp && currentCommand && (
-          <StyledCommandList p2>
+          <StyledCommandList p2 minH-100p>
             <CommandApp />
           </StyledCommandList>
         )}

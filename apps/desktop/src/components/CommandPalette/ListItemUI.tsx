@@ -1,4 +1,4 @@
-import { Box, FowerHTMLProps, styled } from '@fower/react'
+import { Box, FowerHTMLProps } from '@fower/react'
 import { ListItem } from 'penx'
 import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
@@ -36,13 +36,15 @@ export const ListItemUI = ({ item, onSelect, ...rest }: ListItemUIProps) => {
       <Box toCenterY gap2>
         <ListItemIcon icon={item.icon as string} />
         <Box text-14>{title}</Box>
-        <Box text-13 gray500>
+        <Box text-12 zinc400>
           {subtitle}
         </Box>
       </Box>
-      <Box textXS gray400>
-        Command
-      </Box>
+      {!!item.data?.commandName && (
+        <Box textXS gray400>
+          Command
+        </Box>
+      )}
     </StyledCommandItem>
   )
 }

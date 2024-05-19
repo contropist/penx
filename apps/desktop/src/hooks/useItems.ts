@@ -47,6 +47,7 @@ export function useQueryCommands() {
           return {
             type: 'command',
             title: item.title,
+            subtitle: cur.name,
             icon: getIcon(),
             data: {
               commandName: item.name,
