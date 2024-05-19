@@ -1,19 +1,36 @@
-import { renderMarkdown } from 'penx'
+import { renderList } from 'penx'
 
-const content = `
-# hello world!
-
-The Markdown elements outlined in the original design document.
-
-## Lists
-
-- First item
-- Second item
-- Third item
-- Fourth item
-
-![penx-logo](https://www.penx.io/images/logo-128.png)
-`
-export async function main() {
-  renderMarkdown(content)
+export function main() {
+  renderList([
+    {
+      title: 'First Item',
+      subtitle: 'This is the first item',
+      actions: [
+        {
+          type: 'CopyToClipboard',
+          content: 'First Item',
+        },
+      ],
+    },
+    {
+      title: 'Second Item',
+      subtitle: 'This is the second item',
+      actions: [
+        {
+          type: 'CopyToClipboard',
+          content: 'Second Item',
+        },
+      ],
+    },
+    {
+      title: 'Third Item',
+      subtitle: 'This is the third item',
+      actions: [
+        {
+          type: 'CopyToClipboard',
+          content: 'Third Item',
+        },
+      ],
+    },
+  ])
 }

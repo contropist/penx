@@ -5,12 +5,12 @@ type Spinner = {
 }
 
 type Skeleton = {
-  type: 'Skeleton'
+  type: 'skeleton'
 }
 
 export type LoadingType = Spinner | Skeleton
 
-export function renderLoading(data: LoadingType) {
+export function renderLoading(data?: LoadingType) {
   postMessage({
     type: EventType.Loading,
     data: data,
