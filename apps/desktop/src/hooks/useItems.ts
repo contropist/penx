@@ -50,6 +50,7 @@ export function useQueryCommands() {
             subtitle: cur.name,
             icon: getIcon(),
             data: {
+              runtime: item.runtime,
               commandName: item.name,
               extensionSlug: cur.slug,
               extensionIcon: cur.assets?.[cur.icon as string],

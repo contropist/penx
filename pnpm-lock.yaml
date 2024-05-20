@@ -398,7 +398,7 @@ importers:
         version: 0.2.1(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       pliny:
         specifier: 0.1.7
-        version: 0.1.7(@algolia/client-search@4.23.2)(@types/react-dom@18.2.23)(@types/react@18.2.73)(esbuild@0.18.11)(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(search-insights@2.13.0)
+        version: 0.1.7(@algolia/client-search@4.23.2)(@types/react-dom@18.3.0)(@types/react@18.2.73)(esbuild@0.18.11)(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(search-insights@2.13.0)
       postcss:
         specifier: ^8.4.24
         version: 8.4.38
@@ -2662,6 +2662,16 @@ importers:
         version: 5.4.5
 
   extension-samples/hello-word:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.0.0
+        version: 2.0.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@types/react':
         specifier: ^18.2.61
@@ -29216,6 +29226,16 @@ snapshots:
       '@types/react': 18.2.73
       '@types/react-dom': 18.2.23
 
+  '@radix-ui/react-portal@1.0.4(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.24.1
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.73
+      '@types/react-dom': 18.3.0
+
   '@radix-ui/react-presence@1.0.1(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.24.1
@@ -29236,6 +29256,16 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.73
       '@types/react-dom': 18.2.23
+
+  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.24.1
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.73)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.73
+      '@types/react-dom': 18.3.0
 
   '@radix-ui/react-slot@1.0.2(@types/react@18.2.73)(react@18.2.0)':
     dependencies:
@@ -37780,9 +37810,9 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  kbar@0.1.0-beta.45(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  kbar@0.1.0-beta.45(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       fast-equals: 2.0.4
       fuse.js: 6.6.2
       react: 18.2.0
@@ -40551,7 +40581,7 @@ snapshots:
       - walrus
       - whiskers
 
-  pliny@0.1.7(@algolia/client-search@4.23.2)(@types/react-dom@18.2.23)(@types/react@18.2.73)(esbuild@0.18.11)(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(search-insights@2.13.0):
+  pliny@0.1.7(@algolia/client-search@4.23.2)(@types/react-dom@18.3.0)(@types/react@18.2.73)(esbuild@0.18.11)(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(search-insights@2.13.0):
     dependencies:
       '@docsearch/react': 3.6.0(@algolia/client-search@4.23.2)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(search-insights@2.13.0)
       '@giscus/react': 2.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -40560,7 +40590,7 @@ snapshots:
       copyfiles: 2.4.1
       github-slugger: 2.0.0
       js-yaml: 4.1.0
-      kbar: 0.1.0-beta.45(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      kbar: 0.1.0-beta.45(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next: 14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0)
       next-contentlayer: 0.3.4(contentlayer@0.3.4(esbuild@0.18.11))(esbuild@0.18.11)(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes: 0.2.1(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)

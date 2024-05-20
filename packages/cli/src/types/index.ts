@@ -5,6 +5,7 @@ export type CommandItem = {
   description: string
   icon?: string
   code?: string
+  runtime: 'iframe' | 'worker'
 }
 
 export type Manifest = {

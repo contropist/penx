@@ -12,7 +12,6 @@ interface CommandAppProps {}
 export function CommandApp({}: CommandAppProps) {
   const { currentCommand } = useCurrentCommand()
   const { ui } = useCommandAppUI()
-  // console.log('======currentCommand:', currentCommand)
 
   if (ui.type === 'loading') {
     return (

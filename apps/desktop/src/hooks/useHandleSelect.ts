@@ -29,6 +29,14 @@ export function useHandleSelect() {
         (c) => c.name === item.data.commandName,
       )!
 
+      if (command.runtime === 'iframe') {
+        const $iframe = document.getElementById('command-app-iframe')!
+        const currentWindow = ($iframe as any).contentWindow as Window
+        // currentWindow.document.body.innerHTML = '<div id="root"></div>'
+        ;(currentWindow as any).eval(command.code)
+        return
+      }
+
       let worker: Worker
       if (command.isBuiltIn) {
         // console.log('name........:', command)

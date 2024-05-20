@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { Command } from 'cmdk'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
@@ -11,6 +11,10 @@ import { StyledCommand, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
 import { ListItemUI } from './ListItemUI'
 import { SearchBar } from './SearchBar'
+
+const code = `
+document.body.innerHTML = '<div>hello world</div>'
+`
 
 const windowHeight = 470
 const searchBarHeight = 54
@@ -37,10 +41,31 @@ export const CommandPalette = () => {
 
   useReset(setQ)
 
+  useEffect(() => {}, [])
+  // return (
+  //   <Box bgAmber100 relative h-100p>
+  //     <Box
+  //       as="iframe"
+  //       id="command-app-iframe"
+  //       width="100%"
+  //       height="100%"
+  //       p0
+  //       m0
+  //       src='https://penx.io'
+  //       style={{
+  //         background: 'amber',
+  //       }}
+  //     >
+
+  //     </Box>
+  //   </Box>
+  // )
+
   return (
     <StyledCommand
+      id="command-palette"
       label="Command Menu"
-      className="command-panel"
+      className="command-palette"
       // shadow="0 16px 70px rgba(0,0,0,.2)"
       w={['100%']}
       column
@@ -63,11 +88,28 @@ export const CommandPalette = () => {
     >
       <SearchBar searchBarHeight={searchBarHeight} q={q} setQ={setQ} />
       <Box h={bodyHeight} overflowAuto relative>
-        {isCommandApp && currentCommand && (
-          <StyledCommandList p2 minH-100p>
-            <CommandApp />
-          </StyledCommandList>
-        )}
+        {isCommandApp &&
+          currentCommand &&
+          (currentCommand.data.runtime === 'iframe' ? (
+            <Box bgAmber100 relative h-100p>
+              <Box
+                as="iframe"
+                id="command-app-iframe"
+                width="100%"
+                height="100%"
+                p0
+                m0
+                absolute
+                top0
+                // src='https://penx.io'
+              ></Box>
+            </Box>
+          ) : (
+            <StyledCommandList p2 minH-100p>
+              <CommandApp />
+            </StyledCommandList>
+          ))}
+
         {isRoot && (
           <>
             <StyledCommandList p2>
@@ -100,6 +142,7 @@ export const CommandPalette = () => {
           </>
         )}
       </Box>
+
       <CommandPaletteFooter footerHeight={footerHeight} />
     </StyledCommand>
   )

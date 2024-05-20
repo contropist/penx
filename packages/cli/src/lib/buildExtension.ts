@@ -14,7 +14,9 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
   const manifest = getManifest()
 
   const entries = manifest.commands.reduce<string[]>((acc, cur) => {
-    const entry = join(cwd, 'src', `${cur.name}.ts`)
+    const isIframe = cur.runtime === 'iframe'
+    const ext = isIframe ? '.tsx' : '.ts'
+    const entry = join(cwd, 'src', `${cur.name}${ext}`)
     return [...acc, entry]
   }, [])
 
@@ -37,7 +39,8 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
         const contents = await fs.promises.readFile(args.path, 'utf8')
 
         if (entries.includes(args.path)) {
-          const modifiedContents = `${contents}\nmain();`
+          // const modifiedContents = `${contents}\nmain();`
+          const modifiedContents = `${contents}`
           return {
             contents: modifiedContents,
             loader: 'ts',
@@ -62,6 +65,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
   if (watch) {
     const ctx = await esbuild.context({
       ...buildOptions,
+      minify: true,
       plugins: [addMainPlugin, onEndPlugin],
     })
 
