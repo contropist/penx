@@ -39,8 +39,21 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
         const contents = await fs.promises.readFile(args.path, 'utf8')
 
         const path = args.path as string
+
+        const isIframe = /tsx$/.test(path)
         if (entries.includes(path)) {
-          const modifiedContents = /tsx$/.test(path) ? `${contents}` : `${contents}\nmain();`
+          let prefix = ''
+          let postfix = '\nmain();'
+          if (isIframe) {
+            prefix = `import { createRoot } from 'react-dom/client'\n`
+            postfix = `
+              const domNode = document.getElementById('root')!
+              const root = createRoot(domNode)
+              root.render(<Main />)
+            `
+          }
+
+          const modifiedContents = `${prefix}${contents}${postfix}`
           return {
             contents: modifiedContents,
             loader: 'ts',

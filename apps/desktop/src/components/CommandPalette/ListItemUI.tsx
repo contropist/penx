@@ -4,15 +4,29 @@ import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
 
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
+  index: number
   item: ListItem
   onSelect?: (item: ListItem) => void
 }
 
-export const ListItemUI = ({ item, onSelect, ...rest }: ListItemUIProps) => {
+export const ListItemUI = ({
+  item,
+  onSelect,
+  index,
+  ...rest
+}: ListItemUIProps) => {
   const title = typeof item.title === 'string' ? item.title : item.title.value
 
   const subtitle =
     typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.value
+
+  if (item.type === 'list-heading') {
+    return (
+      <Box textXS gray400 pl-10 mb-2 mt2={index > 0}>
+        {title}
+      </Box>
+    )
+  }
 
   return (
     <StyledCommandItem

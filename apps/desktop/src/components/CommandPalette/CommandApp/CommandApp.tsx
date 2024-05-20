@@ -56,6 +56,7 @@ export function CommandApp({}: CommandAppProps) {
           return (
             <ListItemUI
               key={index}
+              index={index}
               item={item}
               onSelect={() => {
                 //

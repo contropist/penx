@@ -1,7 +1,7 @@
 import { EventType } from './constants'
-import { ListItem } from './types'
+import { ListHeading, ListItem } from './types'
 
-export function renderList(items: ListItem[]) {
+export function renderList(items: (ListItem | ListHeading)[]) {
   postMessage({
     type: EventType.RenderList,
     items,

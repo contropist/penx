@@ -18,10 +18,15 @@ export type CopyToClipboard = {
 
 export type ListItemAction = OpenInBrowser | CopyToClipboard
 
+export interface ListHeading {
+  type: 'list-heading'
+  title: string
+}
+
 export interface ListItem {
   id?: string
 
-  type?: 'command' | 'list-item' | (string & {})
+  type?: 'command' | 'list-item'
 
   title:
     | string
