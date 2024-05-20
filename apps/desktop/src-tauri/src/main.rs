@@ -5,6 +5,8 @@
 
 mod hello;
 
+use std::cell::RefCell;
+
 use std::{
     boxed,
     sync::Mutex,
@@ -12,11 +14,7 @@ use std::{
     time::{SystemTime, UNIX_EPOCH},
 };
 
-use actix_web::{
-    get, middleware, post,
-    web::{self, Data},
-    App, HttpResponse, HttpServer, Responder,
-};
+use actix_web::{get, middleware, post, web, App, HttpResponse, HttpServer, Responder};
 
 use window_shadows::set_shadow;
 
@@ -42,8 +40,12 @@ use objc::runtime::YES;
 #[macro_use]
 extern crate objc;
 
+#[derive(Clone)]
 struct AppState {
     app_name: String,
+    data: String,
+    // app_name: RefCell<String>,
+    // data: RefCell<String>,
 }
 
 // #[derive(Serialize)]
@@ -147,8 +149,9 @@ fn set_window_properties(window: Window, resizable: bool, width: f64, height: f6
 }
 
 #[get("/")]
-async fn index() -> impl Responder {
-    HttpResponse::Ok().body("Hello, World!")
+async fn index(app_state: web::Data<AppState>) -> impl Responder {
+    let data = &app_state.app_name;
+    HttpResponse::Ok().body(format!("Hello, World! {}", data))
 }
 
 #[get("/open-window")]
@@ -178,25 +181,83 @@ async fn upsert_extension(
     HttpResponse::Ok().json(info)
 }
 
+#[derive(Deserialize)]
+struct QueryParams {
+    extension_id: String,
+}
+
+#[get("/extension")]
+async fn extension(web::Query(params): web::Query<QueryParams>) -> impl Responder {
+    let html = format!(
+        r#"
+        <!DOCTYPE html>
+        <html>
+          <body>
+            <div id="root" style="color: red">Root</div>
+            <script src="./dist/{}.js"></script>
+            <script src="/extension_js/hello.js"></script>
+          </body>
+        </html>
+    "#,
+        params.extension_id
+    );
+
+    HttpResponse::Ok().body(html)
+}
+
+#[get("/extension_js/{name}.js")] // <- define path parameters
+async fn extension_js(path: web::Path<(String)>) -> impl Responder {
+    let js_str = "console.log(\"hello world....\");alert(123);";
+
+    HttpResponse::Ok()
+        .content_type("application/javascript")
+        .body(js_str)
+}
+
+#[get("/get-data")]
+async fn get_data(app: web::Data<AppHandle>) -> impl Responder {
+    HttpResponse::Ok().body("Open window!")
+}
+
+async fn get_data_from_webview(app_handle: &tauri::AppHandle) -> String {
+    let event_name = "get_data_from_rust";
+    let (tx, rx) = std::sync::mpsc::channel();
+    app_handle.emit_all(event_name, Some("yes")).unwrap();
+
+    let data = rx.recv().unwrap();
+    data
+}
+
 // This struct represents state
 
 #[actix_web::main]
-pub async fn start_server(app: AppHandle, conn: Connection) -> std::io::Result<()> {
+pub async fn start_server(
+    app: AppHandle,
+    conn: Connection,
+    app_state: AppState,
+) -> std::io::Result<()> {
     // let tauri_app = web::Data::new(Mutex::new(app));
 
     // let db = web::Data::new(Mutex::new(conn));
 
     HttpServer::new(move || {
         App::new()
-            .app_data(web::Data::new(AppState {
-                app_name: String::from("Actix Web"),
-            }))
+            // .app_data(web::Data::new(AppState {
+            //     app_name: String::from("Actix Web"),
+            //     data: String::from("initial data"),
+            //     app_name: RefCell::new("Actix Web".to_string()),
+            //     data: RefCell::new("initial data".to_string()),
+            // }))
+            .app_data(web::Data::new(app_state.clone()))
             .app_data(web::Data::new(app.clone()))
             // .app_data(db.clone())
             .wrap(middleware::Logger::default())
             .service(index)
             .service(open_window)
             .service(upsert_extension)
+            .service(extension)
+            .service(extension_js)
+            .service(get_data)
     })
     .bind(("127.0.0.1", 14159))?
     .run()
@@ -288,7 +349,24 @@ fn main() {
             let boxed_handle = Box::new(handle);
             let boxed_conn = Box::new(conn.unwrap());
 
-            thread::spawn(move || start_server(*boxed_handle, *boxed_conn).unwrap());
+            let app_state = AppState {
+                // app_name: RefCell::new("Actix Web".to_string()),
+                // data: RefCell::new("initial data".to_string()),
+                app_name: String::from("Actix Web"),
+                data: String::from("initial data"),
+            };
+
+            app.listen_global("get_data_from_webview", move |event| {
+                let data = event.payload().unwrap();
+                // *app_state.data.borrow_mut() = data.to_string();
+                // *app_state.app_name.borrow_mut() = data.to_string();
+            });
+
+            let boxed_app_state = Box::new(app_state);
+
+            thread::spawn(move || {
+                start_server(*boxed_handle, *boxed_conn, *boxed_app_state).unwrap()
+            });
 
             let window = app.get_window("main").unwrap();
 

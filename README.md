@@ -82,5 +82,3 @@ xattr -cr /Applications/PenX.app
 ```
 
 ## ⚖️ License
-
-AGPL 3.0
