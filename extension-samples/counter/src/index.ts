@@ -1,7 +1,7 @@
 import { renderMarkdown } from 'penx'
 
 export function main() {
-  let counter = 0
+  let counter = 1
 
   renderMarkdown(`# ${counter}`)
 

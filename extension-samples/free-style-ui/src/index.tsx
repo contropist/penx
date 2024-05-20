@@ -14,49 +14,7 @@ export function Main() {
   }, [])
 
   return (
-    <Box bgGreen100>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
+    <Box>
       <Box fontBold text3XL>
         Hello world, {count}
       </Box>
@@ -70,6 +28,9 @@ export function Main() {
         roundedFull
         bgBlack
         opacity-70--hover
+        onClick={() => {
+          console.log('hello.......')
+        }}
       >
         Click me
       </Box>
@@ -77,7 +38,8 @@ export function Main() {
   )
 }
 
-const domNode = document.body
+//
+const domNode = document.getElementById('root')!
 const root = createRoot(domNode)
 
 root.render(<Main />)

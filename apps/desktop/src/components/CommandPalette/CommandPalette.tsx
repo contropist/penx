@@ -91,7 +91,7 @@ export const CommandPalette = () => {
         {isCommandApp &&
           currentCommand &&
           (currentCommand.data.runtime === 'iframe' ? (
-            <Box bgAmber100 relative h-100p>
+            <Box relative h-100p>
               <Box
                 as="iframe"
                 id="command-app-iframe"

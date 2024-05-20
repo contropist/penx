@@ -38,9 +38,9 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
       build.onLoad({ filter: /\.(t|j)s$/ }, async (args) => {
         const contents = await fs.promises.readFile(args.path, 'utf8')
 
-        if (entries.includes(args.path)) {
-          // const modifiedContents = `${contents}\nmain();`
-          const modifiedContents = `${contents}`
+        const path = args.path as string
+        if (entries.includes(path)) {
+          const modifiedContents = /tsx$/.test(path) ? `${contents}` : `${contents}\nmain();`
           return {
             contents: modifiedContents,
             loader: 'ts',
@@ -65,7 +65,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
   if (watch) {
     const ctx = await esbuild.context({
       ...buildOptions,
-      minify: true,
+      // minify: true,
       plugins: [addMainPlugin, onEndPlugin],
     })
 
