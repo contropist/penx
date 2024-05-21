@@ -6,5 +6,5 @@
   "renderTable": "renderTable",
   "renderForm": "renderForm",
   "clipboard": "clipboard",
-  "runAppScript": "runAppScript"
+  "runAppleScript": "runAppleScript"
 }
