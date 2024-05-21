@@ -1,12 +1,13 @@
+import { ReactNode } from 'react'
 import { Box, FowerHTMLProps } from '@fower/react'
-import { ListItem } from 'penx'
+import { IAccessory, IListItem, ListItemJSON } from 'penx'
 import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
 
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
-  item: ListItem
-  onSelect?: (item: ListItem) => void
+  item: IListItem
+  onSelect?: (item: IListItem) => void
 }
 
 export const ListItemUI = ({
@@ -59,6 +60,34 @@ export const ListItemUI = ({
           Command
         </Box>
       )}
+      {item?.extra && (
+        <Box toCenterY gap2 textXS gray600>
+          {item.extra.map((extra, index) => (
+            <Accessory key={index} item={extra} />
+          ))}
+        </Box>
+      )}
     </StyledCommandItem>
+  )
+}
+
+interface AccessoryProps {
+  item: IAccessory
+}
+function Accessory({ item }: AccessoryProps) {
+  let text: ReactNode = item.text ? <Box>{item.text}</Box> : null
+  let tag: ReactNode = item.tag ? (
+    <Box bgAmber500 white h-24 rounded px2 toCenterY>
+      {item.tag.value}
+    </Box>
+  ) : null
+  let icon: ReactNode = item.icon ? <ListItemIcon roundedFull /> : null
+
+  return (
+    <Box toCenterY gap1>
+      {icon}
+      {text}
+      {tag}
+    </Box>
   )
 }

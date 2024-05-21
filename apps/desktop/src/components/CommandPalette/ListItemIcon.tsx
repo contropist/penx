@@ -1,15 +1,15 @@
 import SVG from 'react-inlinesvg'
-import { Box, css } from '@fower/react'
+import { Box, css, FowerHTMLProps } from '@fower/react'
 import Image from 'next/image'
 
-interface ListItemIconProps {
-  icon: string | number
+interface ListItemIconProps extends FowerHTMLProps<'div'> {
+  icon?: string | number
   size?: number
 }
 
-export function ListItemIcon({ icon, size = 20 }: ListItemIconProps) {
+export function ListItemIcon({ icon, size = 20, ...rest }: ListItemIconProps) {
   if (!icon) {
-    return <Box square={size} bgNeutral300 rounded-6></Box>
+    return <Box square={size} bgNeutral300 rounded-6 {...rest}></Box>
   }
 
   if (typeof icon === 'number') {

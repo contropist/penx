@@ -17,6 +17,7 @@ import { app } from '@tauri-apps/api'
 import { emit, listen } from '@tauri-apps/api/event'
 import { isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
+import { positionAtom } from '~/hooks/useCommandPosition'
 import { modeAtom } from '~/hooks/useMode'
 
 initFower()
@@ -61,8 +62,12 @@ async function hideOnBlur() {
         await appWindow?.center()
         store.set(modeAtom, 'COMMAND')
       } else {
-        mainWindow?.hide()
-        appEmitter.emit('ON_MAIN_WINDOW_HIDE')
+        const position = store.get(positionAtom)
+        console.log('=======const:', position)
+        if (position === 'ROOT') {
+          mainWindow?.hide()
+        }
+        appEmitter.emit('ON_ESCAPE_IN_COMMAND')
       }
     }
   })

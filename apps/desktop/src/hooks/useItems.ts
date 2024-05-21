@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { atom, useAtom, useSetAtom } from 'jotai'
-import { ListItem } from 'penx'
+import { IListItem } from 'penx'
 import { db } from '@penx/local-db'
 
-export const itemsAtom = atom<ListItem[]>([])
+export const itemsAtom = atom<IListItem[]>([])
 
 export function useItems() {
   const [items, setItems] = useAtom(itemsAtom)
@@ -16,7 +16,7 @@ export function useItems() {
   }
 }
 
-export const commandsAtom = atom<ListItem[]>([])
+export const commandsAtom = atom<IListItem[]>([])
 
 export function useCommands() {
   const [commands, setCommands] = useAtom(itemsAtom)
@@ -33,7 +33,7 @@ export function useQueryCommands() {
     return extensions.reduce((acc, cur) => {
       return [
         ...acc,
-        ...cur.commands.map<ListItem>((item) => {
+        ...cur.commands.map<IListItem>((item) => {
           function getIcon() {
             const defaultIcon = cur.icon ? cur.assets?.[cur.icon] : ''
             if (!item.icon) return defaultIcon
@@ -59,7 +59,7 @@ export function useQueryCommands() {
           }
         }),
       ]
-    }, [] as ListItem[])
+    }, [] as IListItem[])
   })
 
   useEffect(() => {

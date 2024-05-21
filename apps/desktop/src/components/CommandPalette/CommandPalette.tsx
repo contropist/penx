@@ -8,6 +8,7 @@ import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useReset } from '~/hooks/useReset'
+import { useValue } from '~/hooks/useValue'
 import { CommandApp } from './CommandApp/CommandApp'
 import { StyledCommand, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
@@ -24,7 +25,8 @@ const footerHeight = 40
 const bodyHeight = windowHeight - searchBarHeight - footerHeight
 
 export const CommandPalette = () => {
-  const [q, setQ] = useState('')
+  const { value, setValue } = useValue()
+
   const { developingItems, productionItems } = useItems()
 
   // console.log('========items:', items)
@@ -44,7 +46,7 @@ export const CommandPalette = () => {
 
   useQueryCommands()
 
-  useReset(setQ)
+  useReset(setValue)
 
   return (
     <StyledCommand
@@ -68,12 +70,14 @@ export const CommandPalette = () => {
         }
       }
       loop
-      filter={(value, search) => {
-        // console.log('value:', value, 'search:', search)
-        return 1
-      }}
+      value={value}
+      onValueChange={(v) => setValue(v)}
+      // filter={(value, search) => {
+      //   // console.log('value:', value, 'search:', search)
+      //   return 1
+      // }}
     >
-      <SearchBar searchBarHeight={searchBarHeight} q={q} setQ={setQ} />
+      <SearchBar searchBarHeight={searchBarHeight} q={value} setQ={setValue} />
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&
           currentCommand &&
@@ -92,11 +96,13 @@ export const CommandPalette = () => {
               ></Box>
             </Box>
           ) : (
-            <CommandApp
-              loading={loading}
-              ui={ui}
-              currentCommand={currentCommand}
-            />
+            <StyledCommandList p2 minH-100p>
+              <CommandApp
+                loading={loading}
+                ui={ui}
+                currentCommand={currentCommand}
+              />
+            </StyledCommandList>
           ))}
 
         {isRoot && (

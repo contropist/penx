@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai'
-import { ListItem, LoadingType } from 'penx'
+import { IListItem, LoadingType } from 'penx'
 
 type MarketplaceUI = {
   type: 'marketplace'
@@ -17,15 +17,25 @@ type MarkdownUI = {
 
 type ListUI = {
   type: 'list'
-  items: ListItem[]
+  items: IListItem[]
 }
 
-export type CommandAppUI = ListUI | MarkdownUI | LoadingUI | MarketplaceUI
+type RenderUI = {
+  type: 'render'
+  component: any
+}
 
-export const uiAtom = atom<CommandAppUI>({} as CommandAppUI)
+export type CommandAppUI =
+  | ListUI
+  | MarkdownUI
+  | LoadingUI
+  | MarketplaceUI
+  | RenderUI
+
+export const commandUIAtom = atom<CommandAppUI>({} as CommandAppUI)
 
 export function useCommandAppUI() {
-  const [ui, setUI] = useAtom(uiAtom)
+  const [ui, setUI] = useAtom(commandUIAtom)
 
   return {
     ui,

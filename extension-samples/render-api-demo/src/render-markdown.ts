@@ -1,4 +1,4 @@
-import { renderMarkdown } from 'penx'
+import { MarkdownBuilder, render } from 'penx'
 
 const content = `
 # hello world!
@@ -14,5 +14,6 @@ The Markdown elements outlined in the original design document.
 ![penx-logo](https://www.penx.io/images/logo-128.png)
 `
 export async function main() {
-  renderMarkdown(content)
+  const md = new MarkdownBuilder(content)
+  render(md)
 }

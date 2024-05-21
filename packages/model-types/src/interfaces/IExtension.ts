@@ -5,7 +5,7 @@ export interface Command {
   description: string
   icon?: string
   code: string
-  runtime: string
+  runtime?: string
   isBuiltIn?: boolean
 }
 

@@ -1,7 +1,6 @@
-import { renderMarkdown } from 'penx'
-
-renderMarkdown('# Marketplace')
-
-postMessage({
-  type: 'marketplace',
-})
+function main() {
+  postMessage({
+    type: 'marketplace',
+  })
+}
+main()

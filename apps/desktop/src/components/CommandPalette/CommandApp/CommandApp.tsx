@@ -1,93 +1,103 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import isEqual from 'react-fast-compare'
-import Markdown from 'react-markdown'
-import { Box, css } from '@fower/react'
-import { ListItem } from 'penx'
-import { Spinner } from 'uikit'
+import { Box } from '@fower/react'
+import { IListItem, isListJSON, isMarkdownJSON } from 'penx'
+import { Divider, Spinner } from 'uikit'
 import { CommandAppUI } from '~/hooks/useCommandAppUI'
-import { StyledCommandGroup, StyledCommandList } from '../CommandComponents'
+import { useValue } from '~/hooks/useValue'
+import { StyledCommandGroup } from '../CommandComponents'
 import { ListItemUI } from '../ListItemUI'
+import { DataListItem } from './IDataListItem'
+import { Markdown } from './Markdown'
 import { Marketplace } from './Marketplace'
 
 interface CommandAppProps {
-  currentCommand: ListItem
+  currentCommand: IListItem
   ui: CommandAppUI
   loading: boolean
 }
 
 export const CommandApp = memo(
   function CommandApp({ loading, ui, currentCommand }: CommandAppProps) {
-    // console.log('=======currentCommand:', currentCommand, 'ui:', ui)
+    // console.log('=======currentCommand:ui...:', ui)
+
+    const { value, setValue } = useValue()
+
+    useEffect(() => {
+      // TODO: need improve
+      if (ui.type === 'render' && isListJSON(ui.component)) {
+        const find = ui.component.items.find((item) => item.title === value)
+        if (!find) {
+          const firstItem = ui.component.items.find((item) => !item.type)
+          firstItem && setValue(firstItem.title as string)
+        }
+      }
+    }, [ui, value, setValue])
 
     if (loading) {
       // return <Box>loading...</Box>
       return null
     }
 
+    if (ui.type === 'marketplace') {
+      return <Marketplace />
+    }
+
+    if (ui.type === 'render') {
+      const component = ui.component as any
+
+      if (isMarkdownJSON(component)) {
+        return <Markdown content={component.content} />
+      }
+
+      if (isListJSON(component)) {
+        const { items, isShowingDetail } = component
+        const currentItem = items.find((item) => item.title === value)!
+        const dataList = currentItem?.detail?.items || []
+
+        return (
+          <Box toLeft overflowHidden absolute top0 bottom0 left0 right0>
+            <StyledCommandGroup flex-2>
+              {items.map((item, index) => {
+                return (
+                  <ListItemUI
+                    key={index}
+                    index={index}
+                    item={item as any} // TODO: handle any
+                    onSelect={() => {
+                      //
+                    }}
+                  />
+                )
+              })}
+            </StyledCommandGroup>
+            {isShowingDetail && (
+              <>
+                <Divider orientation="vertical" />
+                <Box className="command-app-list-detail" flex-3 overflowAuto p3>
+                  <Box text2XL fontBold mb2>
+                    Detail
+                  </Box>
+                  <Box column gap1>
+                    {dataList.map((item, index) => (
+                      <DataListItem key={item.label} item={item} />
+                    ))}
+                  </Box>
+                </Box>
+              </>
+            )}
+          </Box>
+        )
+      }
+
+      return null
+    }
+
     if (ui.type === 'loading') {
       return (
-        <StyledCommandList p2 minH-100p>
-          <Box absolute top0 right0 left0 bottom0 toCenter>
-            <Spinner></Spinner>
-          </Box>
-        </StyledCommandList>
-      )
-    }
-
-    if (ui.type === 'markdown') {
-      return (
-        <StyledCommandList p2 minH-100p>
-          <Markdown
-            className={css(['p1'])}
-            components={{
-              h1: (props) => {
-                return <Box as="h1" mb2 {...props} />
-              },
-              h2: (props) => {
-                return <Box as="h2" mb2 {...props} />
-              },
-              ul: (props) => {
-                return (
-                  <Box as="ul" pl2 listInside listDisc {...(props as any)} />
-                )
-              },
-              li: (props) => {
-                return <Box as="li" py1 {...(props as any)} />
-              },
-            }}
-          >
-            {ui.content}
-          </Markdown>
-        </StyledCommandList>
-      )
-    }
-
-    if (ui.type === 'marketplace') {
-      return (
-        <StyledCommandList p2 minH-100p>
-          <Marketplace />
-        </StyledCommandList>
-      )
-    }
-
-    if (ui.type === 'list') {
-      return (
-        <StyledCommandList p2 minH-100p>
-          <StyledCommandGroup>
-            {ui.items.map((item, index) => {
-              return (
-                <ListItemUI
-                  key={index}
-                  index={index}
-                  item={item}
-                  onSelect={() => {
-                    //
-                  }}
-                />
-              )
-            })}
-          </StyledCommandGroup>
-        </StyledCommandList>
+        <Box absolute top0 right0 left0 bottom0 toCenter>
+          <Spinner></Spinner>
+        </Box>
       )
     }
 

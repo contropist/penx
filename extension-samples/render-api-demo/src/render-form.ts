@@ -1,19 +1,11 @@
-import { renderMarkdown } from 'penx'
+import { MarkdownBuilder, render } from 'penx'
 
-const content = `
-# hello world!
-
-The Markdown elements outlined in the original design document.
-
-## Lists
-
-- First item
-- Second item
-- Third item
-- Fourth item
-
-![penx-logo](https://www.penx.io/images/logo-128.png)
-`
 export async function main() {
-  renderMarkdown(content)
+  fetch('https://api.binance.com/api/v3/ticker/price')
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('res========x', res)
+    })
+
+  render(new MarkdownBuilder('# hello world!'))
 }

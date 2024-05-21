@@ -34,7 +34,7 @@ type AppEvents = {
 
   LOAD_CLOUD_SPACES: undefined
 
-  ON_MAIN_WINDOW_HIDE: undefined
+  ON_ESCAPE_IN_COMMAND: undefined
 }
 
 export const appEmitter = mitt<AppEvents>()

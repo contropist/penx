@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/tauri'
-import { EventType, ListItem } from 'penx'
+import { EventType, IListItem } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { db } from '@penx/local-db'
 import { sleep } from '@penx/shared'
@@ -15,7 +15,7 @@ export function useHandleSelect() {
   const { setCurrentCommand } = useCurrentCommand()
   const { setLoading } = useCommandAppLoading()
 
-  return async (item: ListItem, input = '') => {
+  return async (item: IListItem, input = '') => {
     const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
 
     if (item.type === 'command') {
@@ -77,8 +77,8 @@ export function useHandleSelect() {
         const url = URL.createObjectURL(blob)
         worker = new Worker(url)
         // await sleep(2000)
-        setLoading(false)
       }
+      setLoading(false)
 
       workerStore.currentWorker = worker
 
@@ -100,10 +100,10 @@ export function useHandleSelect() {
         }
 
         if (event.data?.type === EventType.RenderList) {
-          const list: ListItem[] = event.data.items || []
+          const list: IListItem[] = event.data.items || []
           console.log('event--------:', event.data.items)
 
-          const newItems = list.map<ListItem>((item) => ({
+          const newItems = list.map<IListItem>((item) => ({
             type: 'list-item',
             ...item,
           }))
@@ -132,6 +132,14 @@ export function useHandleSelect() {
 
         if (event.data?.type === 'marketplace') {
           setUI({ type: 'marketplace' })
+        }
+
+        if (event.data?.type === EventType.Render) {
+          const component = event.data.component as any
+          setUI({
+            type: 'render',
+            component,
+          })
         }
       }
     }

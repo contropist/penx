@@ -1,3 +1,2 @@
-import { renderMarkdown } from 'penx'
-
-renderMarkdown('# Hello  PenX')
+// renderMarkdown('# Hello  PenX')
+console.log('clipboard.......')
