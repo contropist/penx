@@ -20,10 +20,11 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       h={footerHeight}
       borderTop
       borderNeutral200
+      // bg="#F2ECEA"
+      bgWhite
       toCenterY
       px4
       toBetween
-      bgWhite
     >
       {currentCommand && (
         <ListItemIcon icon={currentCommand.data.extensionIcon} />

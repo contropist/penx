@@ -20,7 +20,7 @@ type ListUI = {
   items: ListItem[]
 }
 
-type CommandAppUI = ListUI | MarkdownUI | LoadingUI | MarketplaceUI
+export type CommandAppUI = ListUI | MarkdownUI | LoadingUI | MarketplaceUI
 
 export const uiAtom = atom<CommandAppUI>({} as CommandAppUI)
 

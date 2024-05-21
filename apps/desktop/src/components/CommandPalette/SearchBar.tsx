@@ -44,7 +44,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         w-100p
         h={searchBarHeight}
         px3
-        placeholderGray400
+        placeholderZinc500
         textBase
         outlineNone
         placeholder="Search something..."

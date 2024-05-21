@@ -1,6 +1,6 @@
 import { EventType } from './constants'
 
-export function runAppScript(script: string): Promise<string> {
+export function runAppleScript(script: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const channel = new MessageChannel()
 

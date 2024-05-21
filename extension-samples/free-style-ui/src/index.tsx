@@ -37,9 +37,3 @@ export function Main() {
     </Box>
   )
 }
-
-//
-const domNode = document.getElementById('root')!
-const root = createRoot(domNode)
-
-root.render(<Main />)

@@ -1,5 +1,6 @@
 import { atom, useAtom } from 'jotai'
 import { workerStore } from '~/common/workerStore'
+import { useCommandAppUI } from './useCommandAppUI'
 import { useCurrentCommand } from './useCurrentCommand'
 
 type Position = 'ROOT' | 'COMMAND_APP'
@@ -8,16 +9,14 @@ export const positionAtom = atom<Position>('ROOT')
 
 export function useCommandPosition() {
   const { setCurrentCommand } = useCurrentCommand()
+  const { setUI } = useCommandAppUI()
   const [position, setPosition] = useAtom(positionAtom)
   function backToRoot() {
     setPosition('ROOT')
     setCurrentCommand(null as any)
-
-    console.log('workerStore.currentWorker:', workerStore.currentWorker)
+    setUI({} as any)
 
     if (workerStore.currentWorker) {
-      console.log('postmesge.........')
-
       workerStore.currentWorker.postMessage('BACK_TO_ROOT')
     }
   }

@@ -2,7 +2,9 @@ import { invoke } from '@tauri-apps/api/tauri'
 import { EventType, ListItem } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { db } from '@penx/local-db'
+import { sleep } from '@penx/shared'
 import { workerStore } from '~/common/workerStore'
+import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
@@ -11,6 +13,7 @@ export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
   const { setPosition } = useCommandPosition()
   const { setCurrentCommand } = useCurrentCommand()
+  const { setLoading } = useCommandAppLoading()
 
   return async (item: ListItem, input = '') => {
     const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
@@ -18,6 +21,7 @@ export function useHandleSelect() {
     if (item.type === 'command') {
       // if (!q) setQ(item.title as string)
 
+      setLoading(true)
       setCurrentCommand(item)
 
       setPosition('COMMAND_APP')
@@ -31,9 +35,12 @@ export function useHandleSelect() {
 
       if (command.runtime === 'iframe') {
         const $iframe = document.getElementById('command-app-iframe')!
+        if (!$iframe) return
         const currentWindow = ($iframe as any).contentWindow as Window
-        currentWindow.document.body.innerHTML = '<div id="root"></div>'
+
+        currentWindow.document.body.innerHTML = '<div id="root">Hello</div>'
         ;(currentWindow as any).eval(command.code)
+
         return
       }
 
@@ -69,6 +76,8 @@ export function useHandleSelect() {
         })
         const url = URL.createObjectURL(blob)
         worker = new Worker(url)
+        // await sleep(2000)
+        setLoading(false)
       }
 
       workerStore.currentWorker = worker

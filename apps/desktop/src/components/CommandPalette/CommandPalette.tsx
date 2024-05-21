@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { Command } from 'cmdk'
+import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
+import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
@@ -35,31 +37,14 @@ export const CommandPalette = () => {
 
   const { isRoot, isCommandApp } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()
+  const { ui } = useCommandAppUI()
+  const { loading } = useCommandAppLoading()
+
   const handleSelect = useHandleSelect()
 
   useQueryCommands()
 
   useReset(setQ)
-
-  useEffect(() => {}, [])
-  // return (
-  //   <Box bgAmber100 relative h-100p>
-  //     <Box
-  //       as="iframe"
-  //       id="command-app-iframe"
-  //       width="100%"
-  //       height="100%"
-  //       p0
-  //       m0
-  //       src='https://penx.io'
-  //       style={{
-  //         background: 'amber',
-  //       }}
-  //     >
-
-  //     </Box>
-  //   </Box>
-  // )
 
   return (
     <StyledCommand
@@ -75,11 +60,13 @@ export const CommandPalette = () => {
       right0
       bottom0
       zIndex-10000
+      // bg="#F6F2F0"
       bgWhite
-      // bgNeutral100
-      style={{
-        backdropFilter: 'blur(200px)',
-      }}
+      style={
+        {
+          // backdropFilter: 'blur(200px)',
+        }
+      }
       loop
       filter={(value, search) => {
         // console.log('value:', value, 'search:', search)
@@ -105,9 +92,11 @@ export const CommandPalette = () => {
               ></Box>
             </Box>
           ) : (
-            <StyledCommandList p2 minH-100p>
-              <CommandApp />
-            </StyledCommandList>
+            <CommandApp
+              loading={loading}
+              ui={ui}
+              currentCommand={currentCommand}
+            />
           ))}
 
         {isRoot && (

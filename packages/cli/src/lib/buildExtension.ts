@@ -35,12 +35,13 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
   const addMainPlugin: esbuild.Plugin = {
     name: 'add-code',
     setup(build) {
-      build.onLoad({ filter: /\.(t|j)s$/ }, async (args) => {
+      build.onLoad({ filter: /\.(t|j)sx?$/ }, async (args) => {
         const contents = await fs.promises.readFile(args.path, 'utf8')
 
         const path = args.path as string
 
         const isIframe = /tsx$/.test(path)
+
         if (entries.includes(path)) {
           let prefix = ''
           let postfix = '\nmain();'
@@ -56,7 +57,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
           const modifiedContents = `${prefix}${contents}${postfix}`
           return {
             contents: modifiedContents,
-            loader: 'ts',
+            loader: isIframe ? 'tsx' : 'ts',
           }
         }
         return null
@@ -80,6 +81,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
       ...buildOptions,
       // minify: true,
       plugins: [addMainPlugin, onEndPlugin],
+      // plugins: [onEndPlugin],
     })
 
     ctx.watch()
