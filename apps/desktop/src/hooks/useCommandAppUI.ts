@@ -5,6 +5,18 @@ type MarketplaceUI = {
   type: 'marketplace'
 }
 
+type ClipboardHistoryUI = {
+  type: 'clipboard-history'
+}
+
+type TodayUI = {
+  type: 'today'
+}
+
+type DatabaseUI = {
+  type: 'database'
+}
+
 type LoadingUI = {
   type: 'loading'
   data: LoadingType
@@ -30,6 +42,9 @@ export type CommandAppUI =
   | MarkdownUI
   | LoadingUI
   | MarketplaceUI
+  | TodayUI
+  | DatabaseUI
+  | ClipboardHistoryUI
   | RenderUI
 
 export const commandUIAtom = atom<CommandAppUI>({} as CommandAppUI)

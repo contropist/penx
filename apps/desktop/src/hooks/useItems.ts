@@ -3,15 +3,29 @@ import { useQuery } from '@tanstack/react-query'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { IListItem } from 'penx'
 import { db } from '@penx/local-db'
+import { useSearch } from './useSearch'
 
 export const itemsAtom = atom<IListItem[]>([])
 
 export function useItems() {
+  const { search } = useSearch()
   const [items, setItems] = useAtom(itemsAtom)
   return {
     items,
-    developingItems: items.filter((item) => item.data?.isDeveloping),
-    productionItems: items.filter((item) => !item.data?.isDeveloping),
+    developingItems: items.filter((item) => {
+      if (!search) return item.data?.isDeveloping
+      return (
+        item.data?.isDeveloping &&
+        item.title.toString().toLowerCase().includes(search.toLowerCase())
+      )
+    }),
+    productionItems: items.filter((item) => {
+      if (!search) return !item.data?.isDeveloping
+      return (
+        !item.data?.isDeveloping &&
+        item.title.toString().toLowerCase().includes(search.toLowerCase())
+      )
+    }),
     setItems,
   }
 }

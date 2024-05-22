@@ -53,6 +53,15 @@ export function useHandleSelect() {
             new URL('../workers/clipboard-history.ts', import.meta.url),
             { type: 'module' },
           )
+        } else if (command.name === 'today') {
+          worker = new Worker(new URL('../workers/today.ts', import.meta.url), {
+            type: 'module',
+          })
+        } else if (command.name === 'database') {
+          worker = new Worker(
+            new URL('../workers/database.ts', import.meta.url),
+            { type: 'module' },
+          )
         } else {
           worker = new Worker(
             new URL('../workers/marketplace.ts', import.meta.url),
@@ -115,13 +124,15 @@ export function useHandleSelect() {
           })
         }
 
-        if (event.data?.type === 'marketplace') {
-          setUI({ type: 'marketplace' })
+        if (
+          ['marketplace', 'today', 'database', 'clipboard-history'].includes(
+            event.data?.type,
+          )
+        ) {
+          setUI({ type: event.data?.type })
         }
 
         if (event.data?.type === EventType.Render) {
-          console.log('render................')
-
           const component = event.data.component as any
           setUI({
             type: 'render',

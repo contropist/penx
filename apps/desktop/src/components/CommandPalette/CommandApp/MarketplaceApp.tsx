@@ -77,7 +77,7 @@ function ExtensionItem({ item, extensions }: ExtensionItemProps) {
   )
 }
 
-export function Marketplace() {
+export function MarketplaceApp() {
   const { data = [], isLoading } = trpc.extension.all.useQuery()
 
   const { data: extensions = [] } = useQuery({

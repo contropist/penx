@@ -5,9 +5,12 @@ import { IListItem, isListJSON, isMarkdownJSON } from 'penx'
 import { Spinner } from 'uikit'
 import { CommandAppUI } from '~/hooks/useCommandAppUI'
 import { useValue } from '~/hooks/useValue'
+import { ClipboardHistoryApp } from './ClipboardHistoryApp'
+import { DatabaseApp } from './DatabaseApp'
 import { ListApp } from './ListApp'
 import { Markdown } from './Markdown'
-import { Marketplace } from './Marketplace'
+import { MarketplaceApp } from './MarketplaceApp'
+import { TodayApp } from './TodayApp'
 
 interface CommandAppProps {
   currentCommand: IListItem
@@ -17,15 +20,25 @@ interface CommandAppProps {
 
 export const CommandApp = memo(
   function CommandApp({ loading, ui, currentCommand }: CommandAppProps) {
-    const { value, setValue } = useValue()
-
     if (loading) {
       // return <Box>loading...</Box>
       return null
     }
 
     if (ui.type === 'marketplace') {
-      return <Marketplace />
+      return <MarketplaceApp />
+    }
+
+    if (ui.type === 'today') {
+      return <TodayApp />
+    }
+
+    if (ui.type === 'database') {
+      return <DatabaseApp />
+    }
+
+    if (ui.type === 'clipboard-history') {
+      return <ClipboardHistoryApp />
     }
 
     if (ui.type === 'render') {

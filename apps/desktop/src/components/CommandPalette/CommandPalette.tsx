@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
@@ -9,6 +8,7 @@ import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useReset } from '~/hooks/useReset'
+import { useSearch } from '~/hooks/useSearch'
 import { useValue } from '~/hooks/useValue'
 import { CommandApp } from './CommandApp/CommandApp'
 import { StyledCommand, StyledCommandList } from './CommandComponents'
@@ -23,7 +23,6 @@ const bodyHeight = windowHeight - searchBarHeight - footerHeight
 
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
-
   const { developingItems, productionItems } = useItems()
 
   // console.log('========items:', items)
@@ -56,6 +55,8 @@ export const CommandPalette = () => {
   // useEffect(() => {
   //   init()
   // }, [])
+
+  const isIframe = isCommandApp && currentCommand.data.runtime === 'iframe'
 
   return (
     <StyledCommand
@@ -134,7 +135,7 @@ export const CommandPalette = () => {
                   })}
                 </Command.Group>
               )}
-              <Command.Group heading={isRoot ? 'Suggestions' : undefined}>
+              <Command.Group heading={isRoot ? 'Commands' : undefined}>
                 {isRoot &&
                   productionItems.map((item, index) => {
                     return (
@@ -152,7 +153,7 @@ export const CommandPalette = () => {
         )}
       </Box>
 
-      <CommandPaletteFooter footerHeight={footerHeight} />
+      {!isIframe && <CommandPaletteFooter footerHeight={footerHeight} />}
     </StyledCommand>
   )
 }

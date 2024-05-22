@@ -18,6 +18,24 @@ export async function installBuiltinExtension() {
     isDeveloping: false,
     commands: [
       {
+        name: 'today',
+        title: 'Today',
+        icon: '/icons/copy.svg',
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+      {
+        name: 'database',
+        title: 'Database',
+        icon: '/icons/copy.svg',
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+      {
         name: 'clipboard-history',
         title: 'Clipboard history',
         icon: '/icons/copy.svg',

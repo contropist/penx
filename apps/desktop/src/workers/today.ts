@@ -1,6 +1,6 @@
 export function main() {
   postMessage({
-    type: 'marketplace',
+    type: 'today',
   })
 }
 main()

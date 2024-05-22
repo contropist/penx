@@ -1,2 +1,6 @@
-// renderMarkdown('# Hello  PenX')
-console.log('clipboard.......')
+export function main() {
+  postMessage({
+    type: 'clipboard-history',
+  })
+}
+main()
