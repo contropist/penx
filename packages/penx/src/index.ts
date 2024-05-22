@@ -1,8 +1,10 @@
 export * from './constants'
 export * from './clipboard'
 
-export * from './renderLoading'
 export * from './types'
+export * from './onSearchChange'
+
+export * from './renderLoading'
 
 export * from './render'
 export * from './components/MarkdownBuilder'

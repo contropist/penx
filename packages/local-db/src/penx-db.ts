@@ -47,8 +47,6 @@ export class PenxDB extends Dexie {
         ...data,
       } as IExtension)
     } else {
-      console.log('create...........')
-
       await this.updateExtension(ext.id, {
         ...data,
       })

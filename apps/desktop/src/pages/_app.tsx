@@ -63,7 +63,6 @@ async function hideOnBlur() {
         store.set(modeAtom, 'COMMAND')
       } else {
         const position = store.get(positionAtom)
-        console.log('=======const:', position)
         if (position === 'ROOT') {
           mainWindow?.hide()
         }

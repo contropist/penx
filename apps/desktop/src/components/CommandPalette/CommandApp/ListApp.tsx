@@ -1,0 +1,62 @@
+import { memo, useEffect } from 'react'
+import { Box } from '@fower/react'
+import { ListJSON } from 'penx'
+import { Divider } from 'uikit'
+import { useValue } from '~/hooks/useValue'
+import { StyledCommandGroup } from '../CommandComponents'
+import { ListItemUI } from '../ListItemUI'
+import { DataListItem } from './DataListItem'
+
+interface ListAppProps {
+  component: ListJSON
+}
+
+export const ListApp = memo(function ListApp({ component }: ListAppProps) {
+  const { value, setValue } = useValue()
+  const { items, isShowingDetail } = component
+  const currentItem = items.find((item) => item.title === value)!
+  const dataList = currentItem?.detail?.items || []
+
+  useEffect(() => {
+    const find = component.items.find((item) => item.title === value)
+    if (!find) {
+      const firstItem = component.items.find((item) => !item.type)
+      firstItem && setValue(firstItem.title as string)
+    }
+  }, [component, value, setValue])
+
+  return (
+    <Box toLeft overflowHidden absolute top0 bottom0 left0 right0>
+      <StyledCommandGroup flex-2 p2>
+        {items.sort().map((item, index) => {
+          return (
+            <ListItemUI
+              // key={index}
+              key={item.title.toString()}
+              index={index}
+              item={item as any} // TODO: handle any
+              onSelect={() => {
+                //
+              }}
+            />
+          )
+        })}
+      </StyledCommandGroup>
+      {isShowingDetail && (
+        <>
+          <Divider orientation="vertical" />
+          <Box className="command-app-list-detail" flex-3 overflowAuto p3>
+            <Box text2XL fontBold mb2>
+              Detail
+            </Box>
+            <Box column gap1>
+              {dataList.map((item, index) => (
+                <DataListItem key={item.label} item={item} />
+              ))}
+            </Box>
+          </Box>
+        </>
+      )}
+    </Box>
+  )
+})

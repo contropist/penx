@@ -71,13 +71,16 @@ export const CommandPalette = () => {
       }
       loop
       value={value}
-      onValueChange={(v) => setValue(v)}
-      // filter={(value, search) => {
-      //   // console.log('value:', value, 'search:', search)
-      //   return 1
-      // }}
+      onValueChange={(v) => {
+        setValue(v)
+      }}
+      // shouldFilter={false}
+      filter={(value, search) => {
+        // console.log('value:', value, 'search:', search)
+        return 1
+      }}
     >
-      <SearchBar searchBarHeight={searchBarHeight} q={value} setQ={setValue} />
+      <SearchBar searchBarHeight={searchBarHeight} />
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&
           currentCommand &&

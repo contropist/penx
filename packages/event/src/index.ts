@@ -35,6 +35,8 @@ type AppEvents = {
   LOAD_CLOUD_SPACES: undefined
 
   ON_ESCAPE_IN_COMMAND: undefined
+
+  ON_COMMAND_PALETTE_SEARCH_CHANGE: string
 }
 
 export const appEmitter = mitt<AppEvents>()

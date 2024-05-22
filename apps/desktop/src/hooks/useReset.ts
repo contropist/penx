@@ -6,7 +6,7 @@ import { positionAtom } from './useCommandPosition'
 import { currentCommandAtom } from './useCurrentCommand'
 import { useCommands, useItems } from './useItems'
 
-export function useReset(setQ: Dispatch<SetStateAction<string>>) {
+export function useReset(setQ: (value: string) => void) {
   const { items, setItems } = useItems()
   const { commands } = useCommands()
 

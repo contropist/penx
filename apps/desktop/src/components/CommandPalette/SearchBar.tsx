@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import { Box } from '@fower/react'
 import { ArrowLeft } from 'lucide-react'
+import { appEmitter } from '@penx/event'
+import { workerStore } from '~/common/workerStore'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { ToggleModeButton } from '../ToggleModeButton'
@@ -8,8 +10,6 @@ import { StyledCommandInput } from './CommandComponents'
 
 interface Props {
   searchBarHeight: number
-  q: string
-  setQ: Dispatch<SetStateAction<string>>
 }
 export const SearchBar = ({ searchBarHeight }: Props) => {
   const [q, setQ] = useState('')
@@ -51,6 +51,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         autoFocus
         value={q}
         onValueChange={(v) => {
+          appEmitter.emit('ON_COMMAND_PALETTE_SEARCH_CHANGE', v)
+
           setQ(v)
           if (v === '') {
             console.log('===========commands:', commands)

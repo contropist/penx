@@ -1,6 +1,7 @@
 import { invoke } from '@tauri-apps/api/tauri'
 import { EventType, IListItem } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
+import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
 import { sleep } from '@penx/shared'
 import { workerStore } from '~/common/workerStore'
@@ -76,7 +77,6 @@ export function useHandleSelect() {
         })
         const url = URL.createObjectURL(blob)
         worker = new Worker(url)
-        // await sleep(2000)
       }
       setLoading(false)
 
@@ -99,26 +99,12 @@ export function useHandleSelect() {
           })
         }
 
-        if (event.data?.type === EventType.RenderList) {
-          const list: IListItem[] = event.data.items || []
-          console.log('event--------:', event.data.items)
-
-          const newItems = list.map<IListItem>((item) => ({
-            type: 'list-item',
-            ...item,
-          }))
-
-          setUI({
-            type: 'list',
-            items: newItems,
-          })
-        }
-
-        if (event.data?.type === EventType.RenderMarkdown) {
-          const content = event.data.content as string
-          setUI({
-            type: 'markdown',
-            content,
+        if (event.data.type === EventType.InitOnSearchChange) {
+          appEmitter.on('ON_COMMAND_PALETTE_SEARCH_CHANGE', (v) => {
+            event.ports[0].postMessage({
+              type: EventType.OnSearchChange,
+              value: v,
+            })
           })
         }
 
@@ -135,6 +121,8 @@ export function useHandleSelect() {
         }
 
         if (event.data?.type === EventType.Render) {
+          console.log('render................')
+
           const component = event.data.component as any
           setUI({
             type: 'render',

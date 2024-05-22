@@ -7,4 +7,7 @@ export enum EventType {
 
   RunAppScript = 'RunAppScript',
   RunAppScriptResult = 'RunAppScriptResult',
+
+  InitOnSearchChange = 'InitOnSearchChange',
+  OnSearchChange = 'OnSearchChange',
 }

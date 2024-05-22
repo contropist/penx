@@ -69,6 +69,7 @@ export interface ListJSON {
   type: 'list'
   isLoading: boolean
   isShowingDetail: boolean
+  filtering: boolean
   items: ListItemJSON[]
 }
 
@@ -79,6 +80,8 @@ export function isListJSON(json: any): json is ListJSON {
 export class ListBuilder {
   isShowingDetail = false
   isLoading = false
+
+  filtering = true
 
   constructor(public items: IListItem[] = []) {}
 
@@ -102,11 +105,17 @@ export class ListBuilder {
     return this
   }
 
+  setFiltering(filtering: boolean) {
+    this.filtering = filtering
+    return this
+  }
+
   toJSON(): ListJSON {
     return {
       type: 'list',
       isLoading: this.isLoading,
       isShowingDetail: this.isShowingDetail,
+      filtering: this.filtering,
       items: this.items.map((item) => {
         if (!item.detail) return item as any as ListItemJSON
         return {

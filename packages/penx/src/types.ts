@@ -3,6 +3,6 @@ export type IAccessory = {
   icon?: string
   tag?: {
     value: string | number
-    bg: string
+    bg?: string
   }
 }
