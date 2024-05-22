@@ -135,7 +135,7 @@ export const SidebarDrawer = () => {
                   }}
                 />
 
-                <MenuItem
+                {/* <MenuItem
                   icon={
                     <IconTodo
                       size={24}
@@ -148,11 +148,11 @@ export const SidebarDrawer = () => {
                     store.router.routeTo('TODOS')
                     close()
                   }}
-                />
+                /> */}
 
                 <MenuItem
                   icon={<Hash size={22} strokeWidth={1.5} />}
-                  label="tags"
+                  label="Databases"
                   isActive={isTagsActive}
                   borderBottom={false}
                   onClick={() => {

@@ -1,20 +1,18 @@
 import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
-import { Boxes, BoxIcon, Hash } from 'lucide-react'
-import { Bullet, Button, modalController } from 'uikit'
-import { isProd, ModalNames } from '@penx/constants'
-import { useActiveSpace, useRouterName, useSidebarDrawer } from '@penx/hooks'
+import { Hash } from 'lucide-react'
+import { Bullet } from 'uikit'
+import { useRouterName } from '@penx/hooks'
 import { IconCalendar, IconTodo } from '@penx/icons'
 import { Node } from '@penx/model'
 import { INode } from '@penx/model-types'
-import { useNodes } from '@penx/node-hooks'
 import { useSession } from '@penx/session'
 import { store } from '@penx/store'
+import { Logo } from '@penx/widget'
 import { SyncPopover } from '../StatusBar/SyncPopover'
-import { CatalogueBox } from './CatalogueBox/CatalogueBox'
-import { CreateDemoDatabaseButton } from './CreateDemoDatabaseButton'
 import { FavoriteBox } from './FavoriteBox/FavoriteBox'
 import { LoginButton } from './LoginButton'
+import { SettingsButton } from './SettingsButton'
 import { SidebarItem } from './SidebarItem'
 import { SpacePopover } from './SpacePopover/SpacePopover'
 
@@ -67,8 +65,12 @@ export const Sidebar = memo(
         overflowAuto
       >
         <Box px2>
-          <Box mt2>
-            <SpacePopover />
+          <Box mt2 ml3>
+            {/* <SpacePopover /> */}
+            <Box toCenterY toBetween>
+              <Logo size={24} />
+              <SettingsButton />
+            </Box>
           </Box>
           <Box column gap-1 flex-1 mt3>
             <SidebarItem
@@ -93,7 +95,7 @@ export const Sidebar = memo(
               }}
             /> */}
 
-            <SidebarItem
+            {/* <SidebarItem
               icon={
                 <IconTodo
                   size={20}
@@ -105,7 +107,7 @@ export const Sidebar = memo(
               onClick={() => {
                 store.router.routeTo('TODOS')
               }}
-            />
+            /> */}
 
             <SidebarItem
               icon={
@@ -113,7 +115,7 @@ export const Sidebar = memo(
                   <Hash size={20} strokeWidth={1.5} />
                 </Box>
               }
-              label="Tags"
+              label="Databases"
               isActive={isTagsActive}
               onClick={() => {
                 store.node.selectTagBox()
@@ -134,7 +136,7 @@ export const Sidebar = memo(
               }}
             />
 
-            <SidebarItem
+            {/* <SidebarItem
               icon={
                 <Box gray500 inlineFlex>
                   <BoxIcon size={20} strokeWidth={1.5} />
@@ -144,7 +146,7 @@ export const Sidebar = memo(
               onClick={() => {
                 modalController.open(ModalNames.TAG_HUB)
               }}
-            />
+            /> */}
           </Box>
 
           <SidebarItem

@@ -159,7 +159,7 @@ export const SettingsSidebar = () => {
           </Section>
         </Box>
 
-        <Box py4>
+        {/* <Box py4>
           <Title>Space</Title>
           <Section column gap-1>
             {spaces.map((space, index) => (
@@ -173,7 +173,7 @@ export const SettingsSidebar = () => {
               </SidebarItem>
             ))}
           </Section>
-        </Box>
+        </Box> */}
       </Box>
       <Box>
         <Button
