@@ -5,6 +5,7 @@ import { appEmitter } from '@penx/event'
 import { workerStore } from '~/common/workerStore'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCommands, useItems } from '~/hooks/useItems'
+import { useSearch } from '~/hooks/useSearch'
 import { ToggleModeButton } from '../ToggleModeButton'
 import { StyledCommandInput } from './CommandComponents'
 
@@ -12,7 +13,7 @@ interface Props {
   searchBarHeight: number
 }
 export const SearchBar = ({ searchBarHeight }: Props) => {
-  const [q, setQ] = useState('')
+  const { search, setSearch } = useSearch()
   const { setItems } = useItems()
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
@@ -49,11 +50,11 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         outlineNone
         placeholder="Search something..."
         autoFocus
-        value={q}
+        value={search}
         onValueChange={(v) => {
           appEmitter.emit('ON_COMMAND_PALETTE_SEARCH_CHANGE', v)
 
-          setQ(v)
+          setSearch(v)
           if (v === '') {
             console.log('===========commands:', commands)
             setItems(commands)
@@ -61,7 +62,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         }}
         onKeyDown={(e) => {
           if (e.key === 'Backspace' || e.key === 'delete') {
-            if (!q && isCommandApp) {
+            if (!search && isCommandApp) {
               backToRoot()
             }
           }
@@ -71,7 +72,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
             // if (item) {
             //   handleSelect(item, String(b))
             // }
-            if (!q && isCommandApp) {
+            if (!search && isCommandApp) {
               backToRoot()
             }
           }

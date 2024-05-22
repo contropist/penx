@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
+import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
@@ -14,10 +15,6 @@ import { StyledCommand, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
 import { ListItemUI } from './ListItemUI'
 import { SearchBar } from './SearchBar'
-
-const code = `
-document.body.innerHTML = '<div>hello world</div>'
-`
 
 const windowHeight = 470
 const searchBarHeight = 54
@@ -47,6 +44,18 @@ export const CommandPalette = () => {
   useQueryCommands()
 
   useReset(setValue)
+
+  // async function init() {
+  //   const client = await getClient()
+
+  //   const response = await client.get(
+  //     'https://api.binance.com/api/v3/ticker/price',
+  //   )
+  //   console.log('response=====:', response.data)
+  // }
+  // useEffect(() => {
+  //   init()
+  // }, [])
 
   return (
     <StyledCommand

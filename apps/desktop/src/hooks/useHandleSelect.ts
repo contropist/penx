@@ -9,19 +9,18 @@ import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
+import { useSearch } from './useSearch'
 
 export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
   const { setPosition } = useCommandPosition()
   const { setCurrentCommand } = useCurrentCommand()
   const { setLoading } = useCommandAppLoading()
+  const { setSearch } = useSearch()
 
   return async (item: IListItem, input = '') => {
-    const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
-
     if (item.type === 'command') {
-      // if (!q) setQ(item.title as string)
-
+      setSearch('')
       setLoading(true)
       setCurrentCommand(item)
 

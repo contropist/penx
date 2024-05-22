@@ -32,7 +32,7 @@
       },
       "http": {
         "all": true,
-        "request": true
+        "scope": ["https://*", "http://*"]
       },
       "notification": {
         "all": true

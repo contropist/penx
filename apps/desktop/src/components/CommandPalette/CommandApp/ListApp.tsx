@@ -2,6 +2,7 @@ import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
 import { ListJSON } from 'penx'
 import { Divider } from 'uikit'
+import { useSearch } from '~/hooks/useSearch'
 import { useValue } from '~/hooks/useValue'
 import { StyledCommandGroup } from '../CommandComponents'
 import { ListItemUI } from '../ListItemUI'
@@ -13,9 +14,19 @@ interface ListAppProps {
 
 export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   const { value, setValue } = useValue()
-  const { items, isShowingDetail } = component
+  const { items, isShowingDetail, filtering } = component
   const currentItem = items.find((item) => item.title === value)!
   const dataList = currentItem?.detail?.items || []
+  const { search } = useSearch()
+
+  const filteredItems = !filtering
+    ? items
+    : items.filter((item) => {
+        return item.title
+          .toString()
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      })
 
   useEffect(() => {
     const find = component.items.find((item) => item.title === value)
@@ -28,7 +39,7 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   return (
     <Box toLeft overflowHidden absolute top0 bottom0 left0 right0>
       <StyledCommandGroup flex-2 p2>
-        {items.sort().map((item, index) => {
+        {filteredItems.sort().map((item, index) => {
           return (
             <ListItemUI
               // key={index}
