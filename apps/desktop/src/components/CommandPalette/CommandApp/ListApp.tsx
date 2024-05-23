@@ -39,7 +39,7 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   }, [component, value, setValue])
 
   const listJSX = (
-    <StyledCommandGroup flex-2 p2>
+    <StyledCommandGroup flex-2>
       {filteredItems.sort().map((item, index) => {
         return (
           <ListItemUI

@@ -65,7 +65,7 @@ function FilterSelect({ value, onChange, items }: FilterSelectProps) {
         <SelectValue flexShrink-0 placeholder=""></SelectValue>
         <SelectIcon></SelectIcon>
       </SelectTrigger>
-      <SelectContent w-200 maxH-240 useTriggerWidth={false}>
+      <SelectContent w-200 maxH-240 useTriggerWidth={false} overflowAuto>
         {items.map((item) => (
           <SelectItem
             key={item.value + item.value.toString()}

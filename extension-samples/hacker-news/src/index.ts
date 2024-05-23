@@ -1,36 +1,33 @@
-import { IListItem, ListBuilder, render, renderLoading } from 'penx'
-
-interface Item {
-  by: string
-  descendants: number // comment
-  id: number
-  kids: number[]
-  score: number
-  time: number
-  title: string
-  type: string
-  url: string
-}
+import {
+  IListItem,
+  ListBuilder,
+  onFilterChange,
+  render,
+  renderLoading,
+} from 'penx'
+import { getData } from './libs/getData'
 
 export async function main() {
-  const apiUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json'
   renderLoading({ type: 'spinner' })
 
-  const newsItems = await fetch(apiUrl)
-    .then((response) => response.json())
-    .then((topStoryIds: number[]) => {
-      const newsPromises = topStoryIds
-        .slice(0, 10)
-        .map((id) =>
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-            (response) => response.json(),
-          ),
-        )
+  const items = await getItems()
+  const list = new ListBuilder(items)
 
-      return Promise.all(newsPromises) as Promise<Item[]>
-    })
+  onFilterChange(async (filters) => {
+    renderLoading({ type: 'spinner' })
+    const newItems = await getItems(filters.type)
+    list.setItems(newItems)
+    render(list)
+  })
 
-  const listItems = newsItems.map(
+  render(list)
+}
+
+async function getItems(type = 'top') {
+  const data = await getData(type)
+
+  //
+  const items = data.map(
     (item, index) =>
       ({
         icon: index + 1,
@@ -38,11 +35,20 @@ export async function main() {
         actions: [
           {
             type: 'OpenInBrowser',
-            url: 'https://www.google.com',
+            url: item.url,
+          },
+        ],
+        extra: [
+          {
+            icon: 'comment.svg',
+            text: item.descendants || 0,
+          },
+          {
+            icon: 'up.svg',
+            text: item.score || 0,
           },
         ],
       }) as IListItem,
   )
-
-  render(new ListBuilder(listItems))
+  return items
 }
