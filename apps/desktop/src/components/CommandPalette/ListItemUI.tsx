@@ -1,4 +1,5 @@
 import { ReactNode, useMemo } from 'react'
+import { assert } from 'console'
 import { Box, FowerHTMLProps } from '@fower/react'
 import { IAccessory, IListItem, isAccessoryObjectText } from 'penx'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
@@ -8,6 +9,7 @@ import { ListItemIcon } from './ListItemIcon'
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
   item: IListItem
+  isListApp?: boolean
   titleLayout?: 'column' | 'row'
   onSelect?: (item: IListItem) => void
 }
@@ -17,8 +19,17 @@ export const ListItemUI = ({
   onSelect,
   index,
   titleLayout = 'row',
+  isListApp = false,
   ...rest
 }: ListItemUIProps) => {
+  const { currentCommand } = useCurrentCommand()
+
+  const itemIcon = useMemo(() => {
+    if (!isListApp) return item.icon
+    const assets = currentCommand?.data?.assets || {}
+    return assets[item.icon as string]
+  }, [isListApp, item, currentCommand])
+
   const title = typeof item.title === 'string' ? item.title : item.title.value
 
   const subtitle =
@@ -52,7 +63,7 @@ export const ListItemUI = ({
       {...rest}
     >
       <Box toCenterY gap2>
-        <ListItemIcon icon={item.icon as string} />
+        <ListItemIcon icon={itemIcon as string} />
         <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
           <Box text-14>{title}</Box>
           <Box text-12 zinc400>

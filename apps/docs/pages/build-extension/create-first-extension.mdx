@@ -34,9 +34,11 @@ The source code of `Hello world` is very simple:
 
 ```ts
 // src/index.ts
-import { renderMarkdown } from 'penx'
+import { MarkdownBuilder, render } from 'penx'
 
-renderMarkdown('# hello world!')
+export async function main() {
+  render(new MarkdownBuilder('Hello **world**'))
+}
 ```
 
 ## Test it in PenX

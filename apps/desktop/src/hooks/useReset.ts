@@ -5,9 +5,10 @@ import { commandUIAtom, useCommandAppUI } from './useCommandAppUI'
 import { positionAtom } from './useCommandPosition'
 import { currentCommandAtom } from './useCurrentCommand'
 import { useCommands, useItems } from './useItems'
+import { searchAtom, useSearch } from './useSearch'
 
 export function useReset(setQ: (value: string) => void) {
-  const { items, setItems } = useItems()
+  const { setItems } = useItems()
   const { commands } = useCommands()
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export function useReset(setQ: (value: string) => void) {
         store.set(positionAtom, 'ROOT')
         store.set(currentCommandAtom, null as any)
         store.set(commandUIAtom, {} as any)
+        store.set(searchAtom, '')
       }
 
       setQ('')

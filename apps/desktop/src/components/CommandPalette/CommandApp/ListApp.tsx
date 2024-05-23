@@ -47,12 +47,15 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
             key={item.title.toString()}
             index={index}
             titleLayout={titleLayout}
+            isListApp={true}
             item={item as any} // TODO: handle any
             onSelect={async () => {
               if (item.actions?.[0]) {
                 const defaultAction = item.actions?.[0]
                 if (defaultAction.type === 'OpenInBrowser') {
                   open(defaultAction.url)
+                  const { appWindow } = await import('@tauri-apps/api/window')
+                  appWindow.hide()
                 }
 
                 if (defaultAction.type === 'CopyToClipboard') {

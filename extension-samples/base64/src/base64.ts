@@ -1,30 +1,46 @@
-import { renderList } from 'penx'
+import { IListItem, ListBuilder, onSearchChange, render } from 'penx'
 import { toBase64 } from './libs/toBase64'
 import { toString } from './libs/toString'
 
-export function main() {
-  renderList([
+export async function main() {
+  const items = await getItems()
+  const list = new ListBuilder(items).setFiltering(false)
+
+  onSearchChange(async (value) => {
+    const newItems = await getItems(value)
+    list.setItems(newItems)
+    render(list)
+  })
+
+  render(list)
+}
+
+async function getItems(text: string = '') {
+  const encoded = toBase64(text)
+  const decoded = toString(text)
+  const items: IListItem[] = [
     {
       title: 'Encode',
-      icon: 'base64.svg',
-      subtitle: toBase64('Hello World!!!!'),
+      icon: 'code.svg',
+      subtitle: encoded,
       actions: [
         {
           type: 'CopyToClipboard',
-          content: toBase64('Hello World!'),
+          content: encoded,
         },
       ],
     },
     {
       title: 'Decode',
-      icon: 'base64.svg',
-      subtitle: toString('Hello World!'),
+      icon: 'code.svg',
+      subtitle: decoded,
       actions: [
         {
           type: 'CopyToClipboard',
-          content: toString('Hello World!'),
+          content: decoded,
         },
       ],
     },
-  ])
+  ]
+  return items
 }

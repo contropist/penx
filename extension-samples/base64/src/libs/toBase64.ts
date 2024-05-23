@@ -4,6 +4,6 @@ export function toBase64(str: string) {
     const encodedString = btoa(String.fromCharCode.apply(null, bytes as any))
     return encodedString
   } catch (error) {
-    return 'Invalid String'
+    return ''
   }
 }

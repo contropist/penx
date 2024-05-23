@@ -137,11 +137,7 @@ export const CommandPalette = () => {
               )}
               <Command.Group heading={isRoot ? 'Commands' : undefined}>
                 {isRoot &&
-                  [
-                    ...productionItems,
-                    ...productionItems,
-                    ...productionItems,
-                  ].map((item, index) => {
+                  productionItems.map((item, index) => {
                     return (
                       <ListItemUI
                         key={index}

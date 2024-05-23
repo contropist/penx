@@ -1,12 +1,12 @@
-import { renderMarkdown } from 'penx'
+import { MarkdownBuilder, render } from 'penx'
 
 export function main() {
   let counter = 1
 
-  renderMarkdown(`# ${counter}`)
+  render(new MarkdownBuilder(`# ${counter}`))
 
   setInterval(() => {
     counter++
-    renderMarkdown(`# ${counter}`)
+    render(new MarkdownBuilder(`# ${counter}`))
   }, 1000)
 }
