@@ -2,7 +2,7 @@
   "index": "Introduction",
   "build-extension": "Build a plugin",
   "examples": "Examples",
-  "API": "API reference",
+  "api-reference": "API reference",
   "contact": {
     "title": "Contact ↗",
     "type": "page",

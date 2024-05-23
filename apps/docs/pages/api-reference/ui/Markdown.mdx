@@ -1,0 +1,59 @@
+# Markdown
+
+Render Markdown to Command App.
+
+![](/images/render-markdown.png)
+
+## Usage
+
+### Basic
+
+Render a markdonwn string.
+
+```ts
+import { MarkdownBuilder, render } from 'penx'
+
+export async function main() {
+  render(new MarkdownBuilder('Hello **work**'))
+}
+```
+
+### Image
+
+Render a iamge.
+
+```ts
+import { MarkdownBuilder, render } from 'penx'
+
+export async function main() {
+  const md = new MarkdownBuilder(
+    '![penx-logo](https://www.penx.io/images/logo-128.png)',
+  )
+
+  render(md)
+}
+```
+
+### Support all markdown syntax
+
+```ts
+import { MarkdownBuilder, render } from 'penx'
+
+const content = `
+# hello world!
+
+The Markdown elements outlined in the original design document.
+
+## Lists
+
+- First item
+- Second item
+- Third item
+- Fourth item
+
+![penx-logo](https://www.penx.io/images/logo-128.png)
+`
+export async function main() {
+  render(new MarkdownBuilder(conteng))
+}
+```

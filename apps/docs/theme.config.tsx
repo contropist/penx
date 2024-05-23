@@ -1,8 +1,9 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
+import { Logo } from './components/Logo'
 
 const config: DocsThemeConfig = {
-  logo: <span>PenX</span>,
+  logo: <Logo></Logo>,
   project: {
     link: 'https://github.com/penxio/penx',
   },

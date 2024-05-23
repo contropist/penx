@@ -1,6 +1,5 @@
 {
   "create-first-extension": "Create First Extension",
-  "debug-an-extension": "Debug an Extension",
-  "manifest": "Manifest",
-  "publish-an-extension": "Publish an Extension"
+  "release-an-extension": "Release an Extension",
+  "manifest": "Manifest"
 }

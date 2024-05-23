@@ -1,0 +1,34 @@
+# Render
+
+Render some component to Command App.
+
+## Exapmple
+
+### Render Markdown
+
+Render a markdonwn string.
+
+```ts
+import { MarkdownBuilder, render } from 'penx'
+
+export async function main() {
+  render(new MarkdownBuilder('Hello **work**'))
+}
+```
+
+### Render List
+
+Render a basic list with title.
+
+```ts
+import { ListBuilder, render } from 'penx'
+
+export async function main() {
+  const list = new ListBuilder([
+    { title: 'First Item' },
+    { title: 'Second Item' },
+    { title: 'Third Item' },
+  ])
+  render(list)
+}
+```

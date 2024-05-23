@@ -1,0 +1,89 @@
+# List
+
+Render a List to Command App.
+
+## Usage
+
+### Basic
+
+Render a basic list with title.
+
+```ts
+import { ListBuilder, render } from 'penx'
+
+export async function main() {
+  const list = new ListBuilder([
+    { title: 'First Item' },
+    { title: 'Second Item' },
+    { title: 'Third Item' },
+  ])
+  render(list)
+}
+```
+
+### With subtitle
+
+Render a list with title and subtitle.
+
+```ts
+import { render } from 'penx'
+
+export async function main() {
+  const list = new ListBuilder([
+    { title: 'First Item', subtitle: 'This is the first item' },
+    { title: 'Second Item', subtitle: 'This is the second item' },
+    { title: 'Third Item', subtitle: 'This is the third item' },
+  ])
+  render(list)
+}
+```
+
+### With Detail
+
+Render a list with detail.
+
+```ts
+import { ListBuilder, render } from 'penx'
+
+export async function main() {
+  const list = new ListBuilder([
+    {
+      title: 'First Item',
+      subtitle: 'This is the first item',
+      detail: new DataListBuilder([
+        { label: 'name', value: 'Item 1' },
+        { label: 'Color', value: 'Red' },
+      ]),
+    },
+  ])
+  render(list)
+}
+```
+
+### With Extra
+
+Render a list with Extra.
+
+```ts
+import { DataListBuilder, ListBuilder, render } from 'penx'
+
+export async function main() {
+  const list = new ListBuilder([
+    {
+      title: 'First Item',
+      subtitle: 'This is the first item',
+      extra: [
+        {
+          icon: 'comment.svg',
+          text: '150',
+        },
+        {
+          icon: 'star.svg',
+          text: '200',
+        },
+      ],
+    },
+  ])
+  render(list)
+}
+```
