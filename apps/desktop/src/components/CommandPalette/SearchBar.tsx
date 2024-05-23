@@ -1,13 +1,15 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Box } from '@fower/react'
 import { ArrowLeft } from 'lucide-react'
 import { appEmitter } from '@penx/event'
 import { workerStore } from '~/common/workerStore'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
+import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
 import { ToggleModeButton } from '../ToggleModeButton'
 import { StyledCommandInput } from './CommandComponents'
+import { SearchBarFilter } from './SearchBarFilter'
 
 interface Props {
   searchBarHeight: number
@@ -17,8 +19,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { setItems } = useItems()
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
-
   const { isCommandApp, backToRoot } = useCommandPosition()
+  const { currentCommand } = useCurrentCommand()
 
   return (
     <Box toCenterY borderBottom borderGray200 data-tauri-drag-region>
@@ -56,7 +58,6 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
 
           setSearch(v)
           if (v === '') {
-            console.log('===========commands:', commands)
             setItems(commands)
           }
         }}
@@ -72,13 +73,13 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
             // if (item) {
             //   handleSelect(item, String(b))
             // }
-            if (!search && isCommandApp) {
-              backToRoot()
-            }
           }
         }}
       />
-      <ToggleModeButton mr3 />
+      {!isCommandApp && <ToggleModeButton mr3 />}
+      {isCommandApp && currentCommand?.data?.filters && (
+        <SearchBarFilter filters={currentCommand?.data?.filters} />
+      )}
     </Box>
   )
 }

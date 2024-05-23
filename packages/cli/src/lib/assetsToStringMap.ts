@@ -10,6 +10,7 @@ export async function assetsToStringMap() {
     const files = jetpack.list(assetsPath) || []
 
     for (const file of files) {
+      if (file.includes('.DS_Store')) continue
       assets[file] = await iconToString(file)
     }
   }

@@ -1,8 +1,14 @@
+export interface FilterItem {
+  label: string
+  value: string | number
+  selected?: boolean
+}
 export interface Command {
   name: string
   title: string
   subtitle: string
   description: string
+  filters?: Record<string, FilterItem[]>
   icon?: string
   code: string
   runtime?: string

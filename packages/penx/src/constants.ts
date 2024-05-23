@@ -10,4 +10,7 @@ export enum EventType {
 
   InitOnSearchChange = 'InitOnSearchChange',
   OnSearchChange = 'OnSearchChange',
+
+  InitOnFilterChange = 'InitOnFilterChange',
+  OnFilterChange = 'OnFilterChange',
 }

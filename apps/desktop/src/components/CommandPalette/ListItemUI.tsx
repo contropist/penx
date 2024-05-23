@@ -1,12 +1,14 @@
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { Box, FowerHTMLProps } from '@fower/react'
-import { IAccessory, IListItem, ListItemJSON } from 'penx'
+import { IAccessory, IListItem, isAccessoryObjectText } from 'penx'
+import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
 
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
   item: IListItem
+  titleLayout?: 'column' | 'row'
   onSelect?: (item: IListItem) => void
 }
 
@@ -14,6 +16,7 @@ export const ListItemUI = ({
   item,
   onSelect,
   index,
+  titleLayout = 'row',
   ...rest
 }: ListItemUIProps) => {
   const title = typeof item.title === 'string' ? item.title : item.title.value
@@ -35,8 +38,8 @@ export const ListItemUI = ({
       toCenterY
       toBetween
       px2
-      h-40
-      gap2
+      py2
+      gap4
       roundedLG
       black
       value={title}
@@ -50,9 +53,11 @@ export const ListItemUI = ({
     >
       <Box toCenterY gap2>
         <ListItemIcon icon={item.icon as string} />
-        <Box text-14>{title}</Box>
-        <Box text-12 zinc400>
-          {subtitle}
+        <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
+          <Box text-14>{title}</Box>
+          <Box text-12 zinc400>
+            {subtitle}
+          </Box>
         </Box>
       </Box>
       {!!item.data?.commandName && (
@@ -75,13 +80,29 @@ interface AccessoryProps {
   item: IAccessory
 }
 function Accessory({ item }: AccessoryProps) {
-  let text: ReactNode = item.text ? <Box>{item.text}</Box> : null
+  const { currentCommand } = useCurrentCommand()
+  const assets = currentCommand?.data?.assets || {}
+
+  let text: ReactNode = useMemo(() => {
+    if (typeof item.text === 'string' || typeof item.text === 'number') {
+      return <Box>{item.text}</Box>
+    }
+    if (isAccessoryObjectText(item.text)) {
+      return (
+        <Box color={item.text.color || 'gray600'}>{item.text?.value || ''}</Box>
+      )
+    }
+    return null
+  }, [item.text])
   let tag: ReactNode = item.tag ? (
     <Box bgAmber500 white h-24 rounded px2 toCenterY>
       {item.tag.value}
     </Box>
   ) : null
-  let icon: ReactNode = item.icon ? <ListItemIcon roundedFull /> : null
+
+  let icon: ReactNode = item.icon ? (
+    <ListItemIcon roundedFull icon={assets[item.icon]} />
+  ) : null
 
   return (
     <Box toCenterY gap1>

@@ -43,7 +43,7 @@ export default function Home() {
       rounded2XL
       // bgTransparent
       bgWhite
-      overflowHidden
+      // overflowHidden
     >
       {!isBoarded && (
         <DesktopWelcome

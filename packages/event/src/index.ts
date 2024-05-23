@@ -37,6 +37,8 @@ type AppEvents = {
   ON_ESCAPE_IN_COMMAND: undefined
 
   ON_COMMAND_PALETTE_SEARCH_CHANGE: string
+
+  ON_COMMAND_PALETTE_FILTER_CHANGE: any
 }
 
 export const appEmitter = mitt<AppEvents>()

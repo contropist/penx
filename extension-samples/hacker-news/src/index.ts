@@ -1,4 +1,4 @@
-import { ListItem, renderList, renderLoading } from 'penx'
+import { IListItem, ListBuilder, render, renderLoading } from 'penx'
 
 interface Item {
   by: string
@@ -15,6 +15,7 @@ interface Item {
 export async function main() {
   const apiUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json'
   renderLoading({ type: 'spinner' })
+
   const newsItems = await fetch(apiUrl)
     .then((response) => response.json())
     .then((topStoryIds: number[]) => {
@@ -40,8 +41,8 @@ export async function main() {
             url: 'https://www.google.com',
           },
         ],
-      }) as ListItem,
+      }) as IListItem,
   )
 
-  renderList(listItems)
+  render(new ListBuilder(listItems))
 }

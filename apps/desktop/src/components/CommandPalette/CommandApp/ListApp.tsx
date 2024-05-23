@@ -1,6 +1,8 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
+import { open } from '@tauri-apps/api/shell'
 import { ListJSON } from 'penx'
+import clipboard from 'tauri-plugin-clipboard-api'
 import { Divider } from 'uikit'
 import { useSearch } from '~/hooks/useSearch'
 import { useValue } from '~/hooks/useValue'
@@ -14,7 +16,7 @@ interface ListAppProps {
 
 export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   const { value, setValue } = useValue()
-  const { items, isShowingDetail, filtering } = component
+  const { items, isShowingDetail, filtering, titleLayout } = component
   const currentItem = items.find((item) => item.title === value)!
   const dataList = currentItem?.detail?.items || []
   const { search } = useSearch()
@@ -36,23 +38,42 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
     }
   }, [component, value, setValue])
 
+  const listJSX = (
+    <StyledCommandGroup flex-2 p2>
+      {filteredItems.sort().map((item, index) => {
+        return (
+          <ListItemUI
+            // key={index}
+            key={item.title.toString()}
+            index={index}
+            titleLayout={titleLayout}
+            item={item as any} // TODO: handle any
+            onSelect={async () => {
+              if (item.actions?.[0]) {
+                const defaultAction = item.actions?.[0]
+                if (defaultAction.type === 'OpenInBrowser') {
+                  open(defaultAction.url)
+                }
+
+                if (defaultAction.type === 'CopyToClipboard') {
+                  await clipboard.writeText(defaultAction.content)
+                }
+              }
+              console.log('list item:', item)
+            }}
+          />
+        )
+      })}
+    </StyledCommandGroup>
+  )
+
+  if (!isShowingDetail) {
+    return listJSX
+  }
+
   return (
     <Box toLeft overflowHidden absolute top0 bottom0 left0 right0>
-      <StyledCommandGroup flex-2 p2>
-        {filteredItems.sort().map((item, index) => {
-          return (
-            <ListItemUI
-              // key={index}
-              key={item.title.toString()}
-              index={index}
-              item={item as any} // TODO: handle any
-              onSelect={() => {
-                //
-              }}
-            />
-          )
-        })}
-      </StyledCommandGroup>
+      {listJSX}
       {isShowingDetail && (
         <>
           <Divider orientation="vertical" />
@@ -61,7 +82,7 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
               Detail
             </Box>
             <Box column gap1>
-              {dataList.map((item, index) => (
+              {dataList.map((item) => (
                 <DataListItem key={item.label} item={item} />
               ))}
             </Box>

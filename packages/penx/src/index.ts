@@ -2,7 +2,9 @@ export * from './constants'
 export * from './clipboard'
 
 export * from './types'
+
 export * from './onSearchChange'
+export * from './onFilterChange'
 
 export * from './renderLoading'
 

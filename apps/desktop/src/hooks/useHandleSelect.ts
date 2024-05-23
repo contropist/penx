@@ -116,6 +116,15 @@ export function useHandleSelect() {
           })
         }
 
+        if (event.data.type === EventType.InitOnFilterChange) {
+          appEmitter.on('ON_COMMAND_PALETTE_FILTER_CHANGE', (v) => {
+            event.ports[0].postMessage({
+              type: EventType.InitOnFilterChange,
+              value: v,
+            })
+          })
+        }
+
         if (event.data?.type === EventType.Loading) {
           const content = event.data.content as any
           setUI({

@@ -9,12 +9,14 @@ interface ListItemIconProps extends FowerHTMLProps<'div'> {
 
 export function ListItemIcon({ icon, size = 20, ...rest }: ListItemIconProps) {
   if (!icon) {
-    return <Box square={size} bgNeutral300 rounded-6 {...rest}></Box>
+    return (
+      <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
+    )
   }
 
   if (typeof icon === 'number') {
     return (
-      <Box square={size} bgNeutral300 rounded-6 toCenter textXS>
+      <Box square={size} flexShrink-0 bgNeutral300 rounded-6 toCenter textXS>
         {icon}
       </Box>
     )

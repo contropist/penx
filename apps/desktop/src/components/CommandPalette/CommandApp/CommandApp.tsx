@@ -20,10 +20,10 @@ interface CommandAppProps {
 
 export const CommandApp = memo(
   function CommandApp({ loading, ui, currentCommand }: CommandAppProps) {
-    if (loading) {
-      // return <Box>loading...</Box>
-      return null
-    }
+    // if (loading) {
+    //   // return <Box>loading...</Box>
+    //   return null
+    // }
 
     if (ui.type === 'marketplace') {
       return <MarketplaceApp />

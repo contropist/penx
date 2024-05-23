@@ -106,10 +106,10 @@ export const CommandPalette = () => {
                 absolute
                 top0
                 // src='https://penx.io'
-              ></Box>
+              />
             </Box>
           ) : (
-            <StyledCommandList p2 minH-100p>
+            <StyledCommandList p2>
               <CommandApp
                 loading={loading}
                 ui={ui}
@@ -137,7 +137,11 @@ export const CommandPalette = () => {
               )}
               <Command.Group heading={isRoot ? 'Commands' : undefined}>
                 {isRoot &&
-                  productionItems.map((item, index) => {
+                  [
+                    ...productionItems,
+                    ...productionItems,
+                    ...productionItems,
+                  ].map((item, index) => {
                     return (
                       <ListItemUI
                         key={index}

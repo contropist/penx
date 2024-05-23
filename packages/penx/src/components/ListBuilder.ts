@@ -70,6 +70,7 @@ export interface ListJSON {
   isLoading: boolean
   isShowingDetail: boolean
   filtering: boolean
+  titleLayout: 'column' | 'row'
   items: ListItemJSON[]
 }
 
@@ -82,6 +83,8 @@ export class ListBuilder {
   isLoading = false
 
   filtering = true
+
+  titleLayout: 'column' | 'row' = 'row'
 
   constructor(public items: IListItem[] = []) {}
 
@@ -105,6 +108,11 @@ export class ListBuilder {
     return this
   }
 
+  setTitleLayout(layout: 'column' | 'row') {
+    this.titleLayout = layout
+    return this
+  }
+
   setFiltering(filtering: boolean) {
     this.filtering = filtering
     return this
@@ -116,6 +124,7 @@ export class ListBuilder {
       isLoading: this.isLoading,
       isShowingDetail: this.isShowingDetail,
       filtering: this.filtering,
+      titleLayout: this.titleLayout,
       items: this.items.map((item) => {
         if (!item.detail) return item as any as ListItemJSON
         return {
