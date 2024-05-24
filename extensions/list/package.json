@@ -25,7 +25,7 @@
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.2",
     "@floating-ui/react": "^0.26.3",
-    "@fower/react": "^2.0.0",
+    "@fower/react": "^2.1.1",
     "@penx/autoformat": "workspace:*",
     "@penx/check-list": "workspace:*",
     "@penx/constants": "workspace:*",

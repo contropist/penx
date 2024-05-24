@@ -17,7 +17,7 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "@fower/react": "^2.0.0",
+    "@fower/react": "^2.1.1",
     "@penx/constants": "workspace:*",
     "@penx/extension-typings": "workspace:*",
     "@penx/node-hooks": "workspace:*",

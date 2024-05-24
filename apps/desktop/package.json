@@ -12,8 +12,8 @@
     "lint": "next lint && biome check src/"
   },
   "dependencies": {
-    "@fower/atomic-props": "^2.0.0",
-    "@fower/react": "^2.0.0",
+    "@fower/atomic-props": "^2.1.1",
+    "@fower/react": "^2.1.1",
     "@glideapps/glide-data-grid": "^6.0.3",
     "@octokit/auth-app": "^6.0.1",
     "@octokit/oauth-app": "^6.0.0",

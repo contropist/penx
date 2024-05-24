@@ -11,7 +11,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@fower/react": "^2.0.0",
+    "@fower/react": "^2.1.1",
     "@penx/constants": "workspace:*",
     "@penx/storage": "workspace:*",
     "@penx/model": "workspace:*",

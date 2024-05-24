@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.4",
-    "@fower/react": "^2.0.0",
+    "@fower/react": "^2.1.1",
     "@penx/code-block": "workspace:*",
     "@penx/constants": "workspace:*",
     "@penx/editor-common": "workspace:*",
