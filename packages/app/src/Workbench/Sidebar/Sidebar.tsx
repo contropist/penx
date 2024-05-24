@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
-import { Hash } from 'lucide-react'
+import { Hash, LayoutGridIcon, LayoutIcon } from 'lucide-react'
 import { Bullet } from 'uikit'
 import { useRouterName } from '@penx/hooks'
 import { IconCalendar, IconTodo } from '@penx/icons'
@@ -29,6 +29,8 @@ export const Sidebar = memo(
     const name = useRouterName()
 
     const isTodosActive = name === 'TODOS'
+    const isDatabasesActive = name === 'DATABASES'
+    const isExtensionsActive = name === 'EXTENSIONS'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -73,7 +75,7 @@ export const Sidebar = memo(
             </Box>
           </Box>
           <Box column gap-1 flex-1 mt3>
-            <SidebarItem
+            {/* <SidebarItem
               icon={
                 <IconCalendar
                   size={20}
@@ -85,7 +87,7 @@ export const Sidebar = memo(
               onClick={() => {
                 store.node.selectDailyNote()
               }}
-            />
+            /> */}
 
             {/* <SidebarItem
               icon={<Inbox size={18} />}
@@ -111,18 +113,18 @@ export const Sidebar = memo(
 
             <SidebarItem
               icon={
-                <Box gray500 inlineFlex brand500={isTagsActive}>
+                <Box gray500 inlineFlex brand500={isDatabasesActive}>
                   <Hash size={20} strokeWidth={1.5} />
                 </Box>
               }
               label="Databases"
-              isActive={isTagsActive}
+              isActive={isDatabasesActive}
               onClick={() => {
-                store.node.selectTagBox()
+                store.router.routeTo('DATABASES')
               }}
             />
 
-            <SidebarItem
+            {/* <SidebarItem
               icon={
                 <Bullet
                   mr-4
@@ -134,7 +136,7 @@ export const Sidebar = memo(
               onClick={() => {
                 store.node.selectSpaceNode()
               }}
-            />
+            /> */}
 
             {/* <SidebarItem
               icon={
@@ -150,8 +152,13 @@ export const Sidebar = memo(
           </Box>
 
           <SidebarItem
-            icon={<IconTodo size={20} />}
+            icon={
+              <Box gray500 inlineFlex brand500={isExtensionsActive}>
+                <LayoutGridIcon size={20} />
+              </Box>
+            }
             label="Extensions"
+            isActive={isExtensionsActive}
             onClick={() => {
               store.router.routeTo('EXTENSIONS')
             }}

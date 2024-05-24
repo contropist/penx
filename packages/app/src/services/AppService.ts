@@ -112,13 +112,15 @@ export class AppService {
 
         store.node.setNodes(nodes)
 
-        if (!activeNodes.length) {
-          const rootNode = nodes.find((n) => new Node(n).isRootNode)!
+        // if (!activeNodes.length) {
+        //   const rootNode = nodes.find((n) => new Node(n).isRootNode)!
 
-          store.node.selectNode(rootNode)
-        } else {
-          store.node.setActiveNodes(activeNodes)
-        }
+        //   store.node.selectNode(rootNode)
+        // } else {
+        //   store.node.setActiveNodes(activeNodes)
+        // }
+
+        store.router.routeTo('DATABASES')
       }
 
       store.app.setAppLoading(false)

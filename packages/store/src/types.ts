@@ -2,6 +2,7 @@ export type RouteName =
   | 'TRASH'
   | 'NODE'
   | 'TODOS'
+  | 'DATABASES'
   | 'CREATE_SPACE'
   | 'WEB3_PROFILE'
   | 'TASK_BOARD'

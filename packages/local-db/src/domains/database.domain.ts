@@ -47,6 +47,14 @@ export class DatabaseDomain {
     return node as IDatabaseNode
   }
 
+  listDatabases = async () => {
+    const nodes = (await this.penx.node
+      .where({ type: NodeType.DATABASE })
+      .toArray()) as IDatabaseNode[]
+
+    return nodes
+  }
+
   listDatabaseBySpace = async (spaceId: string) => {
     const nodes = (await this.penx.node
       .where({

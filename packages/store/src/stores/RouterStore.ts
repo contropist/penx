@@ -44,6 +44,11 @@ export class RouterStore {
     return routerName === 'TODOS'
   }
 
+  isDatabases = () => {
+    const routerName = this.getName()
+    return routerName === 'DATABASES'
+  }
+
   isSettings = () => {
     const routerName = this.getName()
     return routerName === 'SETTINGS'
@@ -56,6 +61,7 @@ export class RouterStore {
       'NODE',
       'SETTINGS',
       'TODOS',
+      'DATABASES',
       'CREATE_SPACE',
       'WEB3_PROFILE',
       'TASK_BOARD',
