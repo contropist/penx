@@ -154,6 +154,10 @@ export const userRouter = createTRPCRouter({
       return getMe(ctx.token.uid, true)
     }),
 
+  loginDesktop: protectedProcedure.mutation(async ({ ctx }) => {
+    return getMe(ctx.token.uid, true)
+  }),
+
   update: protectedProcedure
     .input(
       z.object({

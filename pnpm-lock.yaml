@@ -4626,6 +4626,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.36.1
         version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)
+      '@tauri-apps/api':
+        specifier: ^1.5.3
+        version: 1.5.3
       '@trpc/client':
         specifier: ^10.45.1
         version: 10.45.2(@trpc/server@10.45.2)

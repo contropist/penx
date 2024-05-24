@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { Button, modalController } from 'uikit'
 import { isDesktop, ModalNames } from '@penx/constants'
+import { appEmitter } from '@penx/event'
 import { useSession } from '@penx/session'
 
 export function LoginButton() {
@@ -16,9 +17,9 @@ export function LoginButton() {
       roundedFull
       colorScheme="black"
       w-100p
-      onClick={() => {
+      onClick={async () => {
         if (isDesktop) {
-          modalController.open(ModalNames.LOGIN_BY_TOKEN)
+          appEmitter.emit('SIGN_IN_DESKTOP')
           return
         }
 

@@ -14,9 +14,13 @@ use std::{
     time::{SystemTime, UNIX_EPOCH},
 };
 
-use actix_web::{get, middleware, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_cors::Cors;
+use actix_web::{get, http, middleware, post, web, App, HttpResponse, HttpServer, Responder};
+use std::sync::Arc;
 
 use window_shadows::set_shadow;
+
+use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
 
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -48,7 +52,6 @@ struct AppState {
     // data: RefCell<String>,
 }
 
-// #[derive(Serialize)]
 #[derive(Clone, serde::Serialize)]
 struct ExtensionInfo {
     id: String,
@@ -67,6 +70,18 @@ struct UpsertExtensionInput {
     icon: String,
     assets: String,
     commands: String,
+}
+
+#[derive(Clone, serde::Serialize)]
+struct LoginInfo {
+    user: String,
+    mnemonic: String,
+}
+
+#[derive(Deserialize)]
+struct LoginInput {
+    user: String,
+    mnemonic: String,
 }
 
 // the payload type must implement `Serialize` and `Clone`.
@@ -154,11 +169,17 @@ async fn index(app_state: web::Data<AppState>) -> impl Responder {
     HttpResponse::Ok().body(format!("Hello, World! {}", data))
 }
 
-#[get("/open-window")]
-async fn open_window(app: web::Data<AppHandle>) -> impl Responder {
+#[post("/api/login")]
+async fn open_window(input: web::Json<LoginInput>, app: web::Data<AppHandle>) -> HttpResponse {
+    let info = LoginInfo {
+        user: input.user.to_string(),
+        mnemonic: input.mnemonic.to_string(),
+    };
+
     let window = app.get_window("main").unwrap();
-    window.emit("OPEN_WINDOW", Some("Yes")).unwrap();
-    HttpResponse::Ok().body("Open window!")
+    window.emit("DESKTOP_LOGIN", json!(info)).unwrap();
+
+    HttpResponse::Ok().json(info)
 }
 
 #[post("/api/upsert-extension")]
@@ -239,6 +260,12 @@ pub async fn start_server(
     // let tauri_app = web::Data::new(Mutex::new(app));
 
     // let db = web::Data::new(Mutex::new(conn));
+    let cors = Cors::default()
+        .allow_any_origin()
+        .allowed_methods(vec!["GET", "POST"])
+        .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
+        .allowed_header(http::header::CONTENT_TYPE)
+        .max_age(3600);
 
     HttpServer::new(move || {
         App::new()
@@ -374,6 +401,14 @@ fn main() {
 
             #[cfg(target_os = "macos")]
             window.set_transparent_titlebar(true, true);
+
+            // #[cfg(target_os = "macos")]
+            // apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
+            //     .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+
+            // #[cfg(target_os = "windows")]
+            // apply_blur(&window, Some((18, 18, 18, 125)))
+            //     .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
 
             Ok(())
         })

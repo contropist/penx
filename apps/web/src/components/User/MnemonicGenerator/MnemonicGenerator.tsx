@@ -17,8 +17,6 @@ export function MnemonicGenerator({ children }: PropsWithChildren) {
   const initMnemonic = useCallback(async () => {
     try {
       const mnemonic = await getNewMnemonic()
-      console.log('=======mnemonic:', mnemonic)
-
       await setMnemonicToLocal(data?.userId!, mnemonic)
       const publicKey = getPublicKey(mnemonic)
       await api.user.updatePublicKey.mutate({ publicKey })

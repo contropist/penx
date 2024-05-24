@@ -2,6 +2,7 @@ import '~/styles/globals.css'
 import '~/styles/command.scss'
 import { useEffect, useState } from 'react'
 import { register, unregister } from '@tauri-apps/api/globalShortcut'
+import { open } from '@tauri-apps/api/shell'
 import { invoke } from '@tauri-apps/api/tauri'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
@@ -121,7 +122,7 @@ async function init() {
     })
   }
 
-  listen('OPEN_WINDOW', (data) => {
+  listen('DESKTOP_LOGIN', (data) => {
     console.log('open window==========:', data.payload)
     appWindow.show()
     appWindow.setFocus()
@@ -132,6 +133,10 @@ async function init() {
   })
 
   listen('MenuEditorClicked', (data) => {})
+
+  appEmitter.on('SIGN_IN_DESKTOP', () => {
+    open(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/desktop-login`)
+  })
 }
 
 if (!isServer) {

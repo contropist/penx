@@ -29,7 +29,6 @@ export default function LoginWithGoogleButton() {
       onClick={async () => {
         setLoading(true)
         const callbackUrl = from || `${window.location.origin}`
-        console.log('========callbackUrl:', callbackUrl)
 
         await signIn('google', { callbackUrl })
       }}

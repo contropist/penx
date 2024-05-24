@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react'
 import { Box } from '@fower/react'
-import { ClientOnly } from '../../components/ClientOnly'
 import { MintPointButton } from './MintPointButton'
 import { MyPoint } from './MyPoint'
 

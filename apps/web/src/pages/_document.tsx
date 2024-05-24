@@ -127,9 +127,9 @@ class MyDocument extends Document {
           )}
         </Head>
         <body>
-          <div id="logo-loader-wrapper">
+          {/* <div id="logo-loader-wrapper">
             <div className="logo-loader"></div>
-          </div>
+          </div> */}
           <Main />
           <NextScript />
         </body>

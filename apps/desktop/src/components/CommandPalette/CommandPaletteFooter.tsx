@@ -21,7 +21,7 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       borderTop
       borderNeutral200
       // bg="#F2ECEA"
-      bgWhite
+      // bgWhite
       toCenterY
       px4
       toBetween

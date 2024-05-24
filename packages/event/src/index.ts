@@ -30,6 +30,8 @@ type AppEvents = {
 
   SIGN_OUT: undefined
 
+  SIGN_IN_DESKTOP: undefined
+
   LOGIN_BY_PERSONAL_TOKEN_SUCCESSFULLY: undefined
 
   LOAD_CLOUD_SPACES: undefined

@@ -41,12 +41,7 @@ function ExtensionItem({ extension }: ExtensionItemProps) {
 export const PageExtensions = () => {
   const { data = [] } = useExtensions()
   return (
-    <Box px={[20, 20]} py={[0, 0, 40]}>
-      <Box mx-auto pb6 column gap3>
-        <Box fontBold text4XL>
-          Extensions
-        </Box>
-      </Box>
+    <Box px={[20, 20]} py={[0, 0, 20]}>
       <Box column gap2>
         {data.map((extension) => {
           return <ExtensionItem key={extension.id} extension={extension} />

@@ -36,12 +36,6 @@ export const PageDatabase = () => {
   const { data = [] } = useDatabases()
   return (
     <Box px={[20, 20]} py={[0, 0, 40]}>
-      <Box mx-auto pb6 column gap3>
-        <Box fontBold text4XL>
-          Databases
-        </Box>
-      </Box>
-
       <Box gap4 toCenterY flexWrap>
         {data.map((database) => {
           const node = new Node(database)
