@@ -102,7 +102,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared
       '@penx/trpc-client':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/trpc-client
       '@penx/unique-id':
         specifier: workspace:*
@@ -542,7 +542,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/store
       '@penx/trpc-client':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/trpc-client
       '@penx/unique-id':
         specifier: workspace:*
@@ -1422,7 +1422,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/model
       '@penx/trpc-client':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/trpc-client
       '@penx/widget':
         specifier: workspace:*
@@ -1519,7 +1519,7 @@ importers:
         version: 4.24.7(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-seo:
         specifier: ^6.5.0
-        version: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextjs-cors:
         specifier: ^2.2.0
         version: 2.2.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))
@@ -2287,10 +2287,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/store
       '@penx/trpc-client':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/trpc-client
       '@penx/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/types
       '@penx/unique-id':
         specifier: workspace:*
@@ -2438,7 +2438,7 @@ importers:
         version: 4.24.5(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-seo:
         specifier: ^6.5.0
-        version: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextjs-cors:
         specifier: ^2.2.0
         version: 2.2.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))
@@ -2670,6 +2670,18 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      penx:
+        specifier: workspace:*
+        version: link:../../packages/penx
+      penx-cli:
+        specifier: workspace:*
+        version: link:../../packages/cli
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  extension-samples/github-trending:
+    devDependencies:
       penx:
         specifier: workspace:*
         version: link:../../packages/penx
@@ -3619,7 +3631,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/editor-common
       '@penx/editor-queries':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/editor-queries
       '@penx/extension-typings':
         specifier: workspace:*
@@ -5425,7 +5437,7 @@ importers:
         version: 9.0.4(react@18.2.0)
     devDependencies:
       '@penx/tsconfig':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tsconfig
       '@types/react':
         specifier: ^18.2.61
@@ -5848,10 +5860,10 @@ importers:
   packages/editor-queries:
     dependencies:
       '@penx/editor-shared':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-shared
       '@penx/editor-types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-types
       lodash:
         specifier: ^4.17.21
@@ -5928,13 +5940,13 @@ importers:
   packages/editor-transforms:
     dependencies:
       '@penx/editor-queries':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-queries
       '@penx/editor-shared':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-shared
       '@penx/editor-types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-types
       lodash:
         specifier: ^4.17.21
@@ -5974,7 +5986,7 @@ importers:
   packages/editor-types:
     dependencies:
       '@penx/editor-shared':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../editor-shared
       '@penx/extension-typings':
         specifier: workspace:*
@@ -7113,7 +7125,7 @@ importers:
         specifier: workspace:*
         version: link:../node-normalizer
       '@penx/serializer':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../serializer
       '@penx/shared':
         specifier: workspace:*
@@ -7981,7 +7993,7 @@ importers:
         version: 9.0.4(react@18.2.0)
     devDependencies:
       '@penx/tsconfig':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tsconfig
       '@types/react':
         specifier: ^18.2.61
@@ -34791,7 +34803,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.6.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.1(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
@@ -34842,7 +34854,7 @@ snapshots:
       enhanced-resolve: 5.16.0
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.6.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.3
       is-core-module: 2.13.1
@@ -34892,14 +34904,31 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.8.1(@typescript-eslint/parser@7.6.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
+      array-includes: 3.1.8
+      array.prototype.findlastindex: 1.2.5
+      array.prototype.flat: 1.3.2
+      array.prototype.flatmap: 1.3.2
       debug: 3.2.7
-    optionalDependencies:
-      '@typescript-eslint/parser': 7.6.0(eslint@8.57.0)(typescript@5.4.3)
+      doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      hasown: 2.0.2
+      is-core-module: 2.13.1
+      is-glob: 4.0.3
+      minimatch: 3.1.2
+      object.fromentries: 2.0.8
+      object.groupby: 1.0.3
+      object.values: 1.2.0
+      semver: 6.3.1
+      tsconfig-paths: 3.15.0
+    optionalDependencies:
+      '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.3)
     transitivePeerDependencies:
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
       - supports-color
 
   eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
@@ -34924,33 +34953,6 @@ snapshots:
       tsconfig-paths: 3.15.0
     optionalDependencies:
       '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.6.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0):
-    dependencies:
-      array-includes: 3.1.8
-      array.prototype.findlastindex: 1.2.5
-      array.prototype.flat: 1.3.2
-      array.prototype.flatmap: 1.3.2
-      debug: 3.2.7
-      doctrine: 2.1.0
-      eslint: 8.57.0
-      eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.6.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0)
-      hasown: 2.0.2
-      is-core-module: 2.13.1
-      is-glob: 4.0.3
-      minimatch: 3.1.2
-      object.fromentries: 2.0.8
-      object.groupby: 1.0.3
-      object.values: 1.2.0
-      semver: 6.3.1
-      tsconfig-paths: 3.15.0
-    optionalDependencies:
-      '@typescript-eslint/parser': 7.6.0(eslint@8.57.0)(typescript@5.4.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -39723,7 +39725,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-seo@6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-seo@6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       next: 14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0)
       react: 18.2.0
@@ -39786,7 +39788,7 @@ snapshots:
       intersection-observer: 0.12.2
       match-sorter: 6.3.4
       next: 14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0)
-      next-seo: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next-seo: 6.5.0(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes: 0.2.1(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextra: 2.13.4(next@14.1.4(@babel/core@7.24.3)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0

@@ -23,7 +23,7 @@
     "@fower/react": "^2.0.0",
     "@penx/constants": "workspace:*",
     "@penx/editor-common": "workspace:*",
-    "@penx/editor-queries": "workspace:^",
+    "@penx/editor-queries": "workspace:*",
     "@penx/extension-typings": "workspace:*",
     "@penx/hooks": "workspace:*",
     "@penx/local-db": "workspace:*",

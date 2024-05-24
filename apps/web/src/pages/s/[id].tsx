@@ -5,7 +5,7 @@ import { prisma, PublishedNode } from '@penx/db'
 import { ReadOnlyEditor } from '@penx/editor'
 import { INode } from '@penx/model-types'
 import { nodeToSlate } from '@penx/serializer'
-import { ClientOnly } from '~/components/ClientOnly'
+import { ClientOnly } from '@penx/widget'
 
 interface Props {
   nodeId: string

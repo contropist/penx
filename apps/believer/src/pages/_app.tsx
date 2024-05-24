@@ -17,7 +17,7 @@ import { fowerStore, Parser } from '@fower/react'
 
 import '../styles/globals.css'
 import { TrpcProvider } from '@penx/trpc-client'
-import { ClientOnly } from '~/components/ClientOnly'
+import { ClientOnly } from '@penx/widget'
 import { WalletConnectProvider } from '~/components/WalletConnectProvider'
 
 initFower()

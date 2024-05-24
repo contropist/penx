@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@fower/react'
 import { Button } from 'uikit'
-import { ClientOnly } from '../ClientOnly'
+import { ClientOnly } from '@penx/widget'
 import { WalletConnectProvider } from '../WalletConnectProvider'
 import { InkBalance } from './InkBalance'
 

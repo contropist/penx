@@ -6,6 +6,7 @@ import { SessionProvider, signIn, signOut } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { ToastContainer } from 'uikit'
 import { isServer } from '@penx/constants'
+import { ClientOnly } from '@penx/widget'
 import { api } from '~/utils/api'
 import { initFower } from '../common/initFower'
 // import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -15,7 +16,6 @@ import { initFower } from '../common/initFower'
 
 import '../styles/globals.css'
 import { TrpcProvider } from '@penx/trpc-client'
-import { ClientOnly } from '~/components/ClientOnly'
 import { WalletConnectProvider } from '~/components/WalletConnectProvider'
 
 initFower()

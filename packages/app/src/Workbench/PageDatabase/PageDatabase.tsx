@@ -24,7 +24,6 @@ function DatabaseItem({ database }: ExtensionItemProps) {
       toCenterY
       shadowPopover
       onClick={() => {
-        console.log('======database:', database)
         store.node.selectNode(database)
       }}
     >

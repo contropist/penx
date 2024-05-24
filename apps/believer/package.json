@@ -28,7 +28,7 @@
     "@penx/model-types": "workspace:*",
     "@penx/session": "workspace:*",
     "@penx/shared": "workspace:*",
-    "@penx/trpc-client": "workspace:^",
+    "@penx/trpc-client": "workspace:*",
     "@penx/unique-id": "workspace:*",
     "@penx/wagmi": "workspace:*",
     "@penx/widget": "workspace:*",
