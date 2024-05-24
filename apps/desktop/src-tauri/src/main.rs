@@ -4,35 +4,19 @@
 )]
 
 mod hello;
+mod menu;
+mod server;
+mod utils;
 
-use std::cell::RefCell;
-
-use std::{
-    boxed,
-    sync::Mutex,
-    thread,
-    time::{SystemTime, UNIX_EPOCH},
-};
-
-use actix_cors::Cors;
-use actix_web::{get, http, middleware, post, web, App, HttpResponse, HttpServer, Responder};
-use std::sync::Arc;
+use std::thread;
 
 use window_shadows::set_shadow;
 
 use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
 
-use serde::{Deserialize, Serialize};
-use serde_json::json;
-
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 
-use std::error::Error;
-use std::process::{Command, Output};
-use tauri::{
-    AppHandle, CustomMenuItem, LogicalSize, Manager, Runtime, Size, SystemTray, SystemTrayEvent,
-    SystemTrayMenu, SystemTrayMenuItem, Window,
-};
+use tauri::{LogicalSize, Manager, Runtime, Size, SystemTrayEvent, Window};
 
 #[cfg(target_os = "macos")]
 use cocoa::appkit::{NSWindow, NSWindowButton, NSWindowStyleMask, NSWindowTitleVisibility};
@@ -44,104 +28,18 @@ use objc::runtime::YES;
 #[macro_use]
 extern crate objc;
 
-#[derive(Clone)]
-struct AppState {
-    app_name: String,
-    data: String,
-    // app_name: RefCell<String>,
-    // data: RefCell<String>,
-}
-
-#[derive(Clone, serde::Serialize)]
-struct ExtensionInfo {
-    id: String,
-    name: String,
-    version: String,
-    icon: String,
-    assets: String,
-    commands: String,
-}
-
-#[derive(Deserialize)]
-struct UpsertExtensionInput {
-    id: String,
-    name: String,
-    version: String,
-    icon: String,
-    assets: String,
-    commands: String,
-}
-
-#[derive(Clone, serde::Serialize)]
-struct LoginInfo {
-    user: String,
-    mnemonic: String,
-}
-
-#[derive(Deserialize)]
-struct LoginInput {
-    user: String,
-    mnemonic: String,
-}
-
 // the payload type must implement `Serialize` and `Clone`.
 #[derive(Clone, serde::Serialize)]
 struct Payload {
     message: String,
 }
 
-fn create_system_tray() -> SystemTray {
-    let quit = CustomMenuItem::new("Quit".to_string(), "Quit");
-    let show = CustomMenuItem::new("Show".to_string(), "Show");
-    let hide = CustomMenuItem::new("Hide".to_string(), "Hide");
-    let preferences = CustomMenuItem::new("Preferences".to_string(), "Preferences");
-    let tray_menu = SystemTrayMenu::new()
-        .add_item(show)
-        .add_item(hide)
-        .add_item(preferences)
-        .add_native_item(SystemTrayMenuItem::Separator)
-        .add_item(quit);
-    SystemTray::new().with_menu(tray_menu)
-}
-
-pub fn run_applescript_sync(
-    script: &str,
-    human_readable_output: bool,
-) -> Result<String, Box<dyn Error>> {
-    if cfg!(not(target_os = "macos")) {
-        return Err("macOS only".into());
-    }
-
-    let output_arguments = if human_readable_output {
-        Vec::new()
-    } else {
-        vec!["-ss"]
-    };
-
-    let output = Command::new("osascript")
-        .args(["-e", script])
-        .args(&output_arguments)
-        .output()?;
-
-    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
-}
-
 #[tauri::command]
 async fn run_applescript(script: &str) -> Result<String, String> {
-    match run_applescript_sync(script, true) {
+    match utils::run_applescript_sync(script, true) {
         Ok(output) => Ok(output),
         Err(err) => Err(err.to_string()),
     }
-}
-
-#[tauri::command]
-fn on_button_clicked() -> String {
-    let start = SystemTime::now();
-    let since_the_epoch = start
-        .duration_since(UNIX_EPOCH)
-        .expect("Time went backwards")
-        .as_millis();
-    format!("on_button_clicked called from Rust! (timestamp: {since_the_epoch}ms)")
 }
 
 #[tauri::command]
@@ -163,83 +61,6 @@ fn set_window_properties(window: Window, resizable: bool, width: f64, height: f6
     }
 }
 
-#[get("/")]
-async fn index(app_state: web::Data<AppState>) -> impl Responder {
-    let data = &app_state.app_name;
-    HttpResponse::Ok().body(format!("Hello, World! {}", data))
-}
-
-#[post("/api/login")]
-async fn open_window(input: web::Json<LoginInput>, app: web::Data<AppHandle>) -> HttpResponse {
-    let info = LoginInfo {
-        user: input.user.to_string(),
-        mnemonic: input.mnemonic.to_string(),
-    };
-
-    let window = app.get_window("main").unwrap();
-    window.emit("DESKTOP_LOGIN", json!(info)).unwrap();
-
-    HttpResponse::Ok().json(info)
-}
-
-#[post("/api/upsert-extension")]
-async fn upsert_extension(
-    input: web::Json<UpsertExtensionInput>,
-    app: web::Data<AppHandle>,
-) -> HttpResponse {
-    let info = ExtensionInfo {
-        id: input.id.to_string(),
-        name: input.name.to_string(),
-        version: input.version.to_string(),
-        icon: input.icon.to_string(),
-        assets: input.assets.to_string(),
-        commands: input.commands.to_string(),
-    };
-
-    let window = app.get_window("main").unwrap();
-    window.emit("UPSERT_EXTENSION", json!(info)).unwrap();
-
-    HttpResponse::Ok().json(info)
-}
-
-#[derive(Deserialize)]
-struct QueryParams {
-    extension_id: String,
-}
-
-#[get("/extension")]
-async fn extension(web::Query(params): web::Query<QueryParams>) -> impl Responder {
-    let html = format!(
-        r#"
-        <!DOCTYPE html>
-        <html>
-          <body>
-            <div id="root" style="color: red">Root</div>
-            <script src="./dist/{}.js"></script>
-            <script src="/extension_js/hello.js"></script>
-          </body>
-        </html>
-    "#,
-        params.extension_id
-    );
-
-    HttpResponse::Ok().body(html)
-}
-
-#[get("/extension_js/{name}.js")] // <- define path parameters
-async fn extension_js(path: web::Path<(String)>) -> impl Responder {
-    let js_str = "console.log(\"hello world....\");alert(123);";
-
-    HttpResponse::Ok()
-        .content_type("application/javascript")
-        .body(js_str)
-}
-
-#[get("/get-data")]
-async fn get_data(app: web::Data<AppHandle>) -> impl Responder {
-    HttpResponse::Ok().body("Open window!")
-}
-
 async fn get_data_from_webview(app_handle: &tauri::AppHandle) -> String {
     let event_name = "get_data_from_rust";
     let (tx, rx) = std::sync::mpsc::channel();
@@ -250,46 +71,6 @@ async fn get_data_from_webview(app_handle: &tauri::AppHandle) -> String {
 }
 
 // This struct represents state
-
-#[actix_web::main]
-pub async fn start_server(
-    app: AppHandle,
-    conn: Connection,
-    app_state: AppState,
-) -> std::io::Result<()> {
-    // let tauri_app = web::Data::new(Mutex::new(app));
-
-    // let db = web::Data::new(Mutex::new(conn));
-    let cors = Cors::default()
-        .allow_any_origin()
-        .allowed_methods(vec!["GET", "POST"])
-        .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
-        .allowed_header(http::header::CONTENT_TYPE)
-        .max_age(3600);
-
-    HttpServer::new(move || {
-        App::new()
-            // .app_data(web::Data::new(AppState {
-            //     app_name: String::from("Actix Web"),
-            //     data: String::from("initial data"),
-            //     app_name: RefCell::new("Actix Web".to_string()),
-            //     data: RefCell::new("initial data".to_string()),
-            // }))
-            .app_data(web::Data::new(app_state.clone()))
-            .app_data(web::Data::new(app.clone()))
-            // .app_data(db.clone())
-            .wrap(middleware::Logger::default())
-            .service(index)
-            .service(open_window)
-            .service(upsert_extension)
-            .service(extension)
-            .service(extension_js)
-            .service(get_data)
-    })
-    .bind(("127.0.0.1", 14159))?
-    .run()
-    .await
-}
 
 pub trait WindowExt {
     #[cfg(target_os = "macos")]
@@ -339,12 +120,12 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard::init()) // add this line
         .invoke_handler(tauri::generate_handler![
-            on_button_clicked,
+            menu::on_button_clicked,
             greet,
             run_applescript,
             set_window_properties,
         ])
-        .system_tray(create_system_tray())
+        .system_tray(menu::create_system_tray())
         .on_system_tray_event(|app, event| match event {
             SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
                 "Hide" => {
@@ -376,9 +157,7 @@ fn main() {
             let boxed_handle = Box::new(handle);
             let boxed_conn = Box::new(conn.unwrap());
 
-            let app_state = AppState {
-                // app_name: RefCell::new("Actix Web".to_string()),
-                // data: RefCell::new("initial data".to_string()),
+            let app_state = server::AppState {
                 app_name: String::from("Actix Web"),
                 data: String::from("initial data"),
             };
@@ -392,7 +171,7 @@ fn main() {
             let boxed_app_state = Box::new(app_state);
 
             thread::spawn(move || {
-                start_server(*boxed_handle, *boxed_conn, *boxed_app_state).unwrap()
+                server::start_server(*boxed_handle, *boxed_conn, *boxed_app_state).unwrap()
             });
 
             let window = app.get_window("main").unwrap();

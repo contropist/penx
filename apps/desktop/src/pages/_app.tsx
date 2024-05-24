@@ -122,8 +122,10 @@ async function init() {
     })
   }
 
-  listen('DESKTOP_LOGIN', (data) => {
-    console.log('open window==========:', data.payload)
+  listen('DESKTOP_LOGIN', (data: any) => {
+    const user = JSON.parse(data.payload?.user || '{}')
+    const mnemonic = data.payload.mnemonic
+    console.log('open window==========:', user, mnemonic)
     appWindow.show()
     appWindow.setFocus()
   })
