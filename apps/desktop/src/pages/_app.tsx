@@ -67,16 +67,17 @@ async function hideOnBlur() {
         store.set(modeAtom, 'COMMAND')
       } else {
         const position = store.get(positionAtom)
+
         if (position === 'ROOT') {
           mainWindow?.hide()
+        } else {
+          appEmitter.emit('ON_ESCAPE_IN_COMMAND')
         }
-        appEmitter.emit('ON_ESCAPE_IN_COMMAND')
       }
     }
   })
 
   listen('tauri://blur', () => {
-    // console.log('---------appWindow:', appWindow)
     if (!isDev) {
       appWindow.hide()
     }

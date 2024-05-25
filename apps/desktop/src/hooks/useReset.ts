@@ -25,6 +25,10 @@ export function useReset(setQ: (value: string) => void) {
         store.set(searchAtom, '')
       }
 
+      if (position === 'COMMAND_APP_DETAIL') {
+        store.set(positionAtom, 'COMMAND_APP')
+      }
+
       setQ('')
     }
 

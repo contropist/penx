@@ -70,8 +70,8 @@ export const CommandApp = memo(
 
     if (
       // prev.loading === next.loading &&
-      prev.currentCommand.data?.commandName ===
-        next.currentCommand.data?.commandName &&
+      prev.currentCommand?.data?.commandName ===
+        next.currentCommand?.data?.commandName &&
       isEqual(prev.ui, next.ui)
     ) {
       return true

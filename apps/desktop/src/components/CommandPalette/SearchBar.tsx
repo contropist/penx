@@ -19,7 +19,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { setItems } = useItems()
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
-  const { isCommandApp, backToRoot } = useCommandPosition()
+  const { isCommandApp, isCommandAppDetail, backToRoot, setPosition } =
+    useCommandPosition()
   const { currentCommand } = useCurrentCommand()
 
   return (
@@ -30,7 +31,11 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           mr--8
           cursorPointer
           onClick={() => {
-            backToRoot()
+            if (isCommandAppDetail) {
+              setPosition('COMMAND_APP')
+            } else {
+              backToRoot()
+            }
           }}
         >
           <ArrowLeft size={20}></ArrowLeft>

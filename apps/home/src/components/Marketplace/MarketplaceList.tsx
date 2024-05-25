@@ -46,7 +46,6 @@ function ExtensionIcon({ icon }: ItemIconProps) {
 
 export function MarketplaceList() {
   const { data = [], isLoading } = trpc.extension.all.useQuery()
-  console.log('=======data:', data)
 
   if (isLoading) return <p>Loading...</p>
 
@@ -72,7 +71,7 @@ export function MarketplaceList() {
                   <Box gray600>
                     <DownloadCloud size={18} />
                   </Box>
-                  <Box textSM>143033</Box>
+                  <Box textSM>{item.installationCount}</Box>
                 </Box>
                 <Button colorScheme="black" size="sm">
                   Install

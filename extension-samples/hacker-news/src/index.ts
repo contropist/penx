@@ -30,7 +30,7 @@ async function getItems(type = 'top') {
   const items = data.map(
     (item, index) =>
       ({
-        icon: index + 2,
+        icon: index + 3,
         title: item.title,
         actions: [
           {

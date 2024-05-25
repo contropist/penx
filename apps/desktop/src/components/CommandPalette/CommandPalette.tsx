@@ -56,7 +56,7 @@ export const CommandPalette = () => {
   //   init()
   // }, [])
 
-  const isIframe = isCommandApp && currentCommand.data.runtime === 'iframe'
+  const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'
 
   return (
     <StyledCommand

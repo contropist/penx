@@ -3,7 +3,7 @@ import { workerStore } from '~/common/workerStore'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCurrentCommand } from './useCurrentCommand'
 
-type Position = 'ROOT' | 'COMMAND_APP'
+type Position = 'ROOT' | 'COMMAND_APP' | 'COMMAND_APP_DETAIL'
 
 export const positionAtom = atom<Position>('ROOT')
 
@@ -22,7 +22,9 @@ export function useCommandPosition() {
   }
   return {
     isRoot: position === 'ROOT',
-    isCommandApp: position === 'COMMAND_APP',
+    isCommandApp:
+      position === 'COMMAND_APP' || position === 'COMMAND_APP_DETAIL',
+    isCommandAppDetail: position === 'COMMAND_APP_DETAIL',
     position,
     backToRoot,
     setPosition,
