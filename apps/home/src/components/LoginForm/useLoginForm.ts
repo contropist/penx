@@ -3,8 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { getCsrfToken, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { toast } from 'uikit'
-import { db, getNewSpace } from '@penx/local-db'
-import { store } from '@penx/store'
 
 export type LoginFormValues = {
   username: string
@@ -22,8 +20,6 @@ export function useLoginForm() {
   })
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
-    console.log('============data:', data)
-
     try {
       setLoading(true)
       const res = await signIn('credentials', {
