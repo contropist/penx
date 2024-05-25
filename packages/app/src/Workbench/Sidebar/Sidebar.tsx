@@ -1,20 +1,27 @@
 import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
-import { Hash, LayoutGridIcon, LayoutIcon } from 'lucide-react'
+import { open } from '@tauri-apps/api/shell'
+import {
+  Hash,
+  InfoIcon,
+  LayoutGridIcon,
+  LayoutIcon,
+  MessageCircle,
+  MessageCircleCode,
+} from 'lucide-react'
 import { Bullet } from 'uikit'
-import { useRouterName } from '@penx/hooks'
+import { useRouterName, useUser } from '@penx/hooks'
 import { IconCalendar, IconTodo } from '@penx/icons'
 import { Node } from '@penx/model'
 import { INode } from '@penx/model-types'
 import { useSession } from '@penx/session'
 import { store } from '@penx/store'
-import { Logo } from '@penx/widget'
 import { SyncPopover } from '../StatusBar/SyncPopover'
 import { FavoriteBox } from './FavoriteBox/FavoriteBox'
 import { LoginButton } from './LoginButton'
 import { SettingsButton } from './SettingsButton'
+import { SidebarHeader } from './SidebarHeader'
 import { SidebarItem } from './SidebarItem'
-import { SpacePopover } from './SpacePopover/SpacePopover'
 
 interface Props {
   activeNode: INode
@@ -24,13 +31,12 @@ export const Sidebar = memo(
   function Sidebar({ activeNode }: Props) {
     const { loading, data: session } = useSession()
 
-    // console.log('=========loading:', loading, 'session:', session)
-
     const name = useRouterName()
 
     const isTodosActive = name === 'TODOS'
     const isDatabasesActive = name === 'DATABASES'
     const isExtensionsActive = name === 'EXTENSIONS'
+    const isMarketplaceActive = name === 'MARKETPLACE'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -67,13 +73,7 @@ export const Sidebar = memo(
         overflowAuto
       >
         <Box px2>
-          <Box mt2 ml3>
-            {/* <SpacePopover /> */}
-            <Box toCenterY toBetween>
-              <Logo size={24} />
-              <SettingsButton />
-            </Box>
-          </Box>
+          <SidebarHeader />
           <Box column gap-1 flex-1 mt3>
             {/* <SidebarItem
               icon={
@@ -113,14 +113,62 @@ export const Sidebar = memo(
 
             <SidebarItem
               icon={
-                <Box gray500 inlineFlex brand500={isDatabasesActive}>
-                  <Hash size={20} strokeWidth={1.5} />
+                <Box
+                  inlineFlex
+                  square5
+                  roundedLG
+                  brand500={isDatabasesActive}
+                  bgGradientX={['red500', 'orange500']}
+                  white
+                  toCenter
+                >
+                  <Hash size={16} strokeWidth={1.5} />
                 </Box>
               }
               label="Databases"
               isActive={isDatabasesActive}
               onClick={() => {
                 store.router.routeTo('DATABASES')
+              }}
+            />
+
+            <SidebarItem
+              icon={
+                <Box
+                  inlineFlex
+                  square5
+                  roundedLG
+                  bgGradientX={['pink500', 'purple500']}
+                  white
+                  toCenter
+                >
+                  <LayoutGridIcon size={14} />
+                </Box>
+              }
+              label="Extensions"
+              isActive={isExtensionsActive}
+              onClick={() => {
+                store.router.routeTo('EXTENSIONS')
+              }}
+            />
+
+            <SidebarItem
+              icon={
+                <Box
+                  inlineFlex
+                  square5
+                  roundedLG
+                  white
+                  toCenter
+                  bgGradientY={['green500', 'blue500']}
+                >
+                  <LayoutGridIcon size={14} />
+                </Box>
+              }
+              label="Marketplace"
+              isActive={isMarketplaceActive}
+              onClick={() => {
+                store.router.routeTo('MARKETPLACE')
               }}
             />
 
@@ -150,19 +198,6 @@ export const Sidebar = memo(
               }}
             /> */}
           </Box>
-
-          <SidebarItem
-            icon={
-              <Box gray500 inlineFlex brand500={isExtensionsActive}>
-                <LayoutGridIcon size={20} />
-              </Box>
-            }
-            label="Extensions"
-            isActive={isExtensionsActive}
-            onClick={() => {
-              store.router.routeTo('EXTENSIONS')
-            }}
-          />
         </Box>
 
         <Box flex-1 zIndex-1 overflowYAuto px2>
@@ -173,15 +208,47 @@ export const Sidebar = memo(
             {activeSpace.isOutliner && <TreeView nodeList={nodeList} />} */}
         </Box>
 
-        <Box px4 column gap2>
+        <Box px3 column gap2 pb3>
           {/* {!isProd && <CreateDemoDatabaseButton></CreateDemoDatabaseButton>} */}
 
           {/* <SetupGitHubButton /> */}
           <LoginButton />
+
+          {session && (
+            <Box>
+              <SidebarItem
+                gray500
+                icon={
+                  <Box gray500 inlineFlex>
+                    <InfoIcon size={18} />
+                  </Box>
+                }
+                label="Developer"
+                onClick={() => {
+                  open(
+                    'https://docs.penx.io/build-extension/create-first-extension',
+                  )
+                }}
+              />
+
+              <SidebarItem
+                gray500
+                icon={
+                  <Box gray500 inlineFlex>
+                    <MessageCircle size={18} />
+                  </Box>
+                }
+                label="Feedback"
+                onClick={() => {
+                  open('https://github.com/penxio/penx/issues')
+                }}
+              />
+            </Box>
+          )}
         </Box>
-        <Box px2 toBetween toCenterY pb2>
+        {/* <Box px2 toBetween toCenterY pb2>
           {session && !loading && <SyncPopover />}
-        </Box>
+        </Box> */}
       </Box>
     )
   },

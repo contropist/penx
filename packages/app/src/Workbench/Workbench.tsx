@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Box } from '@fower/react'
+import { useQuery } from '@tanstack/react-query'
 import { SIDEBAR_WIDTH, WORKBENCH_NAV_HEIGHT } from '@penx/constants'
 import { EditorProvider } from '@penx/editor'
 import {
@@ -12,6 +13,7 @@ import {
 } from '@penx/hooks'
 import { IconSidebar } from '@penx/icons'
 import { useSession } from '@penx/session'
+import { getAuthorizedUser } from '@penx/storage'
 import { Fallback } from '../Fallback/Fallback'
 import { LoginByTokenModal } from '../LoginByTokenModal/LoginByTokenModal'
 import { CommandPanel } from '../Palette'
@@ -44,7 +46,10 @@ export const Workbench = () => {
   const { activeNodes } = useActiveNodes()
   const [activeNode] = activeNodes
 
-  const { user } = useUser()
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: getAuthorizedUser,
+  })
 
   // const SIDEBAR_WIDTH = 600
 

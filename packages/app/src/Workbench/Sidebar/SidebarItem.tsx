@@ -25,7 +25,7 @@ export const SidebarItem = ({
       rounded
       px2
       black
-      brand500={isActive}
+      bgGray200={isActive}
       bgGray200--hover
       h8
       transitionCommon
@@ -35,7 +35,7 @@ export const SidebarItem = ({
     >
       <Box toCenterY gap2>
         <Box inlineFlex>{icon}</Box>
-        <Box textBase>{label}</Box>
+        <Box textSM>{label}</Box>
       </Box>
       {children}
     </Box>

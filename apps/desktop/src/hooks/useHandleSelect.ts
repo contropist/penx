@@ -38,7 +38,7 @@ export function useHandleSelect() {
         if (!$iframe) return
         const currentWindow = ($iframe as any).contentWindow as Window
 
-        currentWindow.document.body.innerHTML = '<div id="root">Hello</div>'
+        currentWindow.document.body.innerHTML = '<div id="root"></div>'
         ;(currentWindow as any).eval(command.code)
 
         return

@@ -45,6 +45,10 @@ export class User {
     return this.raw.address || ''
   }
 
+  get image() {
+    return this.raw.image || ''
+  }
+
   get github(): GithubInfo {
     if (typeof this.raw.github === 'string') {
       return JSON.parse(this.raw.github || '{}')

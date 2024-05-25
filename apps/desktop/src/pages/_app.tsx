@@ -9,15 +9,18 @@ import { useRouter } from 'next/router'
 import { ToastContainer } from 'uikit'
 import { initFower } from '@penx/app'
 import { appEmitter } from '@penx/event'
-import { clearAuthorizedUser } from '@penx/storage'
+import { clearAuthorizedUser, setLocalSession } from '@penx/storage'
 import { store, StoreProvider } from '@penx/store'
 import { TrpcProvider } from '@penx/trpc-client'
 import '@glideapps/glide-data-grid/dist/index.css'
 import { app } from '@tauri-apps/api'
 import { emit, listen } from '@tauri-apps/api/event'
+import { mn } from 'date-fns/locale'
 import { isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
+import { setMnemonicToLocal } from '@penx/mnemonic'
 import { ClientOnly } from '@penx/widget'
+import { loginToDesktop } from '~/common/loginToDesktop'
 import { positionAtom } from '~/hooks/useCommandPosition'
 import { modeAtom } from '~/hooks/useMode'
 
@@ -122,10 +125,11 @@ async function init() {
     })
   }
 
-  listen('DESKTOP_LOGIN', (data: any) => {
+  listen('DESKTOP_LOGIN', async (data: any) => {
     const user = JSON.parse(data.payload?.user || '{}')
     const mnemonic = data.payload.mnemonic
     console.log('open window==========:', user, mnemonic)
+    await loginToDesktop(mnemonic, user)
     appWindow.show()
     appWindow.setFocus()
   })
@@ -149,10 +153,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { push } = useRouter()
 
   useEffect(() => {
-    const handleSignOut = () => {
-      clearAuthorizedUser()
+    const handleSignOut = async () => {
+      const user = store.user.getUser()
+      await setMnemonicToLocal(user.id, '')
+      await clearAuthorizedUser()
+      await setLocalSession(null as any)
       store.setToken(null as any)
-      push('/')
+      store.user.setUser(null as any)
+      store.user.setMnemonic('')
+      appEmitter.emit('SIGN_OUT_SUCCESSFULLY')
     }
 
     appEmitter.on('SIGN_OUT', handleSignOut)

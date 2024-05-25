@@ -9,6 +9,7 @@ export type RouteName =
   | 'RESTORE_BACKUP'
   | 'SETTINGS'
   | 'EXTENSIONS'
+  | 'MARKETPLACE'
 
 export type IRouterStore = {
   name: RouteName

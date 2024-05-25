@@ -8,6 +8,8 @@ import { GoogleVersionRestore } from './GoogleVersionRestore'
 export function Backup() {
   const { user } = useUser()
 
+  console.log('=========user:', user)
+
   if (!user?.raw) return
 
   return (
