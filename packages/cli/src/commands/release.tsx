@@ -49,12 +49,10 @@ class Command {
   handler = async (args: ArgumentsCamelCase<Args>) => {
     const config = readConfig()
 
-    // console.log('=========config:', config)
-
     if (!config.user || !config.token) {
       console.log(
         chalk.yellow('Please login first, try to login by command:'),
-        chalk.green('penx login'),
+        chalk.green('npx penx login'),
       )
       return
     }
@@ -69,6 +67,7 @@ class Command {
           await this.handleBuildSuccess()
 
           const manifest = getManifest()
+
           await this.trpc.extension.upsertExtension.mutate({
             uniqueId: manifest.id,
             manifest: JSON.stringify(manifest),
@@ -196,7 +195,8 @@ class Command {
 
   private async commit(treeSha: string) {
     const parentSha = this.baseBranchSha
-    const msg = 'Release extension'
+    const manifest = getManifest()
+    const msg = `Release extension: ${manifest.id}`
 
     const commit = await this.app.request('POST /repos/{owner}/{repo}/git/commits', {
       ...this.params,

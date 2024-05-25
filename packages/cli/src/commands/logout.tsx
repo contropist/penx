@@ -1,20 +1,19 @@
 import yargs, { ArgumentsCamelCase } from 'yargs'
-import { selectSpace } from '../lib/selectSpace'
+import { clearConfig } from '../lib/utils'
 
-type Args = {
-  env?: string[]
-}
+type Args = {}
 
 class Command {
-  readonly command = 'space [command]'
-  readonly describe = ''
+  readonly command = 'logout'
+  readonly describe = 'Logout from Penx CLI'
 
   readonly builder = (args: yargs.Argv) => {
     return args.showHelpOnFail(true).strict()
   }
 
   handler = async (args: ArgumentsCamelCase<Args>) => {
-    await selectSpace()
+    clearConfig()
+    console.log('Logout successfully!')
   }
 }
 

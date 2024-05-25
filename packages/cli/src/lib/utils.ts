@@ -16,6 +16,10 @@ export function writeTokenToLocal(env: Env, token: string, user: User) {
   jetpack.write(configPath, { env, token, user })
 }
 
+export function clearConfig() {
+  jetpack.write(configPath, {})
+}
+
 export function writeConfig(config: Partial<Config>) {
   const currentConfig = readConfig()
   jetpack.write(configPath, {

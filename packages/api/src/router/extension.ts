@@ -43,7 +43,7 @@ export const extensionRouter = createTRPCRouter({
       } else {
         await ctx.prisma.extension.create({
           data: {
-            userId: 'default',
+            userId: ctx.token.uid,
             uniqueId: input.uniqueId,
             manifest: input.manifest,
             logo: input.logo,

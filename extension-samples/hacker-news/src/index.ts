@@ -26,11 +26,11 @@ export async function main() {
 async function getItems(type = 'top') {
   const data = await getData(type)
 
-  //
+  // list items
   const items = data.map(
     (item, index) =>
       ({
-        icon: index + 1,
+        icon: index + 2,
         title: item.title,
         actions: [
           {
