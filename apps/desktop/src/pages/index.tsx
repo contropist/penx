@@ -50,8 +50,6 @@ export default function Home() {
 
   const { isEditor } = useMode()
 
-  console.log('==========session:', session)
-
   if (isLoading) return null
 
   return (
