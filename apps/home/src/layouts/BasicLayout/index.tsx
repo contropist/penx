@@ -26,7 +26,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             size={32}
             cursorPointer
             onClick={() => {
-              push('/')
+              location.href = 'https://penx.io'
             }}
           />
         </Box>
@@ -42,7 +42,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             roundedFull
             colorScheme="black"
             onClick={() => {
-              push('/login')
+              window.open('https://app.penx.io/login')
             }}
           >
             Log in
