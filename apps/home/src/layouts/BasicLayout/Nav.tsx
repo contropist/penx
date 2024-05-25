@@ -48,7 +48,7 @@ export const Nav = () => {
     {
       text: 'Downloads',
       to: APP_DOWNLOAD_URL,
-      // isExternal: true,
+      isExternal: true,
     },
     {
       text: 'Feedback',

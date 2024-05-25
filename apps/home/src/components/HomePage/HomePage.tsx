@@ -1,6 +1,7 @@
 import { Box } from '@fower/react'
 import { useRouter } from 'next/router'
 import { Button } from 'uikit'
+import { APP_DOWNLOAD_URL } from '~/common/constants'
 
 export function HomePage() {
   const { push } = useRouter()
@@ -74,34 +75,13 @@ export function HomePage() {
             // bgGradientX={['brand500', 'fuchsia600']}
             // bgGradientX--hover={['brand400', 'fuchsia500']}
             roundedFull
-            w-240
+            w-300
             onClick={() => {
-              window.open('https://app.penx.io')
+              window.open(APP_DOWNLOAD_URL)
             }}
           >
-            Get early access
+            Download to get early access
           </Button>
-        </Box>
-
-        <Box
-          relative
-          mt20
-          p10
-          shadow="0px 1px 10px 0px rgba(42,44,48,.03),0px 0px 90px 0px rgba(200, 200, 200,.3)"
-          // border
-          // borderNeutral200--T20
-          rounded-64
-          column
-          gapY5
-        >
-          <Box textCenter fontSemibold text={[40, 60]}>
-            PenX Architecture
-          </Box>
-          <Box
-            as="img"
-            src="/images/penx-architecture-2x.jpg"
-            w={['100%', '100%', 760, 840, 1200]}
-          />
         </Box>
 
         <Box relative mt20 p10 rounded-24 column>
@@ -117,7 +97,10 @@ export function HomePage() {
 
         <Box relative mb40 column gap8>
           <Box textCenter fontSemibold text={[40, 60]}>
-            PenX Editor
+            PenX Editor{' '}
+            <Box as="span" gray400 fontLight>
+              (Coming soon)
+            </Box>
           </Box>
           <Box
             display={['none', 'none', 'flex']}

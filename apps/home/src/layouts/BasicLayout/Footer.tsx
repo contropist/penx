@@ -57,17 +57,17 @@ export function Footer() {
               {
                 text: 'Mac App',
                 to: APP_DOWNLOAD_URL,
-                // isExternal: true,
+                isExternal: true,
               },
               {
                 text: 'Windows',
                 to: APP_DOWNLOAD_URL,
-                // isExternal: true,
+                isExternal: true,
               },
               {
                 text: 'Linux',
                 to: APP_DOWNLOAD_URL,
-                // isExternal: true,
+                isExternal: true,
               },
             ]}
           />
