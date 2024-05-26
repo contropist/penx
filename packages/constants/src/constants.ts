@@ -41,7 +41,9 @@ export const PLATFORM =
   process.env.NEXT_PUBLIC_PLATFORM || process.env.PLASMO_PUBLIC_PLATFORM
 
 export const ENV_BASE_URL =
-  process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.PLASMO_PUBLIC_BASE_URL
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  process.env.NEXT_PUBLIC_NEXTAUTH_URL ||
+  process.env.PLASMO_PUBLIC_BASE_URL
 
 export const BASE_URL = (() => {
   if (ENV_BASE_URL) return ENV_BASE_URL
