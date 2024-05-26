@@ -1,5 +1,11 @@
 # penx-cli
 
+## 0.2.8
+
+### Patch Changes
+
+- fix penx-cli
+
 ## 0.2.7
 
 ### Patch Changes
