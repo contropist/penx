@@ -1,5 +1,11 @@
 ### Patch Changes
 
+## 0.1.7
+
+### Patch Changes
+
+- update cli
+
 ## 0.1.6
 
 ### Patch Changes
