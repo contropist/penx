@@ -36,6 +36,7 @@ export const extensionRouter = createTRPCRouter({
       z.object({
         uniqueId: z.string(),
         manifest: z.string(),
+        readme: z.string(),
         logo: z.string(),
       }),
     )
@@ -49,6 +50,7 @@ export const extensionRouter = createTRPCRouter({
           where: { id: ext.id },
           data: {
             manifest: input.manifest,
+            readme: input.readme,
             logo: input.logo,
           },
         })
@@ -58,6 +60,7 @@ export const extensionRouter = createTRPCRouter({
             userId: ctx.token.uid,
             uniqueId: input.uniqueId,
             manifest: input.manifest,
+            readme: input.readme,
             logo: input.logo,
           },
         })
