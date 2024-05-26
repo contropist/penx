@@ -152,7 +152,7 @@ export const Sidebar = memo(
               }}
             />
 
-            <SidebarItem
+            {/* <SidebarItem
               icon={
                 <Box
                   inlineFlex
@@ -170,7 +170,7 @@ export const Sidebar = memo(
               onClick={() => {
                 store.router.routeTo('MARKETPLACE')
               }}
-            />
+            /> */}
 
             {/* <SidebarItem
               icon={

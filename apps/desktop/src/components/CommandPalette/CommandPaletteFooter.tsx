@@ -26,10 +26,9 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       px4
       toBetween
     >
-      {currentCommand && (
+      {currentCommand && currentCommand.data.extensionIcon ? (
         <ListItemIcon icon={currentCommand.data.extensionIcon} />
-      )}
-      {!currentCommand && (
+      ) : (
         <Image
           src="/logo/128x128.png"
           alt=""

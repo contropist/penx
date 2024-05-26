@@ -226,6 +226,12 @@ export class Node {
     return today === this.date
   }
 
+  get isSpecialDatabase() {
+    if (this.tagName === '__FILE__' || this.tagName === '__TODO__') return true
+    if (this.tagName.startsWith('$template__')) return true
+    return false
+  }
+
   get fileHash() {
     const element = this.element as any
     try {

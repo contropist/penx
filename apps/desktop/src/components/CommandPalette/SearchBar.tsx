@@ -6,8 +6,10 @@ import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
+import { useValue } from '~/hooks/useValue'
 import { ToggleModeButton } from '../ToggleModeButton'
 import { StyledCommandInput } from './CommandComponents'
+import { DatabaseName } from './DatabaseName'
 import { SearchBarFilter } from './SearchBarFilter'
 
 interface Props {
@@ -18,9 +20,21 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { setItems } = useItems()
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
-  const { isCommandApp, isCommandAppDetail, backToRoot, setPosition } =
-    useCommandPosition()
+  const {
+    isCommandApp,
+    isCommandAppDetail,
+    backToRoot,
+    backToCommandApp,
+    setPosition,
+  } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()
+
+  const currentCommandName = currentCommand?.data?.commandName
+  const isMarketplaceDetail =
+    currentCommandName === 'marketplace' && isCommandAppDetail
+
+  const isDatabaseDetail =
+    currentCommandName === 'database' && isCommandAppDetail
 
   return (
     <Box
@@ -37,16 +51,20 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           cursorPointer
           onClick={() => {
             if (isCommandAppDetail) {
-              setPosition('COMMAND_APP')
+              backToCommandApp()
             } else {
               backToRoot()
+              setSearch('')
             }
           }}
         >
           <ArrowLeft size={20}></ArrowLeft>
         </Box>
       )}
-      {!isCommandAppDetail && (
+
+      {isDatabaseDetail && <DatabaseName />}
+
+      {!isMarketplaceDetail && (
         <StyledCommandInput
           ref={ref as any}
           id="searchBarInput"
@@ -75,7 +93,11 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           onKeyDown={(e) => {
             if (e.key === 'Backspace' || e.key === 'delete') {
               if (!search && isCommandApp) {
-                backToRoot()
+                if (isCommandAppDetail) {
+                  backToCommandApp()
+                } else {
+                  backToRoot()
+                }
               }
             }
             if (e.key === 'Enter') {

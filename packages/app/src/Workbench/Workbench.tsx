@@ -67,7 +67,7 @@ export const Workbench = () => {
       <RowModal />
 
       <Box h-100vh toLeft black flex-1 relative bgWhite>
-        {!isBackedUp && session && name === 'NODE' && <BackupMnemonicTips />}
+        {/* {!isBackedUp && session && name === 'NODE' && <BackupMnemonicTips />} */}
 
         <Box toLeft relative borderRight borderNeutral200--T40>
           <Box

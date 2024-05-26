@@ -18,9 +18,9 @@ export async function installBuiltinExtension() {
     isDeveloping: false,
     commands: [
       {
-        name: 'database',
-        title: 'Database',
-        icon: '/icons/copy.svg',
+        name: 'marketplace',
+        title: 'marketplace',
+        icon: '/icons/marketplace.svg',
         subtitle: '',
         description: '',
         code: '',
@@ -30,15 +30,6 @@ export async function installBuiltinExtension() {
         name: 'clipboard-history',
         title: 'Clipboard history',
         icon: '/icons/copy.svg',
-        subtitle: '',
-        description: '',
-        code: '',
-        isBuiltIn: true,
-      },
-      {
-        name: 'marketplace',
-        title: 'marketplace',
-        icon: '/icons/marketplace.svg',
         subtitle: '',
         description: '',
         code: '',

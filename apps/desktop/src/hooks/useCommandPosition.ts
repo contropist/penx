@@ -20,6 +20,13 @@ export function useCommandPosition() {
       workerStore.currentWorker.postMessage('BACK_TO_ROOT')
     }
   }
+
+  function backToCommandApp() {
+    console.log('name....dd COMMAND_APP')
+
+    setPosition('COMMAND_APP')
+  }
+
   return {
     isRoot: position === 'ROOT',
     isCommandApp:
@@ -27,6 +34,7 @@ export function useCommandPosition() {
     isCommandAppDetail: position === 'COMMAND_APP_DETAIL',
     position,
     backToRoot,
+    backToCommandApp,
     setPosition,
   }
 }

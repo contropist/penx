@@ -8,9 +8,11 @@ import { ListItemIcon } from './ListItemIcon'
 
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
+  value?: any
   item: IListItem
   isListApp?: boolean
   titleLayout?: 'column' | 'row'
+  showIcon?: boolean
   onSelect?: (item: IListItem) => void
 }
 
@@ -20,6 +22,8 @@ export const ListItemUI = ({
   index,
   titleLayout = 'row',
   isListApp = false,
+  showIcon = true,
+  value,
   ...rest
 }: ListItemUIProps) => {
   const { currentCommand } = useCurrentCommand()
@@ -53,7 +57,8 @@ export const ListItemUI = ({
       gap4
       roundedLG
       black
-      value={title}
+      value={value || title}
+      // keywords={[title]}
       onSelect={() => {
         onSelect?.(item)
       }}
@@ -63,7 +68,7 @@ export const ListItemUI = ({
       {...rest}
     >
       <Box toCenterY gap2>
-        <ListItemIcon icon={itemIcon as string} />
+        {showIcon && <ListItemIcon icon={itemIcon as string} />}
         <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
           <Box text-14>{title}</Box>
           <Box text-12 zinc400>
@@ -71,9 +76,9 @@ export const ListItemUI = ({
           </Box>
         </Box>
       </Box>
-      {!!item.data?.commandName && (
+      {!!item.data?.type && (
         <Box textXS gray400>
-          Command
+          {item.data?.type}
         </Box>
       )}
       {item?.extra && (

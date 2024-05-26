@@ -26,6 +26,13 @@ export interface ListHeading {
   title: string
 }
 
+export interface ObjectIcon {
+  value: ImageLike | undefined | null
+  tooltip?: string
+  color?: string
+  bg?: string
+}
+
 export interface IListItem {
   id?: string
 
@@ -45,12 +52,7 @@ export interface IListItem {
         tooltip?: string | null
       }
 
-  icon?:
-    | ImageLike
-    | {
-        value: ImageLike | undefined | null
-        tooltip: string
-      }
+  icon?: ImageLike | ObjectIcon
 
   actions?: ListItemAction[]
 
@@ -76,6 +78,10 @@ export interface ListJSON {
 
 export function isListJSON(json: any): json is ListJSON {
   return json.type === 'list'
+}
+
+export function isObjectIcon(icon: any): icon is ObjectIcon {
+  return typeof icon === 'object' && icon?.value !== undefined
 }
 
 export class ListBuilder {

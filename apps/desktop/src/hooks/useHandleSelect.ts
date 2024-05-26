@@ -9,12 +9,14 @@ import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
+import { useCurrentDatabase } from './useCurrentDatabase'
 import { useSearch } from './useSearch'
 
 export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
   const { setPosition } = useCommandPosition()
   const { setCurrentCommand } = useCurrentCommand()
+  const { setDatabase } = useCurrentDatabase()
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
 
@@ -25,6 +27,12 @@ export function useHandleSelect() {
       setCurrentCommand(item)
 
       setPosition('COMMAND_APP')
+
+      if (item.data?.type === 'Database') {
+        setDatabase(item.data.database)
+        setUI({ type: 'database' })
+        return
+      }
 
       const ext = await db.getExtensionBySlug(item.data.extensionSlug)
       if (!ext) return
@@ -134,7 +142,7 @@ export function useHandleSelect() {
         }
 
         if (
-          ['marketplace', 'today', 'database', 'clipboard-history'].includes(
+          ['marketplace', 'today', 'clipboard-history'].includes(
             event.data?.type,
           )
         ) {

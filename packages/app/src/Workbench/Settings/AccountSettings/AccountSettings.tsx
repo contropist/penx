@@ -16,7 +16,7 @@ export function AccountSettings() {
         <Tag
           variant="light"
           colorScheme="gray400"
-          display={['none', 'none', 'block']}
+          display={['none', 'none', 'flex']}
         >
           {data.userId}
         </Tag>

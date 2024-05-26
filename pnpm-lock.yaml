@@ -812,6 +812,9 @@ importers:
       '@penx/app':
         specifier: workspace:*
         version: link:../../packages/app
+      '@penx/cell-fields':
+        specifier: workspace:*
+        version: link:../../packages/cell-fields
       '@penx/cmdk':
         specifier: workspace:*
         version: link:../../packages/cmdk
@@ -21842,6 +21845,7 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@2.7.1:

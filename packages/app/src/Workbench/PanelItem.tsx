@@ -87,8 +87,6 @@ export function PanelItem({ node, index }: Props) {
 
   const plugins = [withBulletPlugin]
 
-  const { isOpen, setIsOpen } = useQuickAdd()
-
   if (!activeSpace.isOutliner) {
     plugins.push(withAutoNodeId)
   }

@@ -24,7 +24,7 @@ import { CellProps } from './CellProps'
 export const SingleSelectCell: FC<CellProps> = memo(
   function SingleSelectCell(props) {
     const { cell } = props
-    const { options, deleteCellOption } = useDatabaseContext()
+    const { options = [], deleteCellOption } = useDatabaseContext()
     const [value, setValue] = useState<string[]>(
       Array.isArray(cell.props.data) ? cell.props.data : [],
     )

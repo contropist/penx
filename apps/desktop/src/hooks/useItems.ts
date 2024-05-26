@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { IListItem } from 'penx'
 import { db } from '@penx/local-db'
+import { Node } from '@penx/model'
 import { useSearch } from './useSearch'
 
 export const itemsAtom = atom<IListItem[]>([])
@@ -39,9 +40,12 @@ export function useCommands() {
 
 export function useLoadCommands() {
   return useQuery(['commands'], async () => {
-    const extensions = await db.listExtensions()
+    const [extensions, databases] = await Promise.all([
+      db.listExtensions(),
+      db.listDatabases(),
+    ])
 
-    return extensions.reduce((acc, cur) => {
+    const commands = extensions.reduce((acc, cur) => {
       return [
         ...acc,
         ...cur.commands.map<IListItem>((item) => {
@@ -61,6 +65,7 @@ export function useLoadCommands() {
             subtitle: cur.name,
             icon: getIcon(),
             data: {
+              type: 'Command',
               assets: cur.assets,
               filters: item.filters,
               runtime: item.runtime,
@@ -73,6 +78,29 @@ export function useLoadCommands() {
         }),
       ]
     }, [] as IListItem[])
+
+    const databaseItems = databases.reduce((acc, item) => {
+      const node = new Node(item)
+      if (node.isSpecialDatabase) return acc
+      return [
+        ...acc,
+        {
+          type: 'command',
+          title: node.tagName,
+          subtitle: '',
+          icon: {
+            value: '#',
+            bg: node.tagColor,
+          },
+          data: {
+            type: 'Database',
+            database: item,
+          },
+        } as IListItem,
+      ]
+    }, [] as IListItem[])
+
+    return [...commands, ...databaseItems]
   })
 }
 

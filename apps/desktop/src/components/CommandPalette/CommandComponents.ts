@@ -10,3 +10,5 @@ export const StyledCommandInput = styled(Command.Input)
 export const StyledCommandList = styled(Command.List)
 
 export const StyledCommandGroup = styled(Command.Group)
+
+export const StyledCommandEmpty = styled(Command.Empty)
