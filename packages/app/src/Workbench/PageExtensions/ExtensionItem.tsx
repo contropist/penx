@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { Button, Spinner, Tag } from 'uikit'
 import { db } from '@penx/local-db'
 import { IExtension } from '@penx/model-types'

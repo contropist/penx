@@ -37,11 +37,8 @@ export function useCommands() {
   return { commands, setCommands }
 }
 
-export function useQueryCommands() {
-  const setItems = useSetAtom(itemsAtom)
-  const setCommands = useSetAtom(commandsAtom)
-
-  const { data } = useQuery(['commands'], async () => {
+export function useLoadCommands() {
+  return useQuery(['commands'], async () => {
     const extensions = await db.listExtensions()
 
     return extensions.reduce((acc, cur) => {
@@ -77,6 +74,12 @@ export function useQueryCommands() {
       ]
     }, [] as IListItem[])
   })
+}
+
+export function useQueryCommands() {
+  const setItems = useSetAtom(itemsAtom)
+  const setCommands = useSetAtom(commandsAtom)
+  const { data } = useLoadCommands()
 
   useEffect(() => {
     if (data?.length) {
