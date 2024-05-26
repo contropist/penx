@@ -66,7 +66,9 @@ class Command {
         const spinner = ora('Upload the extension files...').start()
         try {
           const manifest = getManifest()
-          const canRelease = await this.trpc.extension.query({ uniqueId: manifest.id })
+          const canRelease = await this.trpc.extension.canReleaseExtension.query({
+            uniqueId: manifest.id,
+          })
 
           if (!canRelease) {
             spinner.fail(
