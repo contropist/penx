@@ -11,6 +11,7 @@ import { getManifest } from '../lib/getManifest'
 import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
 import { readConfig } from '../lib/utils'
+import { getReadme } from '../lib/getReadme'
 
 type Args = {}
 
@@ -67,10 +68,18 @@ class Command {
           await this.handleBuildSuccess()
 
           const manifest = getManifest()
+          const readme = getReadme()
+
+          const screenshotsDir = join(process.cwd(), 'screenshots')
+          const screenshotsPaths = jetpack.list(screenshotsDir) || []
 
           await this.trpc.extension.upsertExtension.mutate({
             uniqueId: manifest.id,
-            manifest: JSON.stringify(manifest),
+            manifest: JSON.stringify({
+              ...manifest,
+              screenshots: screenshotsPaths,
+            }),
+            readme,
             logo: await iconToString(manifest.icon),
           })
 
@@ -128,14 +137,31 @@ class Command {
       })
     }
 
+    /** assets */
     const assets = join(process.cwd(), 'assets')
 
     if (jetpack.exists(assets)) {
       const files = jetpack.list(assets) || []
 
       for (const file of files) {
+        if (file.includes('.DS_Store')) continue
         const filePath = join(process.cwd(), 'assets', file)
-        const fileItem = await this.createFileTreeItem(id, filePath, file)
+        const fileItem = await this.createFileTreeItem(id, filePath, file, 'assets')
+
+        treeItems.push(fileItem)
+      }
+    }
+
+    /** screenshots */
+    const screenshots = join(process.cwd(), 'screenshots')
+
+    if (jetpack.exists(screenshots)) {
+      const files = jetpack.list(screenshots) || []
+
+      for (const file of files) {
+        if (file.includes('.DS_Store')) continue
+        const filePath = join(process.cwd(), 'screenshots', file)
+        const fileItem = await this.createFileTreeItem(id, filePath, file, 'screenshots')
 
         treeItems.push(fileItem)
       }
@@ -175,7 +201,7 @@ class Command {
     return this.baseBranchSha
   }
 
-  async createFileTreeItem(id: string, filePath: string, fileName: string) {
+  async createFileTreeItem(id: string, filePath: string, fileName: string, dirname: string) {
     const content = fs.readFileSync(filePath, { encoding: 'base64' })
     const { data } = await this.app.request('POST /repos/{owner}/{repo}/git/blobs', {
       ...this.params,
@@ -184,7 +210,7 @@ class Command {
     })
 
     const item: TreeItem = {
-      path: `extensions/${id}/assets/${fileName}`,
+      path: `extensions/${id}/${dirname}/${fileName}`,
       mode: '100644',
       type: 'blob',
       sha: data.sha,

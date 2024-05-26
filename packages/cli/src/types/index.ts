@@ -17,4 +17,5 @@ export type Manifest = {
   code: string
   icon: string
   commands: CommandItem[]
+  screenshots: Record<string, string>
 }
