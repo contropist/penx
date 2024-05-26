@@ -31,7 +31,7 @@ export const extensionRouter = createTRPCRouter({
     return extensions
   }),
 
-  isExtensionIdExisted: protectedProcedure
+  canReleaseExtension: protectedProcedure
     .input(
       z.object({
         uniqueId: z.string(),
@@ -41,9 +41,9 @@ export const extensionRouter = createTRPCRouter({
       const ext = await ctx.prisma.extension.findUnique({
         where: { uniqueId: input.uniqueId },
       })
-      if (!ext) return false
+      if (!ext) return true
 
-      if (ext.userId !== ctx.token.uid && input.uniqueId === ext.uniqueId) {
+      if (ext.userId === ctx.token.uid && input.uniqueId === ext.uniqueId) {
         return true
       }
       return false

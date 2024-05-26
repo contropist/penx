@@ -65,9 +65,18 @@ class Command {
         // console.log('Build success~')
         const spinner = ora('Upload the extension files...').start()
         try {
+          const manifest = getManifest()
+          const canRelease = await this.trpc.extension.query({ uniqueId: manifest.id })
+
+          if (!canRelease) {
+            spinner.fail(
+              `"${manifest.id}" is a existed extension id, please use another extension id in your manifest.json`,
+            )
+            return
+          }
+
           await this.handleBuildSuccess()
 
-          const manifest = getManifest()
           const readme = getReadme()
 
           const screenshotsDir = join(process.cwd(), 'screenshots')
