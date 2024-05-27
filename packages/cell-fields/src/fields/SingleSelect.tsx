@@ -84,7 +84,7 @@ function Combobox(
 ) {
   const { cell, column, updateCell } = props
   const { close } = usePopoverContext()
-  const { addOption, options } = useDatabaseContext()
+  const { addOption, options = [] } = useDatabaseContext()
   const optionIds = column.props.optionIds || []
   const columnOptions = optionIds.map((o) => options.find((o2) => o2.id === o)!)
 

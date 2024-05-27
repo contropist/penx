@@ -1,14 +1,17 @@
 import { useRef } from 'react'
 import { Box } from '@fower/react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Plus } from 'lucide-react'
+import { Button } from 'uikit'
 import { appEmitter } from '@penx/event'
+import { store } from '@penx/store'
+import { ToggleModeButton } from '~/components/ToggleModeButton'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { isAddRowAtom } from '~/hooks/useIsAddRow'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
-import { useValue } from '~/hooks/useValue'
-import { ToggleModeButton } from '../ToggleModeButton'
-import { StyledCommandInput } from './CommandComponents'
+import { StyledCommandInput } from '../CommandComponents'
+import { AddRowButton } from './AddRowButton'
 import { DatabaseName } from './DatabaseName'
 import { SearchBarFilter } from './SearchBarFilter'
 
@@ -33,8 +36,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const isMarketplaceDetail =
     currentCommandName === 'marketplace' && isCommandAppDetail
 
-  const isDatabaseDetail =
-    currentCommandName === 'database' && isCommandAppDetail
+  const isDatabaseApp = currentCommand?.data?.type === 'Database'
 
   return (
     <Box
@@ -62,7 +64,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         </Box>
       )}
 
-      {isDatabaseDetail && <DatabaseName />}
+      {isDatabaseApp && <DatabaseName />}
+      {isDatabaseApp && <AddRowButton />}
 
       {!isMarketplaceDetail && (
         <StyledCommandInput

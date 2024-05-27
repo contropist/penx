@@ -46,8 +46,6 @@ export const RowForm = forwardRef<HTMLDivElement, Props>(
     return (
       <Box ref={ref} column gap4>
         {rowCells.map((cell, index) => {
-          // console.log('=====cell:', cell)
-
           const column = columns.find((col) => col.id === cell.props.columnId)!
 
           if (!column) return null

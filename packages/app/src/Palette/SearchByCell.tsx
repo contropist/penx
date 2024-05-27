@@ -4,7 +4,7 @@ import { Node as SlateNode } from 'slate'
 import { Divider, modalController } from 'uikit'
 import { Command } from '@penx/cmdk'
 import { ModalNames } from '@penx/constants'
-import { DatabaseProvider } from '@penx/database-context'
+import { DatabaseProvider, WithStoreDatabase } from '@penx/database-context'
 import { RowForm } from '@penx/database-ui'
 import { usePaletteDrawer } from '@penx/hooks'
 import { Node } from '@penx/model'
@@ -156,12 +156,16 @@ export function SearchByCell({ q, setSearch, afterSearch, close }: Props) {
       <Divider orientation="vertical" />
       <Box className="search-by-cell-right" w-50p overflowAuto p3>
         {currentItem && (
-          <DatabaseProvider databaseId={currentItem.database.id}>
-            <RowForm
-              databaseId={currentItem.database.id}
-              rowId={currentItem.cell.props.rowId}
-            />
-          </DatabaseProvider>
+          <WithStoreDatabase databaseId={currentItem.database.id}>
+            {(databaseInfo) => (
+              <DatabaseProvider {...databaseInfo}>
+                <RowForm
+                  databaseId={currentItem.database.id}
+                  rowId={currentItem.cell.props.rowId}
+                />
+              </DatabaseProvider>
+            )}
+          </WithStoreDatabase>
         )}
       </Box>
     </Box>

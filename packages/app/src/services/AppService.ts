@@ -120,7 +120,9 @@ export class AppService {
         //   store.node.setActiveNodes(activeNodes)
         // }
 
-        store.router.routeTo('DATABASES')
+        if (!store.router.getName()) {
+          store.router.routeTo('DATABASES')
+        }
       }
 
       store.app.setAppLoading(false)

@@ -3,7 +3,7 @@ import { Box } from '@fower/react'
 import { useSelected } from 'slate-react'
 import { ELEMENT_P } from '@penx/constants'
 import { ContextMenu, MenuItem, useContextMenu } from '@penx/context-menu'
-import { DatabaseProvider } from '@penx/database-context'
+import { DatabaseProvider, WithStoreDatabase } from '@penx/database-context'
 import { TagForm } from '@penx/database-ui'
 import { useEditorStatic } from '@penx/editor-common'
 import { findNodePath } from '@penx/editor-queries'
@@ -95,11 +95,15 @@ export const Tag = ({
       {children}
       {tagJSX}
 
-      <DatabaseProvider databaseId={element.databaseId}>
-        <ContextMenu id={menuId} w-400>
-          <TagForm databaseId={element.databaseId} path={path} />
-        </ContextMenu>
-      </DatabaseProvider>
+      <WithStoreDatabase databaseId={element.databaseId}>
+        {(databaseInfo) => (
+          <DatabaseProvider {...databaseInfo}>
+            <ContextMenu id={menuId} w-400>
+              <TagForm databaseId={element.databaseId} path={path} />
+            </ContextMenu>
+          </DatabaseProvider>
+        )}
+      </WithStoreDatabase>
     </Box>
   )
 }

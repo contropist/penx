@@ -14,7 +14,7 @@ import { CommandApp } from './CommandApp/CommandApp'
 import { StyledCommand, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
 import { ListItemUI } from './ListItemUI'
-import { SearchBar } from './SearchBar'
+import { SearchBar } from './SearchBar/SearchBar'
 
 const windowHeight = 470
 const searchBarHeight = 54

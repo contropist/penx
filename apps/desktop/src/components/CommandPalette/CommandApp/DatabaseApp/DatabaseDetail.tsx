@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Box } from '@fower/react'
 import { Divider } from 'uikit'
+import { DatabaseProvider } from '@penx/database-context'
 import {
   ICellNode,
   IColumnNode,
@@ -104,7 +105,11 @@ export function DatabaseDetail(props: Props) {
       <Divider orientation="vertical" />
 
       <Box flex-3 overflowAuto p3>
-        {currentItem && <RowForm {...rest} rowId={currentItem.row.id} />}
+        {currentItem && (
+          <DatabaseProvider {...rest}>
+            <RowForm {...rest} rowId={currentItem.row.id} />
+          </DatabaseProvider>
+        )}
       </Box>
     </Box>
   )

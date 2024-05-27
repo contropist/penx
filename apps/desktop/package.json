@@ -22,6 +22,7 @@
     "@penx/api": "workspace:*",
     "@penx/app": "workspace:*",
     "@penx/cmdk": "workspace:*",
+    "@penx/database-context": "workspace:*",
     "@penx/cell-fields": "workspace:*",
     "@penx/constants": "workspace:*",
     "@penx/encryption": "workspace:*",
