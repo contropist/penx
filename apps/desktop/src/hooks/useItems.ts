@@ -1,37 +1,45 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { atom, useAtom, useSetAtom } from 'jotai'
-import { IListItem } from 'penx'
 import { db } from '@penx/local-db'
 import { Node } from '@penx/model'
+import { ICommandItem } from '~/common/types'
 import { useSearch } from './useSearch'
 
-export const itemsAtom = atom<IListItem[]>([])
+const isDeveloping = (item: ICommandItem) => item.data?.isDeveloping
+const isProduction = (item: ICommandItem) => !item.data?.isDeveloping
+
+export const itemsAtom = atom<ICommandItem[]>([])
 
 export function useItems() {
   const { search } = useSearch()
   const [items, setItems] = useAtom(itemsAtom)
   return {
     items,
-    developingItems: items.filter((item) => {
-      if (!search) return item.data?.isDeveloping
-      return (
-        item.data?.isDeveloping &&
-        item.title.toString().toLowerCase().includes(search.toLowerCase())
-      )
+    developingItems: items.filter(isDeveloping).filter((item) => {
+      if (!search) return true
+      if (item.data?.alias) {
+        if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+          return true
+        }
+      }
+      return item.title.toString().toLowerCase().includes(search.toLowerCase())
     }),
-    productionItems: items.filter((item) => {
-      if (!search) return !item.data?.isDeveloping
-      return (
-        !item.data?.isDeveloping &&
-        item.title.toString().toLowerCase().includes(search.toLowerCase())
-      )
+
+    productionItems: items.filter(isProduction).filter((item) => {
+      if (!search) return true
+      if (item.data?.alias) {
+        if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+          return true
+        }
+      }
+      return item.title.toString().toLowerCase().includes(search.toLowerCase())
     }),
     setItems,
   }
 }
 
-export const commandsAtom = atom<IListItem[]>([])
+export const commandsAtom = atom<ICommandItem[]>([])
 
 export function useCommands() {
   const [commands, setCommands] = useAtom(itemsAtom)
@@ -48,7 +56,7 @@ export function useLoadCommands() {
     const commands = extensions.reduce((acc, cur) => {
       return [
         ...acc,
-        ...cur.commands.map<IListItem>((item) => {
+        ...cur.commands.map<ICommandItem>((item) => {
           function getIcon() {
             const defaultIcon = cur.icon ? cur.assets?.[cur.icon] : ''
             if (!item.icon) return defaultIcon
@@ -64,8 +72,10 @@ export function useLoadCommands() {
             title: item.title,
             subtitle: cur.name,
             icon: getIcon(),
+            keywords: [],
             data: {
               type: 'Command',
+              alias: item.alias,
               assets: cur.assets,
               filters: item.filters,
               runtime: item.runtime,
@@ -73,11 +83,11 @@ export function useLoadCommands() {
               extensionSlug: cur.slug,
               extensionIcon: cur.assets?.[cur.icon as string],
               isDeveloping: cur.isDeveloping,
-            },
-          }
+            } as ICommandItem['data'],
+          } as ICommandItem
         }),
       ]
-    }, [] as IListItem[])
+    }, [] as ICommandItem[])
 
     const databaseItems = databases.reduce((acc, item) => {
       const node = new Node(item)
@@ -92,13 +102,15 @@ export function useLoadCommands() {
             value: '#',
             bg: node.tagColor,
           },
+          keywords: [],
           data: {
+            alias: item.props.commandAlias,
             type: 'Database',
             database: item,
-          },
-        } as IListItem,
+          } as ICommandItem['data'],
+        } as ICommandItem,
       ]
-    }, [] as IListItem[])
+    }, [] as ICommandItem[])
 
     return [...commands, ...databaseItems]
   })

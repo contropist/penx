@@ -7,6 +7,7 @@ import { store } from '@penx/store'
 import { ToggleModeButton } from '~/components/ToggleModeButton'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { isAddRowAtom } from '~/hooks/useIsAddRow'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
@@ -20,7 +21,7 @@ interface Props {
 }
 export const SearchBar = ({ searchBarHeight }: Props) => {
   const { search, setSearch } = useSearch()
-  const { setItems } = useItems()
+  const { items, setItems } = useItems()
   const { commands } = useCommands()
   const ref = useRef<HTMLInputElement>()
   const {
@@ -30,6 +31,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
     backToCommandApp,
     setPosition,
   } = useCommandPosition()
+  const handleSelect = useHandleSelect()
   const { currentCommand } = useCurrentCommand()
 
   const currentCommandName = currentCommand?.data?.commandName
@@ -87,6 +89,17 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           value={search}
           onValueChange={(v) => {
             appEmitter.emit('ON_COMMAND_PALETTE_SEARCH_CHANGE', v)
+
+            // trigger alias
+            if (/^\S+\s$/.test(v)) {
+              const alias = v.trim()
+              const find = items.find((item) => item.data.alias === alias)
+              if (find) {
+                handleSelect(find)
+                setSearch('')
+                return
+              }
+            }
 
             setSearch(v)
             if (v === '') {

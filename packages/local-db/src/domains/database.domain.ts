@@ -367,6 +367,19 @@ export class DatabaseDomain {
     }
   }
 
+  updateDatabaseProps = async (
+    id: string,
+    props: Partial<IDatabaseNode['props']>,
+  ) => {
+    const database = (await this.node.getNode(id)) as IDatabaseNode
+    await this.node.updateNode(id, {
+      props: {
+        ...database.props,
+        ...props,
+      },
+    })
+  }
+
   getDatabaseByName = async (spaceId: string, name: string) => {
     const nodes = await this.penx.node
       .where({

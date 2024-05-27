@@ -57,6 +57,21 @@ export class PenxDB extends Dexie {
     return this.extension.update(extensionId, data)
   }
 
+  updateCommandAlias = async (
+    extensionId: string,
+    commandName: string,
+    alias: string,
+  ) => {
+    const ext = await this.extension.get(extensionId)
+    if (!ext) return
+    const index = ext.commands.findIndex((c) => c.name === commandName)
+    if (index === -1) return
+    ext.commands[index]!.alias = alias
+    await this.updateExtension(extensionId, {
+      commands: ext.commands,
+    })
+  }
+
   listExtensions = async () => {
     const extensions = await this.extension.toArray()
     return extensions

@@ -13,6 +13,7 @@ export interface Command {
   code: string
   runtime?: string
   isBuiltIn?: boolean
+  alias?: string
 }
 
 export interface IExtension {

@@ -144,6 +144,34 @@ async function init() {
   appEmitter.on('SIGN_IN_DESKTOP', () => {
     open(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/desktop-login`)
   })
+
+  document.addEventListener('keydown', function (event) {
+    let keys = []
+
+    console.log('event========:', event)
+
+    if (event.ctrlKey) {
+      keys.push('Control')
+    }
+    if (event.metaKey) {
+      keys.push('Meta')
+    }
+    if (event.shiftKey) {
+      keys.push('Shift')
+    }
+    if (event.altKey) {
+      keys.push('Alt')
+    }
+
+    if (event.key.length === 1) {
+      keys.push(event.key.toUpperCase())
+    } else {
+      keys.push(event.code)
+    }
+
+    const combination = keys.join('+')
+    console.log('combination:', combination)
+  })
 }
 
 if (!isServer) {

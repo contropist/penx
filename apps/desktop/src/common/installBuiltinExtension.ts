@@ -16,6 +16,7 @@ export async function installBuiltinExtension() {
     version: '0.0.0',
     assets: {},
     isDeveloping: false,
+    icon: '/logo/128x128.png',
     commands: [
       {
         name: 'marketplace',

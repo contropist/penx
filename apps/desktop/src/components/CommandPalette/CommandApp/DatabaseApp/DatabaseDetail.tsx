@@ -11,6 +11,7 @@ import {
   IViewNode,
 } from '@penx/model-types'
 import { mappedByKey } from '@penx/shared'
+import { ICommandItem } from '~/common/types'
 import { useValue } from '~/hooks/useValue'
 import { StyledCommandEmpty, StyledCommandGroup } from '../../CommandComponents'
 import { ListItemUI } from '../../ListItemUI'
@@ -89,7 +90,7 @@ export function DatabaseDetail(props: Props) {
 
           const listItem = {
             title: dataToString(item.cell.props.data),
-          }
+          } as ICommandItem
           return (
             <ListItemUI
               key={index}

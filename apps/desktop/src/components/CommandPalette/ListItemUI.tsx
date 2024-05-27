@@ -1,7 +1,7 @@
 import { ReactNode, useMemo } from 'react'
-import { assert } from 'console'
 import { Box, FowerHTMLProps } from '@fower/react'
-import { IAccessory, IListItem, isAccessoryObjectText } from 'penx'
+import { IAccessory, isAccessoryObjectText } from 'penx'
+import { ICommandItem } from '~/common/types'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
@@ -9,11 +9,11 @@ import { ListItemIcon } from './ListItemIcon'
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
   value?: any
-  item: IListItem
+  item: ICommandItem
   isListApp?: boolean
   titleLayout?: 'column' | 'row'
   showIcon?: boolean
-  onSelect?: (item: IListItem) => void
+  onSelect?: (item: ICommandItem) => void
 }
 
 export const ListItemUI = ({
@@ -47,6 +47,11 @@ export const ListItemUI = ({
     )
   }
 
+  const keywords = [title, subtitle] as string[]
+  if (item?.data?.alias) {
+    keywords.push(item.data.alias)
+  }
+
   return (
     <StyledCommandItem
       cursorPointer
@@ -58,7 +63,7 @@ export const ListItemUI = ({
       roundedLG
       black
       value={value || title}
-      // keywords={[title]}
+      keywords={keywords}
       onSelect={() => {
         onSelect?.(item)
       }}
@@ -74,6 +79,20 @@ export const ListItemUI = ({
           <Box text-12 zinc400>
             {subtitle}
           </Box>
+          {item?.data?.alias && (
+            <Box
+              rounded
+              textXS
+              border
+              borderNeutral200
+              gray400
+              h-20
+              px-6
+              toCenterY
+            >
+              {item.data.alias}
+            </Box>
+          )}
         </Box>
       </Box>
       {!!item.data?.type && (

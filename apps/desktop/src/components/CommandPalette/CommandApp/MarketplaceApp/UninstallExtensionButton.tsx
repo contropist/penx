@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Button, Spinner } from 'uikit'
-import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
 import { useLoadCommands } from '~/hooks/useItems'
 
