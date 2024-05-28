@@ -2,10 +2,11 @@
 
 import { PropsWithChildren, useEffect } from 'react'
 import { Box } from '@fower/react'
-import { isServer, useQuery } from '@tanstack/react-query'
+import { isServer, useMutation, useQuery } from '@tanstack/react-query'
 import Head from 'next/head'
 import { EditorApp } from '@penx/app'
 import { appEmitter } from '@penx/event'
+import { db } from '@penx/local-db'
 import { SessionProvider, useSession } from '@penx/session'
 import { getLocalSession } from '@penx/storage'
 import {
@@ -20,6 +21,8 @@ import { InitUserToStore } from '~/components/InitUserToStore'
 import { useMode } from '~/hooks/useMode'
 
 export default function Home() {
+  const { isEditor } = useMode()
+
   const {
     isLoading,
     data: isBoarded,
@@ -48,7 +51,20 @@ export default function Home() {
     })
   }, [refetchSession])
 
-  const { isEditor } = useMode()
+  const { isLoading: initializing, mutateAsync: init } = useMutation({
+    mutationKey: ['init_data_fist_time'],
+    mutationFn: async () => {
+      localStorage.setItem('PENX_IS_BOARDED', 'yes')
+      await installBuiltinExtension()
+
+      const localSpaces = await db.listLocalSpaces()
+
+      if (!localSpaces.length) {
+        await db.createLocalSpace()
+      }
+      await refetch()
+    },
+  })
 
   if (isLoading) return null
 
@@ -77,11 +93,9 @@ export default function Home() {
       >
         {!isBoarded && (
           <DesktopWelcome
-            isLoading={isLoading}
+            isLoading={initializing}
             onGetStarted={async () => {
-              localStorage.setItem('PENX_IS_BOARDED', 'yes')
-              await installBuiltinExtension()
-              refetch()
+              await init()
             }}
           />
         )}

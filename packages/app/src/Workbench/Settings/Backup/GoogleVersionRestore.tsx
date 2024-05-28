@@ -92,7 +92,7 @@ function BackupList({ date }: BackListProps) {
     ['data', dayStr, space.id],
     async () => {
       const data = await getAuthorizedUser()
-      const user = new User(data)
+      const user = new User(data as any)
       const dateFolderName = `space_${space.id}_${dayStr}`
 
       const drive = new GoogleDrive(user.google.access_token)

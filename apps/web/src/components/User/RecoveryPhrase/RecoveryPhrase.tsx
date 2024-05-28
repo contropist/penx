@@ -51,7 +51,10 @@ export const RecoveryPhrase: FC<Props> = () => {
             right0
             left0
             toCenter
-            style={{ backdropFilter: 'blur(5px)' }}
+            style={{
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
+            }}
           >
             <Button
               relative

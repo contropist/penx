@@ -48,12 +48,22 @@ struct LoginInput {
     mnemonic: String,
 }
 
+#[derive(Serialize)]
+struct HelloResponse {
+    hello: String,
+}
+
 // the payload type must implement `Serialize` and `Clone`.
 
 #[get("/")]
 async fn index(app_state: web::Data<AppState>) -> impl Responder {
-    let data = &app_state.app_name;
-    HttpResponse::Ok().body(format!("Hello, World! {}", data))
+    // let data = &app_state.app_name;
+    // HttpResponse::Ok().body(format!("Hello, World! {}", data))
+
+    let response = HelloResponse {
+        hello: "world".to_string(),
+    };
+    HttpResponse::Ok().json(response)
 }
 
 #[post("/api/login")]

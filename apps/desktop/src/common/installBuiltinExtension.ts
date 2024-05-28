@@ -28,8 +28,17 @@ export async function installBuiltinExtension() {
         isBuiltIn: true,
       },
       {
+        name: 'create-database',
+        title: 'Create Database',
+        icon: '/icons/copy.svg',
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+      {
         name: 'clipboard-history',
-        title: 'Clipboard history',
+        title: 'Clipboard History',
         icon: '/icons/copy.svg',
         subtitle: '',
         description: '',

@@ -1,12 +1,15 @@
 import { Box } from '@fower/react'
-import { Button } from 'uikit'
+import { Button, Spinner } from 'uikit'
 import { Logo } from '@penx/widget'
 
 interface DesktopWelcomeProps {
   isLoading: boolean
   onGetStarted: () => void
 }
-export function DesktopWelcome({ onGetStarted }: DesktopWelcomeProps) {
+export function DesktopWelcome({
+  onGetStarted,
+  isLoading,
+}: DesktopWelcomeProps) {
   return (
     <Box data-tauri-drag-region w-100p h-100p toCenter bgWhite column gap3>
       <Box data-tauri-drag-region toCenterY gap2>
@@ -29,9 +32,11 @@ export function DesktopWelcome({ onGetStarted }: DesktopWelcomeProps) {
         colorScheme="black"
         size="lg"
         mt5
+        disabled={isLoading}
         onClick={() => onGetStarted()}
       >
-        Get Started
+        {isLoading && <Spinner />}
+        <Box>Get Started</Box>
       </Button>
     </Box>
   )

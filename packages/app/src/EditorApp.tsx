@@ -13,22 +13,11 @@ import { SpaceSyncManager } from './SpaceSyncManager'
 import { Workbench } from './Workbench/Workbench'
 
 if (!isServer) {
-  let inited = false
-
-  setTimeout(
-    () => {
-      if (inited) return
-      inited = true
-      runWorker()
-    },
-    isProd ? 5000 : 3000,
-  )
-
-  appEmitter.on('LOAD_CLOUD_SPACES', async () => {
-    setTimeout(() => {
-      loadCloudSpaces()
-    }, 10)
-  })
+  // appEmitter.on('LOAD_CLOUD_SPACES', async () => {
+  //   setTimeout(() => {
+  //     loadCloudSpaces()
+  //   }, 10)
+  // })
 }
 
 export const EditorApp = () => {

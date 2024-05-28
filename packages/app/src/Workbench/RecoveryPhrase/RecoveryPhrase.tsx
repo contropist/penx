@@ -6,7 +6,6 @@ import { Button, toast } from 'uikit'
 import { getMnemonicFromLocal } from '@penx/mnemonic'
 import { useSession } from '@penx/session'
 import { useCopyToClipboard } from '@penx/shared'
-import { trpc } from '@penx/trpc-client'
 import { CloudBackup } from './CloudBackup'
 import { HaveBackedUpButton } from './HaveBackedUpButton'
 import { PasswordOnChain } from './PasswordOnChain'
@@ -53,7 +52,10 @@ export const RecoveryPhrase: FC<Props> = () => {
             right0
             left0
             toCenter
-            style={{ backdropFilter: 'blur(5px)' }}
+            style={{
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
+            }}
           >
             <Button
               relative

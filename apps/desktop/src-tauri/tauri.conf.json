@@ -18,7 +18,13 @@
     "allowlist": {
       "fs": {
         "all": true,
-        "scope": ["$APPDATA/*", "$App/*", "$HOME/*", "$DESKTOP/*"]
+        "scope": [
+          "$APPDATA/**",
+          "$App/**",
+          "$DOCUMENT/**",
+          "$HOME/**",
+          "$DESKTOP/**"
+        ]
       },
       "globalShortcut": {
         "all": true
@@ -35,6 +41,9 @@
         "scope": ["https://*", "http://*"]
       },
       "notification": {
+        "all": true
+      },
+      "dialog": {
         "all": true
       },
       "window": {

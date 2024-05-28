@@ -4,6 +4,8 @@ import { Box, FowerHTMLProps, styled } from '@fower/react'
 import {
   ChevronRightIcon,
   Cloud,
+  ComputerIcon,
+  DatabaseBackup,
   GitCompare,
   Key,
   LogOut,
@@ -118,7 +120,7 @@ export const SettingsSidebar = () => {
     <Box
       column
       w={['100%', '100%', 260]}
-      bgGray100
+      bgStone100
       p={[20, 20, 24]}
       // flexShrink-0
       flex-1={isMobile}
@@ -132,7 +134,7 @@ export const SettingsSidebar = () => {
           <Box textSM>{name}</Box>
         </Box>
         <Box py4>
-          <Title>General</Title>
+          {/* <Title>General</Title> */}
           <Section column gap-1>
             <SidebarItem type={SettingsType.ACCOUNT_SETTINGS}>
               <User size={20} />
@@ -143,6 +145,11 @@ export const SettingsSidebar = () => {
               {/* <IconPassword size={20} /> */}
               <Key size={20} />
               <Box>Recovery Phrase</Box>
+            </SidebarItem>
+
+            <SidebarItem type={SettingsType.LOCAL_BACKUP}>
+              <DatabaseBackup size={20} />
+              <Box>Local auto backup</Box>
             </SidebarItem>
 
             <SidebarItem type={SettingsType.SYNC_BACKUP}>

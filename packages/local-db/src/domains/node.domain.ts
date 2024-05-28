@@ -26,6 +26,10 @@ export class NodeDomain {
     return this.node.where('id').anyOf(nodeIds).delete()
   }
 
+  deleteNodeBySpaceId = (spaceId: string) => {
+    return this.node.where({ spaceId }).delete()
+  }
+
   createInboxNode = async (spaceId: string) => {
     const subNode = await this.createNode(getCommonNode({ spaceId }))
 

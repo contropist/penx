@@ -1,5 +1,11 @@
+import { createDir, exists, writeTextFile } from '@tauri-apps/api/fs'
+import { get } from 'idb-keyval'
 import { toast } from 'uikit'
-import { SyncStatus, WorkerEvents } from '@penx/constants'
+import {
+  LOCAL_AUTO_BACKUP_DIR,
+  SyncStatus,
+  WorkerEvents,
+} from '@penx/constants'
 import { db } from '@penx/local-db'
 import { Node } from '@penx/model'
 import { getActiveSpaceId } from '@penx/storage'
@@ -12,7 +18,9 @@ export function runWorker() {
     type: 'module',
   })
 
-  worker.onmessage = async (event: MessageEvent<number>) => {
+  worker.onmessage = async (
+    event: MessageEvent<number | { type: number; nodes: any }>,
+  ) => {
     // console.log(`WebWorker Response => ${event.data}`)
 
     if (event.data === WorkerEvents.START_PUSH) {
@@ -69,6 +77,28 @@ export function runWorker() {
 
       if (new Node(activeNode).isTodayNode) {
         store.node.selectDailyNote()
+      }
+    }
+
+    if (
+      typeof event.data !== 'number' &&
+      event.data.type === WorkerEvents.START_LOCAL_BACKUP
+    ) {
+      let path = await get(LOCAL_AUTO_BACKUP_DIR)
+
+      try {
+        const nodes = event.data.nodes || []
+        const { resolve } = await import('@tauri-apps/api/path')
+        const dir = await resolve(path)
+
+        if (!(await exists(dir))) {
+          await createDir(dir, { recursive: true })
+        }
+
+        const filePath = await resolve(path + `/all-${Date.now()}.json`)
+        await writeTextFile(filePath, JSON.stringify(nodes, null, 2))
+      } catch (error) {
+        console.log('error======:', error)
       }
     }
   }

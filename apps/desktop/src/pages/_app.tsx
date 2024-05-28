@@ -13,13 +13,12 @@ import { clearAuthorizedUser, setLocalSession } from '@penx/storage'
 import { store, StoreProvider } from '@penx/store'
 import { TrpcProvider } from '@penx/trpc-client'
 import '@glideapps/glide-data-grid/dist/index.css'
-import { app } from '@tauri-apps/api'
-import { emit, listen } from '@tauri-apps/api/event'
-import { mn } from 'date-fns/locale'
-import { isServer } from '@penx/constants'
+import { listen } from '@tauri-apps/api/event'
+import { isProd, isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
 import { setMnemonicToLocal } from '@penx/mnemonic'
 import { ClientOnly } from '@penx/widget'
+import { runWorker } from '@penx/worker'
 import { loginToDesktop } from '~/common/loginToDesktop'
 import { positionAtom } from '~/hooks/useCommandPosition'
 import { modeAtom } from '~/hooks/useMode'
@@ -172,6 +171,13 @@ async function init() {
     const combination = keys.join('+')
     console.log('combination:', combination)
   })
+
+  setTimeout(
+    () => {
+      runWorker()
+    },
+    isProd ? 5000 : 3000,
+  )
 }
 
 if (!isServer) {

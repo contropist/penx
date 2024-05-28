@@ -29,6 +29,7 @@
     "@penx/store": "workspace:*",
     "@penx/sync": "workspace:*",
     "@penx/trpc-client": "workspace:*",
+    "@tauri-apps/api": "^1.5.3",
     "date-fns": "^2.30.0",
     "idb-keyval": "^6.2.1",
     "ky": "^1.1.3",

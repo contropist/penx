@@ -12,6 +12,8 @@ export const PENX_AUTHORIZED_USER = 'PENX_AUTHORIZED_USER'
 
 export const PENX_SESSION_DATA = 'PENX_SESSION_DATA'
 
+export const LOCAL_AUTO_BACKUP_DIR = 'LOCAL_AUTO_BACKUP_DIR'
+
 export const TODO_DATABASE_NAME = '__TODO__'
 
 export const FILE_DATABASE_NAME = '__FILE__'
@@ -22,6 +24,8 @@ export const GOOGLE_DRIVE_RECOVERY_PHRASE_FILE = 'recovery-phrase.json'
 export const GOOGLE_DRIVE_FILE_FOLDER_NAME = 'penx-files-user'
 
 export const GOOGLE_DRIVE_BACKUP_INTERVAL = 'GOOGLE_DRIVE_BACKUP_INTERVAL'
+
+export const LOCAL_BACKUP_INTERVAL = 'LOCAL_BACKUP_INTERVAL'
 
 export const LOCAL_USER_ID = 'acee1a5c-8e36-4a5f-846d-860566086e23'
 
@@ -78,6 +82,8 @@ export enum WorkerEvents {
   PULL_FAILED,
 
   ADD_TEXT_SUCCEEDED,
+
+  START_LOCAL_BACKUP,
 }
 
 export enum SyncStatus {
@@ -102,6 +108,7 @@ export enum SettingsType {
   ACCOUNT_SETTINGS = 'ACCOUNT_SETTINGS',
   RECOVERY_PHRASE = 'RECOVERY_PHRASE',
   SYNC_BACKUP = 'SYNC_BACKUP',
+  LOCAL_BACKUP = 'LOCAL_BACKUP',
   SYNC_SERVER = 'SYNC_SERVER',
   SPACE = 'SPACE',
 }

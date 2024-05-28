@@ -41,6 +41,7 @@
     "@penx/unique-id": "workspace:*",
     "@penx/wagmi": "workspace:*",
     "@penx/widget": "workspace:*",
+    "@penx/worker": "workspace:*",
     "@tanstack/react-query": "^4.36.1",
     "@tauri-apps/api": "^1.5.3",
     "@web3modal/wagmi": "^4.1.11",

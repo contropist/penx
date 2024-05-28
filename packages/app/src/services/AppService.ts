@@ -78,13 +78,15 @@ export class AppService {
 
         const user = await getAuthorizedUser()
 
-        const client = new SyncServerClient(
-          activeSpace,
-          mnemonic,
-          user.syncServerUrl,
-          user.syncServerAccessToken,
-        )
-        nodes = await client.getAllNodes()
+        if (user) {
+          const client = new SyncServerClient(
+            activeSpace,
+            mnemonic,
+            user.syncServerUrl,
+            user.syncServerAccessToken,
+          )
+          nodes = await client.getAllNodes()
+        }
 
         // console.log('all nodes======:', nodes)
 
@@ -119,6 +121,8 @@ export class AppService {
         // } else {
         //   store.node.setActiveNodes(activeNodes)
         // }
+
+        console.log('====store.router.getName():', store.router.getName())
 
         if (!store.router.getName()) {
           store.router.routeTo('DATABASES')

@@ -3,7 +3,7 @@ import { Node } from '@penx/model'
 import { IDatabaseNode } from '@penx/model-types'
 import { store } from '@penx/store'
 import { AddDatabase } from './AddDatabase'
-import { BindingHotkey } from './BindingHotKey'
+import { BindingHotkey } from './BindingHotkey'
 import { SetAlias } from './SetAlias'
 import { useDatabases } from './useDatabases'
 

@@ -4,6 +4,7 @@ import { clearNodes } from './clearNodes'
 import { loadTagTemplates } from './loadTagTemplates'
 import { normalizeNodes } from './normalizeNodes'
 import { pollingBackupToGoogle } from './pollingBackupToGoogle'
+import { pollingBackupToLocal } from './pollingBackupToLocal'
 import { startPollingPull } from './pollingPull'
 import { pollingPushToCloud } from './pollingPushToCloud'
 import { pollingPushToGithub } from './pollingPushToGithub'
@@ -18,6 +19,8 @@ self.addEventListener('message', async (event) => {
     // pollingPushToGithub()
 
     pollingBackupToGoogle()
+
+    pollingBackupToLocal()
 
     // runAgentSSE()
 
