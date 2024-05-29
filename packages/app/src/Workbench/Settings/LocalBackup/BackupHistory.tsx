@@ -32,7 +32,7 @@ export const BackupHistory = () => {
 
   return (
     <Box mb3 gap3 column>
-      <Box fontBold>Backup history</Box>
+      <Box fontMedium>Backup history</Box>
       <Box column gap1>
         {data.map((entry) => {
           return <Item key={entry.name} entry={entry} />

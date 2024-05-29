@@ -34,11 +34,11 @@ export function RestoreButton({ path }: Props) {
           Restore
         </Button>
       </PopoverTrigger>
-      <PopoverContent p5 column gap2 maxW-360>
+      <PopoverContent p5 column gap2 maxW-320>
         <Box textLG fontSemibold leadingNone>
           Restore from local backup
         </Box>
-        <Box gray500>It will replace your local data with backup data</Box>
+        <Box gray500>It will replace your local data with backup data.</Box>
         <Box toCenterY gap3>
           <PopoverClose asChild>
             <Button colorScheme="white">Cancel</Button>

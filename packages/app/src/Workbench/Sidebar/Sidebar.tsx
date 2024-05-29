@@ -2,12 +2,15 @@ import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
 import { open } from '@tauri-apps/api/shell'
 import {
+  DatabaseBackup,
   Hash,
   InfoIcon,
+  Key,
   LayoutGridIcon,
   LayoutIcon,
   MessageCircle,
   MessageCircleCode,
+  User,
 } from 'lucide-react'
 import { Bullet } from 'uikit'
 import { useRouterName, useUser } from '@penx/hooks'
@@ -37,6 +40,9 @@ export const Sidebar = memo(
     const isDatabasesActive = name === 'DATABASES'
     const isExtensionsActive = name === 'EXTENSIONS'
     const isMarketplaceActive = name === 'MARKETPLACE'
+    const isAccountSettingsActive = name === 'ACCOUNT_SETTINGS'
+    const isRecoveryPhraseActive = name === 'RECOVER_PHRASE'
+    const isLocalBackupActive = name === 'LOCAL_BACKUP'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -122,7 +128,7 @@ export const Sidebar = memo(
                   white
                   toCenter
                 >
-                  <Hash size={16} strokeWidth={1.5} />
+                  <Hash size={14} />
                 </Box>
               }
               label="Databases"
@@ -142,7 +148,7 @@ export const Sidebar = memo(
                   white
                   toCenter
                 >
-                  <LayoutGridIcon size={14} />
+                  <LayoutGridIcon size={12} />
                 </Box>
               }
               label="Extensions"
@@ -212,39 +218,84 @@ export const Sidebar = memo(
           {/* {!isProd && <CreateDemoDatabaseButton></CreateDemoDatabaseButton>} */}
 
           {/* <SetupGitHubButton /> */}
+
+          <Box column gap1>
+            {session && (
+              <SidebarItem
+                gray500
+                isActive={isAccountSettingsActive}
+                icon={
+                  <Box gray500 inlineFlex>
+                    <User size={20} />
+                  </Box>
+                }
+                label="Account settings"
+                onClick={() => {
+                  store.router.routeTo('ACCOUNT_SETTINGS')
+                }}
+              />
+            )}
+
+            {session && (
+              <SidebarItem
+                gray500
+                isActive={isRecoveryPhraseActive}
+                icon={
+                  <Box gray500 inlineFlex>
+                    <Key size={20} />
+                  </Box>
+                }
+                label="Recovery phrase"
+                onClick={() => {
+                  store.router.routeTo('RECOVER_PHRASE')
+                }}
+              />
+            )}
+
+            <SidebarItem
+              gray500
+              isActive={isLocalBackupActive}
+              icon={
+                <Box gray500 inlineFlex>
+                  <DatabaseBackup size={20} />
+                </Box>
+              }
+              label="Local auto backup"
+              onClick={() => {
+                store.router.routeTo('LOCAL_BACKUP')
+              }}
+            />
+
+            {/* <SidebarItem
+              gray500
+              icon={
+                <Box gray500 inlineFlex>
+                  <InfoIcon size={18} />
+                </Box>
+              }
+              label="Developer"
+              onClick={() => {
+                open(
+                  'https://docs.penx.io/build-extension/create-first-extension',
+                )
+              }}
+            /> */}
+
+            <SidebarItem
+              gray500
+              icon={
+                <Box gray500 inlineFlex>
+                  <MessageCircle size={18} />
+                </Box>
+              }
+              label="Feedback"
+              onClick={() => {
+                open('https://github.com/penxio/penx/issues')
+              }}
+            />
+          </Box>
+
           <LoginButton />
-
-          {session && (
-            <Box>
-              <SidebarItem
-                gray500
-                icon={
-                  <Box gray500 inlineFlex>
-                    <InfoIcon size={18} />
-                  </Box>
-                }
-                label="Developer"
-                onClick={() => {
-                  open(
-                    'https://docs.penx.io/build-extension/create-first-extension',
-                  )
-                }}
-              />
-
-              <SidebarItem
-                gray500
-                icon={
-                  <Box gray500 inlineFlex>
-                    <MessageCircle size={18} />
-                  </Box>
-                }
-                label="Feedback"
-                onClick={() => {
-                  open('https://github.com/penxio/penx/issues')
-                }}
-              />
-            </Box>
-          )}
         </Box>
         {/* <Box px2 toBetween toCenterY pb2>
           {session && !loading && <SyncPopover />}

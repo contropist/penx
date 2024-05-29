@@ -33,6 +33,9 @@ export const PCNav = () => {
         {node && <Breadcrumb />}
         {name === 'DATABASES' && <Box>Databases</Box>}
         {name === 'EXTENSIONS' && <Box>Extensions</Box>}
+        {name === 'ACCOUNT_SETTINGS' && <Box>Account settings</Box>}
+        {name === 'RECOVER_PHRASE' && <Box>Recover phrase</Box>}
+        {name === 'LOCAL_BACKUP' && <Box>Local auto backup</Box>}
       </Box>
 
       <Box>

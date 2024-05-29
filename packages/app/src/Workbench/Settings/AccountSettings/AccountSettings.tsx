@@ -23,7 +23,8 @@ export function AccountSettings() {
       </Box>
 
       <PersonalToken />
-      <UpdatePassword />
+
+      {/* <UpdatePassword /> */}
     </Box>
   )
 }

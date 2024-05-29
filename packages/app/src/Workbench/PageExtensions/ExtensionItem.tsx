@@ -1,5 +1,6 @@
 import { Box } from '@fower/react'
 import { useMutation } from '@tanstack/react-query'
+import { Trash2 } from 'lucide-react'
 import { Button, Checkbox, Spinner, Tag } from 'uikit'
 import { db } from '@penx/local-db'
 import { IExtension } from '@penx/model-types'
@@ -42,18 +43,20 @@ export function ExtensionItem({ extension }: ExtensionItemProps) {
         </Box>
         <Box toCenterY gap1>
           <Button
-            size="sm"
-            colorScheme="black"
+            size={28}
+            colorScheme="red500"
+            variant="ghost"
+            mr--4
+            roundedFull
+            isSquare
             disabled={isLoading || isBuiltin}
-            gap1
             onClick={async () => {
               if (isBuiltin) return
               await mutateAsync()
               refetch()
             }}
           >
-            {isLoading && <Spinner />}
-            <Box>Uninstall</Box>
+            <Trash2 size={16} />
           </Button>
         </Box>
       </Box>

@@ -10,6 +10,9 @@ export type RouteName =
   | 'SETTINGS'
   | 'EXTENSIONS'
   | 'MARKETPLACE'
+  | 'LOCAL_BACKUP'
+  | 'ACCOUNT_SETTINGS'
+  | 'RECOVER_PHRASE'
 
 export type IRouterStore = {
   name: RouteName

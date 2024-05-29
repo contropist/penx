@@ -1,6 +1,16 @@
 import { memo } from 'react'
 import { Box } from '@fower/react'
-import { Avatar, AvatarFallback, AvatarImage } from 'uikit'
+import { ChevronDown, LogOut } from 'lucide-react'
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from 'uikit'
+import { appEmitter } from '@penx/event'
 import { useSession } from '@penx/session'
 import { Logo } from '@penx/widget'
 import { SettingsButton } from './SettingsButton'
@@ -26,22 +36,52 @@ export const SidebarHeader = memo(function SidebarHeader() {
   const email = data.user?.email || ''
 
   return (
-    <Box data-tauri-drag-region toCenterY gap3 pt4 pl4 p2 mx--8 toBetween>
+    <Box data-tauri-drag-region toCenterY gap3 pt4 pl4 pr1 mx--8 toBetween>
       <Box data-tauri-drag-region toCenterY gap3>
-        <Avatar data-tauri-drag-region size="md" roundedXL>
+        <Avatar data-tauri-drag-region size="sm">
           <AvatarImage src={image} flexShrink-0 />
           <AvatarFallback>{name}</AvatarFallback>
         </Avatar>
-        <Box data-tauri-drag-region column>
-          <Box data-tauri-drag-region textXL>
-            {name}
-          </Box>
+        <Box data-tauri-drag-region column gap1>
+          <Box data-tauri-drag-region>{name}</Box>
           <Box gray400 textXS>
-            @{email}
+            {email}
           </Box>
         </Box>
       </Box>
-      <SettingsButton />
+      {/* <SettingsButton /> */}
+      <Popover>
+        <PopoverTrigger>
+          <Button
+            size={28}
+            colorScheme="gray500"
+            variant="ghost"
+            isSquare
+            roundedFull
+          >
+            <ChevronDown size={24} />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <Button
+            variant="ghost"
+            w-100p
+            colorScheme="gray600"
+            gap2
+            // display={['none', 'none', 'flex']}
+            onClick={async () => {
+              // await disconnectAsync()
+              // disconnect()
+              appEmitter.emit('SIGN_OUT')
+            }}
+          >
+            <Box inlineFlex>
+              <LogOut size={16} />
+            </Box>
+            <Box>Sign out</Box>
+          </Button>
+        </PopoverContent>
+      </Popover>
     </Box>
   )
 })

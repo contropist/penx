@@ -26,8 +26,11 @@ import { NodePanels } from './NodePanels'
 import { PageDatabases } from './PageDatabases/PageDatabases'
 import { PageExtensions } from './PageExtensions/PageExtensions'
 import { PageTodo } from './PageTodo/PageTodo'
+import { RecoveryPhrase } from './RecoveryPhrase/RecoveryPhrase'
 import { RowModal } from './RowModal'
+import { AccountSettings } from './Settings/AccountSettings/AccountSettings'
 import { GoogleBackup } from './Settings/Backup/GoogleBackup'
+import { LocalBackup } from './Settings/LocalBackup/LocalBackup'
 import { PageSettings } from './Settings/PageSettings/PageSettings'
 import { SettingsModal } from './Settings/SettingsModal/SettingsModal'
 import { Sidebar } from './Sidebar/Sidebar'
@@ -117,6 +120,21 @@ export const Workbench = () => {
                 {name === 'TODOS' && <PageTodo />}
                 {name === 'DATABASES' && <PageDatabases />}
                 {name === 'EXTENSIONS' && <PageExtensions />}
+                {name === 'ACCOUNT_SETTINGS' && (
+                  <Box p5>
+                    <AccountSettings />
+                  </Box>
+                )}
+                {name === 'RECOVER_PHRASE' && (
+                  <Box p5>
+                    <RecoveryPhrase />
+                  </Box>
+                )}
+                {name === 'LOCAL_BACKUP' && (
+                  <Box>
+                    <LocalBackup />
+                  </Box>
+                )}
                 {name === 'WEB3_PROFILE' && <Web3Profile />}
                 {name === 'TASK_BOARD' && <TaskBoard />}
               </Box>
