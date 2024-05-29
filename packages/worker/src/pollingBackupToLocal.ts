@@ -22,7 +22,7 @@ export async function pollingBackupToLocal() {
 
   if (timeMap[interval]) pollingInterval = timeMap[interval]
 
-  console.log('=======pollingInterval:', pollingInterval, 'interval:', interval)
+  // console.log('=======pollingInterval:', pollingInterval, 'interval:', interval)
 
   while (true) {
     // const data = await getAuthorizedUser()

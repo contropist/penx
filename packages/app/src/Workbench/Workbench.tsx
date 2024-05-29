@@ -131,7 +131,7 @@ export const Workbench = () => {
                   </Box>
                 )}
                 {name === 'LOCAL_BACKUP' && (
-                  <Box>
+                  <Box p5>
                     <LocalBackup />
                   </Box>
                 )}

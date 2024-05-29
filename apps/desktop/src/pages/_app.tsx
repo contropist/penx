@@ -39,7 +39,6 @@ async function listenForHotkey(shortcut: string) {
       // await appWindow?.center()
       await appWindow?.setFocus()
       setTimeout(() => {
-        console.log('--------------searchBarInput focus')
         document.getElementById('searchBarInput')?.focus()
       }, 0)
     }
@@ -77,8 +76,13 @@ async function hideOnBlur() {
   })
 
   listen('tauri://blur', () => {
+    // console.log('blur...........')
+
     if (!isDev) {
-      appWindow.hide()
+      const mode = store.get(modeAtom)
+      if (mode === 'COMMAND') {
+        appWindow.hide()
+      }
     }
   })
 }
@@ -211,8 +215,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     invoke<string>('greet', { name: 'Next.js' })
       .then((result) => {
-        console.log('resu=lt', result)
-
         setGreeting(result)
       })
       .catch(console.error)
