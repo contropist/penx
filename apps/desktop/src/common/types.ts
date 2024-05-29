@@ -9,7 +9,7 @@ export interface ICommandItem extends IListItem {
     database: IDatabaseNode
     assets: Record<string, string>
     filters: Record<string, FilterItem[]>
-    runtime: 'worker' | 'react'
+    runtime: 'worker' | 'iframe'
     commandName: string
     extensionSlug: string
     extensionIcon: string

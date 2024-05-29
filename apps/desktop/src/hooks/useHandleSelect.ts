@@ -1,9 +1,9 @@
 import { invoke } from '@tauri-apps/api/tauri'
-import { EventType, IListItem } from 'penx'
+import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
-import { sleep } from '@penx/shared'
+import { ICommandItem } from '~/common/types'
 import { workerStore } from '~/common/workerStore'
 import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
@@ -20,13 +20,15 @@ export function useHandleSelect() {
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
 
-  return async (item: IListItem, input = '') => {
+  return async (item: ICommandItem, input = '') => {
     if (item.type === 'command') {
       setSearch('')
       setLoading(true)
       setCurrentCommand(item)
 
       setPosition('COMMAND_APP')
+
+      appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
 
       if (item.data?.type === 'Database') {
         setDatabase(item.data.database)

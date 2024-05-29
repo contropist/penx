@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Box } from '@fower/react'
 import { ArrowLeft, Plus } from 'lucide-react'
 import { Button } from 'uikit'
@@ -10,6 +10,7 @@ import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { isAddRowAtom } from '~/hooks/useIsAddRow'
 import { useCommands, useItems } from '~/hooks/useItems'
+import { useLoading } from '~/hooks/useLoading'
 import { useSearch } from '~/hooks/useSearch'
 import { StyledCommandInput } from '../CommandComponents'
 import { AddRowButton } from './AddRowButton'
@@ -23,6 +24,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { search, setSearch } = useSearch()
   const { items, setItems } = useItems()
   const { commands } = useCommands()
+  const { loading } = useLoading()
   const ref = useRef<HTMLInputElement>()
   const {
     isCommandApp,
@@ -40,12 +42,23 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
 
   const isDatabaseApp = currentCommand?.data?.type === 'Database'
 
+  useEffect(() => {
+    const handleFocus = () => {
+      ref.current?.focus()
+    }
+    appEmitter.on('FOCUS_SEARCH_BAR_INPUT', handleFocus)
+    return () => {
+      appEmitter.off('FOCUS_SEARCH_BAR_INPUT', handleFocus)
+    }
+  }, [])
+
   return (
     <Box
       data-tauri-drag-region
       toCenterY
       borderBottom
       borderGray200
+      relative
       h={searchBarHeight}
     >
       {isCommandApp && (
@@ -130,6 +143,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
       {isCommandApp && currentCommand?.data?.filters && (
         <SearchBarFilter filters={currentCommand?.data?.filters} />
       )}
+
+      {loading && <hr command-palette-loader="" />}
     </Box>
   )
 }

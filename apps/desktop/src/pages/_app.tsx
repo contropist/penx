@@ -22,6 +22,7 @@ import { runWorker } from '@penx/worker'
 import { loginToDesktop } from '~/common/loginToDesktop'
 import { positionAtom } from '~/hooks/useCommandPosition'
 import { modeAtom } from '~/hooks/useMode'
+import { focusSearchBarInput } from '../common/focusSearchBarInput'
 
 initFower()
 
@@ -39,7 +40,7 @@ async function listenForHotkey(shortcut: string) {
       // await appWindow?.center()
       await appWindow?.setFocus()
       setTimeout(() => {
-        document.getElementById('searchBarInput')?.focus()
+        focusSearchBarInput()
       }, 0)
     }
   })

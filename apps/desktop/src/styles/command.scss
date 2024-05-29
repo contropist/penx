@@ -103,23 +103,6 @@
     box-shadow: var(--cmdk-shadow);
     border: 1px solid var(--gray6);
     position: relative;
-
-    kbd {
-      font-family: var(--font-sans);
-      background: var(--gray3);
-      color: var(--gray11);
-      height: 20px;
-      width: 20px;
-      border-radius: 4px;
-      padding: 0 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:first-of-type {
-        margin-left: 8px;
-      }
-    }
   }
   [cmdk-group-items] {
     display: flex;
@@ -171,5 +154,141 @@
     width: 100%;
     background: var(--gray5);
     margin: 4px 0;
+  }
+}
+
+.action-menu {
+  [cmdk-group-heading] {
+    text-transform: capitalize;
+    font-size: 12px;
+    color: var(--gray11);
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-left: 4px;
+  }
+
+  [cmdk-input] {
+    padding: 12px;
+    font-family: var(--font-sans);
+    border: 0;
+    border-top: 1px solid var(--gray6);
+    font-size: 13px;
+    background: transparent;
+    margin-top: auto;
+    width: 100%;
+    outline: 0;
+    border-radius: 0;
+  }
+
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  transform-origin: var(--radix-popover-content-transform-origin);
+
+  [cmdk-empty] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    color: var(--gray11);
+  }
+}
+
+[command-palette-loader] {
+  --loader-color: var(--gray9);
+  border: 0;
+  width: 100%;
+  height: 1px;
+  // background: var(--gray6);
+  background: transparent;
+  // top: 0x;
+  position: absolute;
+  bottom: -2px;
+  overflow: visible;
+  display: block;
+  margin: 0;
+  z-index: 10;
+
+  &:after {
+    content: '';
+    width: 50%;
+    height: 1px;
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #888 40%,
+      transparent 100%
+    );
+    top: -1px;
+    opacity: 0;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+    animation-timing-function: ease;
+    animation-name: loading;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+    opacity: 0;
+  }
+}
+
+@keyframes border {
+  to {
+    box-shadow: 0 0 0 1px var(--gray6);
+  }
+}
+
+@keyframes showTopShine {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }

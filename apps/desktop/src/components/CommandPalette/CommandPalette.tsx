@@ -1,5 +1,4 @@
 import { Box } from '@fower/react'
-import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
@@ -117,39 +116,38 @@ export const CommandPalette = () => {
               />
             </StyledCommandList>
           ))}
-
         {isRoot && (
-          <>
-            <StyledCommandList p2>
-              {developingItems.length > 0 && (
-                <Command.Group heading="Development">
-                  {developingItems.map((item, index) => {
-                    return (
-                      <ListItemUI
-                        key={index}
-                        index={index}
-                        item={item}
-                        onSelect={(item) => handleSelect(item)}
-                      />
-                    )
-                  })}
-                </Command.Group>
-              )}
-              <Command.Group heading={isRoot ? 'Commands' : undefined}>
-                {isRoot &&
-                  productionItems.map((item, index) => {
-                    return (
-                      <ListItemUI
-                        key={index}
-                        index={index}
-                        item={item}
-                        onSelect={(item) => handleSelect(item)}
-                      />
-                    )
-                  })}
+          <StyledCommandList p2>
+            {developingItems.length > 0 && (
+              <Command.Group heading="Development">
+                {developingItems.map((item, index) => {
+                  return (
+                    <ListItemUI
+                      key={index}
+                      index={index}
+                      value={item.data.commandName}
+                      item={item}
+                      onSelect={(item) => handleSelect(item)}
+                    />
+                  )
+                })}
               </Command.Group>
-            </StyledCommandList>
-          </>
+            )}
+            <Command.Group heading={isRoot ? 'Commands' : undefined}>
+              {isRoot &&
+                productionItems.map((item, index) => {
+                  return (
+                    <ListItemUI
+                      key={index}
+                      index={index}
+                      value={item.data.commandName}
+                      item={item}
+                      onSelect={(item) => handleSelect(item)}
+                    />
+                  )
+                })}
+            </Command.Group>
+          </StyledCommandList>
         )}
       </Box>
 
