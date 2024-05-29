@@ -38,7 +38,7 @@ export const PCNav = () => {
         {name === 'LOCAL_BACKUP' && <Box>Local auto backup</Box>}
       </Box>
 
-      <Box>
+      <Box pr2>
         {node && <FavoriteButton />}
         {/* <PublishPopover /> */}
         {/* <ClosePanelButton /> */}

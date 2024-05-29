@@ -3,7 +3,7 @@ import { StoreType } from '../store-types'
 import { IRouterStore, RouteName } from '../types'
 
 export const routerAtom = atomWithStorage('Router', {
-  name: 'DATABASES',
+  name: '' as any,
 } as IRouterStore)
 
 export class RouterStore {

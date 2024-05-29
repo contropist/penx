@@ -18,7 +18,7 @@ export const FullPageDatabase = ({ node }: Props) => {
       {(databaseInfo) => (
         <DatabaseProvider {...databaseInfo}>
           <Box toLeft column px={[0, 0, 12]} gap0>
-            <Box toCenterY gap8 h={DATABASE_TOOLBAR_HEIGHT} mb2 px4>
+            <Box w-100p toCenterY toBetween gap8 h={DATABASE_TOOLBAR_HEIGHT}>
               <Box toCenterY gap2>
                 <TagMenu />
                 <ViewList />
@@ -28,7 +28,7 @@ export const FullPageDatabase = ({ node }: Props) => {
               <ViewToolBar />
             </Box>
             <TableView
-              height={`calc(100vh - ${WORKBENCH_NAV_HEIGHT + DATABASE_TOOLBAR_HEIGHT + 12}px)`}
+              height={`calc(100vh - ${WORKBENCH_NAV_HEIGHT + DATABASE_TOOLBAR_HEIGHT + 2}px)`}
             />
           </Box>
         </DatabaseProvider>
