@@ -6,6 +6,7 @@ export interface RunAppleScriptOptions {
 
 export function runAppleScript(
   script: string,
+  argsOrOptions?: string[] | RunAppleScriptOptions,
   options?: RunAppleScriptOptions,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -21,10 +22,19 @@ export function runAppleScript(
       }
     }
 
-    let opt = {} as RunAppleScriptOptions
+    let args: string[] = []
+    let opts: RunAppleScriptOptions
 
-    if (!options || !Reflect.has(options, 'humanReadableOutput')) {
-      opt.humanReadableOutput = true
+    if (Array.isArray(argsOrOptions)) {
+      args = argsOrOptions
+      opts = options as RunAppleScriptOptions
+    } else {
+      opts = argsOrOptions as RunAppleScriptOptions
+    }
+
+    if (!opts || !Reflect.has(opts, 'humanReadableOutput')) {
+      if (!opts) opts = {}
+      opts.humanReadableOutput = true
     }
 
     // TODO: handle any
@@ -32,7 +42,8 @@ export function runAppleScript(
       {
         type: EventType.RunAppScript,
         script,
-        options: opt,
+        args,
+        options: opts,
       },
       [channel.port2] as any,
     )

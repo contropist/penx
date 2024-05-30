@@ -41,11 +41,15 @@ pub struct Options {
 }
 
 #[tauri::command]
-async fn run_applescript(script: &str, options: Option<Options>) -> Result<String, String> {
+async fn run_applescript(
+    script: &str,
+    args: Option<Vec<String>>,
+    options: Option<Options>,
+) -> Result<String, String> {
     let human_readable_output =
         options.map_or(false, |opts| opts.human_readable_output.unwrap_or(false));
 
-    match utils::run_applescript_sync(script, human_readable_output) {
+    match utils::run_applescript_sync(script, args.as_deref(), human_readable_output) {
         Ok(output) => Ok(output),
         Err(err) => Err(err.to_string()),
     }
