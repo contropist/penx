@@ -1,7 +1,8 @@
 export * from './constants'
-export * from './clipboard'
-
 export * from './types'
+
+export * from './clipboard'
+export * from './request'
 
 export * from './onSearchChange'
 export * from './onFilterChange'

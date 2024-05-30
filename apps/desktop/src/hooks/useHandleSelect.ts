@@ -1,3 +1,4 @@
+import { Body, getClient } from '@tauri-apps/api/http'
 import { invoke } from '@tauri-apps/api/tauri'
 import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
@@ -114,6 +115,22 @@ export function useHandleSelect() {
           event.ports[0].postMessage({
             type: EventType.RunAppScriptResult,
             result,
+          })
+        }
+
+        if (event.data.type === EventType.HttpRequestInited) {
+          const client = await getClient()
+          const { json, ...options } = event.data.options
+
+          if (json) {
+            options.body = Body.json(json)
+          }
+
+          const response = await client.request(options)
+
+          event.ports[0].postMessage({
+            type: EventType.HttpRequestResult,
+            result: response,
           })
         }
 

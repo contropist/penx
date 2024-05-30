@@ -13,4 +13,7 @@ export enum EventType {
 
   InitOnFilterChange = 'InitOnFilterChange',
   OnFilterChange = 'OnFilterChange',
+
+  HttpRequestInited = 'HttpRequestInited',
+  HttpRequestResult = 'HttpRequestResult',
 }

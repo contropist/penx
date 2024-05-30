@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Box } from '@fower/react'
+import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
@@ -42,18 +44,6 @@ export const CommandPalette = () => {
   useQueryCommands()
 
   useReset(setValue)
-
-  // async function init() {
-  //   const client = await getClient()
-
-  //   const response = await client.get(
-  //     'https://api.binance.com/api/v3/ticker/price',
-  //   )
-  //   console.log('response=====:', response.data)
-  // }
-  // useEffect(() => {
-  //   init()
-  // }, [])
 
   const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'
 
