@@ -109,7 +109,7 @@ export function useHandleSelect() {
         if (event.data.type === EventType.RunAppScript) {
           const result = await invoke('run_applescript', {
             script: event.data.script,
-            human_readable_output: true,
+            options: event.data.options,
           })
 
           event.ports[0].postMessage({

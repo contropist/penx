@@ -1,3 +1,46 @@
 # runAppleScript
 
-wip...
+Run AppleScript and get the result.
+
+## Usage
+
+Basic example:
+
+```ts
+import { runAppleScript } from 'penx'
+
+const result = await runAppleScript('return "unicorn"')
+
+console.log(result)
+//=> 'unicorn'
+```
+
+Another example:
+
+```ts
+import { runAppleScript } from 'penx'
+
+const script = 'display notification "Hello World" with title "Notification"'
+const res = await runAppleScript(script)
+```
+
+## API
+
+```ts
+function runAppleScript<T>(
+  script: string,
+  options?: {
+    humanReadableOutput?: boolean
+  },
+): Promise<T>
+```
+
+**script**
+
+The script to run.
+
+**options.humanReadableOutput**, default is true
+
+Change the output style.
+
+When false, returns the value in a [recompilable source form](https://ss64.com/mac/osascript.html).

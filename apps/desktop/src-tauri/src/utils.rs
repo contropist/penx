@@ -1,12 +1,6 @@
 use std::error::Error;
 use std::process::Command;
 
-// the payload type must implement `Serialize` and `Clone`.
-#[derive(Clone, serde::Serialize)]
-struct Payload {
-    message: String,
-}
-
 pub fn run_applescript_sync(
     script: &str,
     human_readable_output: bool,

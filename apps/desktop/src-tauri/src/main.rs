@@ -10,6 +10,7 @@ mod utils;
 
 use std::thread;
 
+use serde::Deserialize;
 use window_shadows::set_shadow;
 
 use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
@@ -34,9 +35,17 @@ struct Payload {
     message: String,
 }
 
+#[derive(Debug, Deserialize)]
+pub struct Options {
+    pub human_readable_output: Option<bool>,
+}
+
 #[tauri::command]
-async fn run_applescript(script: &str) -> Result<String, String> {
-    match utils::run_applescript_sync(script, true) {
+async fn run_applescript(script: &str, options: Option<Options>) -> Result<String, String> {
+    let human_readable_output =
+        options.map_or(false, |opts| opts.human_readable_output.unwrap_or(false));
+
+    match utils::run_applescript_sync(script, human_readable_output) {
         Ok(output) => Ok(output),
         Err(err) => Err(err.to_string()),
     }

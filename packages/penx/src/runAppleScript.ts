@@ -1,6 +1,13 @@
 import { EventType } from './constants'
 
-export function runAppleScript(script: string): Promise<string> {
+export interface RunAppleScriptOptions {
+  humanReadableOutput?: boolean
+}
+
+export function runAppleScript(
+  script: string,
+  options?: RunAppleScriptOptions,
+): Promise<string> {
   return new Promise((resolve, reject) => {
     const channel = new MessageChannel()
 
@@ -13,11 +20,19 @@ export function runAppleScript(script: string): Promise<string> {
         reject(new Error('Unexpected message type'))
       }
     }
+
+    let opt = {} as RunAppleScriptOptions
+
+    if (!options || !Reflect.has(options, 'humanReadableOutput')) {
+      opt.humanReadableOutput = true
+    }
+
     // TODO: handle any
     self.postMessage(
       {
         type: EventType.RunAppScript,
         script,
+        options: opt,
       },
       [channel.port2] as any,
     )

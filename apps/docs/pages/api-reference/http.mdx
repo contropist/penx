@@ -1,0 +1,68 @@
+# HTTP
+
+Sending HTTP Requests in Command App.
+
+## Using `fetch`
+
+In most cases, you can use web standarn API [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). And this is the recommanded way to send a HTTP request.
+
+```js
+import { MarkdownBuilder, render } from 'penx'
+
+export async function main() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1').then(
+    (res) => res.json(),
+  )
+
+  const md = new MarkdownBuilder(JSON.stringify(res, null, 2))
+  render(md)
+}
+```
+
+## Using `request`
+
+If you encounter a CORS error, you can use the `request` API instead.
+
+![cors](/images/cors-error.webp)
+
+### GET
+
+To send a GET request:
+
+```ts
+import { MarkdownBuilder, request } from 'penx'
+
+export async function main() {
+  const res = await request({
+    method: 'GET',
+    url: 'https://jsonplaceholder.typicode.com/todos/1',
+  })
+
+  const md = new MarkdownBuilder(JSON.stringify(res.data, null, 2))
+  render(md)
+}
+```
+
+### POST
+
+To send a POST request:
+
+```ts
+import { MarkdownBuilder, request } from 'penx'
+
+export async function main() {
+  const res = await request({
+    method: 'POST',
+    url: 'https://jsonplaceholder.typicode.com/psots',
+    json: {
+      title: 'This is a title',
+      content: 'foo...',
+    },
+  })
+
+  const md = new MarkdownBuilder(JSON.stringify(res.data, null, 2))
+  render(md)
+}
+```
+
+Of course, You can other methods like: PUT, PATCH, DELETE..

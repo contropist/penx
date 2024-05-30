@@ -9,5 +9,8 @@
     "penx": "workspace:*",
     "penx-cli": "workspace:*",
     "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "ky": "^1.1.3"
   }
 }
