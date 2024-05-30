@@ -7,10 +7,10 @@ export async function main() {
 
   const res = await runAppleScript(
     `
-on run argv
-  return "hello, " & item 1 of argv & "!"
-end run
-`,
+      on run argv
+        return "hello, " & item 1 of argv & "!"
+      end run
+    `,
     ['PenX'],
   )
 

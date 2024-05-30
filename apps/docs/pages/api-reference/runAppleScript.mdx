@@ -1,10 +1,14 @@
 # runAppleScript
 
-Run AppleScript and get the result.
+The `runAppleScript` function allows you to execute AppleScript in Command App.
+
+This can be particularly useful for automating tasks on macOS, as AppleScript can control many aspects of the operating system and its applications.
 
 ## Usage
 
-Basic example:
+### Basic Example
+
+Here is a simple example of how to use runAppleScript to run a basic AppleScript command and get the result:
 
 ```ts
 import { runAppleScript } from 'penx'
@@ -15,16 +19,35 @@ console.log(result)
 //=> 'unicorn'
 ```
 
-Another example:
+n this example, the AppleScript command return "unicorn" is executed, and the result is logged to the console.
+
+### Using Arguments
+
+You can also pass arguments to your AppleScript. This is useful when you need to customize the script's behavior based on dynamic input:
 
 ```ts
 import { runAppleScript } from 'penx'
 
-const script = 'display notification "Hello World" with title "Notification"'
-const res = await runAppleScript(script)
+const res = await runAppleScript(
+  `
+    on run argv
+      return "hello, " & item 1 of argv & "!"
+    end run
+  `,
+  ['PenX'],
+)
+
+console.log(res)
+//=> 'hello, PenX!'
 ```
 
+In this example, the AppleScript is designed to take an argument (argv) and return a greeting message. The argument 'PenX' is passed to the script, resulting in the output 'hello, PenX!'.
+
 ## API
+
+The runAppleScript function has the following signature.
+
+To executing a static script:
 
 ```ts
 function runAppleScript<T>(
@@ -35,12 +58,21 @@ function runAppleScript<T>(
 ): Promise<T>
 ```
 
-**script**
+To executing a script with Arguments:
 
-The script to run.
+```ts
+function runAppleScript<T>(
+  script: string,
+  arguments: string[],
+  options?: {
+    humanReadableOutput?: boolean
+  },
+): Promise<T>
+```
 
-**options.humanReadableOutput**, default is true
+**Parameters**
 
-Change the output style.
-
-When false, returns the value in a [recompilable source form](https://ss64.com/mac/osascript.html).
+- script: A string containing the AppleScript code to be executed.
+- arguments: An array of strings to pass as arguments to the script.
+- options: An optional object to configure the execution.
+  - humanReadableOutput: A boolean that determines the output style. When set to true (default), the output is human-readable. When set to false, the output is in a recompilable source form.

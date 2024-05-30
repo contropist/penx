@@ -10,8 +10,6 @@ interface Item {
   url: string
 }
 
-// https://gtrend.yapie.me/repositories?since=daily&language=ts
-
 export async function getData(type: string) {
   const apiUrl = `https://hacker-news.firebaseio.com/v0/${type}stories.json`
 
