@@ -1,6 +1,6 @@
 {
   "name": "penx-cli",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "bin": {
     "penx": "./dist/cli.js"
   },
