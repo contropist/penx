@@ -73,7 +73,12 @@ export const ListItemUI = ({
       {...rest}
     >
       <Box toCenterY gap2>
-        {showIcon && <ListItemIcon icon={itemIcon as string} />}
+        {showIcon && (
+          <ListItemIcon
+            isApplication={item.data?.isApplication}
+            icon={itemIcon as string}
+          />
+        )}
         <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
           <Box text-14>{title}</Box>
           <Box text-12 zinc400>

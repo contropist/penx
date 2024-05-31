@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { BaseDirectory, readDir } from '@tauri-apps/api/fs'
+import { invoke } from '@tauri-apps/api/tauri'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { db } from '@penx/local-db'
 import { Node } from '@penx/model'
@@ -8,6 +10,10 @@ import { useSearch } from './useSearch'
 
 const isDeveloping = (item: ICommandItem) => item.data?.isDeveloping
 const isProduction = (item: ICommandItem) => !item.data?.isDeveloping
+
+const getFileName = (path: string) => {
+  return path.split('/').pop() as string
+}
 
 export const itemsAtom = atom<ICommandItem[]>([])
 
@@ -26,15 +32,51 @@ export function useItems() {
       return item.title.toString().toLowerCase().includes(search.toLowerCase())
     }),
 
-    productionItems: items.filter(isProduction).filter((item) => {
-      if (!search) return true
-      if (item.data?.alias) {
-        if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
-          return true
+    commandItems: items
+      .filter((item) => isProduction(item) && item.data?.type == 'Command')
+      .filter((item) => {
+        if (!search) return true
+        if (item.data?.alias) {
+          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+            return true
+          }
         }
-      }
-      return item.title.toString().toLowerCase().includes(search.toLowerCase())
-    }),
+        return item.title
+          .toString()
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      }),
+
+    databaseItems: items
+      .filter((item) => item.data?.type == 'Database')
+      .filter((item) => {
+        if (!search) return true
+        if (item.data?.alias) {
+          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+            return true
+          }
+        }
+        return item.title
+          .toString()
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      }),
+
+    applicationItems: items
+      .filter((item) => item.data?.type == 'Application')
+      .filter((item) => {
+        if (!search) return true
+        if (item.data?.alias) {
+          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+            return true
+          }
+        }
+        return item.title
+          .toString()
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      }),
+
     setItems,
   }
 }
@@ -48,10 +90,19 @@ export function useCommands() {
 
 export function useLoadCommands() {
   return useQuery(['commands'], async () => {
-    const [extensions, databases] = await Promise.all([
-      db.listExtensions(),
-      db.listDatabases(),
-    ])
+    const [extensions, databases, applicationsRes, entries] = await Promise.all(
+      [
+        db.listExtensions(),
+        db.listDatabases(),
+        invoke('handle_input', {
+          input: '',
+        }) as Promise<any[]>,
+        readDir('appIcons', {
+          dir: BaseDirectory.AppData,
+          recursive: true,
+        }),
+      ],
+    )
 
     const commands = extensions.reduce((acc, cur) => {
       return [
@@ -68,7 +119,7 @@ export function useLoadCommands() {
           }
 
           return {
-            type: 'command',
+            type: 'list-item',
             title: item.title,
             subtitle: cur.name,
             icon: getIcon(),
@@ -95,7 +146,7 @@ export function useLoadCommands() {
       return [
         ...acc,
         {
-          type: 'command',
+          type: 'list-item',
           title: node.tagName,
           subtitle: '',
           icon: {
@@ -112,7 +163,30 @@ export function useLoadCommands() {
       ]
     }, [] as ICommandItem[])
 
-    return [...commands, ...databaseItems]
+    const applicationPaths = (applicationsRes[0] as string[]) || []
+
+    const applicationItems = applicationPaths.reduce((acc, item) => {
+      const appName = getFileName(item).replace(/.app$/, '')
+
+      return [
+        ...acc,
+        {
+          type: 'list-item',
+          title: appName,
+          subtitle: '',
+          icon: appName,
+          keywords: [],
+          data: {
+            type: 'Application',
+            applicationPath: item,
+            isApplication: true,
+          } as ICommandItem['data'],
+        } as ICommandItem,
+      ]
+    }, [] as ICommandItem[])
+
+    return [...commands, ...databaseItems, ...applicationItems]
+    // return [...commands, ...databaseItems]
   })
 }
 

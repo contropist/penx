@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Box } from '@fower/react'
 import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
+import { ICommandItem } from '~/common/types'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
@@ -24,14 +25,15 @@ const bodyHeight = windowHeight - searchBarHeight - footerHeight
 
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
-  const { developingItems, productionItems } = useItems()
+  const { developingItems, commandItems, databaseItems, applicationItems } =
+    useItems()
 
   // console.log('========items:', items)
 
   // console.log(
-  //   '=========developingItems, productionItems:',
+  //   '=========developingItems, commandItems:',
   //   developingItems,
-  //   productionItems,
+  //   commandItems,
   // )
 
   const { isRoot, isCommandApp } = useCommandPosition()
@@ -123,20 +125,23 @@ export const CommandPalette = () => {
                 })}
               </Command.Group>
             )}
-            <Command.Group heading={isRoot ? 'Commands' : undefined}>
-              {isRoot &&
-                productionItems.map((item, index) => {
-                  return (
-                    <ListItemUI
-                      key={index}
-                      index={index}
-                      value={item.data.commandName}
-                      item={item}
-                      onSelect={(item) => handleSelect(item)}
-                    />
-                  )
-                })}
-            </Command.Group>
+            <ListGroup
+              heading="Commands"
+              items={commandItems}
+              onSelect={(item) => handleSelect(item)}
+            />
+
+            <ListGroup
+              heading="Databases"
+              items={databaseItems}
+              onSelect={(item) => handleSelect(item)}
+            />
+
+            <ListGroup
+              heading="Applications"
+              items={applicationItems.splice(0, 10)}
+              onSelect={(item) => handleSelect(item)}
+            />
           </StyledCommandList>
         )}
       </Box>
@@ -146,14 +151,26 @@ export const CommandPalette = () => {
   )
 }
 
-function splitStringByFirstSpace(str: string) {
-  const index = str.indexOf(' ')
-  if (index === -1) {
-    return [str]
-  }
+interface ListGroupProps {
+  heading: string
+  items: ICommandItem[]
+  onSelect?: (item: ICommandItem) => void
+}
 
-  const firstPart = str.substring(0, index)
-  const secondPart = str.substring(index + 1).trim()
-
-  return [firstPart, secondPart]
+function ListGroup({ heading, items, onSelect }: ListGroupProps) {
+  return (
+    <Command.Group heading={heading}>
+      {items.map((item, index) => {
+        return (
+          <ListItemUI
+            key={index}
+            index={index}
+            value={item.data.commandName}
+            item={item}
+            onSelect={onSelect}
+          />
+        )
+      })}
+    </Command.Group>
+  )
 }

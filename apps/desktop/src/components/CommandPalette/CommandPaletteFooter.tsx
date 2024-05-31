@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box } from '@fower/react'
 import Image from 'next/image'
 import { appEmitter } from '@penx/event'
@@ -32,6 +33,9 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
           width={20}
           height={20}
           style={{ borderRadius: 6 }}
+          onClick={async () => {
+            //
+          }}
         />
       )}
       <Box

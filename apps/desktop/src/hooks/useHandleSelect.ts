@@ -1,4 +1,5 @@
 import { Body, getClient } from '@tauri-apps/api/http'
+import { open } from '@tauri-apps/api/shell'
 import { invoke } from '@tauri-apps/api/tauri'
 import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
@@ -22,7 +23,27 @@ export function useHandleSelect() {
   const { setSearch } = useSearch()
 
   return async (item: ICommandItem, input = '') => {
-    if (item.type === 'command') {
+    if (item.data?.type === 'Database') {
+      setSearch('')
+      setDatabase(item.data.database)
+      setUI({ type: 'database' })
+
+      setPosition('COMMAND_APP')
+
+      appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
+      return
+    }
+
+    if (item.data?.type === 'Application') {
+      const { applicationPath } = item.data
+      setSearch('')
+      await invoke('open_command', { path: applicationPath })
+
+      const { appWindow } = await import('@tauri-apps/api/window')
+      await appWindow.hide()
+    }
+
+    if (item.data?.type === 'Command') {
       setSearch('')
       setLoading(true)
       setCurrentCommand(item)
@@ -30,12 +51,6 @@ export function useHandleSelect() {
       setPosition('COMMAND_APP')
 
       appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
-
-      if (item.data?.type === 'Database') {
-        setDatabase(item.data.database)
-        setUI({ type: 'database' })
-        return
-      }
 
       const ext = await db.getExtensionBySlug(item.data.extensionSlug)
       if (!ext) return

@@ -1,21 +1,17 @@
-import { useEffect, useRef } from 'react'
 import { Box } from '@fower/react'
-import { ArrowLeft, Plus } from 'lucide-react'
-import { Button } from 'uikit'
+import { ArrowLeft } from 'lucide-react'
 import { appEmitter } from '@penx/event'
-import { store } from '@penx/store'
 import { ToggleModeButton } from '~/components/ToggleModeButton'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
-import { isAddRowAtom } from '~/hooks/useIsAddRow'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useLoading } from '~/hooks/useLoading'
 import { useSearch } from '~/hooks/useSearch'
-import { StyledCommandInput } from '../CommandComponents'
 import { AddRowButton } from './AddRowButton'
 import { DatabaseName } from './DatabaseName'
 import { SearchBarFilter } from './SearchBarFilter'
+import { SearchInput } from './SearchInput'
 
 interface Props {
   searchBarHeight: number
@@ -25,7 +21,6 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { items, setItems } = useItems()
   const { commands } = useCommands()
   const { loading } = useLoading()
-  const ref = useRef<HTMLInputElement>()
   const {
     isCommandApp,
     isCommandAppDetail,
@@ -41,16 +36,6 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
     currentCommandName === 'marketplace' && isCommandAppDetail
 
   const isDatabaseApp = currentCommand?.data?.type === 'Database'
-
-  useEffect(() => {
-    const handleFocus = () => {
-      ref.current?.focus()
-    }
-    appEmitter.on('FOCUS_SEARCH_BAR_INPUT', handleFocus)
-    return () => {
-      appEmitter.off('FOCUS_SEARCH_BAR_INPUT', handleFocus)
-    }
-  }, [])
 
   return (
     <Box
@@ -83,23 +68,9 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
       {isDatabaseApp && <AddRowButton />}
 
       {!isMarketplaceDetail && (
-        <StyledCommandInput
-          ref={ref as any}
-          id="searchBarInput"
-          flex-1
-          bgRed100
-          selectNone
-          toCenterY
-          bgTransparent
-          w-100p
-          h={searchBarHeight}
-          px3
-          placeholderZinc500
-          textBase
-          outlineNone
-          placeholder="Search something..."
-          autoFocus
-          value={search}
+        <SearchInput
+          search={search}
+          searchBarHeight={searchBarHeight}
           onValueChange={(v) => {
             appEmitter.emit('ON_COMMAND_PALETTE_SEARCH_CHANGE', v)
 

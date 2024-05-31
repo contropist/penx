@@ -38,11 +38,25 @@ open = "4.1.0"
 tauri-plugin-clipboard = "0.6.10"
 window-shadows = "0.2.2"
 window-vibrancy = "0.4.0"
+auto-launch = "0.4.0"
+rust_search = "2.1.0"
+plist = "1"
+strsim = "0.10.0"
+directories = "4.0.1"
+smartcalc = { git = "https://github.com/ParthJadhav/smartcalc", branch = "stable" }
+chrono-tz = { version = "0.6.1", default-features = false }
+num-format = { version = "0.4", features = ["with-system-locale"] }
+localzone = "0.2.0"
+sys-locale = "0.2.3"
+
 
 # MacOS
 [target."cfg(target_os = \"macos\")".dependencies]
 cocoa = "0.24.1"
 objc = "0.2.7"
+
+[dependencies.chrono]
+version = "0.4"
 
 
 [features]

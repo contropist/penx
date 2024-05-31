@@ -1,5 +1,26 @@
+use serde::Deserialize;
 use std::error::Error;
 use std::process::Command;
+
+#[derive(Debug, Deserialize)]
+pub struct Options {
+    pub human_readable_output: Option<bool>,
+}
+
+#[tauri::command]
+pub async fn run_applescript(
+    script: &str,
+    args: Option<Vec<String>>,
+    options: Option<Options>,
+) -> Result<String, String> {
+    let human_readable_output =
+        options.map_or(false, |opts| opts.human_readable_output.unwrap_or(false));
+
+    match run_applescript_sync(script, args.as_deref(), human_readable_output) {
+        Ok(output) => Ok(output),
+        Err(err) => Err(err.to_string()),
+    }
+}
 
 pub fn run_applescript_sync(
     script: &str,

@@ -36,7 +36,7 @@ export interface ObjectIcon {
 export interface IListItem {
   id?: string
 
-  type?: 'command' | 'list-item' | 'list-heading'
+  type?: 'list-item' | 'list-heading'
 
   title:
     | string

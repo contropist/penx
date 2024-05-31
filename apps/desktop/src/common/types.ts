@@ -4,7 +4,7 @@ import { FilterItem, IDatabaseNode } from '@penx/model-types'
 export interface ICommandItem extends IListItem {
   keywords: string[]
   data: {
-    type: 'Database' | 'Command'
+    type: 'Database' | 'Command' | 'Application'
     alias: string
     database: IDatabaseNode
     assets: Record<string, string>
@@ -14,5 +14,8 @@ export interface ICommandItem extends IListItem {
     extensionSlug: string
     extensionIcon: string
     isDeveloping: boolean
+
+    applicationPath: string
+    isApplication: boolean
   }
 }

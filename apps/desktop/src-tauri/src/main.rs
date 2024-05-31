@@ -3,14 +3,16 @@
     windows_subsystem = "windows"
 )]
 
+mod apple_script;
 mod hello;
 mod menu;
 mod server;
-mod utils;
+mod util;
 
 use std::thread;
 
-use serde::Deserialize;
+use util::{convert_all_app_icons_to_png, handle_input, open_command};
+
 use window_shadows::set_shadow;
 
 use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
@@ -33,26 +35,6 @@ extern crate objc;
 #[derive(Clone, serde::Serialize)]
 struct Payload {
     message: String,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct Options {
-    pub human_readable_output: Option<bool>,
-}
-
-#[tauri::command]
-async fn run_applescript(
-    script: &str,
-    args: Option<Vec<String>>,
-    options: Option<Options>,
-) -> Result<String, String> {
-    let human_readable_output =
-        options.map_or(false, |opts| opts.human_readable_output.unwrap_or(false));
-
-    match utils::run_applescript_sync(script, args.as_deref(), human_readable_output) {
-        Ok(output) => Ok(output),
-        Err(err) => Err(err.to_string()),
-    }
 }
 
 #[tauri::command]
@@ -130,13 +112,18 @@ impl<R: Runtime> WindowExt for Window<R> {
 }
 
 fn main() {
+    #[cfg(target_os = "macos")]
+    convert_all_app_icons_to_png();
+
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard::init()) // add this line
         .invoke_handler(tauri::generate_handler![
             menu::on_button_clicked,
             greet,
-            run_applescript,
+            apple_script::run_applescript,
             set_window_properties,
+            open_command,
+            handle_input
         ])
         .system_tray(menu::create_system_tray())
         .on_system_tray_event(|app, event| match event {

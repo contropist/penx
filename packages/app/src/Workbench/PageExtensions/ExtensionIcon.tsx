@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import Image from 'next/image'
@@ -7,7 +8,11 @@ interface ListItemIconProps extends FowerHTMLProps<'div'> {
   size?: number
 }
 
-export function ExtensionIcon({ icon, size = 20, ...rest }: ListItemIconProps) {
+export const ExtensionIcon = memo(function ExtensionIcon({
+  icon,
+  size = 20,
+  ...rest
+}: ListItemIconProps) {
   if (!icon) {
     return (
       <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
@@ -53,4 +58,4 @@ export function ExtensionIcon({ icon, size = 20, ...rest }: ListItemIconProps) {
       src={`data:image/png;base64, ${icon}`}
     />
   )
-}
+})
