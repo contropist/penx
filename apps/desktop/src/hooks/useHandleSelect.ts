@@ -26,8 +26,8 @@ export function useHandleSelect() {
     if (item.data?.type === 'Database') {
       setSearch('')
       setDatabase(item.data.database)
+      setCurrentCommand(item)
       setUI({ type: 'database' })
-
       setPosition('COMMAND_APP')
 
       appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')

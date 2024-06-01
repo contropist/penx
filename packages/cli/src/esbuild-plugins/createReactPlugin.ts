@@ -4,7 +4,7 @@ import { CommandItem } from '../types'
 
 export function createReactPlugin(commands: CommandItem[]) {
   const plugin: esbuild.Plugin = {
-    name: 'add-code',
+    name: 'add-react-code',
     setup(build) {
       build.onLoad({ filter: /\.(t|j)sx?$/ }, async (args) => {
         const contents = await fs.promises.readFile(args.path, 'utf8')

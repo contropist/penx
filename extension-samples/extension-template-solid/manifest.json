@@ -1,24 +1,24 @@
 {
-  "name": "custom-ui-svelte",
-  "id": "custom-ui-svelte",
+  "name": "extension-template-solid",
+  "id": "extension-template-solid",
   "description": "This is a custom UI demo.",
   "icon": "logo.svg",
   "commands": [
     {
       "name": "index",
-      "title": "Custom UI Svelte",
+      "title": "Custom UI Solid",
       "subtitle": "",
       "description": "",
       "runtime": "iframe",
-      "framework": "svelte"
+      "framework": "solid"
     },
     {
       "name": "hello",
-      "title": "Hello Svelte",
+      "title": "Hello Solid",
       "subtitle": "",
       "description": "",
       "runtime": "iframe",
-      "framework": "svelte"
+      "framework": "solid"
     }
   ]
 }

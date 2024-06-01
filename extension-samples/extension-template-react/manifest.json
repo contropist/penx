@@ -1,24 +1,24 @@
 {
-  "name": "custom-ui-vue",
-  "id": "custom-ui-vue",
+  "name": "extension-template-react",
+  "id": "extension-template-react",
   "description": "This is a custom UI demo.",
   "icon": "logo.svg",
   "commands": [
     {
       "name": "index",
-      "title": "Custom UI Vue",
+      "title": "Custom UI React",
       "subtitle": "",
       "description": "",
       "runtime": "iframe",
-      "framework": "vue"
+      "framework": "react"
     },
     {
       "name": "hello",
-      "title": "Hello Vue",
+      "title": "Hello React",
       "subtitle": "",
       "description": "",
       "runtime": "iframe",
-      "framework": "vue"
+      "framework": "react"
     }
   ]
 }

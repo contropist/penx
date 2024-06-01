@@ -66,6 +66,7 @@ class Command {
         const spinner = ora('Upload the extension files...').start()
         try {
           const manifest = await getManifest()
+
           const canRelease = await this.trpc.extension.canReleaseExtension.query({
             uniqueId: manifest.id,
           })
@@ -121,7 +122,7 @@ class Command {
 
     // add code manifest.commands
     for (const command of manifest.commands) {
-      const codePath = join(process.cwd(), 'dist', `${command.name}.js`)
+      const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
       command.code = code
     }
@@ -137,11 +138,11 @@ class Command {
     const id = manifest.id
 
     for (const command of manifest.commands) {
-      const codePath = join(process.cwd(), 'dist', `${command.name}.js`)
+      const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
 
       treeItems.push({
-        path: `extensions/${id}/dist/${command.name}.js`,
+        path: `extensions/${id}/dist/${command.name}.command.js`,
         mode: '100644',
         type: 'blob',
         content: code,

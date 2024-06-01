@@ -8,49 +8,57 @@
       "name": "render-markdown",
       "title": "Render Markdown",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "render-loading",
       "title": "Render Loading",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "render-list",
       "title": "Render List",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "render-grid",
       "title": "Render Grid",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "render-form",
       "title": "Render Form",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "render-table",
       "title": "Render Table",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "clipboard",
       "title": "Clipboard",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     },
     {
       "name": "run-apple-script",
       "title": "Run apple script",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     }
   ]
 }

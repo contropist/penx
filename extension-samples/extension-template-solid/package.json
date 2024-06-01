@@ -1,5 +1,5 @@
 {
-  "name": "custom-ui-vue",
+  "name": "extension-template-solid",
   "private": true,
   "scripts": {
     "dev": "penx dev",
@@ -11,6 +11,6 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "vue": "^3.4.27"
+    "solid-js": "^1.8.17"
   }
 }

@@ -3,7 +3,7 @@ import chalk from 'chalk'
 
 export function createOnEndPlugin(fn?: () => Promise<void>) {
   const onEndPlugin: esbuild.Plugin = {
-    name: 'onEnd',
+    name: 'on-end',
     setup(build) {
       build.onEnd((result) => {
         const len = result.errors.length

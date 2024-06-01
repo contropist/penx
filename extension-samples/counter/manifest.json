@@ -8,7 +8,8 @@
       "name": "index",
       "title": "Counter",
       "subtitle": "",
-      "description": ""
+      "description": "",
+      "runtime": "worker"
     }
   ]
 }

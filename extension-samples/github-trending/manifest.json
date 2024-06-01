@@ -9,6 +9,7 @@
       "title": "GitHub Trending",
       "subtitle": "",
       "description": "",
+      "runtime": "worker",
       "filters": {
         "language": [
           {

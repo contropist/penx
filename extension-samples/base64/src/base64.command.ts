@@ -20,7 +20,7 @@ async function getItems(text: string = '') {
   const decoded = toString(text)
   const items: IListItem[] = [
     {
-      title: 'Encode',
+      title: 'Encoded',
       icon: 'code.svg',
       subtitle: encoded,
       actions: [
@@ -31,7 +31,7 @@ async function getItems(text: string = '') {
       ],
     },
     {
-      title: 'Decode',
+      title: 'Decoded',
       icon: 'code.svg',
       subtitle: decoded,
       actions: [

@@ -8,15 +8,16 @@ import autoprefixer from 'autoprefixer'
 import sveltePlugin from 'esbuild-svelte'
 
 import { getManifest } from './getManifest'
-import { postcssPlugin } from './postcssPlugin'
 import { CommandItem } from '../types'
 import { createStyleFile } from './createStyleFile'
 import { createVueEntry } from './createVueEntry'
-import { createOnEndPlugin } from './createOnEndPlugin'
-import { inlineCssPlugin } from './inlineCssPlugin'
-import { createReactPlugin } from './createReactPlugin'
-import { createSolidPlugin } from './createSolidPlugin'
 import { createSvelteEntry } from './createSvelteEntry'
+import { postcssPlugin } from '../esbuild-plugins/postcssPlugin'
+import { inlineCssPlugin } from '../esbuild-plugins/inlineCssPlugin'
+import { createReactPlugin } from '../esbuild-plugins/createReactPlugin'
+import { createSolidPlugin } from '../esbuild-plugins/createSolidPlugin'
+import { createOnEndPlugin } from '../esbuild-plugins/createOnEndPlugin'
+import { createWorkerPlugin } from '../esbuild-plugins/createWorkerPlugin'
 
 interface Options {
   watch?: boolean
@@ -50,7 +51,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
   const entries: string[] = []
   const commandFiles: string[] = []
 
-  const [manifest] = await Promise.all([getManifest(), createStyleFile()])
+  const manifest = await getManifest()
 
   for (const cmd of manifest.commands) {
     const commandFile = findCommandFile(cmd)
@@ -65,6 +66,11 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     } else {
       entries.push(commandFile)
     }
+  }
+
+  const hasIframeRuntime = manifest.commands.some((item) => item.runtime === 'iframe')
+  if (hasIframeRuntime) {
+    createStyleFile()
   }
 
   const buildOptions = {
@@ -82,27 +88,31 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     treeShaking: true,
   } as esbuild.BuildOptions
 
-  const plugins: Plugin[] = [
-    postcssPlugin({
-      plugins: [
-        tailwindcss({
-          content: ['./src/**/*.{js,ts,tsx,vue,svelte}'],
-          theme: {
-            extend: {},
-          },
-          plugins: [],
-        }),
-        autoprefixer,
-        cssnano,
-      ],
-    }),
-    inlineCssPlugin,
-  ]
+  const plugins: Plugin[] = []
 
   const { commands } = manifest
   const hasVue = commands.some((item) => item.framework === 'vue')
   const hasSvelte = commands.some((item) => item.framework === 'svelte')
   const hasTsx = commandFiles.some((item) => item.endsWith('.tsx'))
+
+  if (hasIframeRuntime) {
+    plugins.push(
+      postcssPlugin({
+        plugins: [
+          tailwindcss({
+            content: ['./src/**/*.{js,ts,tsx,vue,svelte}'],
+            theme: {
+              extend: {},
+            },
+            plugins: [],
+          }),
+          autoprefixer,
+          cssnano,
+        ],
+      }),
+      inlineCssPlugin,
+    )
+  }
 
   if (hasVue) {
     plugins.push(vuePlugin({}) as any)
@@ -116,6 +126,8 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     plugins.push(createReactPlugin(manifest.commands))
     plugins.push(createSolidPlugin(manifest.commands))
   }
+
+  plugins.push(createWorkerPlugin(manifest.commands))
 
   if (watch) {
     const onEndPlugin = createOnEndPlugin(onSuccess)
