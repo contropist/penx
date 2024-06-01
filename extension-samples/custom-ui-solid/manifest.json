@@ -1,0 +1,24 @@
+{
+  "name": "custom-ui-solid",
+  "id": "custom-ui-solid",
+  "description": "This is a custom UI demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Custom UI Solid",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "solid"
+    },
+    {
+      "name": "hello",
+      "title": "Hello Solid",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "solid"
+    }
+  ]
+}

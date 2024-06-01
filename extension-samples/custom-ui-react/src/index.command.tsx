@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Box } from '@fower/react'
 
 export function Main() {
   const [count, setCount] = useState(0)
@@ -13,26 +12,16 @@ export function Main() {
   }, [])
 
   return (
-    <Box>
-      <Box fontBold text3XL>
-        Hello world, {count}
-      </Box>
-      <Box
-        as="button"
-        white
-        outlineNone
-        p3
-        textLG
-        border
-        roundedFull
-        bgBlack
-        opacity-70--hover
+    <div>
+      <div className="bg-red-300 font-bold text-3xl">Hello world, {count}</div>
+      <button
+        className="text-white outline-none p-3 text-lg border rounded-full bg-black hover:opacity-70 "
         onClick={() => {
           console.log('hello.......')
         }}
       >
         Click me
-      </Box>
-    </Box>
+      </button>
+    </div>
   )
 }

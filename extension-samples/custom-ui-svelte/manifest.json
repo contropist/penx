@@ -1,0 +1,24 @@
+{
+  "name": "custom-ui-svelte",
+  "id": "custom-ui-svelte",
+  "description": "This is a custom UI demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Custom UI Svelte",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "svelte"
+    },
+    {
+      "name": "hello",
+      "title": "Hello Svelte",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "svelte"
+    }
+  ]
+}

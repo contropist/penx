@@ -1,68 +1,70 @@
 import * as esbuild from 'esbuild'
-import chalk from 'chalk'
-import fs from 'fs'
+import cssnano from 'cssnano'
+import { Plugin } from 'esbuild'
 import { join } from 'path'
+import vuePlugin from 'esbuild-plugin-vue3'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+import sveltePlugin from 'esbuild-svelte'
+
 import { getManifest } from './getManifest'
+import { postcssPlugin } from './postcssPlugin'
+import { CommandItem } from '../types'
+import { createStyleFile } from './createStyleFile'
+import { createVueEntry } from './createVueEntry'
+import { createOnEndPlugin } from './createOnEndPlugin'
+import { inlineCssPlugin } from './inlineCssPlugin'
+import { createReactPlugin } from './createReactPlugin'
+import { createSolidPlugin } from './createSolidPlugin'
+import { createSvelteEntry } from './createSvelteEntry'
 
 interface Options {
   watch?: boolean
   onSuccess?: () => Promise<void>
 }
 
-export async function buildExtension({ watch = false, onSuccess }: Options) {
+function findCommandFile(item: CommandItem) {
   const cwd = process.cwd()
-  const manifest = getManifest()
-
-  const entries = manifest.commands.reduce<string[]>((acc, cur) => {
-    const isIframe = cur.runtime === 'iframe'
-    const ext = isIframe ? '.tsx' : '.ts'
-    const entry = join(cwd, 'src', `${cur.name}${ext}`)
-    return [...acc, entry]
-  }, [])
-
-  const onEndPlugin: esbuild.Plugin = {
-    name: 'onEnd',
-    setup(build) {
-      build.onEnd((result) => {
-        const len = result.errors.length
-        const str = `Build end with ${len} errors`
-        console.log(len > 0 ? chalk.red(str) : chalk.green(str))
-        onSuccess?.()
-      })
-    },
+  if (item?.runtime !== 'iframe') {
+    return join(cwd, 'src', `${item.name}.command.ts`)
   }
 
-  const addMainPlugin: esbuild.Plugin = {
-    name: 'add-code',
-    setup(build) {
-      build.onLoad({ filter: /\.(t|j)sx?$/ }, async (args) => {
-        const contents = await fs.promises.readFile(args.path, 'utf8')
+  if (item.framework === 'vue') {
+    return join(cwd, 'src', `${item.name}.command.vue`)
+  }
 
-        const path = args.path as string
+  if (item.framework === 'svelte') {
+    return join(cwd, 'src', `${item.name}.command.svelte`)
+  }
 
-        const isIframe = /tsx$/.test(path)
+  if (item.framework === 'react' || item.framework === 'solid') {
+    return join(cwd, 'src', `${item.name}.command.tsx`)
+  }
 
-        if (entries.includes(path)) {
-          let prefix = ''
-          let postfix = '\nmain();'
-          if (isIframe) {
-            prefix = `import { createRoot } from 'react-dom/client'\n`
-            postfix = `
-              const domNode = document.getElementById('root')!
-              const root = createRoot(domNode)
-              root.render(<Main />)
-            `
-          }
+  throw new Error(`Cannot find a command file for "${item.name}"`)
+}
 
-          const modifiedContents = `${prefix}${contents}${postfix}`
-          return {
-            contents: modifiedContents,
-            loader: isIframe ? 'tsx' : 'ts',
-          }
-        }
-        return null
-      })
-    },
+export async function buildExtension({ watch = false, onSuccess }: Options) {
+  const cwd = process.cwd()
+
+  const entries: string[] = []
+  const commandFiles: string[] = []
+
+  const [manifest] = await Promise.all([getManifest(), createStyleFile()])
+
+  for (const cmd of manifest.commands) {
+    const commandFile = findCommandFile(cmd)
+    commandFiles.push(commandFile)
+
+    if (commandFile.endsWith('.vue')) {
+      const entryFile = await createVueEntry(cmd)
+      entries.push(entryFile)
+    } else if (commandFile.endsWith('.svelte')) {
+      const entryFile = await createSvelteEntry(cmd)
+      entries.push(entryFile)
+    } else {
+      entries.push(commandFile)
+    }
   }
 
   const buildOptions = {
@@ -72,16 +74,56 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     format: 'iife',
     platform: 'browser',
     tsconfig: join(cwd, 'tsconfig.json'),
+    loader: {
+      '.css': 'css',
+    },
+    sourcemap: false,
     logLevel: 'debug',
     treeShaking: true,
   } as esbuild.BuildOptions
 
+  const plugins: Plugin[] = [
+    postcssPlugin({
+      plugins: [
+        tailwindcss({
+          content: ['./src/**/*.{js,ts,tsx,vue,svelte}'],
+          theme: {
+            extend: {},
+          },
+          plugins: [],
+        }),
+        autoprefixer,
+        cssnano,
+      ],
+    }),
+    inlineCssPlugin,
+  ]
+
+  const { commands } = manifest
+  const hasVue = commands.some((item) => item.framework === 'vue')
+  const hasSvelte = commands.some((item) => item.framework === 'svelte')
+  const hasTsx = commandFiles.some((item) => item.endsWith('.tsx'))
+
+  if (hasVue) {
+    plugins.push(vuePlugin({}) as any)
+  }
+
+  if (hasSvelte) {
+    plugins.unshift(sveltePlugin())
+  }
+
+  if (hasTsx) {
+    plugins.push(createReactPlugin(manifest.commands))
+    plugins.push(createSolidPlugin(manifest.commands))
+  }
+
   if (watch) {
+    const onEndPlugin = createOnEndPlugin(onSuccess)
+    plugins.push(onEndPlugin)
     const ctx = await esbuild.context({
       ...buildOptions,
-      // minify: true,
-      plugins: [addMainPlugin, onEndPlugin],
-      // plugins: [onEndPlugin],
+      minify: true,
+      plugins,
     })
 
     ctx.watch()
@@ -89,7 +131,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     await esbuild.build({
       ...buildOptions,
       minify: true,
-      plugins: [addMainPlugin],
+      plugins,
     })
     onSuccess?.()
   }

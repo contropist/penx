@@ -1,0 +1,19 @@
+{
+  "name": "custom-ui-react",
+  "private": true,
+  "scripts": {
+    "dev": "penx dev",
+    "release": "penx release"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.3.0",
+    "penx": "workspace:*",
+    "penx-cli": "workspace:*",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

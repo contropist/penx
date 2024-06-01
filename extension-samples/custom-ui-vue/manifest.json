@@ -1,0 +1,24 @@
+{
+  "name": "custom-ui-vue",
+  "id": "custom-ui-vue",
+  "description": "This is a custom UI demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Custom UI Vue",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "vue"
+    },
+    {
+      "name": "hello",
+      "title": "Hello Vue",
+      "subtitle": "",
+      "description": "",
+      "runtime": "iframe",
+      "framework": "vue"
+    }
+  ]
+}

@@ -28,12 +28,12 @@ class Command {
   }
 
   private handleBuildSuccess = async () => {
-    const manifest = getManifest()
+    const manifest = await getManifest()
 
     const url = 'http://127.0.0.1:14159/api/upsert-extension'
 
     for (const command of manifest.commands) {
-      const codePath = join(process.cwd(), 'dist', `${command.name}.js`)
+      const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
 
       command.code = code

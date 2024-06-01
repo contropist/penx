@@ -65,7 +65,7 @@ class Command {
         // console.log('Build success~')
         const spinner = ora('Upload the extension files...').start()
         try {
-          const manifest = getManifest()
+          const manifest = await getManifest()
           const canRelease = await this.trpc.extension.canReleaseExtension.query({
             uniqueId: manifest.id,
           })
@@ -117,7 +117,7 @@ class Command {
   }
 
   private async getInstallationContent() {
-    const manifest = getManifest()
+    const manifest = await getManifest()
 
     // add code manifest.commands
     for (const command of manifest.commands) {
@@ -132,7 +132,7 @@ class Command {
 
   async createTree() {
     let treeItems: TreeItem[] = []
-    const manifest = getManifest()
+    const manifest = await getManifest()
 
     const id = manifest.id
 
@@ -232,7 +232,7 @@ class Command {
 
   private async commit(treeSha: string) {
     const parentSha = this.baseBranchSha
-    const manifest = getManifest()
+    const manifest = await getManifest()
     const msg = `Release extension: ${manifest.id}`
 
     const commit = await this.app.request('POST /repos/{owner}/{repo}/git/commits', {

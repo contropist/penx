@@ -6,6 +6,7 @@ export type CommandItem = {
   icon?: string
   code?: string
   runtime: 'iframe' | 'worker'
+  framework: 'vue' | 'react' | 'solid' | 'svelte'
 }
 
 export type Manifest = {
@@ -18,4 +19,29 @@ export type Manifest = {
   icon: string
   commands: CommandItem[]
   screenshots: Record<string, string>
+}
+
+export type Env = 'local' | 'dev' | 'prod'
+
+export type User = any // TODO: handle user type
+
+export type Space = {
+  id: string
+  name: string
+  description: string
+  editorMode: string
+  sort: number
+  color: string
+  activeNodeIds: any[]
+  pageSnapshot: any
+  createdAt: string
+  updatedAt: string
+  userId: string
+}
+
+export interface Config {
+  env: Env
+  token: string
+  user: User
+  space: Space
 }
