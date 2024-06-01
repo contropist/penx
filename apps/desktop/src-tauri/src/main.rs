@@ -117,11 +117,13 @@ fn main() {
 
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard::init()) // add this line
+        .plugin(tauri_plugin_fs_watch::init())
         .invoke_handler(tauri::generate_handler![
             menu::on_button_clicked,
             greet,
             apple_script::run_applescript,
             set_window_properties,
+            convert_all_app_icons_to_png,
             open_command,
             handle_input
         ])
@@ -180,6 +182,9 @@ fn main() {
 
             #[cfg(target_os = "macos")]
             window.set_transparent_titlebar(true, true);
+
+            #[cfg(target_os = "macos")]
+            app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 
             // #[cfg(target_os = "macos")]
             // apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)

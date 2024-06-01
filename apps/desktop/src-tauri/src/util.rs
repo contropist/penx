@@ -94,3 +94,4 @@ pub fn launch_on_login(enable: bool) -> bool {
         }
     }
 }
+

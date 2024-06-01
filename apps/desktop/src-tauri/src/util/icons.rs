@@ -56,6 +56,7 @@ fn get_icon_path(app_path: &str) -> String {
     }
 }
 
+#[tauri::command]
 pub fn convert_all_app_icons_to_png() {
     let result: Vec<String> = SearchBuilder::default()
         .location("/Applications")

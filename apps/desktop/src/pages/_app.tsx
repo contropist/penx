@@ -91,6 +91,29 @@ async function hideOnBlur() {
 async function init() {
   console.log('app init............')
 
+  const { platform } = await import('@tauri-apps/api/os')
+  const platformName = await platform()
+  console.log('=====platformName:', platformName)
+
+  if (platformName === 'darwin') {
+    const { watch } = await import('tauri-plugin-fs-watch-api')
+    const { appDataDir, homeDir, join } = await import('@tauri-apps/api/path')
+    // can also watch an array of paths
+    const stopWatching = await watch(
+      [
+        await join(await homeDir(), 'Applications'),
+        '/Applications',
+        '/System/Applications',
+        '/System/Applications/Utilities',
+      ],
+      (event) => {
+        appEmitter.emit('ON_APPLICATION_DIR_CHANGE')
+        invoke('convert_all_app_icons_to_png')
+      },
+      { recursive: true },
+    )
+  }
+
   const shortcut = 'CommandOrControl+;'
 
   unregister(shortcut).then(() => {

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { BaseDirectory, readDir } from '@tauri-apps/api/fs'
 import { invoke } from '@tauri-apps/api/tauri'
 import { atom, useAtom, useSetAtom } from 'jotai'
+import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
 import { Node } from '@penx/model'
 import { ICommandItem } from '~/common/types'
@@ -193,7 +194,14 @@ export function useLoadCommands() {
 export function useQueryCommands() {
   const setItems = useSetAtom(itemsAtom)
   const setCommands = useSetAtom(commandsAtom)
-  const { data } = useLoadCommands()
+  const { data, refetch } = useLoadCommands()
+
+  useEffect(() => {
+    appEmitter.on('ON_APPLICATION_DIR_CHANGE', refetch)
+    return () => {
+      appEmitter.off('ON_APPLICATION_DIR_CHANGE', refetch)
+    }
+  }, [])
 
   useEffect(() => {
     if (data?.length) {

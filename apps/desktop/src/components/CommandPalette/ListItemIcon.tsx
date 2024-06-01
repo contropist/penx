@@ -127,7 +127,7 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
     return <Box flexShrink-0 square={size} bgNeutral300 rounded-6></Box>
   }
 
-  console.log('===============appIcon:', data)
+  // console.log('===============appIcon:', data)
 
   return (
     <Image

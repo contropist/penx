@@ -91,7 +91,7 @@ export function HomePage() {
           <Box
             as="img"
             src="/images/search-bar.png"
-            w={['100%', '100%', 760, 840, 1000]}
+            w={['100%', '100%', 760, 960]}
           />
         </Box>
 
