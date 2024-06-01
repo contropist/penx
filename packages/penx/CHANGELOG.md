@@ -1,5 +1,11 @@
 ### Patch Changes
 
+## 0.1.10
+
+### Patch Changes
+
+- improve cli
+
 ## 0.1.9
 
 ### Patch Changes
