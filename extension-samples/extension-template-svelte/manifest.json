@@ -5,18 +5,14 @@
   "icon": "logo.svg",
   "commands": [
     {
-      "name": "index",
-      "title": "Custom UI Svelte",
-      "subtitle": "",
-      "description": "",
+      "name": "hello",
+      "title": "Hello Svelte",
       "runtime": "iframe",
       "framework": "svelte"
     },
     {
-      "name": "hello",
-      "title": "Hello Svelte",
-      "subtitle": "",
-      "description": "",
+      "name": "count",
+      "title": "Svelte Count",
       "runtime": "iframe",
       "framework": "svelte"
     }

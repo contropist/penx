@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
 import { isServer } from '@penx/constants'
 import { store } from '@penx/store'

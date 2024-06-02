@@ -5,18 +5,14 @@
   "icon": "logo.svg",
   "commands": [
     {
-      "name": "index",
-      "title": "Custom UI Vue",
-      "subtitle": "",
-      "description": "",
+      "name": "hello",
+      "title": "Hello Vue",
       "runtime": "iframe",
       "framework": "vue"
     },
     {
-      "name": "hello",
-      "title": "Hello Vue",
-      "subtitle": "",
-      "description": "",
+      "name": "count",
+      "title": "Vue Count",
       "runtime": "iframe",
       "framework": "vue"
     }

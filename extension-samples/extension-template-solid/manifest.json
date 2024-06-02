@@ -5,18 +5,14 @@
   "icon": "logo.svg",
   "commands": [
     {
-      "name": "index",
-      "title": "Custom UI Solid",
-      "subtitle": "",
-      "description": "",
+      "name": "hello",
+      "title": "Hello Solid",
       "runtime": "iframe",
       "framework": "solid"
     },
     {
-      "name": "hello",
-      "title": "Hello Solid",
-      "subtitle": "",
-      "description": "",
+      "name": "count",
+      "title": "Solid Count",
       "runtime": "iframe",
       "framework": "solid"
     }

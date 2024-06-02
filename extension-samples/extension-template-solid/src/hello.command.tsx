@@ -1,3 +1,7 @@
 export function Main() {
-  return <div class="text-green-500 bg-amber-100 text-4xl">Hello Solid!</div>
+  return (
+    <div class="flex justify-center items-center h-full">
+      <h1 class="text-4xl text-blue-500">Hello Solid!</h1>
+    </div>
+  )
 }
