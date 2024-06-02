@@ -5,18 +5,14 @@
   "icon": "logo.svg",
   "commands": [
     {
-      "name": "index",
-      "title": "Custom UI React",
-      "subtitle": "",
-      "description": "",
+      "name": "hello",
+      "title": "Hello React",
       "runtime": "iframe",
       "framework": "react"
     },
     {
-      "name": "hello",
-      "title": "Hello React",
-      "subtitle": "",
-      "description": "",
+      "name": "count",
+      "title": "React Count",
       "runtime": "iframe",
       "framework": "react"
     }

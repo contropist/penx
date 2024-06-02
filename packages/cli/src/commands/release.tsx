@@ -12,6 +12,7 @@ import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
 import { readConfig } from '../lib/utils'
 import { getReadme } from '../lib/getReadme'
+import { escAction } from '../constants'
 
 type Args = {}
 
@@ -124,7 +125,7 @@ class Command {
     for (const command of manifest.commands) {
       const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
-      command.code = code
+      command.code = code + escAction
     }
 
     const assets = await assetsToStringMap()
@@ -145,7 +146,7 @@ class Command {
         path: `extensions/${id}/dist/${command.name}.command.js`,
         mode: '100644',
         type: 'blob',
-        content: code,
+        content: code + escAction,
       })
     }
 

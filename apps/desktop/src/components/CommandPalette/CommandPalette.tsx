@@ -2,11 +2,16 @@ import { useEffect } from 'react'
 import { Box } from '@fower/react'
 import { getClient } from '@tauri-apps/api/http'
 import { Command } from 'cmdk'
+import { isServer } from '@penx/constants'
+import { store } from '@penx/store'
 import { ICommandItem } from '~/common/types'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
-import { useCommandAppUI } from '~/hooks/useCommandAppUI'
-import { useCommandPosition } from '~/hooks/useCommandPosition'
-import { useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { commandUIAtom, useCommandAppUI } from '~/hooks/useCommandAppUI'
+import { positionAtom, useCommandPosition } from '~/hooks/useCommandPosition'
+import {
+  currentCommandAtom,
+  useCurrentCommand,
+} from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useReset } from '~/hooks/useReset'
@@ -20,7 +25,19 @@ import { SearchBar } from './SearchBar/SearchBar'
 const windowHeight = 470
 const searchBarHeight = 54
 const footerHeight = 40
-const bodyHeight = windowHeight - searchBarHeight - footerHeight
+
+// message from iframe
+if (!isServer) {
+  window.addEventListener('message', (event) => {
+    const position = store.get(positionAtom)
+    console.log('event.....xx.......:', position)
+    if (position !== 'ROOT') {
+      store.set(positionAtom, 'ROOT')
+      store.set(currentCommandAtom, null as any)
+      store.set(commandUIAtom, {} as any)
+    }
+  })
+}
 
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
@@ -47,6 +64,10 @@ export const CommandPalette = () => {
   useReset(setValue)
 
   const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'
+
+  const bodyHeight = isIframe
+    ? windowHeight
+    : windowHeight - searchBarHeight - footerHeight
 
   return (
     <StyledCommand
@@ -80,7 +101,8 @@ export const CommandPalette = () => {
         return 1
       }}
     >
-      <SearchBar searchBarHeight={searchBarHeight} />
+      {isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
+
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&
           currentCommand &&

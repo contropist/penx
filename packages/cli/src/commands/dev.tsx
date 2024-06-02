@@ -6,6 +6,7 @@ import { getManifest } from '../lib/getManifest'
 import { buildExtension } from '../lib/buildExtension'
 import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
+import { escAction } from '../constants'
 
 type Args = {}
 
@@ -36,7 +37,7 @@ class Command {
       const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
 
-      command.code = code
+      command.code = code + escAction
       command.icon = await iconToString(command.icon)
     }
 

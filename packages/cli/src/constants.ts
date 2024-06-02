@@ -24,3 +24,22 @@ export type AddTextEvent = {
   eventType: EventType.ADD_NODES
   data: string
 }
+
+/**
+ * original:
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    window.parent.postMessage(
+      {
+        type: 'escape',
+      },
+      '*',
+    )
+  }
+})
+ 
+ */
+export const escAction = `
+document.addEventListener("keydown",e=>{"Escape"===e.key&&window.parent.postMessage({type:"escape"},"*")});
+
+`

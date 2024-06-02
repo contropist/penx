@@ -22,8 +22,6 @@ export function useCommandPosition() {
   }
 
   function backToCommandApp() {
-    console.log('name....dd COMMAND_APP')
-
     setPosition('COMMAND_APP')
   }
 
