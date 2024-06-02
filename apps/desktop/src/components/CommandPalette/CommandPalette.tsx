@@ -20,6 +20,7 @@ import { CommandApp } from './CommandApp/CommandApp'
 import { StyledCommand, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
 import { ListItemUI } from './ListItemUI'
+import { BackRootButton } from './SearchBar/BackRootButton'
 import { SearchBar } from './SearchBar/SearchBar'
 
 const windowHeight = 470
@@ -30,7 +31,6 @@ const footerHeight = 40
 if (!isServer) {
   window.addEventListener('message', (event) => {
     const position = store.get(positionAtom)
-    console.log('event.....xx.......:', position)
     if (position !== 'ROOT') {
       store.set(positionAtom, 'ROOT')
       store.set(currentCommandAtom, null as any)
@@ -101,7 +101,20 @@ export const CommandPalette = () => {
         return 1
       }}
     >
-      {isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
+      {isIframe && (
+        <BackRootButton
+          data-tauri-drag-region
+          absolute
+          top1
+          left1
+          zIndex-100
+          square8
+          roundedXL
+          bgNeutral900--T94
+          bgNeutral900--T94--hover
+        />
+      )}
+      {!isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
 
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&
@@ -117,6 +130,7 @@ export const CommandPalette = () => {
                 m0
                 absolute
                 top0
+                zIndex-99
                 // src='https://penx.io'
               />
             </Box>

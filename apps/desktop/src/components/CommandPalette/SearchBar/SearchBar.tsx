@@ -1,5 +1,4 @@
 import { Box } from '@fower/react'
-import { ArrowLeft } from 'lucide-react'
 import { appEmitter } from '@penx/event'
 import { ToggleModeButton } from '~/components/ToggleModeButton'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
@@ -9,6 +8,7 @@ import { useCommands, useItems } from '~/hooks/useItems'
 import { useLoading } from '~/hooks/useLoading'
 import { useSearch } from '~/hooks/useSearch'
 import { AddRowButton } from './AddRowButton'
+import { BackRootButton } from './BackRootButton'
 import { DatabaseName } from './DatabaseName'
 import { SearchBarFilter } from './SearchBarFilter'
 import { SearchInput } from './SearchInput'
@@ -21,13 +21,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { items, setItems } = useItems()
   const { commands } = useCommands()
   const { loading } = useLoading()
-  const {
-    isCommandApp,
-    isCommandAppDetail,
-    backToRoot,
-    backToCommandApp,
-    setPosition,
-  } = useCommandPosition()
+  const { isCommandApp, isCommandAppDetail, backToRoot, backToCommandApp } =
+    useCommandPosition()
   const handleSelect = useHandleSelect()
   const { currentCommand } = useCurrentCommand()
 
@@ -46,23 +41,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
       relative
       h={searchBarHeight}
     >
-      {isCommandApp && (
-        <Box
-          pl3
-          mr--8
-          cursorPointer
-          onClick={() => {
-            if (isCommandAppDetail) {
-              backToCommandApp()
-            } else {
-              backToRoot()
-              setSearch('')
-            }
-          }}
-        >
-          <ArrowLeft size={20}></ArrowLeft>
-        </Box>
-      )}
+      {isCommandApp && <BackRootButton pl3 mr--8 />}
 
       {isDatabaseApp && <DatabaseName />}
       {isDatabaseApp && <AddRowButton />}
