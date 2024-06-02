@@ -1,3 +1,112 @@
-# Custom UI mode
+# Custom UI Svelte
 
-wip...
+This guide walks you through creating a custom UI Command App using [Svelte](https://svelte.dev/).
+
+## Start with Svelte template
+
+Clone the sample plugin using Git.
+
+```bash
+git clone git@github.com:penxio/extension-template-svelte.git
+```
+
+## Develop extension
+
+After cloning the repository, navigate to the project directory and install the dependencies:
+
+```bash
+cd penx-extension-svelte
+npm install # install the dependencies
+npm run dev # compile the source code
+```
+
+Running npm run dev will compile the source code and automatically load the sample extension in PenX.
+
+Open the PenX Command palette, and you will see two commands:
+
+![commands](/images/commands-svelte.png)
+
+## Important files
+
+The project consists of the following key files:
+
+- `manifest.json`
+- `hello.command.svelte`
+- `count.command.svelte`
+
+### `manifest.json`
+
+The manifest.json file contains metadata about the project.
+
+```json {8,14}
+{
+  "name": "extension-template-vue",
+  "id": "extension-template-vue",
+  "description": "This is a custom UI demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello Vue",
+      "runtime": "iframe",
+      "framework": "vue"
+    },
+    {
+      "name": "count",
+      "title": "Vue Count",
+      "runtime": "iframe",
+      "framework": "vue"
+    }
+  ]
+}
+```
+
+The **command name** is associated with the `[commandName].command.svelte` file, which is a very important convention.
+
+- hello -> `src/hello.command.svelte`
+- count -> `src/count.command.svelte`
+
+### `hello.command.svelte`
+
+The `hello.command.svelte` file will render the "Hello World" string:
+
+```html
+<div class="flex justify-center items-center h-full">
+  <h1 class="text-4xl">Hello World!</h1>
+</div>
+```
+
+![hello](/images/custom-ui-hello.png)
+
+### `count.command.svelte`
+
+The `count.command.svelte` file shows a basic counter demo:
+
+```html
+<script>
+  let count = 0
+
+  function increment() {
+    count += 1
+  }
+</script>
+
+<div
+  class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500"
+>
+  <button
+    class="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70"
+    on:click="{increment}"
+  >
+    Count is {count}
+  </button>
+</div>
+```
+
+![hello](/images/custom-ui-count.png)
+
+## Style
+
+[Tailwind CSS](https://tailwindcss.com) is supported out of the box with no configuration needed.
+
+Of course, you can choose to use plain CSS or CSS-in-JS, but we recommend using Tailwind CSS for its simplicity and efficiency.

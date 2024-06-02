@@ -5,10 +5,8 @@
   "icon": "logo.svg",
   "commands": [
     {
-      "name": "index",
+      "name": "hello",
       "title": "Hello world",
-      "subtitle": "",
-      "description": "",
       "runtime": "worker"
     }
   ]

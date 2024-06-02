@@ -30,7 +30,7 @@ export async function installBuiltinExtension() {
       {
         name: 'create-database',
         title: 'Create Database',
-        icon: '/icons/copy.svg',
+        icon: '/icons/docs.svg',
         subtitle: '',
         description: '',
         code: '',

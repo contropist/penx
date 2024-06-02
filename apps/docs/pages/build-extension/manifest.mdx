@@ -1,3 +1,47 @@
 # Manifrest
 
-wip...
+This page describes the schema for the manifest, manifest.json.
+
+Here is a typical manifest file example:
+
+```json
+{
+  "name": "hello-world",
+  "title": "Hello world",
+  "description": "This is a hello wold demo.",
+  "icon": "logo.svg",
+  "repo": "0xzion/kill-process",
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello world",
+      "icon": "hello.svg",
+      "runtime": "worker"
+    }
+  ]
+}
+```
+
+## Extension properties
+
+Defines the basic information of the extension.
+
+| Property    | Required | Description                                                 |
+| ----------- | -------- | ----------------------------------------------------------- |
+| name        | Yes      | A unique identifier for the extension                       |
+| title       | Yes      | The title of the extension displayed in the Marketplace     |
+| description | Yes      | A brief description of the extension                        |
+| icon        | Yes      | The logo of the extension                                   |
+| repo        | Yes      | The repository of your extension, e.g., 0xzion/kill-process |
+
+## Command properties
+
+Defines the detailed information of each command within the extension.
+
+| Property    | Required | Description                                                          |
+| ----------- | -------- | -------------------------------------------------------------------- |
+| name        | Yes      | A unique identifier for the command                                  |
+| title       | Yes      | The title of the command                                             |
+| description | Yes      | A brief description of the command                                   |
+| icon        | Yes      | The icon of the extension                                            |
+| runtime     | Yes      | The runtime environment for the command, either `worker` or `iframe` |

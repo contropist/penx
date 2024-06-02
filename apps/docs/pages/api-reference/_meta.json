@@ -1,6 +1,4 @@
 {
-  "ui": "User interface",
-  "render": "render",
   "clipboard": "clipboard",
   "http": "Http",
   "runAppleScript": "runAppleScript"

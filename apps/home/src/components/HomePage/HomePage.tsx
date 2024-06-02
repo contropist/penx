@@ -25,12 +25,12 @@ export function HomePage() {
           <Box text={[64, 100, 160]}>Database</Box>
         </Box>
 
-        <Box textLG neutral500 maxW-640 textCenter leadingNormal>
-          An elegant App designed to store things. Help you capture, organize,
-          and store your thoughts, tasks, ideas, and information.
+        <Box text={[18, 20, 24]} maxW-640 textCenter leadingNormal neutral500>
+          Ecosystem for your personal data.
+          <br /> Open-source alternative to Raycast and Alfred
         </Box>
 
-        <Box toCenter gap2 flexWrap>
+        {/* <Box toCenter gap2 flexWrap>
           {tags.map((item) => (
             <Box
               key={item}
@@ -48,7 +48,7 @@ export function HomePage() {
               {item}
             </Box>
           ))}
-        </Box>
+        </Box> */}
 
         {/* <Box
           black
@@ -75,7 +75,7 @@ export function HomePage() {
             // bgGradientX={['brand500', 'fuchsia600']}
             // bgGradientX--hover={['brand400', 'fuchsia500']}
             roundedFull
-            w-300
+            w-320
             onClick={() => {
               window.open(APP_DOWNLOAD_URL)
             }}

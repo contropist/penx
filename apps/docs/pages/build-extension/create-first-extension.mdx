@@ -1,0 +1,86 @@
+# Create First Extension
+
+This a guide to build a minimal extension and debug in PenX.
+
+## Prerequisites
+
+Before write the code, make sure you have the following prerequisites.
+
+- you have [Git](https://git-scm.com) installed.
+- You have [Node.js](https://nodejs.org/en) installed.
+- You are familiar Javascript or TypeScript.
+
+## Clone the sample extension
+
+Clone the sample plugin using Git.
+
+```bash
+git clone git@github.com:penxio/extension-template-minimal.git
+```
+
+## Develop your extension
+
+After cloning the repository, navigate to the project directory and install the dependencies:
+
+```bash
+cd penx-extension-sample
+npm install # install the dependencies
+npm run dev # compile the source code
+```
+
+Running npm run dev will compile the source code and automatically load the sample extension in PenX.
+
+Open the PenX Command palette, and you will see the `Hello world` commands:
+
+![commands](/images/commands-react.png)
+
+## Important files
+
+The project consists of the following key files:
+
+- `manifest.json`
+- `hello.command.ts`
+
+### `manifest.json`
+
+The manifest.json file contains metadata about the project.
+
+```json {8,10}
+{
+  "name": "Hello world",
+  "id": "hello-world",
+  "description": "This is a hello wold demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello world",
+      "runtime": "worker"
+    }
+  ]
+}
+```
+
+The **command name** is associated with the `[commandName].command.ts` file, which is a very important convention.
+
+- hello -> `src/hello.command.ts`
+
+### `hello.command.ts`
+
+The `hello.command.ts` file will render the "Hello World" string:
+
+```ts
+import { MarkdownBuilder, render } from 'penx'
+
+export async function main() {
+  render(new MarkdownBuilder('# Hello world'))
+}
+```
+
+## Test it in PenX
+
+Open Penx and run the `Hello world` command:
+
+![hello-world-sample](/images/hello-world-sample.png)
+
+🎉 Congratulations! You built your first extension successfully.

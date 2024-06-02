@@ -1,13 +1,13 @@
-# Custom UI Solid
+# Custom UI React
 
-This guide walks you through creating a custom UI Command App using [SolidJS](https://www.solidjs.com/).
+This guide walks you through creating a custom UI Command App using [React](https://react.dev/).
 
-## Start with Solid template
+## Start with React template
 
 Clone the sample plugin using Git.
 
 ```bash
-git clone git@github.com:penxio/extension-template-solid.git
+git clone git@github.com:penxio/extension-template-react.git
 ```
 
 ## Develop extension
@@ -15,7 +15,7 @@ git clone git@github.com:penxio/extension-template-solid.git
 After cloning the repository, navigate to the project directory and install the dependencies:
 
 ```bash
-cd penx-extension-solid
+cd penx-extension-react
 npm install # install the dependencies
 npm run dev # compile the source code
 ```
@@ -24,7 +24,7 @@ Running npm run dev will compile the source code and automatically load the samp
 
 Open the PenX Command palette, and you will see two commands:
 
-![commands](/images/commands-solid.png)
+![commands](/images/commands-react.png)
 
 ## Important files
 
@@ -40,22 +40,22 @@ The manifest.json file contains metadata about the project.
 
 ```json {8,14}
 {
-  "name": "extension-template-solid",
-  "id": "extension-template-solid",
+  "name": "extension-template-react",
+  "id": "extension-template-react",
   "description": "This is a custom UI demo.",
   "icon": "logo.svg",
   "commands": [
     {
       "name": "hello",
-      "title": "Hello Solid",
+      "title": "Hello React",
       "runtime": "iframe",
-      "framework": "solid"
+      "framework": "react"
     },
     {
       "name": "count",
-      "title": "Solid Count",
+      "title": "React Count",
       "runtime": "iframe",
-      "framework": "solid"
+      "framework": "react"
     }
   ]
 }
@@ -73,8 +73,8 @@ The `hello.command.tsx` file will render the "Hello World" string:
 ```ts
 export function Main() {
   return (
-    <div class="flex justify-center items-center h-full">
-      <h1 class="text-4xl">Hello World!</h1>
+    <div className="flex justify-center items-center h-full">
+      <h1 className="text-4xl">Hello World!</h1>
     </div>
   )
 }
@@ -87,24 +87,25 @@ export function Main() {
 The `count.command.tsx` file shows a basic counter demo:
 
 ```ts
-import { createSignal } from 'solid-js'
+import { useState } from 'react'
 
 export function Main() {
-  const [count, setCount] = createSignal(0)
+  const [count, setCount] = useState(0)
 
   return (
-    <div class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
+    <div className="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
       <button
-        class="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70 "
+        className="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70 "
         onClick={() => {
-          setCount(count() + 1)
+          setCount(count + 1)
         }}
       >
-        Count is {count()}
+        Count is {count}
       </button>
     </div>
   )
 }
+
 ```
 
 ![hello](/images/custom-ui-count.png)
