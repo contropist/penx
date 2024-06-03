@@ -1,6 +1,6 @@
 {
   "name": "extension-template-svelte",
-  "id": "extension-template-svelte",
+  "title": "Extension Template Svelte",
   "description": "This is a custom UI demo.",
   "icon": "logo.svg",
   "commands": [

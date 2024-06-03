@@ -40,7 +40,7 @@ export default function CliLogin() {
               const user = await mutateAsync()
               const mnemonic = await getMnemonicFromLocal(user.id)
 
-              await fetch('http://127.0.0.1:14159/api/login', {
+              await fetch('http://127.0.0.1:14158/api/login', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function CliLogin() {
                 }),
               }).then((res) => res.json())
 
-              // await ky.post('http://127.0.0.1:14159/api/login', {
+              // await ky.post('http://127.0.0.1:14158/api/login', {
               //   json: {
               //     user: JSON.stringify(user),
               //     mnemonic,

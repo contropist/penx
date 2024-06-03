@@ -1,18 +1,18 @@
 import { db } from '@penx/local-db'
 import { uniqueId } from '@penx/unique-id'
 
-const slug = '$penx_builtin_extension'
+const name = '$penx_builtin_extension'
 
 export async function installBuiltinExtension() {
-  let ext = (await db.getExtensionBySlug(slug))!
+  let ext = (await db.getExtensionByName(name))!
 
   if (ext) return
 
   await db.createExtension({
     id: uniqueId(),
     spaceId: '',
-    slug,
-    name: 'PenX',
+    name,
+    title: 'PenX',
     version: '0.0.0',
     assets: {},
     isDeveloping: false,

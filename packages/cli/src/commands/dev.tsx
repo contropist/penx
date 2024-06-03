@@ -31,7 +31,7 @@ class Command {
   private handleBuildSuccess = async () => {
     const manifest = await getManifest()
 
-    const url = 'http://127.0.0.1:14159/api/upsert-extension'
+    const url = 'http://127.0.0.1:14158/api/upsert-extension'
 
     for (const command of manifest.commands) {
       const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
@@ -50,8 +50,8 @@ class Command {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: `$DEVELOPING-${manifest.id}`,
-          name: manifest.name,
+          name: `$DEVELOPING-${manifest.name}`,
+          title: manifest.title,
           version: manifest.version || '',
           icon: manifest.icon,
           commands: JSON.stringify(manifest.commands),

@@ -21,9 +21,9 @@ export interface IExtension {
 
   spaceId: string
 
-  slug: string
-
   name: string
+
+  title: string
 
   version: string
 

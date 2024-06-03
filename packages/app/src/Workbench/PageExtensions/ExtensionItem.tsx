@@ -20,8 +20,8 @@ export function ExtensionItem({ extension }: ExtensionItemProps) {
   )
   const assets = extension?.assets || {}
 
-  const isBuiltin = extension.slug.startsWith('$penx_builtin_extension')
-  const isDeveloping = extension.slug.startsWith('$DEVELOPING-')
+  const isBuiltin = extension.name.startsWith('$penx_builtin_extension')
+  const isDeveloping = extension.name.startsWith('$DEVELOPING-')
 
   return (
     <Box borderBottom borderNeutral100 pb3>

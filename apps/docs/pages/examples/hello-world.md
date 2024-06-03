@@ -17,8 +17,8 @@ The manifest.json file contains metadata about the project, we create a command 
 
 ```json
 {
-  "name": "Hello world",
-  "id": "hello-world",
+  "name": "hello-world",
+  "title": "Hello world",
   "description": "This is a hello world demo.",
   "icon": "logo.svg",
   "commands": [

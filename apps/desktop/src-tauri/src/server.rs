@@ -18,8 +18,8 @@ pub struct AppState {
 
 #[derive(Clone, serde::Serialize)]
 struct ExtensionInfo {
-    id: String,
     name: String,
+    title: String,
     version: String,
     icon: String,
     assets: String,
@@ -28,8 +28,8 @@ struct ExtensionInfo {
 
 #[derive(Deserialize)]
 struct UpsertExtensionInput {
-    id: String,
     name: String,
+    title: String,
     version: String,
     icon: String,
     assets: String,
@@ -85,8 +85,8 @@ async fn upsert_extension(
     app: web::Data<AppHandle>,
 ) -> HttpResponse {
     let info = ExtensionInfo {
-        id: input.id.to_string(),
         name: input.name.to_string(),
+        title: input.title.to_string(),
         version: input.version.to_string(),
         icon: input.icon.to_string(),
         assets: input.assets.to_string(),
@@ -174,7 +174,7 @@ pub async fn start_server(
             .service(extension_js)
             .service(get_data)
     })
-    .bind(("127.0.0.1", 14159))?
+    .bind(("127.0.0.1", 14158))?
     .run()
     .await
 }

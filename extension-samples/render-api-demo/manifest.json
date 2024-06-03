@@ -1,6 +1,6 @@
 {
-  "name": "Render Api Demo",
-  "id": "render-api-demo",
+  "name": "render-api-demo",
+  "title": "Render Api Demo",
   "description": "",
   "icon": "logo.svg",
   "commands": [

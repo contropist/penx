@@ -11,7 +11,7 @@ export type CommandItem = {
 
 export type Manifest = {
   name: string
-  id: string
+  title: string
   version: string
   description: string
   main: string

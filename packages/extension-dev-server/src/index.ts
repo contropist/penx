@@ -78,7 +78,7 @@ export const devServer = {
 
     console.log('build success!!!!!!!!!')
     const result = await ky
-      .post('http://127.0.0.1:14159/api/upsert-extension', {
+      .post('http://127.0.0.1:14158/api/upsert-extension', {
         json: {
           id: data.id,
           name: data.name,

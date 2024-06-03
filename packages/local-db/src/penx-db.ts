@@ -12,12 +12,12 @@ export class PenxDB extends Dexie {
   constructor() {
     // super('PenxDB')
     super('penx-local')
-    this.version(16).stores({
+    this.version(17).stores({
       // Primary key and indexed props
       space: 'id, name, userId',
       node: 'id, spaceId, databaseId, type, date, [type+spaceId+databaseId], [type+spaceId], [type+databaseId]',
       file: 'id, googleDriveFileId, fileHash',
-      extension: 'id, slug, isDeveloping',
+      extension: 'id, name, isDeveloping',
     })
   }
 
@@ -29,18 +29,18 @@ export class PenxDB extends Dexie {
     return this.extension.get(extensionId)
   }
 
-  getExtensionBySlug = (slug: string) => {
-    return this.extension.where({ slug }).first()
+  getExtensionByName = (name: string) => {
+    return this.extension.where({ name }).first()
   }
 
-  upsertExtension = async (slug: string, data: Partial<IExtension>) => {
-    const ext = await this.extension.where({ slug }).first()
+  upsertExtension = async (name: string, data: Partial<IExtension>) => {
+    const ext = await this.extension.where({ name }).first()
 
     if (!ext) {
       await this.createExtension({
         id: uniqueId(),
         spaceId: '',
-        slug,
+        name,
         isDeveloping: false,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -81,7 +81,7 @@ export class PenxDB extends Dexie {
     const list = await this.extension
       .where({
         spaceId: extension.spaceId!,
-        slug: extension.slug!,
+        name: extension.name!,
       })
       .toArray()
 

@@ -1,6 +1,6 @@
 {
   "name": "extension-template-vue",
-  "id": "extension-template-vue",
+  "title": "Extension Template Vue",
   "description": "This is a custom UI demo.",
   "icon": "logo.svg",
   "commands": [

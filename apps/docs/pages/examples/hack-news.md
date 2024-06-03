@@ -28,8 +28,8 @@ Defines the extension's metadata and commands.
 
 ```json
 {
-  "name": "Hacker News",
-  "id": "hack-news",
+  "name": "hack-news",
+  "title": "Hacker News",
   "version": "1.0.0",
   "author": "0xZion",
   "description": "This is a hack news demo.",

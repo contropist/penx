@@ -47,7 +47,7 @@ export function InstallExtensionButton({ item }: Props) {
           await mutateAsync()
           await refetchExtensions()
           await api.extension.increaseInstallationCount.mutate({
-            uniqueId: manifest.id,
+            name: manifest.id,
           })
         } catch (error) {
           console.log('install error', error)

@@ -314,7 +314,7 @@ model Template {
 model Extension {
     id                String   @id @default(uuid())
     userId            String
-    uniqueId          String   @unique
+    name              String   @unique
     manifest          String   @db.Text
     readme            String   @db.Text
     logo              String
@@ -325,7 +325,7 @@ model Extension {
     updatedAt         DateTime @updatedAt
 
     @@index([userId])
-    @@index([uniqueId])
+    @@index([name])
     @@map("extension")
 }
 

@@ -69,12 +69,12 @@ class Command {
           const manifest = await getManifest()
 
           const canRelease = await this.trpc.extension.canReleaseExtension.query({
-            uniqueId: manifest.id,
+            name: manifest.name,
           })
 
           if (!canRelease) {
             spinner.fail(
-              `"${manifest.id}" is a existed extension id, please use another extension id in your manifest.json`,
+              `"${manifest.name}" is a existed extension name, please use another extension name in your manifest.json`,
             )
             return
           }
@@ -87,7 +87,7 @@ class Command {
           const screenshotsPaths = jetpack.list(screenshotsDir) || []
 
           await this.trpc.extension.upsertExtension.mutate({
-            uniqueId: manifest.id,
+            name: manifest.name,
             manifest: JSON.stringify({
               ...manifest,
               screenshots: screenshotsPaths,
@@ -105,7 +105,7 @@ class Command {
     })
   }
 
-  getReadmeContent(id: string) {
+  getReadmeContent(extensionName: string) {
     try {
       let readmePath = join(process.cwd(), 'README.md')
       if (!jetpack.exists(readmePath)) {
@@ -114,7 +114,7 @@ class Command {
 
       return jetpack.read(readmePath, 'utf8')
     } catch (error) {
-      return `## ${id}`
+      return `## ${extensionName}`
     }
   }
 
@@ -136,14 +136,12 @@ class Command {
     let treeItems: TreeItem[] = []
     const manifest = await getManifest()
 
-    const id = manifest.id
-
     for (const command of manifest.commands) {
       const codePath = join(process.cwd(), 'dist', `${command.name}.command.js`)
       const code = jetpack.read(codePath, 'utf8')
 
       treeItems.push({
-        path: `extensions/${id}/dist/${command.name}.command.js`,
+        path: `extensions/${manifest.name}/dist/${command.name}.command.js`,
         mode: '100644',
         type: 'blob',
         content: code + escAction,
@@ -159,7 +157,7 @@ class Command {
       for (const file of files) {
         if (file.includes('.DS_Store')) continue
         const filePath = join(process.cwd(), 'assets', file)
-        const fileItem = await this.createFileTreeItem(id, filePath, file, 'assets')
+        const fileItem = await this.createFileTreeItem(manifest.name, filePath, file, 'assets')
 
         treeItems.push(fileItem)
       }
@@ -174,28 +172,28 @@ class Command {
       for (const file of files) {
         if (file.includes('.DS_Store')) continue
         const filePath = join(process.cwd(), 'screenshots', file)
-        const fileItem = await this.createFileTreeItem(id, filePath, file, 'screenshots')
+        const fileItem = await this.createFileTreeItem(manifest.name, filePath, file, 'screenshots')
 
         treeItems.push(fileItem)
       }
     }
 
     treeItems.push({
-      path: `extensions/${id}/manifest.json`,
+      path: `extensions/${manifest.name}/manifest.json`,
       mode: '100644',
       type: 'blob',
       content: JSON.stringify(manifest, null, 2),
     })
 
     treeItems.push({
-      path: `extensions/${id}/README.md`,
+      path: `extensions/${manifest.name}/README.md`,
       mode: '100644',
       type: 'blob',
-      content: this.getReadmeContent(id),
+      content: this.getReadmeContent(manifest.name),
     })
 
     treeItems.push({
-      path: `extensions/${id}/installation.json`,
+      path: `extensions/${manifest.name}/installation.json`,
       mode: '100644',
       type: 'blob',
       content: await this.getInstallationContent(),
@@ -214,7 +212,12 @@ class Command {
     return this.baseBranchSha
   }
 
-  async createFileTreeItem(id: string, filePath: string, fileName: string, dirname: string) {
+  async createFileTreeItem(
+    extensionName: string,
+    filePath: string,
+    fileName: string,
+    dirname: string,
+  ) {
     const content = fs.readFileSync(filePath, { encoding: 'base64' })
     const { data } = await this.app.request('POST /repos/{owner}/{repo}/git/blobs', {
       ...this.params,
@@ -223,7 +226,7 @@ class Command {
     })
 
     const item: TreeItem = {
-      path: `extensions/${id}/${dirname}/${fileName}`,
+      path: `extensions/${extensionName}/${dirname}/${fileName}`,
       mode: '100644',
       type: 'blob',
       sha: data.sha,
@@ -235,7 +238,7 @@ class Command {
   private async commit(treeSha: string) {
     const parentSha = this.baseBranchSha
     const manifest = await getManifest()
-    const msg = `Release extension: ${manifest.id}`
+    const msg = `Release extension: ${manifest.name}`
 
     const commit = await this.app.request('POST /repos/{owner}/{repo}/git/commits', {
       ...this.params,

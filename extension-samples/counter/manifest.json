@@ -1,6 +1,6 @@
 {
-  "name": "Counter",
-  "id": "counter",
+  "name": "counter",
+  "title": "Counter",
   "description": "Counter Example",
   "icon": "logo.svg",
   "commands": [

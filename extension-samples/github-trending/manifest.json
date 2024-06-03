@@ -1,6 +1,6 @@
 {
-  "name": "GitHub Trending",
-  "id": "github-trending",
+  "name": "github-trending",
+  "title": "GitHub Trending",
   "description": "GitHub Trending",
   "icon": "logo.svg",
   "commands": [

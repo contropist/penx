@@ -1,6 +1,6 @@
 {
-  "name": "Run apple script",
-  "id": "run-apple-script",
+  "title": "Run apple script",
+  "name": "run-apple-script",
   "description": "",
   "icon": "logo.svg",
   "commands": [

@@ -34,16 +34,16 @@ export const extensionRouter = createTRPCRouter({
   canReleaseExtension: protectedProcedure
     .input(
       z.object({
-        uniqueId: z.string(),
+        name: z.string(),
       }),
     )
     .query(async ({ ctx, input }) => {
       const ext = await ctx.prisma.extension.findUnique({
-        where: { uniqueId: input.uniqueId },
+        where: { name: input.name },
       })
       if (!ext) return true
 
-      if (ext.userId === ctx.token.uid && input.uniqueId === ext.uniqueId) {
+      if (ext.userId === ctx.token.uid && input.name === ext.name) {
         return true
       }
       return false
@@ -52,7 +52,7 @@ export const extensionRouter = createTRPCRouter({
   upsertExtension: publicProcedure
     .input(
       z.object({
-        uniqueId: z.string(),
+        name: z.string(),
         manifest: z.string(),
         readme: z.string(),
         logo: z.string(),
@@ -60,7 +60,7 @@ export const extensionRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const ext = await ctx.prisma.extension.findUnique({
-        where: { uniqueId: input.uniqueId },
+        where: { name: input.name },
       })
 
       if (ext) {
@@ -76,7 +76,7 @@ export const extensionRouter = createTRPCRouter({
         await ctx.prisma.extension.create({
           data: {
             userId: ctx.token.uid,
-            uniqueId: input.uniqueId,
+            name: input.name,
             manifest: input.manifest,
             readme: input.readme,
             logo: input.logo,
@@ -94,12 +94,12 @@ export const extensionRouter = createTRPCRouter({
   increaseInstallationCount: publicProcedure
     .input(
       z.object({
-        uniqueId: z.string(),
+        name: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       const ext = await ctx.prisma.extension.findUnique({
-        where: { uniqueId: input.uniqueId },
+        where: { name: input.name },
       })
 
       if (!ext) return true

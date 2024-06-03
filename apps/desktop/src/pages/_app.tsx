@@ -126,8 +126,8 @@ async function init() {
     code: string
     commands: string
     assets: string
-    id: string
     name: string
+    title: string
     icon: string
     version: string
   }
@@ -142,9 +142,9 @@ async function init() {
 
       // console.log('======payload:', payload)
 
-      await db.upsertExtension(payload.id, {
+      await db.upsertExtension(payload.name, {
         isDeveloping: true,
-        name: payload.name,
+        title: payload.title,
         commands,
         assets,
         icon: payload.icon,

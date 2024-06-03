@@ -9,7 +9,7 @@ export interface ICommandItem {
 
 export interface IManifest {
   name: string
-  id: string
+  title: string
   version: string
   description: string
   author: string
@@ -27,12 +27,12 @@ export class Manifest {
     this.raw = JSON.parse(this._raw || '{}')
   }
 
-  get id() {
-    return this.raw.id
-  }
-
   get name() {
     return this.raw.name
+  }
+
+  get title() {
+    return this.raw.title
   }
 
   get author() {

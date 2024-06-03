@@ -16,13 +16,13 @@ interface ExtensionItemProps {
 export function ExtensionItem({ selected, extension }: ExtensionItemProps) {
   const { activeSpace } = useActiveSpace()
   const { extensions } = useInstalledExtensions()
-  const isInstalled = extensions.find((e) => e.slug === extension.uniqueId)
+  const isInstalled = extensions.find((e) => e.name === extension.name)
 
   async function install() {
     await db.installExtension({
       spaceId: activeSpace.id,
-      slug: extension.uniqueId,
       name: extension.name,
+      title: extension.title,
       description: extension.description!,
       version: extension.version,
     })

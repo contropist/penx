@@ -52,7 +52,7 @@ export function useHandleSelect() {
 
       appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
 
-      const ext = await db.getExtensionBySlug(item.data.extensionSlug)
+      const ext = await db.getExtensionByName(item.data.extensionSlug)
       if (!ext) return
 
       const command = ext.commands.find(
