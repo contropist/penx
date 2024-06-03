@@ -132,7 +132,7 @@ export function useLoadCommands() {
               filters: item.filters,
               runtime: item.runtime,
               commandName: item.name,
-              extensionSlug: cur.slug,
+              extensionSlug: cur.name,
               extensionIcon: cur.assets?.[cur.icon as string],
               isDeveloping: cur.isDeveloping,
             } as ICommandItem['data'],

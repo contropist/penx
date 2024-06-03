@@ -20,7 +20,7 @@ interface ExtensionDetailProps {
 
 export function ExtensionDetail({ item, extensions }: ExtensionDetailProps) {
   const manifest = new Manifest(item.manifest as any)
-  const installed = extensions.find((e) => e.slug === manifest.id)
+  const installed = extensions.find((e) => e.name === manifest.name)
 
   return (
     <Box p4>
@@ -30,7 +30,7 @@ export function ExtensionDetail({ item, extensions }: ExtensionDetailProps) {
             <Box toCenterY gap2 mb3>
               <ListItemIcon icon={item.logo as string} size={36} />
               <Box text2XL fontBlack>
-                {manifest.name}
+                {manifest.title}
               </Box>
             </Box>
             <Box>

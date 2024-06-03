@@ -27,7 +27,7 @@ export function InstallExtensionButton({ item }: Props) {
   const { mutateAsync, isLoading } = useMutation({
     mutationKey: ['extension', item.id],
     mutationFn: async () => {
-      const json = await fetchInstallationJSON(manifest.id)
+      const json = await fetchInstallationJSON(manifest.name)
       if (json) {
         const { id: slug, ...data } = json
         await db.upsertExtension(slug, data as any)
@@ -47,7 +47,7 @@ export function InstallExtensionButton({ item }: Props) {
           await mutateAsync()
           await refetchExtensions()
           await api.extension.increaseInstallationCount.mutate({
-            name: manifest.id,
+            name: manifest.name,
           })
         } catch (error) {
           console.log('install error', error)

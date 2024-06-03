@@ -23,7 +23,7 @@ export function ExtensionItem({
   onSelect,
 }: ExtensionItemProps) {
   const manifest = new Manifest(item.manifest as any)
-  const installed = !!extensions.find((e) => e.slug === manifest.id)
+  const installed = !!extensions.find((e) => e.name === manifest.name)
 
   const { refetch } = useQuery({
     queryKey: ['extension', 'installed'],
@@ -33,7 +33,7 @@ export function ExtensionItem({
   const { mutateAsync, isLoading } = useMutation({
     mutationKey: ['extension', item.id],
     mutationFn: async () => {
-      const json = await fetchInstallationJSON(manifest.id)
+      const json = await fetchInstallationJSON(manifest.name)
       if (json) {
         const { id: slug, ...data } = json
         await db.upsertExtension(slug, data as any)

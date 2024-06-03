@@ -15,7 +15,7 @@
 
 ## Introduction
 
-An elegant App designed to help you capture, organize, and store your thoughts, tasks, ideas, and information.
+Ecosystem for your personal data. Open-source alternative to Raycast and Alfred.
 
 ## Deploy your own
 
@@ -29,6 +29,7 @@ An elegant App designed to help you capture, organize, and store your thoughts, 
 
 ## Primary tech stack
 
+- Tauri
 - Next.js
 - TypeScript
 - tRPC
