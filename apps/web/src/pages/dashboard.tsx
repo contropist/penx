@@ -5,7 +5,7 @@ import { CommonLayout } from '~/layouts/CommonLayout'
 
 export default function DashboardPage() {
   const { data: session } = useSession()
-  return <Dashboard userId={session?.userId as string} />
+  return <Dashboard userId={session?.id as string} />
 }
 
 DashboardPage.Layout = CommonLayout

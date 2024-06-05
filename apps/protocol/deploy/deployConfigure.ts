@@ -36,6 +36,7 @@ const func: DeployFunction = async (hre) => {
   }
 
   console.log('config role end!!!!')
+  console.log('======diamondAddr:', diamondAddr)
 
   /** Config DaoVault role */
   await daoVault.grantRole(ethers.encodeBytes32String('KEEPER_ROLE'), diamondAddr)

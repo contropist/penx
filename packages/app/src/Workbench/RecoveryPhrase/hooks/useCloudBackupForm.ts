@@ -22,7 +22,7 @@ export function useCloudBackupForm() {
   const { data: session } = useSession()
   const { close } = useModalContext()
 
-  const userId = session.userId
+  const userId = session.id
 
   const [loading, setLoading] = useState(false)
   const form = useForm<BackupFormValues>({
@@ -42,7 +42,7 @@ export function useCloudBackupForm() {
 
     let files = await drive.listByName(fileName)
 
-    const mnemonic = await getMnemonicFromLocal(session?.userId!)
+    const mnemonic = await getMnemonicFromLocal(session?.id!)
 
     const encryptedMnemonic = encryptString(mnemonic, password + userId)
 

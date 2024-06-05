@@ -11,7 +11,6 @@ import { trpc } from '@penx/trpc-client'
 import { addressMap } from '@penx/wagmi'
 import { InkBalance } from '../InkBalance'
 import { UsdtBalance } from '../UsdtBalance'
-import { WalletConnectButton } from '../WalletConnectButton'
 import { WalletProfile } from '../WalletProfile'
 import { BountyLogo } from './BountyLogo'
 import { ClaimButton } from './ClaimButton'
@@ -113,11 +112,6 @@ const Task = () => {
             address={data.address || ''}
             status={data.status}
           />
-        )}
-        {!isConnected && (
-          <WalletConnectButton size={48}>
-            Connect wallet to claim
-          </WalletConnectButton>
         )}
       </Box>
     </Box>

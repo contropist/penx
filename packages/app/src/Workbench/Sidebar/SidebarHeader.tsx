@@ -31,9 +31,13 @@ export const SidebarHeader = memo(function SidebarHeader() {
     )
   }
 
-  const image = data.user?.image || ''
-  const name = data.user?.name || ''
-  const email = data.user?.email || ''
+  // const image = data.user?.image || ''
+  // const name = data.user?.name || ''
+  // const email = data.user?.email || ''
+
+  const image = ''
+  const name = ''
+  const email = ''
 
   return (
     <Box data-tauri-drag-region toCenterY gap3 pt4 pl4 pr1 mx--8 toBetween>

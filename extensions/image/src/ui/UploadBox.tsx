@@ -60,7 +60,7 @@ export const UploadBox = ({
     try {
       const fileHash = await calculateSHA256FromFile(file)
       const drive = new GoogleDrive(token?.access_token!)
-      const folderName = `${GOOGLE_DRIVE_FILE_FOLDER_NAME}-${session.userId}`
+      const folderName = `${GOOGLE_DRIVE_FILE_FOLDER_NAME}-${session.id}`
       const parentId = await drive.getOrCreateFolder(folderName)
       const driveFile = await drive.createFile(fileHash, file, parentId)
 

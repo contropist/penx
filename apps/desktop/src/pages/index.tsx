@@ -75,7 +75,7 @@ export default function Home() {
         loading: isSessionLoading,
       }}
     >
-      {session && <InitUserToStore userId={session?.userId} />}
+      {session && <InitUserToStore userId={session?.id} />}
 
       <Box
         relative

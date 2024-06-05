@@ -6,15 +6,17 @@
  * tl;dr - this is where all the tRPC server stuff is created and plugged in.
  * The pieces you will need to use are documented accordingly near the end
  */
+import { AuthTokenClaims, PrivyClient } from '@privy-io/server-auth'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import { initTRPC, TRPCError } from '@trpc/server'
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
-import jwt from 'jsonwebtoken'
-import { Session } from 'next-auth'
-import { getToken } from 'next-auth/jwt'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
 import { prisma } from '@penx/db'
+
+const PRIVY_APP_ID = process.env.NEXT_PUBLIC_PRIVY_APP_ID
+const PRIVY_APP_SECRET = process.env.PRIVY_APP_SECRET
+const client = new PrivyClient(PRIVY_APP_ID!, PRIVY_APP_SECRET!)
 
 type Token = {
   name: string
@@ -38,7 +40,7 @@ type Token = {
  *
  */
 type CreateContextOptions = {
-  session?: Session | null
+  session?: any
   token: Token
 }
 
@@ -67,22 +69,18 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req, res } = opts
 
-  let token = (await getToken({ req })) as any
+  let token: any = undefined
 
-  if (!token) {
-    const authorization = req.headers['authorization'] || ''
+  const authorization = req.headers['authorization'] || ''
 
-    try {
-      const decoded = jwt.verify(
-        authorization,
-        process.env.NEXTAUTH_SECRET!,
-      ) as any
-      token = {
-        ...decoded,
-        uid: decoded.sub,
-      }
-    } catch (error) {}
-  }
+  try {
+    const decoded = await client.verifyAuthToken(authorization)
+
+    token = {
+      ...decoded,
+      uid: decoded.userId,
+    }
+  } catch (error) {}
 
   return createInnerTRPCContext({
     token,

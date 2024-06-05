@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { Session } from 'next-auth'
 import { NextSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import { isServer } from '@penx/constants'
@@ -11,7 +10,6 @@ initFower()
 interface Props<T> extends AppProps<T> {
   Component: AppProps<T>['Component'] & {
     Layout: any
-    session: Session
   }
 }
 

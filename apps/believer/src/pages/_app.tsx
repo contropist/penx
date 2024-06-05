@@ -1,8 +1,5 @@
 import { Fragment, useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
-import { Session } from 'next-auth'
-import { SessionProvider, signIn, signOut } from 'next-auth/react'
-import 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { ToastContainer } from 'uikit'
 import { isServer } from '@penx/constants'
@@ -25,7 +22,6 @@ initFower()
 interface Props<T> extends AppProps<T> {
   Component: AppProps<T>['Component'] & {
     Layout: any
-    session: Session
   }
 }
 
@@ -44,18 +40,16 @@ function MyApp({ Component, pageProps }: Props<any>) {
       />
 
       <ClientOnly>
-        <WalletConnectProvider>
-          <TrpcProvider>
-            {/* <SpeedInsights /> */}
-            <Layout>
-              <Component {...pageProps} />
-              <div id="portal" />
-            </Layout>
-            <ToastContainer position="bottom-right" />
+        <TrpcProvider>
+          {/* <SpeedInsights /> */}
+          <Layout>
+            <Component {...pageProps} />
+            <div id="portal" />
+          </Layout>
+          <ToastContainer position="bottom-right" />
 
-            {/* <Analytics /> */}
-          </TrpcProvider>
-        </WalletConnectProvider>
+          {/* <Analytics /> */}
+        </TrpcProvider>
       </ClientOnly>
     </>
   )

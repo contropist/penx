@@ -36,7 +36,7 @@ export function VersionRestore() {
   const [date, setDate] = useState(new Date())
   const { data } = useSession()
   const { data: token, isLoading } = trpc.github.getTokenByUserId.useQuery({
-    userId: data.userId,
+    userId: data.id,
   })
 
   if (isLoading) {

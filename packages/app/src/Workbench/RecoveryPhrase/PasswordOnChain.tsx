@@ -7,8 +7,6 @@ import { passwordManagerAbi } from '@penx/abi'
 import { encryptString } from '@penx/encryption'
 import { addressMap } from '@penx/wagmi'
 
-// import { WalletConnectButton } from '../WalletConnectButton'
-
 interface Props {
   mnemonic: string
 }
@@ -36,10 +34,6 @@ export const PasswordOnChain: FC<Props> = ({ mnemonic }) => {
       toast.info('Recover phrase failed to upload')
     }
   }
-
-  // if (!isConnected) {
-  //   return <WalletConnectButton></WalletConnectButton>
-  // }
 
   return (
     <Box mt4 toCenterX w-100p>

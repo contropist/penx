@@ -59,7 +59,8 @@ export async function setAuthorizedUser(user: any) {
   await set(PENX_AUTHORIZED_USER, user)
 }
 
-export async function getLocalSession(): Promise<Session | undefined> {
+// export async function getLocalSession(): Promise<Session | undefined> {
+export async function getLocalSession(): Promise<any> {
   try {
     return await get(PENX_SESSION_DATA)
   } catch (error) {
@@ -82,7 +83,7 @@ const spaceKey = (userId: string) => `ACTIVE_SPACE_${userId}`
 export async function getActiveSpaceId(): Promise<string> {
   const session = await getLocalSession()
   if (!session) return ''
-  const id = (await get(spaceKey(session.userId))) as string
+  const id = (await get(spaceKey(session.id))) as string
 
   return id
 }
@@ -91,5 +92,5 @@ export async function setActiveSpaceId(id: string) {
   const session = await getLocalSession()
 
   if (!session) return
-  await set(spaceKey(session.userId), id)
+  await set(spaceKey(session.id), id)
 }

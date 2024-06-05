@@ -23,15 +23,6 @@ const withPWA = NextPWA({
 const config = {
   reactStrictMode: true,
   output: 'standalone',
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/user',
-        permanent: true,
-      },
-    ]
-  },
   experimental: {
     outputFileTracingRoot: path.join(__dirname, '../../'),
   },

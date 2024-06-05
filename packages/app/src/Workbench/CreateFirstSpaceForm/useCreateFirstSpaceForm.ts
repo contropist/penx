@@ -22,7 +22,7 @@ export function useCreateFirstSpaceForm() {
   const { data: session } = useSession()
 
   const onSubmit: SubmitHandler<CreateSpaceValues> = async (data) => {
-    const userId = session?.userId
+    const userId = session?.id
 
     const newSpace = getNewSpace({
       userId,

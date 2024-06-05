@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box } from '@fower/react'
 import { useAccount } from 'wagmi'
-import { WalletConnectButton } from '../WalletConnectButton'
 import { WalletProfile } from '../WalletProfile'
 import { DepositFromVault } from './DepositFromVault'
 import MintInk from './MintInk'
@@ -16,7 +15,6 @@ const Vault = () => {
   return (
     <Box p10>
       <WalletProfile />
-      {!isConnected && <WalletConnectButton />}
       {isConnected && (
         <Box column gap4>
           <VaultInk></VaultInk>

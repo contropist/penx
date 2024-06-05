@@ -1,6 +1,4 @@
 import { Fragment } from 'react'
-import { Session } from 'next-auth'
-import 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { initFower } from '../common/initFower'
 import '../styles/globals.css'
@@ -10,7 +8,6 @@ initFower()
 interface Props<T> extends AppProps<T> {
   Component: AppProps<T>['Component'] & {
     Layout: any
-    session: Session
   }
 }
 

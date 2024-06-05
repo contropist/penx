@@ -21,9 +21,7 @@ export function Main() {
         </Box>
         <Box toCenterY gap2>
           <ClientOnly>
-            <WalletConnectProvider>
-              <InkBalance></InkBalance>
-            </WalletConnectProvider>
+            <InkBalance></InkBalance>
           </ClientOnly>
           <Button variant="outline" colorScheme="black" size="lg" roundedFull>
             Contract in Arbitrum

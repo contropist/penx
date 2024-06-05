@@ -21,7 +21,7 @@ export class AppService {
     spaces: ISpace[]
   }> {
     const session = await getLocalSession()
-    let spaces = await db.listSpaces(session?.userId, session)
+    let spaces = await db.listSpaces(session?.id, session)
     let activeSpace: ISpace
 
     if (session) {

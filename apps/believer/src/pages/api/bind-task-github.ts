@@ -1,6 +1,5 @@
 import { OAuthApp } from '@octokit/oauth-app'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getToken } from 'next-auth/jwt'
 import { Octokit } from 'octokit'
 import { prisma } from '@penx/db'
 import { GithubInfo } from '@penx/model'

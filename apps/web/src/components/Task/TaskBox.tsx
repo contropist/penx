@@ -3,7 +3,6 @@ import { Gem, Wallet } from 'lucide-react'
 import { useAccount } from 'wagmi'
 import { DisconnectButton } from '../DisconnectButton'
 import { Logo } from '../Logo'
-import { WalletConnectButton } from '../WalletConnectButton'
 import { TaskFilter } from './TaskFilter'
 import { TaskHeader } from './TaskHeader'
 import { TaskList } from './TaskList'
@@ -29,25 +28,6 @@ export function TaskBox() {
         </Box>
 
         <Box>
-          {!isConnected && (
-            <WalletConnectButton
-              size={56}
-              rounded2XL
-              colorScheme="white"
-              toBetween
-            >
-              <Wallet />
-              <Box column gap1>
-                <Box textBase fontSemibold>
-                  Login with Wallet
-                </Box>
-                <Box gray800 textXS fontLight>
-                  For web3 users and builders
-                </Box>
-              </Box>
-            </WalletConnectButton>
-          )}
-
           <DisconnectButton />
         </Box>
       </Box>

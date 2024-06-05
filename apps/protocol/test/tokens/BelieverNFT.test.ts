@@ -15,7 +15,7 @@ describe('believerFacet', function () {
     )
   })
 
-  it.only('Register referral code successfully', async () => {
+  it('Register referral code successfully', async () => {
     const code = 'ABCD'
     await f.believerNFT.connect(f.user0).setReferralCode(code)
 
@@ -115,7 +115,7 @@ describe('believerFacet', function () {
     expect(tokenInfo.currentSupply).to.be.equal(currentSupply + 1n)
   })
 
-  it.only('Mint believer NFT failed with self code', async () => {
+  it('Mint believer NFT failed with self code', async () => {
     const { deployer, user1 } = f.accounts
 
     const { currentPrice } = await f.believerNFT.getTokenInfo()

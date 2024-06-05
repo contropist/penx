@@ -6,7 +6,6 @@ import {
   FirstLocalSpaceGenerator,
   RecoveryPhraseLoginProvider,
 } from '@penx/widget'
-import { EarlyAccessCodeProvider } from '~/components/EarlyAccessCode/EarlyAccessCodeProvider'
 import { MnemonicGenerator } from '~/components/MnemonicGenerator/MnemonicGenerator'
 import { CommonLayout } from '~/layouts/CommonLayout'
 
@@ -22,11 +21,9 @@ const OnlineProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <EarlyAccessCodeProvider>
-      <MnemonicGenerator>
-        <RecoveryPhraseLoginProvider>{children}</RecoveryPhraseLoginProvider>
-      </MnemonicGenerator>
-    </EarlyAccessCodeProvider>
+    <MnemonicGenerator>
+      <RecoveryPhraseLoginProvider>{children}</RecoveryPhraseLoginProvider>
+    </MnemonicGenerator>
   )
 }
 
