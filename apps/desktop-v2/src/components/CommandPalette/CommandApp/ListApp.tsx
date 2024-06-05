@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
-import { open } from '@tauri-apps/api/shell'
+import { open } from '@tauri-apps/plugin-shell'
 import { ListJSON } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { Divider } from 'uikit'
@@ -54,7 +54,10 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
                 const defaultAction = item.actions?.[0]
                 if (defaultAction.type === 'OpenInBrowser') {
                   open(defaultAction.url)
-                  const { appWindow } = await import('@tauri-apps/api/window')
+                  const { getCurrent } = await import(
+                    '@tauri-apps/api/WebviewWindow'
+                  )
+                  const appWindow = await getCurrent()
                   appWindow.hide()
                 }
 

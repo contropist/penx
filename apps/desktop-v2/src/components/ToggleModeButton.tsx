@@ -10,7 +10,8 @@ export const ToggleModeButton = ({ ...rest }: Props) => {
   const { isEditor, setMode } = useMode()
 
   async function setWindow() {
-    const { WebviewWindow, appWindow } = await import('@tauri-apps/api/window')
+    const { getCurrent } = await import('@tauri-apps/api/WebviewWindow')
+    const appWindow = await getCurrent()
     // const appWindow = WebviewWindow.getByLabel('main')
 
     if (!appWindow) return

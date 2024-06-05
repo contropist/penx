@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
-import { open } from '@tauri-apps/api/shell'
+import { open } from '@tauri-apps/plugin-shell'
 import {
   DatabaseBackup,
   Hash,

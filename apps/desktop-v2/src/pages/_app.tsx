@@ -2,8 +2,8 @@ import '~/styles/globals.css'
 import '~/styles/command.scss'
 import { useEffect, useState } from 'react'
 import { invoke } from '@tauri-apps/api/core'
-import { register, unregister } from '@tauri-apps/api/globalShortcut'
-import { open } from '@tauri-apps/api/shell'
+import { register, unregister } from '@tauri-apps/plugin-global-shortcut'
+import { open } from '@tauri-apps/plugin-shell'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { ToastContainer } from 'uikit'
@@ -29,8 +29,10 @@ initFower()
 const isDev = process.env.NODE_ENV === 'development'
 
 async function listenForHotkey(shortcut: string) {
-  const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
-
+  const { getCurrent, WebviewWindow } = await import(
+    '@tauri-apps/api/webviewWindow'
+  )
+  const appWindow = await getCurrent()
   await register(shortcut, async () => {
     if (document.hasFocus()) {
       await appWindow.hide()
@@ -47,7 +49,10 @@ async function listenForHotkey(shortcut: string) {
 }
 
 async function hideOnBlur() {
-  const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
+  const { getCurrent, WebviewWindow } = await import(
+    '@tauri-apps/api/webviewWindow'
+  )
+  const appWindow = await getCurrent()
   const mainWindow = WebviewWindow.getByLabel('main')
 
   document.addEventListener('keydown', async (event) => {
@@ -132,7 +137,8 @@ async function init() {
     version: string
   }
 
-  const { appWindow, WebviewWindow } = await import('@tauri-apps/api/window')
+  const { getCurrent } = await import('@tauri-apps/api/WebviewWindow')
+  const appWindow = await getCurrent()
 
   if (appWindow.label === 'main') {
     listen('UPSERT_EXTENSION', async (data) => {

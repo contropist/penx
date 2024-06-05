@@ -22,9 +22,8 @@ export const AddRowButton = ({}: Props) => {
       toCenterY
       gap1
       onClick={async () => {
-        const { WebviewWindow, appWindow } = await import(
-          '@tauri-apps/api/window'
-        )
+        const { getCurrent } = await import('@tauri-apps/api/WebviewWindow')
+        const appWindow = await getCurrent()
         setMode('EDITOR')
 
         await invoke('set_window_properties', {

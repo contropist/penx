@@ -7,7 +7,7 @@ mod util;
 
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 use std::thread;
-use tauri::{LogicalSize, Manager, Runtime, Size, Window, WebviewWindow};
+use tauri::{LogicalSize, Manager, Runtime, Size, WebviewWindow, Window};
 use util::{convert_all_app_icons_to_png, handle_input, open_command};
 use window_shadows::set_shadow;
 use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
@@ -93,6 +93,7 @@ impl<R: Runtime> WindowExt for WebviewWindow<R> {
 
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_shell::init())
