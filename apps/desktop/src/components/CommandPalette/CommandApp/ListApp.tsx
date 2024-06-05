@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
-import { open } from '@tauri-apps/plugin-shell'
+import { open } from '@tauri-apps/api/shell'
 import { ListJSON } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { Divider } from 'uikit'

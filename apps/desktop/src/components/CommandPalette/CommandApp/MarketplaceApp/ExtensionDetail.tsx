@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { open } from '@tauri-apps/plugin-shell'
+import { open } from '@tauri-apps/api/shell'
 import { DownloadCloud } from 'lucide-react'
 import { Divider } from 'uikit'
 import { RouterOutputs } from '@penx/api'
