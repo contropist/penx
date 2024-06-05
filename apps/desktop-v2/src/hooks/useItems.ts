@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { invoke } from '@tauri-apps/api/core'
-import { BaseDirectory, readDir } from '@tauri-apps/api/fs'
+import { BaseDirectory, readDir } from '@tauri-apps/plugin-fs'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
@@ -99,8 +99,8 @@ export function useLoadCommands() {
           input: '',
         }) as Promise<any[]>,
         readDir('appIcons', {
-          dir: BaseDirectory.AppData,
-          recursive: true,
+          baseDir: BaseDirectory.AppData,
+          // recursive: true,
         }),
       ],
     )

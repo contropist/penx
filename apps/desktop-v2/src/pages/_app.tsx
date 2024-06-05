@@ -14,6 +14,7 @@ import { store, StoreProvider } from '@penx/store'
 import { TrpcProvider } from '@penx/trpc-client'
 import '@glideapps/glide-data-grid/dist/index.css'
 import { listen } from '@tauri-apps/api/event'
+import { watch } from '@tauri-apps/plugin-fs'
 import { isProd, isServer } from '@penx/constants'
 import { db } from '@penx/local-db'
 import { setMnemonicToLocal } from '@penx/mnemonic'
@@ -96,12 +97,11 @@ async function hideOnBlur() {
 async function init() {
   console.log('app init............')
 
-  const { platform } = await import('@tauri-apps/api/os')
+  const { platform } = await import('@tauri-apps/plugin-os')
   const platformName = await platform()
   console.log('=====platformName:', platformName)
 
-  if (platformName === 'darwin') {
-    const { watch } = await import('tauri-plugin-fs-watch-api')
+  if (platformName === 'macos') {
     const { appDataDir, homeDir, join } = await import('@tauri-apps/api/path')
     // can also watch an array of paths
     const stopWatching = await watch(
