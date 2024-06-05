@@ -12,6 +12,10 @@
     "resources:default",
     "image:default",
     "menu:default",
-    "tray:default"
+    "tray:default",
+    "fs:default",
+    "shell:default",
+    "os:default",
+    "http:default"
   ]
 }

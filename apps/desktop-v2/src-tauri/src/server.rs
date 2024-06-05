@@ -72,8 +72,7 @@ async fn open_window(input: web::Json<LoginInput>, app: web::Data<AppHandle>) ->
         user: input.user.to_string(),
         mnemonic: input.mnemonic.to_string(),
     };
-
-    let window = app.get_window("main").unwrap();
+    let window = app.get_webview_window("main").unwrap();
     window.emit("DESKTOP_LOGIN", json!(info)).unwrap();
 
     HttpResponse::Ok().json(info)
@@ -93,7 +92,7 @@ async fn upsert_extension(
         commands: input.commands.to_string(),
     };
 
-    let window = app.get_window("main").unwrap();
+    let window = app.get_webview_window("main").unwrap();
     window.emit("UPSERT_EXTENSION", json!(info)).unwrap();
 
     HttpResponse::Ok().json(info)
