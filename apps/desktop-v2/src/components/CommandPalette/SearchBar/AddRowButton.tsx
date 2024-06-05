@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
 import { Plus } from 'lucide-react'
 import { Button } from 'uikit'
 import { db } from '@penx/local-db'

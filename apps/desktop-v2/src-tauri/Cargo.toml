@@ -1,0 +1,51 @@
+[package]
+name = "app"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+rust-version = "1.70"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-beta.17" }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "2.0.0-beta.22" }
+
+actix-web = "4"
+actix-cors = "0.6.1"
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+open = "4.1.0"
+tauri-plugin-clipboard = "2.0.0-beta.1"
+window-shadows = "0.2.2"
+window-vibrancy = "0.4.0"
+auto-launch = "0.4.0"
+rust_search = "2.1.0"
+plist = "1"
+strsim = "0.10.0"
+directories = "4.0.1"
+smartcalc = { git = "https://github.com/ParthJadhav/smartcalc", branch = "stable" }
+chrono-tz = { version = "0.6.1", default-features = false }
+num-format = { version = "0.4", features = ["with-system-locale"] }
+localzone = "0.2.0"
+sys-locale = "0.2.3"
+
+chrono = "0.4"
+objc = "0.2.7"
+
+# MacOS
+[target."cfg(target_os = \"macos\")".dependencies]
+cocoa = "0.24.1"
+objc = "0.2.7"
+
+

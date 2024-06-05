@@ -1,5 +1,5 @@
 import { FowerHTMLProps } from '@fower/react'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
 import { Button } from 'uikit'
 import { IconSwap } from '@penx/icons'
 import { useMode } from '~/hooks/useMode'

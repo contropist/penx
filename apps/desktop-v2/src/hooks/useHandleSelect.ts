@@ -1,6 +1,6 @@
+import { invoke } from '@tauri-apps/api/core'
 import { Body, getClient } from '@tauri-apps/api/http'
 import { open } from '@tauri-apps/api/shell'
-import { invoke } from '@tauri-apps/api/tauri'
 import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'

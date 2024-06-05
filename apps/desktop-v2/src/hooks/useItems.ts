@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { invoke } from '@tauri-apps/api/core'
 import { BaseDirectory, readDir } from '@tauri-apps/api/fs'
-import { invoke } from '@tauri-apps/api/tauri'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
