@@ -5,23 +5,20 @@ export function middleware(request: NextRequest) {
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: http: 'unsafe-inline' ${
-      process.env.NODE_ENV === 'production' ? '' : `'unsafe-eval'`
-    } https://challenges.cloudflare.com;
+      process.env.NODE_ENV === 'production' ? `'unsafe-eval'` : `'unsafe-eval'`
+    };
     style-src 'self' 'nonce-${nonce}';
     img-src 'self' blob: data:;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
     form-action 'self';
-    frame-ancestors 'none';
+    frame-ancestors 'self' https://*.penx.io;
     upgrade-insecure-requests;
-    child-src https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org;
-    frame-src https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://challenges.cloudflare.com;
-    connect-src https://auth.privy.io wss://relay.walletconnect.com wss://relay.walletconnect.org wss://www.walletlink.org https://*.rpc.privy.systems;
-  `
-    .replace(/\s{2,}/g, ' ')
-    .trim()
-
+    child-src 'self' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://umami.penx.io privy.penx.io https://privy.penx.io https://explorer-api.walletconnect.com;
+    frame-src 'self' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://challenges.cloudflare.com https://umami.penx.io https://privy.penx.io https://explorer-api.walletconnect.com;
+    connect-src 'self' https://auth.privy.io wss://relay.walletconnect.com wss://relay.walletconnect.org wss://www.walletlink.org https://*.rpc.privy.systems https://umami.penx.io https://docs.penx.io https://fonts.gstatic.com https://privy.penx.io https://explorer-api.walletconnect.com;
+`
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader
     .replace(/\s{2,}/g, ' ')
@@ -44,24 +41,40 @@ export function middleware(request: NextRequest) {
     contentSecurityPolicyHeaderValue,
   )
 
+  response.headers.set('X-Frame-Options', 'none')
+
+  response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none')
+
+  response.headers.set('Access-Control-Allow-Credentials', 'true')
+  response.headers.set('Access-Control-Allow-Origin', '*')
+  response.headers.set(
+    'Access-Control-Allow-Methods',
+    'GET,DELETE,PATCH,POST,PUT',
+  )
+
+  response.headers.set(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+  )
+
   return response
 }
 
-// export const config = {
-//   matcher: [
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - api (API routes)
-//      * - _next/static (static files)
-//      * - _next/image (image optimization files)
-//      * - favicon.ico (favicon file)
-//      */
-//     {
-//       source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-//       missing: [
-//         { type: 'header', key: 'next-router-prefetch' },
-//         { type: 'header', key: 'purpose', value: 'prefetch' },
-//       ],
-//     },
-//   ],
-// }
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    {
+      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
+    },
+  ],
+}

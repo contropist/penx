@@ -7,6 +7,22 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = {
   reactStrictMode: true,
   output: 'standalone',
+
+  async headers() {
+    return [
+      {
+        // source: '*',
+        source: '/(.*)?', // Matches all pages
+        headers: [
+          {
+            key: 'x-frame-options',
+            value: 'none',
+          },
+        ],
+      },
+    ]
+  },
+
   transpilePackages: [
     '@penx/abi',
     '@penx/api',

@@ -127,13 +127,13 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=optional"
           />
 
-          {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          {/* {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
             <script
               defer
               src="https://umami.penx.io/script.js"
               data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID!}
             ></script>
-          )}
+          )} */}
         </Head>
         <body>
           {/* <div id="logo-loader-wrapper">
