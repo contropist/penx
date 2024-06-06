@@ -15,7 +15,7 @@ export function HomePage() {
           text={[32, 40, 60]}
           maxW-900
           fontBold
-          leadingNone
+          leadingTight
           textCenter
           black
           mt={[80, 120]}
