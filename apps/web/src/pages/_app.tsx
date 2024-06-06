@@ -76,7 +76,7 @@ function MyApp({ Component, pageProps }: Props<any>) {
             appearance: {
               theme: 'light',
               accentColor: '#676FFF',
-              logo: 'https://docs.penx.io/images/logo.png',
+              logo: '/images/logo.png',
             },
             defaultChain: arbitrumSepolia,
             supportedChains: [

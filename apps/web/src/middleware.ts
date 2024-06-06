@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
     upgrade-insecure-requests;
     child-src 'self' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://umami.penx.io privy.penx.io https://privy.penx.io https://explorer-api.walletconnect.com;
     frame-src 'self' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://challenges.cloudflare.com https://umami.penx.io https://privy.penx.io https://explorer-api.walletconnect.com;
-    connect-src 'self' https://auth.privy.io wss://relay.walletconnect.com wss://relay.walletconnect.org wss://www.walletlink.org https://*.rpc.privy.systems https://umami.penx.io https://docs.penx.io https://fonts.gstatic.com https://privy.penx.io https://explorer-api.walletconnect.com;
+    connect-src 'self' https://auth.privy.io wss://relay.walletconnect.com wss://relay.walletconnect.org wss://www.walletlink.org https://*.rpc.privy.systems https://umami.penx.io https://fonts.gstatic.com https://privy.penx.io https://explorer-api.walletconnect.com;
 `
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader
@@ -25,25 +25,29 @@ export function middleware(request: NextRequest) {
     .trim()
 
   const requestHeaders = new Headers(request.headers)
+
   requestHeaders.set('x-nonce', nonce)
-  requestHeaders.set(
-    'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue,
-  )
+
+  // requestHeaders.set(
+  //   'Content-Security-Policy',
+  //   contentSecurityPolicyHeaderValue,
+  // )
 
   const response = NextResponse.next({
     request: {
       headers: requestHeaders,
     },
   })
-  response.headers.set(
-    'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue,
-  )
+
+  // response.headers.set(
+  //   'Content-Security-Policy',
+  //   contentSecurityPolicyHeaderValue,
+  // )
 
   response.headers.set('X-Frame-Options', 'none')
 
   response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none')
+  response.headers.set('Cross-Origin-Embedder-Policy', 'require-corp')
 
   response.headers.set('Access-Control-Allow-Credentials', 'true')
   response.headers.set('Access-Control-Allow-Origin', '*')

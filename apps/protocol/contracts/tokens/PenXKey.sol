@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import { UD60x18, ud, add, mul, ln, unwrap } from "@prb/math/src/UD60x18.sol";
 
+
 contract PenXKey is ERC721, ERC721URIStorage, ERC721Enumerable, ERC721Burnable, Ownable {
   uint256 public _maxTokenId = 0;
 
@@ -30,7 +31,9 @@ contract PenXKey is ERC721, ERC721URIStorage, ERC721Enumerable, ERC721Burnable, 
 
     for (uint256 i = 0; i < amount; i++) {
       // console.log("====getBurnPrice():", getBurnPrice());
+
       _safeTransferETH(msg.sender, getBurnPrice());
+
       uint256 tokenId = tokenOfOwnerByIndex(msg.sender, i);
       _burn(tokenId);
     }
