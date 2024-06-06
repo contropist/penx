@@ -89,11 +89,17 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
 
-          <meta name="twitter:card" content="Your personal database" />
+          <meta
+            name="twitter:card"
+            content="A cross-platform productivity App"
+          />
 
           <meta name="twitter:url" content="https://penx.io" />
           <meta name="twitter:title" content="PenX" />
-          <meta name="twitter:description" content="Your personal database" />
+          <meta
+            name="twitter:description"
+            content="A cross-platform productivity App"
+          />
           <meta
             name="twitter:image"
             content="https://penx.io/images/logo-192.png"
@@ -101,7 +107,10 @@ class MyDocument extends Document {
           <meta name="twitter:creator" content="@coder_zion" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="PenX" />
-          <meta property="og:description" content="Your personal database" />
+          <meta
+            property="og:description"
+            content="A cross-platform productivity App"
+          />
           <meta property="og:site_name" content="PenX" />
           <meta property="og:url" content="https://www.penx.io" />
           <meta

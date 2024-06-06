@@ -24,8 +24,8 @@ function MyApp({ Component, pageProps }: Props<any>) {
       />
 
       <NextSeo
-        title="PenX: Your personal database"
-        description="Your personal database"
+        title="PenX: A cross-platform productivity App"
+        description="PenX is a cross-platform productivity App built on open-source and Web3."
         openGraph={{
           type: 'website',
           locale: 'en_US',

@@ -5,7 +5,7 @@
 
 <h1 style="border-bottom: none">
     <b>PenX</b><br />
-    Your personal database
+    A cross-platform productivity App
     <br>
 </h1>
 
@@ -15,7 +15,7 @@
 
 ## Introduction
 
-Ecosystem for your personal data. Open-source alternative to Raycast and Alfred.
+PenX is a cross-platform productivity App built on open-source and Web3.
 
 ## Deploy your own
 

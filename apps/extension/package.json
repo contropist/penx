@@ -3,7 +3,7 @@
   "displayName": "PenX",
   "version": "0.0.6",
   "private": true,
-  "description": "Your personal database",
+  "description": "A cross-platform productivity App",
   "scripts": {
     "start": "next start",
     "dev": "run-p dev:*",

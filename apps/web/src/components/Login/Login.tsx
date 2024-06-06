@@ -78,7 +78,7 @@ export function Login() {
               Welcome to PenX
             </Box>
             <Box as="p" textCenter mb6 leadingNormal px10 gray500 textBase>
-              Your personal database
+              A cross-platform productivity App
             </Box>
             <Box column gap2>
               <Button

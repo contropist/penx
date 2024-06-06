@@ -10,7 +10,7 @@ export function WalletInfo() {
 
   if (!user) return null
 
-  const { address = '' } = user.wallet!
+  const { address = '' } = user?.wallet || {}
   const shortAddress = address.slice(0, 24) + '...' + address.slice(-4)
   return (
     <Box p6 shadowPopover rounded2XL bgWhite column gap3>

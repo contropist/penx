@@ -53,8 +53,8 @@ function MyApp({ Component, pageProps }: Props<any>) {
       />
 
       <NextSeo
-        title="PenX: Your personal database"
-        description="Your personal database"
+        title="PenX: A cross-platform productivity App"
+        description="A cross-platform productivity App"
       />
 
       <ClientOnly>

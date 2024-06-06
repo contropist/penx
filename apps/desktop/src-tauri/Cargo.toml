@@ -1,7 +1,7 @@
 [package]
 name = "penx"
 version = "0.3.28"
-description = "Your personal database"
+description = "A cross-platform productivity App"
 authors = ["0xZion"]
 license = ""
 repository = ""

@@ -21,13 +21,13 @@ export function HomePage() {
           mt={[80, 120]}
           p0
         >
-          <Box fontLight>Your Personal</Box>
-          <Box text={[64, 100, 160]}>Database</Box>
+          <Box fontLight>Cross-platform</Box>
+          <Box text={[64, 80, 100]}>Productivity App</Box>
         </Box>
 
         <Box text={[18, 20, 24]} maxW-640 textCenter leadingNormal neutral500>
-          Ecosystem for your personal data.
-          <br /> Open-source alternative to Raycast and Alfred
+          PenX is a cross-platform productivity App
+          <br /> built on open-source and Web3.
         </Box>
 
         {/* <Box toCenter gap2 flexWrap>

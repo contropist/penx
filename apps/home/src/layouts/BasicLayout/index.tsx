@@ -42,7 +42,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             roundedFull
             colorScheme="black"
             onClick={() => {
-              window.open('https://app.penx.io/login')
+              window.open('https://app.penx.io')
             }}
           >
             Log in
