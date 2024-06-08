@@ -6,7 +6,7 @@ type Props = {
 }
 
 export const LoginSuccess = ({ user }: Props) => {
-  const name = user?.name || user?.username || user?.email || user?.address
+  const name = user?.name || user?.username || user?.email || user?.privyUser?.google.name
   return (
     <Box flexDirection="column" paddingX={2} paddingY={1}>
       <Box paddingBottom={1}>

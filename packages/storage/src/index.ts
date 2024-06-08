@@ -17,15 +17,12 @@ export interface Session {
 
 type User = {
   id: string
-  address: string | null
   name: string | null
   bio: string | null
   avatar: string | null
-  password: string | null
   roleType: string | null
   github: any
   google: any
-  taskGithub: any
   username: string | null
   email: string | null
   emailVerified: Date | null

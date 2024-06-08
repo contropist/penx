@@ -5,6 +5,6 @@ export async function getHeaders() {
   // const token = await get('PENX_TOKEN')
   const token = await getAccessToken()
   return {
-    Authorization: !token ? '' : token,
+    Authorization: !token ? '' : `privy_${token}`,
   }
 }

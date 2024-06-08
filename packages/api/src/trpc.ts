@@ -10,6 +10,7 @@ import { AuthTokenClaims, PrivyClient } from '@privy-io/server-auth'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import { initTRPC, TRPCError } from '@trpc/server'
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
+import jwt from 'jsonwebtoken'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
 import { prisma } from '@penx/db'
@@ -71,14 +72,24 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   let token: any = undefined
 
-  const authorization = req.headers['authorization'] || ''
+  let authorization = req.headers['authorization'] || ''
 
   try {
-    const decoded = await client.verifyAuthToken(authorization)
+    if (authorization.startsWith('privy_')) {
+      authorization = authorization.replace('privy_', '')
+      const decoded = await client.verifyAuthToken(authorization)
+      const { id } = await prisma.user.findUniqueOrThrow({
+        where: { privyId: decoded.userId },
+        select: { id: true },
+      })
 
-    token = {
-      ...decoded,
-      uid: decoded.userId,
+      token = { ...decoded, uid: id }
+    } else {
+      const decoded = jwt.verify(
+        authorization,
+        process.env.NEXTAUTH_SECRET!,
+      ) as any
+      token = { ...decoded, uid: decoded.sub }
     }
   } catch (error) {}
 

@@ -14,8 +14,11 @@ class Command {
 
   handler = async (args: ArgumentsCamelCase<Args>) => {
     const config = readConfig()
+
     if (config.user && config.token) {
-      console.log('Hi,', chalk.green(`${config.user.name} (@${config.user.email})`))
+      const name = config.user.privyUser?.google?.name || ''
+      const email = config.user.privyUser?.google?.email || ''
+      console.log('Hi,', chalk.green(`${name} (@${email})`))
     } else {
       console.log(
         chalk.yellow('Please login first, try to login by command:'),

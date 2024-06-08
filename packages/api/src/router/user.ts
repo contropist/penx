@@ -22,16 +22,6 @@ export const userRouter = createTRPCRouter({
     return ctx.prisma.user.findFirst()
   }),
 
-  byAddress: protectedProcedure
-    .input(z.object({ address: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const user = await ctx.prisma.user.findUniqueOrThrow({
-        where: { address: input.address },
-      })
-
-      return user
-    }),
-
   // TODO: mode is not support MySQL
   // search: protectedProcedure
   //   .input(z.object({ q: z.string() }))
@@ -53,69 +43,35 @@ export const userRouter = createTRPCRouter({
   //     return users
   //   }),
 
-  selfHostedSignIn: publicProcedure
+  upsertByPrivyUser: protectedProcedure
     .input(
       z.object({
-        username: z.string(),
-        password: z.string(),
+        privyUser: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const username = process.env.SELF_HOSTED_USERNAME as string
-      const password = process.env.SELF_HOSTED_PASSWORD as string
-
-      if (username === input.username && password === input.password) {
-        let user = await ctx.prisma.user.findFirst({
-          where: { username, password },
-        })
-
-        if (!user) {
-          user = await ctx.prisma.user.create({ data: { username, password } })
-        }
-        return user
-      } else {
+      const privyUser = JSON.parse(input.privyUser)
+      const privyId = privyUser?.id
+      if (!privyId) {
         throw new TRPCError({
-          code: 'UNAUTHORIZED',
-          message: 'user not found',
+          code: 'BAD_REQUEST',
+          message: 'privyUser is not valid',
         })
       }
-    }),
 
-  updateSelfHostedPassword: protectedProcedure
-    .input(
-      z.object({
-        username: z.string(),
-        password: z.string(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      const { username, password } = input
-      const newPassword = await hashPassword(password)
-      return ctx.prisma.user.update({
-        where: { id: ctx.token.uid },
-        data: { username, password: newPassword },
-      })
-    }),
+      let user = await ctx.prisma.user.findFirst({ where: { privyId } })
 
-  create: protectedProcedure
-    .input(z.object({ address: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      const { address } = input
-      let user = await ctx.prisma.user.findFirst({ where: { address } })
       if (!user) {
-        user = await ctx.prisma.user.create({ data: { address } })
+        user = await ctx.prisma.user.create({
+          data: { privyId, privyUser },
+        })
+      } else {
+        user = await ctx.prisma.user.update({
+          where: { id: user.id },
+          data: { privyUser },
+        })
       }
       return user
-    }),
-
-  updateAddress: protectedProcedure
-    .input(z.object({ address: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      const { address } = input
-      return ctx.prisma.user.update({
-        where: { id: ctx.token.uid },
-        data: { address },
-      })
     }),
 
   updatePublicKey: protectedProcedure
@@ -181,7 +137,6 @@ export const userRouter = createTRPCRouter({
         console.log('=========deleteAccount:', userId)
 
         // await tx.space.deleteMany({ where: { userId } })
-        await tx.account.deleteMany({ where: { userId } })
         await tx.personalToken.deleteMany({ where: { userId } })
         await tx.syncServer.deleteMany({ where: { userId } })
         await tx.user.delete({ where: { id: userId } })
@@ -218,13 +173,6 @@ export const userRouter = createTRPCRouter({
         data: { github },
       })
     }),
-
-  disconnectTaskGithub: protectedProcedure.mutation(async ({ ctx }) => {
-    return ctx.prisma.user.update({
-      where: { id: ctx.token.uid },
-      data: { taskGithub: {} },
-    })
-  }),
 
   disconnectRepo: protectedProcedure
     .input(z.object({ userId: z.string() }))

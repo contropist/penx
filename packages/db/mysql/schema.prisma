@@ -12,15 +12,14 @@ datasource db {
 
 model User {
     id                 String    @id @default(uuid())
-    address            String?   @unique // wallet address
+    privyId            String    @unique
+    privyUser          Json?
     name               String? // nickname
     bio                String?
     avatar             String?
-    password           String?
     roleType           String?
     github             Json? // github info
     google             Json? // google info
-    taskGithub         Json? // github binding for task
     username           String?
     email              String?   @unique
     emailVerified      DateTime?
@@ -32,8 +31,6 @@ model User {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    accounts   Account[]
-    sessions   Session[]
     spaces     Space[]
     SiteSpace  SiteSpace[]
     SyncServer SyncServer[]
@@ -41,43 +38,8 @@ model User {
     connectedSyncServerId String?
 
     @@index([id])
-    @@index([address])
+    @@index([privyId])
     @@map("user")
-}
-
-model Account {
-    id                       String  @id @default(uuid())
-    userId                   String
-    type                     String
-    provider                 String
-    providerAccountId        String
-    refresh_token            String?
-    access_token             String?
-    refresh_token_expires_in Int?
-    expires_at               Int?
-    token_type               String?
-    scope                    String?
-    id_token                 String?
-    session_state            String?
-    oauth_token_secret       String?
-    oauth_token              String?
-
-    user User @relation(fields: [userId], references: [id])
-
-    @@unique([provider, providerAccountId])
-    @@index([userId])
-    @@map("account")
-}
-
-model Session {
-    id           String   @id @default(uuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id])
-
-    @@index([userId])
-    @@map("session")
 }
 
 model VerificationToken {
@@ -99,25 +61,6 @@ model PersonalToken {
     updatedAt   DateTime? @updatedAt
 
     @@map("personal_token")
-}
-
-model Task {
-    id          String    @id @default(uuid())
-    userId      String
-    title       String
-    status      String
-    description String?
-    tags        String?
-    figmaUrl    String?
-    issueUrl    String?
-    prUrl       String?
-    usdReward   Int
-    tokenReward Int
-    claimStage  String
-    createdAt   DateTime? @default(now())
-    updatedAt   DateTime? @updatedAt
-
-    @@map("task")
 }
 
 model Bounty {

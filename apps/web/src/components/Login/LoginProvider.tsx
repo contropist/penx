@@ -3,6 +3,7 @@ import { Box } from '@fower/react'
 import { useLogin, usePrivy } from '@privy-io/react-auth'
 import { useRouter } from 'next/router'
 import { useHideLogoLoader } from '@penx/hooks'
+import { api } from '@penx/trpc-client'
 import { Login } from './Login'
 
 interface Props {}
@@ -14,7 +15,7 @@ export function LoginProvider({ children }: PropsWithChildren<Props>) {
   useHideLogoLoader()
 
   const { login } = useLogin({
-    onComplete: (
+    onComplete: async (
       user,
       isNewUser,
       wasAlreadyAuthenticated,
@@ -23,13 +24,15 @@ export function LoginProvider({ children }: PropsWithChildren<Props>) {
     ) => {
       console.log(
         '=============>>>>>>',
-        user,
+        user.wallet?.address,
         isNewUser,
         wasAlreadyAuthenticated,
         loginMethod,
         linkedAccount,
       )
-      // push('/cli-login')
+      await api.user.upsertByPrivyUser.mutate({
+        privyUser: JSON.stringify(user),
+      })
       // Any logic you'd like to execute if the user is/becomes authenticated while this
       // component is mounted
     },

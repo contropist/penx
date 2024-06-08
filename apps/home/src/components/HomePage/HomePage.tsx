@@ -36,7 +36,7 @@ export function HomePage() {
 
         <Box text={[18, 20, 24]} maxW-640 textCenter leadingNormal neutral500>
           PenX is a cross-platform productivity App
-          <br /> built on open-source and Web3.
+          <br /> built on open-source and Web3
         </Box>
 
         {/* <Box toCenter gap2 flexWrap>
