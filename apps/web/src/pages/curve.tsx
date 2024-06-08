@@ -14,6 +14,7 @@ import {
 import { log } from 'mathjs'
 import { Button, Input } from 'uikit'
 import { ClientOnly } from '@penx/widget'
+import { CommonLayout } from '~/layouts/CommonLayout'
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +30,7 @@ function price(x: number) {
   return 0.2 * log(0.01 * x + 1) + 0.1
 }
 
-function PageCurve() {
+function Page() {
   const ref = useRef<HTMLInputElement>()
   const [value, setValue] = useState(1000)
   const arr = Array(value)
@@ -85,4 +86,6 @@ function PageCurve() {
   )
 }
 
-export default PageCurve
+export default Page
+
+Page.Layout = CommonLayout

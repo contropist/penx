@@ -15,7 +15,7 @@ export function UserCenter() {
         <Box column gap8 w-360>
           <WalletInfo />
           <ExportPrivateKey />
-          <LinkAccount />
+          {/* <LinkAccount /> */}
         </Box>
         <Box column gap8 w-360>
           <MemberKeys />

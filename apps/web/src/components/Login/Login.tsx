@@ -1,16 +1,10 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import {
-  ConnectedWallet,
-  useLogin,
-  usePrivy,
-  useWallets,
-} from '@privy-io/react-auth'
-import { useRouter } from 'next/router'
+import { ConnectedWallet, usePrivy, useWallets } from '@privy-io/react-auth'
 import { createPublicClient, createWalletClient, custom, http } from 'viem'
-import { arbitrumSepolia, base } from 'viem/chains'
+import { arbitrumSepolia } from 'viem/chains'
 import { useAccount, useReadContract, useWriteContract } from 'wagmi'
-import { Button, ToastContainer } from 'uikit'
+import { Button } from 'uikit'
 import { believerNftAbi } from '@penx/abi'
 import { useHideLogoLoader } from '@penx/hooks'
 import { TrpcProvider } from '@penx/trpc-client'
@@ -18,36 +12,14 @@ import { addressMap } from '@penx/wagmi'
 import { Logo } from '~/components/Logo'
 import { TermsOfService } from './TermsOfService'
 
-export function Login() {
-  const { push } = useRouter()
+interface Props {
+  login: () => void
+}
+
+export function Login({ login }: Props) {
   const { ready, authenticated, user, getAccessToken } = usePrivy()
 
-  const { login } = useLogin({
-    onComplete: (
-      user,
-      isNewUser,
-      wasAlreadyAuthenticated,
-      loginMethod,
-      linkedAccount,
-    ) => {
-      console.log(
-        user,
-        isNewUser,
-        wasAlreadyAuthenticated,
-        loginMethod,
-        linkedAccount,
-      )
-      // Any logic you'd like to execute if the user is/becomes authenticated while this
-      // component is mounted
-    },
-    onError: (error) => {
-      console.log(error)
-      // Any logic you'd like to execute after a user exits the login flow or there is an error
-    },
-  })
   const disableLogin = !ready || (ready && authenticated)
-
-  // console.log('======authenticated:', authenticated, 'user:', user)
 
   useHideLogoLoader()
 
@@ -87,8 +59,10 @@ export function Login() {
                   w-320
                   textLG
                   variant="outline"
-                  colorScheme="gray900"
-                  opacity-60--hover
+                  colorScheme="zinc900"
+                  // opacity-60--hover
+                  bgZinc900--dark--hover
+                  white--dark--hover
                   disabled={disableLogin}
                   onClick={login}
                 >
