@@ -114,10 +114,10 @@ function SellKey() {
 
 export function MemberKeys() {
   return (
-    <Box p6 shadowPopover rounded2XL bgWhite column gap4>
+    <Box p6 dashboardCard rounded2XL bgWhite column gap4>
       <Box toBetween toCenterY>
         <Box toCenterY gap1>
-          <Gem size={24} />
+          <Gem size={20} />
           <Box>My Member Keys</Box>
         </Box>
         <MyKeys />

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { Box } from '@fower/react'
 import {
   ConnectedWallet,
@@ -15,7 +15,6 @@ import { believerNftAbi } from '@penx/abi'
 import { useHideLogoLoader } from '@penx/hooks'
 import { TrpcProvider } from '@penx/trpc-client'
 import { addressMap } from '@penx/wagmi'
-import { ClientOnly } from '@penx/widget'
 import { Logo } from '~/components/Logo'
 import { TermsOfService } from './TermsOfService'
 
@@ -58,55 +57,61 @@ export function Login() {
 
   return (
     <TrpcProvider>
-      <Box column h-100vh>
-        <Box mx-auto py8 toCenter>
-          <Logo to="/" />
+      <Box toLeft h-100vh black bgWhite bgZinc900--dark>
+        <Box column flex-2 toBetween px-60 py-40>
+          <Box>
+            <Logo to="/" />
+          </Box>
+          <Box>{`"A cross-platform productivity App built on open-source and Web3."`}</Box>
         </Box>
-        <Box column flex-1 toCenter>
-          <Box
-            toCenter
-            py10
-            rounded3XL
-            mx-auto
-            bgWhite
-            column
-            mt--200
-            // border
-            w={['100%', '100%', 480]}
-          >
-            <Box as="h1" fontBold>
-              Welcome to PenX
-            </Box>
-            <Box as="p" textCenter mb6 leadingNormal px10 gray500 textBase>
-              A cross-platform productivity App
-            </Box>
-            <Box column gap2>
-              <Button
-                size={56}
-                w-320
-                textLG
-                variant="outline"
-                colorScheme="black"
-                disabled={disableLogin}
-                onClick={login}
-              >
-                Sign up to PenX
-              </Button>
+        <Box flex-3 toCenterY bgWhite--dark black--dark>
+          <Box column flex-1 toCenter>
+            <Box
+              toCenter
+              py10
+              rounded3XL
+              mx-auto
+              column
+              // border
+              w={['100%', '100%', 480]}
+            >
+              <Box as="h1" fontBold>
+                Welcome to PenX
+              </Box>
+              <Box as="p" textCenter mb6 leadingNormal px10 gray500 textBase>
+                A cross-platform productivity App
+              </Box>
+              <Box column gap4>
+                <Button
+                  size={56}
+                  w-320
+                  textLG
+                  variant="outline"
+                  colorScheme="gray900"
+                  opacity-60--hover
+                  disabled={disableLogin}
+                  onClick={login}
+                >
+                  Sign up to PenX
+                </Button>
 
-              <Button
-                size={56}
-                w-320
-                textLG
-                textBase
-                colorScheme="black"
-                disabled={disableLogin}
-                onClick={login}
-              >
-                Sign in to existing account
-              </Button>
-            </Box>
+                <Button
+                  size={56}
+                  w-320
+                  textLG
+                  textBase
+                  colorScheme="gray900"
+                  bgZinc900--dark
+                  opacity-90--hover
+                  disabled={disableLogin}
+                  onClick={login}
+                >
+                  Sign in to existing account
+                </Button>
+              </Box>
 
-            <TermsOfService />
+              <TermsOfService />
+            </Box>
           </Box>
         </Box>
       </Box>

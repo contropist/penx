@@ -15,7 +15,7 @@ export function ExportPrivateKey() {
   return (
     <Box
       p6
-      shadowPopover
+      dashboardCard
       // shadow
       rounded2XL
       bgWhite
@@ -23,7 +23,7 @@ export function ExportPrivateKey() {
       gap3
     >
       <Box toCenterY gap1>
-        <Key size={24} />
+        <Key size={20} />
         <Box>Export my wallet</Box>
       </Box>
       <Box neutral400 textSM>
@@ -31,8 +31,8 @@ export function ExportPrivateKey() {
       </Box>
 
       <Button
-        colorScheme="white"
-        brand500--i
+        variant="outline"
+        colorScheme="brand500"
         fontSemibold
         onClick={exportWallet}
         disabled={!isAuthenticated || !hasEmbeddedWallet}
