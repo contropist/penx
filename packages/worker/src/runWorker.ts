@@ -1,4 +1,4 @@
-import { createDir, exists, writeTextFile } from '@tauri-apps/api/fs'
+import { exists, writeTextFile } from '@tauri-apps/plugin-fs'
 import { get } from 'idb-keyval'
 import { toast } from 'uikit'
 import {
@@ -80,27 +80,27 @@ export function runWorker() {
       }
     }
 
-    if (
-      typeof event.data !== 'number' &&
-      event.data.type === WorkerEvents.START_LOCAL_BACKUP
-    ) {
-      let path = await get(LOCAL_AUTO_BACKUP_DIR)
+    //   if (
+    //     typeof event.data !== 'number' &&
+    //     event.data.type === WorkerEvents.START_LOCAL_BACKUP
+    //   ) {
+    //     let path = await get(LOCAL_AUTO_BACKUP_DIR)
 
-      try {
-        const nodes = event.data.nodes || []
-        const { resolve } = await import('@tauri-apps/api/path')
-        const dir = await resolve(path)
+    //     try {
+    //       const nodes = event.data.nodes || []
+    //       const { resolve } = await import('@tauri-apps/api/path')
+    //       const dir = await resolve(path)
 
-        if (!(await exists(dir))) {
-          await createDir(dir, { recursive: true })
-        }
+    //       if (!(await exists(dir))) {
+    // await createDir(dir, { recursive: true })
+    //       }
 
-        const filePath = await resolve(path + `/all-${Date.now()}.json`)
-        await writeTextFile(filePath, JSON.stringify(nodes, null, 2))
-      } catch (error) {
-        console.log('error======:', error)
-      }
-    }
+    //       const filePath = await resolve(path + `/all-${Date.now()}.json`)
+    //       await writeTextFile(filePath, JSON.stringify(nodes, null, 2))
+    //     } catch (error) {
+    //       console.log('error======:', error)
+    //     }
+    //   }
   }
 
   worker.postMessage(WorkerEvents.START_POLLING)

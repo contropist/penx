@@ -30,7 +30,7 @@ import { RecoveryPhrase } from './RecoveryPhrase/RecoveryPhrase'
 import { RowModal } from './RowModal'
 import { AccountSettings } from './Settings/AccountSettings/AccountSettings'
 import { GoogleBackup } from './Settings/Backup/GoogleBackup'
-import { LocalBackup } from './Settings/LocalBackup/LocalBackup'
+// import { LocalBackup } from './Settings/LocalBackup/LocalBackup'
 import { PageSettings } from './Settings/PageSettings/PageSettings'
 import { SettingsModal } from './Settings/SettingsModal/SettingsModal'
 import { Sidebar } from './Sidebar/Sidebar'
@@ -130,11 +130,11 @@ export const Workbench = () => {
                     <RecoveryPhrase />
                   </Box>
                 )}
-                {name === 'LOCAL_BACKUP' && (
+                {/* {name === 'LOCAL_BACKUP' && (
                   <Box p5>
                     <LocalBackup />
                   </Box>
-                )}
+                )} */}
                 {name === 'WEB3_PROFILE' && <Web3Profile />}
                 {name === 'TASK_BOARD' && <TaskBoard />}
               </Box>

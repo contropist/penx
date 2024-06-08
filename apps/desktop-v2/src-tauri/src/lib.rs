@@ -134,6 +134,7 @@ pub fn run() {
         //     _ => {}
         // })
         .setup(|mut app| {
+            println!("Hello from setup!");
             let handle = app.handle();
             let conn = Connection::open_in_memory();
 
