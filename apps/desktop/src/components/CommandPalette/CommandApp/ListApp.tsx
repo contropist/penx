@@ -1,6 +1,7 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
-import { open } from '@tauri-apps/api/shell'
+import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
+import { open } from '@tauri-apps/plugin-shell'
 import { ListJSON } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { Divider } from 'uikit'
@@ -17,6 +18,7 @@ interface ListAppProps {
 export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   const { value, setValue } = useValue()
   const { items, isShowingDetail, filtering, titleLayout } = component
+
   const currentItem = items.find((item) => item.title === value)!
   const dataList = currentItem?.detail?.items || []
   const { search } = useSearch()
@@ -29,7 +31,6 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
           .toLowerCase()
           .includes(search.toLowerCase())
       })
-
   useEffect(() => {
     const find = component.items.find((item) => item.title === value)
     if (!find) {
@@ -54,10 +55,9 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
                 const defaultAction = item.actions?.[0]
                 if (defaultAction.type === 'OpenInBrowser') {
                   open(defaultAction.url)
-                  const { appWindow } = await import('@tauri-apps/api/window')
+                  const appWindow = getCurrent()
                   appWindow.hide()
                 }
-
                 if (defaultAction.type === 'CopyToClipboard') {
                   await clipboard.writeText(defaultAction.content)
                 }
@@ -73,7 +73,6 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   if (!isShowingDetail) {
     return listJSX
   }
-
   return (
     <Box toLeft overflowHidden absolute top0 bottom0 left0 right0>
       {listJSX}

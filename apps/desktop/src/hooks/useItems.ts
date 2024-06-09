@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { BaseDirectory, readDir } from '@tauri-apps/api/fs'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
+import { BaseDirectory, readDir } from '@tauri-apps/plugin-fs'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
@@ -91,103 +91,108 @@ export function useCommands() {
 
 export function useLoadCommands() {
   return useQuery(['commands'], async () => {
-    const [extensions, databases, applicationsRes, entries] = await Promise.all(
-      [
+    try {
+      // const [extensions, databases, applicationsRes, entries] =
+      const [extensions, databases, applicationsRes] = await Promise.all([
         db.listExtensions(),
         db.listDatabases(),
         invoke('handle_input', {
           input: '',
         }) as Promise<any[]>,
-        readDir('appIcons', {
-          dir: BaseDirectory.AppData,
-          recursive: true,
-        }),
-      ],
-    )
+        // readDir('appIcons', {
+        //   baseDir: BaseDirectory.AppData,
+        //   // recursive: true,
+        // }),
+      ])
 
-    const commands = extensions.reduce((acc, cur) => {
-      return [
-        ...acc,
-        ...cur.commands.map<ICommandItem>((item) => {
-          function getIcon() {
-            const defaultIcon = cur.icon ? cur.assets?.[cur.icon] : ''
-            if (!item.icon) return defaultIcon
+      const commands = extensions.reduce((acc, cur) => {
+        return [
+          ...acc,
+          ...cur.commands.map<ICommandItem>((item) => {
+            function getIcon() {
+              const defaultIcon = cur.icon ? cur.assets?.[cur.icon] : ''
+              if (!item.icon) return defaultIcon
 
-            if (item.icon?.startsWith('/')) return item.icon
+              if (item.icon?.startsWith('/')) return item.icon
 
-            const commandIcon = cur.assets?.[item.icon]
-            return commandIcon || defaultIcon
-          }
+              const commandIcon = cur.assets?.[item.icon]
+              return commandIcon || defaultIcon
+            }
 
-          return {
+            return {
+              type: 'list-item',
+              title: item.title,
+              subtitle: cur.name,
+              icon: getIcon(),
+              keywords: [],
+              data: {
+                type: 'Command',
+                alias: item.alias,
+                assets: cur.assets,
+                filters: item.filters,
+                runtime: item.runtime,
+                commandName: item.name,
+                extensionSlug: cur.name,
+                extensionIcon: cur.assets?.[cur.icon as string],
+                isDeveloping: cur.isDeveloping,
+              } as ICommandItem['data'],
+            } as ICommandItem
+          }),
+        ]
+      }, [] as ICommandItem[])
+
+      const databaseItems = databases.reduce((acc, item) => {
+        const node = new Node(item)
+        if (node.isSpecialDatabase) return acc
+        return [
+          ...acc,
+          {
             type: 'list-item',
-            title: item.title,
-            subtitle: cur.name,
-            icon: getIcon(),
+            title: node.tagName,
+            subtitle: '',
+            icon: {
+              value: '#',
+              bg: node.tagColor,
+            },
             keywords: [],
             data: {
-              type: 'Command',
-              alias: item.alias,
-              assets: cur.assets,
-              filters: item.filters,
-              runtime: item.runtime,
-              commandName: item.name,
-              extensionSlug: cur.name,
-              extensionIcon: cur.assets?.[cur.icon as string],
-              isDeveloping: cur.isDeveloping,
+              alias: item.props.commandAlias,
+              type: 'Database',
+              database: item,
             } as ICommandItem['data'],
-          } as ICommandItem
-        }),
-      ]
-    }, [] as ICommandItem[])
+          } as ICommandItem,
+        ]
+      }, [] as ICommandItem[])
 
-    const databaseItems = databases.reduce((acc, item) => {
-      const node = new Node(item)
-      if (node.isSpecialDatabase) return acc
-      return [
-        ...acc,
-        {
-          type: 'list-item',
-          title: node.tagName,
-          subtitle: '',
-          icon: {
-            value: '#',
-            bg: node.tagColor,
-          },
-          keywords: [],
-          data: {
-            alias: item.props.commandAlias,
-            type: 'Database',
-            database: item,
-          } as ICommandItem['data'],
-        } as ICommandItem,
-      ]
-    }, [] as ICommandItem[])
+      const applicationPaths = (applicationsRes[0] as string[]) || []
 
-    const applicationPaths = (applicationsRes[0] as string[]) || []
+      const applicationItems = applicationPaths.reduce((acc, item) => {
+        const appName = getFileName(item).replace(/.app$/, '')
 
-    const applicationItems = applicationPaths.reduce((acc, item) => {
-      const appName = getFileName(item).replace(/.app$/, '')
+        return [
+          ...acc,
+          {
+            type: 'list-item',
+            title: appName,
+            subtitle: '',
+            icon: appName,
+            keywords: [],
+            data: {
+              type: 'Application',
+              applicationPath: item,
+              isApplication: true,
+            } as ICommandItem['data'],
+          } as ICommandItem,
+        ]
+      }, [] as ICommandItem[])
 
-      return [
-        ...acc,
-        {
-          type: 'list-item',
-          title: appName,
-          subtitle: '',
-          icon: appName,
-          keywords: [],
-          data: {
-            type: 'Application',
-            applicationPath: item,
-            isApplication: true,
-          } as ICommandItem['data'],
-        } as ICommandItem,
-      ]
-    }, [] as ICommandItem[])
+      return [...commands, ...databaseItems, ...applicationItems]
+      // return [...commands, ...databaseItems]
+    } catch (error) {
+      console.log('==============error:', error)
 
-    return [...commands, ...databaseItems, ...applicationItems]
-    // return [...commands, ...databaseItems]
+      return []
+    }
   })
 }
 

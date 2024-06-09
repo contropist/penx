@@ -1,6 +1,7 @@
 import { Box } from '@fower/react'
 import { Button, Spinner } from 'uikit'
-import { Logo } from '@penx/widget'
+
+// import { Logo } from '@penx/widget'
 
 interface DesktopWelcomeProps {
   isLoading: boolean
@@ -17,7 +18,7 @@ export function DesktopWelcome({
           Welcome to
         </Box>
 
-        <Logo></Logo>
+        {/* <Logo></Logo> */}
       </Box>
       <Box data-tauri-drag-region text4XL toCenterY gap2>
         <Box data-tauri-drag-region fontLight>

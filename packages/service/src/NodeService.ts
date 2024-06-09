@@ -162,7 +162,7 @@ export class NodeService {
       store.node.setFirstActiveNodes(newNode)
     }
 
-    await store.sync.pushToCloud()
+    // await store.sync.pushToCloud()
   }
 
   saveOutlinerEditor = async (
@@ -188,7 +188,7 @@ export class NodeService {
       store.node.setFirstActiveNodes(node)
     }
 
-    await store.sync.pushToCloud()
+    // await store.sync.pushToCloud()
   }
 
   saveBlockNodes = async (parentId: string, elements: any[]) => {

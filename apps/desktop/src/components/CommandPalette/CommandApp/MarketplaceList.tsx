@@ -1,6 +1,5 @@
 import SVG from 'react-inlinesvg'
 import { Box, css } from '@fower/react'
-import Image from 'next/image'
 import { Button } from 'uikit'
 import { Manifest } from '@penx/model'
 
@@ -16,7 +15,8 @@ export function ExtensionIcon({ icon }: ItemIconProps) {
 
   if (icon.startsWith('/')) {
     return (
-      <Image
+      <Box
+        as="img"
         src={icon}
         alt=""
         width={size}

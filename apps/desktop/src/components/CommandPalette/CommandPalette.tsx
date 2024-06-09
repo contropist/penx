@@ -113,7 +113,6 @@ export const CommandPalette = () => {
         />
       )}
       {!isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
-
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&
           currentCommand &&
@@ -164,11 +163,13 @@ export const CommandPalette = () => {
               onSelect={(item) => handleSelect(item)}
             />
 
+            {/* Support databases in future  */}
+            {/* 
             <ListGroup
               heading="Databases"
               items={databaseItems}
               onSelect={(item) => handleSelect(item)}
-            />
+            /> */}
 
             <ListGroup
               heading="Applications"
@@ -178,7 +179,6 @@ export const CommandPalette = () => {
           </StyledCommandList>
         )}
       </Box>
-
       {!isIframe && <CommandPaletteFooter footerHeight={footerHeight} />}
     </StyledCommand>
   )

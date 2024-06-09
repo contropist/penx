@@ -1,6 +1,7 @@
-import { Body, getClient } from '@tauri-apps/api/http'
-import { open } from '@tauri-apps/api/shell'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
+import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
+import { fetch } from '@tauri-apps/plugin-http'
+import { open } from '@tauri-apps/plugin-shell'
 import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
@@ -39,7 +40,7 @@ export function useHandleSelect() {
       setSearch('')
       await invoke('open_command', { path: applicationPath })
 
-      const { appWindow } = await import('@tauri-apps/api/window')
+      const appWindow = getCurrent()
       await appWindow.hide()
     }
 
@@ -135,15 +136,16 @@ export function useHandleSelect() {
         }
 
         if (event.data.type === EventType.HttpRequestInited) {
-          const client = await getClient()
+          // const client = await getClient()
           const { json, ...options } = event.data.options
 
-          if (json) {
-            options.body = Body.json(json)
-          }
+          // if (json) {
+          //   options.body = Body.json(json)
+          // }
 
-          const response = await client.request(options)
-
+          // const response = await client.request(options)
+          // TODO: test this, not sure if options and response has the same structure
+          const response = await fetch(options)
           event.ports[0].postMessage({
             type: EventType.HttpRequestResult,
             result: response,

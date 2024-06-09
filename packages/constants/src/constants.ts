@@ -1,4 +1,12 @@
-export const DEFAULT_THEME = process.env.NEXT_PUBLIC_DEFAULT_THEME || 'dark'
+const env: Record<string, string> = (() => {
+  if (typeof process !== 'undefined') return process.env
+  if (typeof (import.meta as any).env !== 'undefined') {
+    return (import.meta as any)?.env
+  }
+  return {}
+})()
+
+export const DEFAULT_THEME = env?.NEXT_PUBLIC_DEFAULT_THEME || 'dark'
 export const FOWER_THEME_MODE = 'FOWER_THEME_MODE'
 
 export const IS_DB_OPENED = '__IS_DB_OPENED__'
@@ -9,7 +17,7 @@ export const isBrowser = typeof window !== 'undefined'
 
 export const isNavigator = typeof navigator !== 'undefined'
 
-export const isProd = process.env.NODE_ENV === 'production'
+export const isProd = env.NODE_ENV === 'production'
 
 export const PENX_AUTHORIZED_USER = 'PENX_AUTHORIZED_USER'
 
@@ -38,19 +46,19 @@ export const DATABASE_TOOLBAR_HEIGHT = 42
 
 export const SIDEBAR_WIDTH = 260
 
-export const isSelfHosted = process.env.NEXT_PUBLIC_DEPLOY_MODE !== 'PLATFORM'
+export const isSelfHosted = env.NEXT_PUBLIC_DEPLOY_MODE !== 'PLATFORM'
 
-export const isSyncEnabled = process.env.NEXT_PUBLIC_IS_SYNC_ENABLED === 'true'
+export const isSyncEnabled = env.NEXT_PUBLIC_IS_SYNC_ENABLED === 'true'
 
-export const NEXTAUTH_PROVIDERS = process.env.NEXT_PUBLIC_NEXTAUTH_PROVIDERS
+export const NEXTAUTH_PROVIDERS = env.NEXT_PUBLIC_NEXTAUTH_PROVIDERS
 
-export const PLATFORM =
-  process.env.NEXT_PUBLIC_PLATFORM || process.env.PLASMO_PUBLIC_PLATFORM
+export const PLATFORM = env.NEXT_PUBLIC_PLATFORM || env.PLASMO_PUBLIC_PLATFORM
 
 export const ENV_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  process.env.NEXT_PUBLIC_NEXTAUTH_URL ||
-  process.env.PLASMO_PUBLIC_BASE_URL
+  env.NEXT_PUBLIC_API_BASE_URL ||
+  env.NEXT_PUBLIC_NEXTAUTH_URL ||
+  env.VITE_API_URL ||
+  env.PLASMO_PUBLIC_BASE_URL
 
 export const BASE_URL = (() => {
   if (ENV_BASE_URL) return ENV_BASE_URL
@@ -164,13 +172,13 @@ export enum NetworkNames {
   LOCAL = 'LOCAL',
 }
 
-export const NETWORK = process.env.NEXT_PUBLIC_NETWORK as NetworkNames
+export const NETWORK = env.NEXT_PUBLIC_NETWORK as NetworkNames
 
 export const RPC_URL_MAP: Record<NetworkNames, string> = {
-  [NetworkNames.LOCAL]: process.env.NEXT_PUBLIC_LOCAL_RPC_URL!,
-  [NetworkNames.DEVELOP]: process.env.NEXT_PUBLIC_DEVELOP_RPC_URL!,
-  [NetworkNames.SEPOLIA]: process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL!,
-  [NetworkNames.MAINNET]: process.env.NEXT_PUBLIC_DEVELOP_RPC_URL!,
+  [NetworkNames.LOCAL]: env.NEXT_PUBLIC_LOCAL_RPC_URL!,
+  [NetworkNames.DEVELOP]: env.NEXT_PUBLIC_DEVELOP_RPC_URL!,
+  [NetworkNames.SEPOLIA]: env.NEXT_PUBLIC_SEPOLIA_RPC_URL!,
+  [NetworkNames.MAINNET]: env.NEXT_PUBLIC_DEVELOP_RPC_URL!,
 }
 
 export enum CliLoginStatus {

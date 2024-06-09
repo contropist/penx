@@ -52,7 +52,6 @@
     "@penx/store": "workspace:*",
     "@penx/trpc-client": "workspace:*",
     "@tanstack/react-query": "^4.36.1",
-    "@tauri-apps/api": "^1.5.3",
     "idb-keyval": "^6.2.1",
     "jotai": "^2.6.0",
     "lucide-react": "^0.344.0",

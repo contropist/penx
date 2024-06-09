@@ -1,5 +1,6 @@
 import { FowerHTMLProps } from '@fower/react'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
+import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { Button } from 'uikit'
 import { IconSwap } from '@penx/icons'
 import { useMode } from '~/hooks/useMode'
@@ -10,8 +11,7 @@ export const ToggleModeButton = ({ ...rest }: Props) => {
   const { isEditor, setMode } = useMode()
 
   async function setWindow() {
-    const { WebviewWindow, appWindow } = await import('@tauri-apps/api/window')
-    // const appWindow = WebviewWindow.getByLabel('main')
+    const appWindow = getCurrent()
 
     if (!appWindow) return
 

@@ -1,4 +1,4 @@
-import { convertFileSrc } from '@tauri-apps/api/tauri'
+import { convertFileSrc } from '@tauri-apps/api/core'
 import { FALLBACK_ICON_SYMBOL, icons } from './cache'
 
 export const getIcon = async (app_name: string) => {

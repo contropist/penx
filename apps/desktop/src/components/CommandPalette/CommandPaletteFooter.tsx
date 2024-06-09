@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Box } from '@fower/react'
-import Image from 'next/image'
 import { appEmitter } from '@penx/event'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { ListItemIcon } from './ListItemIcon'
@@ -27,7 +26,8 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       {currentCommand && currentCommand.data.extensionIcon ? (
         <ListItemIcon icon={currentCommand.data.extensionIcon} />
       ) : (
-        <Image
+        <Box
+          as="img"
           src="/logo/128x128.png"
           alt=""
           width={20}

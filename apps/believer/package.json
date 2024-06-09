@@ -65,7 +65,7 @@
     "million": "^3.0.6",
     "mime": "^3.0.0",
     "mitt": "^3.0.1",
-    "next": "14.2.3",
+    "next": "14.1.4",
     "nextjs-cors": "^2.2.0",
     "nextjs-google-analytics": "^2.3.3",
     "octokit": "^3.1.2",

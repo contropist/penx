@@ -1,5 +1,6 @@
 import { Box } from '@fower/react'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from '@tauri-apps/api/core'
+import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { Plus } from 'lucide-react'
 import { Button } from 'uikit'
 import { db } from '@penx/local-db'
@@ -22,9 +23,7 @@ export const AddRowButton = ({}: Props) => {
       toCenterY
       gap1
       onClick={async () => {
-        const { WebviewWindow, appWindow } = await import(
-          '@tauri-apps/api/window'
-        )
+        const appWindow = getCurrent()
         setMode('EDITOR')
 
         await invoke('set_window_properties', {

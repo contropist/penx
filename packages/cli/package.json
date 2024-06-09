@@ -39,7 +39,7 @@
     "cron": "^3.1.6",
     "cssnano": "^6.1.2",
     "eciesjs": "^0.4.6",
-    "esbuild": "0.21.3",
+    "esbuild": "^0.21.4",
     "esbuild-plugin-vue3": "^0.4.2",
     "esbuild-svelte": "^0.8.1",
     "express": "^4.19.2",

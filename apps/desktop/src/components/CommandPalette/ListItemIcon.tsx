@@ -2,7 +2,6 @@ import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import { useQuery } from '@tanstack/react-query'
-import Image from 'next/image'
 import { isObjectIcon } from 'penx'
 import { getRandomColor } from '@penx/local-db'
 import { getIcon } from '~/common/icon'
@@ -78,7 +77,8 @@ export const ListItemIcon = memo(
 
     if (icon.startsWith('/')) {
       return (
-        <Image
+        <Box
+          as="img"
           src={icon}
           alt=""
           width={size}
@@ -130,7 +130,8 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
   // console.log('===============appIcon:', data)
 
   return (
-    <Image
+    <Box
+      as="img"
       src={data}
       alt=""
       width={size}

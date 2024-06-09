@@ -32,9 +32,9 @@ export const CommandApp = memo(
       return <TodayApp />
     }
 
-    if (ui.type === 'database') {
-      return <DatabaseApp />
-    }
+    // if (ui.type === 'database') {
+    //   return <DatabaseApp />
+    // }
 
     if (ui.type === 'clipboard-history') {
       return <ClipboardHistoryApp />
