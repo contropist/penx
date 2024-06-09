@@ -64,7 +64,6 @@ export class RouterStore {
       'DATABASES',
       'CREATE_SPACE',
       'WEB3_PROFILE',
-      'TASK_BOARD',
     ].includes(routerName)
   }
 }

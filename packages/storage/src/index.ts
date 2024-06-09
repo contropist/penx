@@ -3,7 +3,6 @@ import { PENX_AUTHORIZED_USER, PENX_SESSION_DATA } from '@penx/constants'
 
 export interface Session {
   userId: string
-  address: string
   earlyAccessCode: string
   publicKey: string
   email: string

@@ -5,7 +5,6 @@ export type RouteName =
   | 'DATABASES'
   | 'CREATE_SPACE'
   | 'WEB3_PROFILE'
-  | 'TASK_BOARD'
   | 'RESTORE_BACKUP'
   | 'SETTINGS'
   | 'EXTENSIONS'

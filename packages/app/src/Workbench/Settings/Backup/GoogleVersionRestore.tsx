@@ -179,7 +179,8 @@ function ConfirmButton({ file }: BackupItemProps) {
     ['restore_from_google', file.id],
     async () => {
       const data = await getAuthorizedUser()
-      const user = new User(data)
+      // TODO:
+      const user = new User(data as any)
 
       const drive = new GoogleDrive(user.google.access_token)
 

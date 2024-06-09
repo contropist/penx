@@ -25,8 +25,9 @@ export const InitUserToStore = ({ userId }: Props) => {
 
   useEffect(() => {
     if (data) {
-      store.user.setUser(new User(data))
-      setAuthorizedUser(data)
+      // TODO:
+      // store.user.setUser(new User(data))
+      // setAuthorizedUser(data)
     }
   }, [data])
 

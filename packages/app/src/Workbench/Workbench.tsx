@@ -17,7 +17,6 @@ import { getAuthorizedUser } from '@penx/storage'
 import { Fallback } from '../Fallback/Fallback'
 import { LoginByTokenModal } from '../LoginByTokenModal/LoginByTokenModal'
 import { CommandPanel } from '../Palette'
-import { TaskBoard } from '../TaskBoard'
 import { BackupMnemonicTips } from './BackupMnemonicTips'
 import { BottomBar } from './BottomBar'
 import { MobileNav } from './NodeNav/MobileNav'
@@ -136,7 +135,6 @@ export const Workbench = () => {
                   </Box>
                 )} */}
                 {name === 'WEB3_PROFILE' && <Web3Profile />}
-                {name === 'TASK_BOARD' && <TaskBoard />}
               </Box>
             )}
           </ErrorBoundary>
