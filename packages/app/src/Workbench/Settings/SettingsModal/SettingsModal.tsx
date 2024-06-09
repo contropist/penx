@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import {
   Modal,
   ModalCloseButton,
@@ -12,29 +11,8 @@ import { SettingsContent } from './SettingsContent'
 import { SettingsSidebar } from './SettingsSidebar'
 
 export const SettingsModal = () => {
-  const { query } = useRouter()
-  const from = query.from as 'backup' | 'mnemonic'
-  const isFromOauth = from === 'backup' || from === 'mnemonic'
-  useEffect(() => {
-    if (isFromOauth) {
-      modalController.open(ModalNames.SETTINGS, {
-        type:
-          from === 'backup'
-            ? SettingsType.SYNC_BACKUP
-            : SettingsType.RECOVERY_PHRASE,
-      })
-    }
-  }, [isFromOauth, from])
-
   return (
-    <Modal
-      name={ModalNames.SETTINGS}
-      onClose={() => {
-        if (isFromOauth) {
-          history.replaceState(null, null as any, '/')
-        }
-      }}
-    >
+    <Modal name={ModalNames.SETTINGS}>
       <ModalOverlay />
       <ModalContent
         w={['100%', '100%', '90%', 1000, 1200]}

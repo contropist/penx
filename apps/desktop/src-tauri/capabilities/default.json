@@ -11,6 +11,7 @@
     "window:allow-hide",
     "window:allow-show",
     "window:allow-set-focus",
+    "window:allow-center",
 
     "webview:default",
 

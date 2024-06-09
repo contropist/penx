@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
-import Image from 'next/image'
 
 interface ListItemIconProps extends FowerHTMLProps<'div'> {
   icon?: string | number
@@ -29,7 +28,8 @@ export const ExtensionIcon = memo(function ExtensionIcon({
 
   if (icon.startsWith('/')) {
     return (
-      <Image
+      <Box
+        as="img"
         src={icon}
         alt=""
         width={size}

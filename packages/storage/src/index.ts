@@ -40,7 +40,7 @@ type User = {
 export async function getAuthorizedUser() {
   try {
     const user = (await get(PENX_AUTHORIZED_USER)) as User
-    return user
+    return user || null
   } catch (error) {
     console.log('error0', error)
     return null as any as User

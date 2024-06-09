@@ -1,14 +1,13 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { Box } from '@fower/react'
 import { useQuery } from '@tanstack/react-query'
-import { EditorApp } from '@penx/app'
+import EditorApp from '@penx/app'
+// import { EditorApp } from '@penx/app'
 import { appEmitter } from '@penx/event'
 import { SessionProvider, useSession } from '@penx/session'
 import { getLocalSession } from '@penx/storage'
-import {
-  FirstLocalSpaceGenerator,
-  RecoveryPhraseLoginProvider,
-} from '@penx/widget'
+// import { RecoveryPhraseLoginProvider } from '@penx/widget'
+import { FirstLocalSpaceGenerator } from './FirstLocalSpaceGenerator/FirstLocalSpaceGenerator'
 import { ToggleModeButton } from './ToggleModeButton'
 
 const OnlineProvider = ({ children }: PropsWithChildren) => {
@@ -17,13 +16,15 @@ const OnlineProvider = ({ children }: PropsWithChildren) => {
   if (loading) return null
 
   if (!navigator.onLine) return <>{children}</>
+  console.log('data=========:', data)
 
   // not logged in
   if (!data) {
     return <FirstLocalSpaceGenerator>{children}</FirstLocalSpaceGenerator>
   }
 
-  return <RecoveryPhraseLoginProvider>{children}</RecoveryPhraseLoginProvider>
+  // return <RecoveryPhraseLoginProvider>{children}</RecoveryPhraseLoginProvider>
+  // return <>{children}</>
 }
 
 export function EditorModeApp() {

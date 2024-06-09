@@ -99,8 +99,8 @@ export function MainApp() {
             }}
           />
         )}
-        {/* {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)} */}
-        {isBoarded && <CommandPalette />}
+        {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)}
+        {/* {isBoarded && <CommandPalette />} */}
       </Box>
     </SessionProvider>
   )

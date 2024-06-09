@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
-import { useSearchParams } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button, Spinner } from 'uikit'
 import { IconGoogle } from '@penx/icons'
@@ -15,13 +14,13 @@ export function GoogleOauthButton({ from }: Props) {
 
   const { data } = useSession()
   // Get error message added by next/auth in URL.
-  const searchParams = useSearchParams()
-  const error = searchParams?.get('error')
+  // const searchParams = useSearchParams()
+  // const error = searchParams?.get('error')
 
-  useEffect(() => {
-    const errorMessage = Array.isArray(error) ? error.pop() : error
-    errorMessage && toast.error(errorMessage)
-  }, [error])
+  // useEffect(() => {
+  //   const errorMessage = Array.isArray(error) ? error.pop() : error
+  //   errorMessage && toast.error(errorMessage)
+  // }, [error])
 
   return (
     <Button
