@@ -45,7 +45,7 @@ export function GoogleOauthButton({ from }: Props) {
 
         const googleAuthUrl =
           `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=${redirectUri}` +
-          `&scope=${scope}&client_id=${googleClientId}&state=${data.userId}__${from}&access_type=offline&prompt=consent`
+          `&scope=${scope}&client_id=${googleClientId}&state=${data.id}__${from}&access_type=offline&prompt=consent`
         // &prompt=consent
 
         location.href = googleAuthUrl

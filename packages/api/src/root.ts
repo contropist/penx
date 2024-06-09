@@ -9,7 +9,6 @@ import { personalTokenRouter } from './router/personalToken'
 import { spaceRouter } from './router/space'
 import { syncServerRouter } from './router/syncServer'
 import { tagTemplateRouter } from './router/tagTemplate'
-import { taskRouter } from './router/task'
 import { themeRouter } from './router/theme'
 import { translatorRouter } from './router/translator'
 import { userRouter } from './router/user'
@@ -26,7 +25,6 @@ export const appRouter = createTRPCRouter({
   extension: extensionRouter,
   syncServer: syncServerRouter,
   personalToken: personalTokenRouter,
-  task: taskRouter,
   bounty: bountyRouter,
   translator: translatorRouter,
   cli: cliRouter,

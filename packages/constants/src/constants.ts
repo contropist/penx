@@ -1,3 +1,6 @@
+export const DEFAULT_THEME = process.env.NEXT_PUBLIC_DEFAULT_THEME || 'dark'
+export const FOWER_THEME_MODE = 'FOWER_THEME_MODE'
+
 export const IS_DB_OPENED = '__IS_DB_OPENED__'
 
 export const isServer = typeof window === 'undefined'

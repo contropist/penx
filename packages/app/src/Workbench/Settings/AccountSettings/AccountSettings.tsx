@@ -18,7 +18,7 @@ export function AccountSettings() {
           colorScheme="gray400"
           display={['none', 'none', 'flex']}
         >
-          {data.userId}
+          {data.id}
         </Tag>
       </Box>
 

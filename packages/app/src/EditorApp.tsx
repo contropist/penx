@@ -30,7 +30,7 @@ export const EditorApp = () => {
     <ClientOnly>
       <ErrorBoundary fallback={<Fallback />}>
         <HotkeyBinding />
-        <SpaceSyncManager userId={session?.userId}>
+        <SpaceSyncManager userId={session?.id}>
           <AppProvider>
             <Workbench />
           </AppProvider>

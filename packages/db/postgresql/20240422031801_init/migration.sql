@@ -9,7 +9,6 @@ CREATE TABLE "user" (
     "roleType" TEXT,
     "github" JSONB,
     "google" JSONB,
-    "taskGithub" JSONB,
     "username" TEXT,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),

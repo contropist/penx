@@ -5,7 +5,7 @@ export const IconTwitter = iconify({
   viewBox: '0 0 24 24',
   fill: 'currentColor',
   pathProps: {
-    fill: 'black',
+    // fill: 'black',
     // fill: 'white',
     strokeWidth: 0,
   },

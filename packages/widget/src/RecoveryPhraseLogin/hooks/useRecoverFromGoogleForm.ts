@@ -22,7 +22,7 @@ export function useRecoverFromGoogleForm(
   const { data: session } = useSession()
   const { close } = useModalContext()
 
-  const userId = session.userId
+  const userId = session.id
 
   const [loading, setLoading] = useState(false)
 
@@ -49,7 +49,7 @@ export function useRecoverFromGoogleForm(
       if (file) {
         const decrypted = decryptString(
           file!.encryptedMnemonic,
-          data.password + session.userId,
+          data.password + session.id,
         )
 
         if (!decrypted) {

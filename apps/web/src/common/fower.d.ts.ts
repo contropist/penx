@@ -11,5 +11,7 @@ declare module '@fower/atomic-props' {
     heading2?: boolean
 
     shadowPopover?: boolean
+
+    dashboardCard?: boolean
   }
 }

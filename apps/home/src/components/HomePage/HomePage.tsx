@@ -9,25 +9,34 @@ export function HomePage() {
   const tags = ['Structured', 'Local-First', 'Privacy-First', 'Open Source']
 
   return (
-    <Box bgWhite column gap4 toBetween toCenterX>
+    <Box column gap4 toBetween toCenterX>
       <Box flex-1 toCenter column gap8 px={[20, 0]}>
         <Box
           text={[32, 40, 60]}
           maxW-900
           fontBold
-          leadingNone
+          leadingTight
           textCenter
           black
           mt={[80, 120]}
           p0
         >
-          <Box fontLight>Your Personal</Box>
-          <Box text={[64, 100, 160]}>Database</Box>
+          <Box fontLight>Cross-platform</Box>
+          <Box
+            text={[64, 80, 100]}
+            transparent
+            bgClipText
+            bgGradientX={['brand500', 'brand300']}
+            // bgGradientX={['indigo500', 'indigo400']}
+            // bgGradientX={['brand500', 'green500']}
+          >
+            Productivity App
+          </Box>
         </Box>
 
         <Box text={[18, 20, 24]} maxW-640 textCenter leadingNormal neutral500>
-          Ecosystem for your personal data.
-          <br /> Open-source alternative to Raycast and Alfred
+          PenX is a cross-platform productivity App
+          <br /> built on open-source and Web3
         </Box>
 
         {/* <Box toCenter gap2 flexWrap>
@@ -85,13 +94,14 @@ export function HomePage() {
         </Box>
 
         <Box relative mt20 p10 rounded-24 column>
-          <Box textCenter fontSemibold text={[40, 60]}>
+          <Box textCenter fontSemibold text={[40, 60]} mb8>
             PenX Command Palette
           </Box>
           <Box
             as="img"
             src="/images/search-bar.png"
             w={['100%', '100%', 760, 960]}
+            rounded3XL
           />
         </Box>
 
@@ -106,7 +116,7 @@ export function HomePage() {
             display={['none', 'none', 'flex']}
             as="img"
             src="/images/editor.png"
-            shadow="0px 1px 19px 0px rgba(42,44,48,.06),0px 0px 48px 0px rgba(200, 200, 200,.6)"
+            shadow="0px 1px 19px 0px rgba(40,40,40,.06),0px 0px 48px 0px rgba(200, 200, 200,.6)"
             border
             borderNeutral200--T20
             rounded-12
@@ -116,7 +126,7 @@ export function HomePage() {
           <Box
             as="img"
             src="/images/editor-phone.jpg"
-            shadow="0px 1px 19px 0px rgba(42,44,48,.06),0px 0px 48px 0px rgba(200, 200, 200,.6)"
+            shadow="0px 1px 19px 0px rgba(40,40,40,.06),0px 0px 48px 0px rgba(200, 200, 200,.6)"
             rounded-8
             w={['100%', '100%', 200, 220, 280]}
             absolute={[false, false, true]}

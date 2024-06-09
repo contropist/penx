@@ -27,6 +27,7 @@ type ContractName =
   | 'DiamondLoupeFacet'
   | 'CalUtils'
   | 'BelieverNFT'
+  | 'PenXKey'
   | 'INK'
   | 'DaoVault'
   | 'PointFacet'

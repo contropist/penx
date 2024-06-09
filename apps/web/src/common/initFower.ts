@@ -13,6 +13,14 @@ export function initFower() {
     mb: 8,
   })
 
+  composeAtom('dashboardCard', {
+    // 'bgSlate800--dark': true,
+    // 'bgGray800--dark': true,
+    // 'bgStone800--T50--dark': true,
+    'bgNeutral800--T40--dark': true,
+    shadowXL: true,
+  })
+
   setConfig({
     inline: false,
     mode: {
@@ -20,8 +28,8 @@ export function initFower() {
       autoDarkMode: {
         enabled: true,
         mappings: {
-          black: 'gray100',
-          bgWhite: 'gray900',
+          black: 'zinc100',
+          bgWhite: 'zinc900',
           bgSlate100: 'gray900',
           brand500: 'brand500',
         },

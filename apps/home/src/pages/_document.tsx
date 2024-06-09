@@ -9,24 +9,26 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
+import { DEFAULT_THEME, FOWER_THEME_MODE } from '@penx/constants'
 
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext,
   ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx)
-    const cookieTheme = getCookie('theme-mode', ctx) as string
+    const cookieTheme = getCookie(FOWER_THEME_MODE, ctx) as string
 
     if (!cookieTheme) {
-      setCookie('theme-mode', 'light', { req: ctx.req, res: ctx.res })
+      setCookie(FOWER_THEME_MODE, DEFAULT_THEME, { req: ctx.req, res: ctx.res })
     }
 
-    let theme: string = getCookie('theme-mode', ctx) as string
+    let theme: string = getCookie(FOWER_THEME_MODE, ctx) as string
 
-    ;(initialProps as any).theme = theme
+    ;(initialProps as any).theme = theme || DEFAULT_THEME
 
     return initialProps
   }
+
   render() {
     const theme = (this.props as any).theme
 

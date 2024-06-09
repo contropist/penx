@@ -1,21 +1,8 @@
 import { createContext, useContext } from 'react'
-
-export interface Session {
-  userId: string
-  address: string
-  earlyAccessCode: string
-  publicKey: string
-  email: string
-  user: {
-    name: string
-    email: string
-    image: string
-    id: string
-  }
-}
+import { User } from '@privy-io/react-auth'
 
 export interface SessionContextValue {
-  data: Session
+  data: User
   loading: boolean
 }
 

@@ -2,12 +2,6 @@ import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 export const bountyRouter = createTRPCRouter({
-  all: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.task.findMany({
-      orderBy: { createdAt: 'asc' },
-    })
-  }),
-
   byId: publicProcedure
     .input(
       z.object({

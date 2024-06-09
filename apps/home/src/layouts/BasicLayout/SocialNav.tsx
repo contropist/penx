@@ -13,12 +13,12 @@ type NavItem = {
 export const SocialNav = () => {
   const navData: NavItem[] = [
     {
-      icon: <IconDiscord black />,
+      icon: <IconDiscord fillBlack fillWhite--dark />,
       to: 'https://discord.gg/nyVpH9njDu',
       isExternal: true,
     },
     {
-      icon: <IconTwitter fillBlack size={20} />,
+      icon: <IconTwitter black size={20} />,
       to: 'https://twitter.com/coder_zion',
       isExternal: true,
     },

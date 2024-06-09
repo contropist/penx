@@ -8,6 +8,7 @@ import {
   INK,
   MockToken,
   PasswordManager,
+  PenXKey,
   RoleAccessControlFacet,
 } from '../types'
 
@@ -41,13 +42,14 @@ export async function deployFixture() {
     signer9,
   ] = accountList
 
-  const [usdt, usdc, dai, ink, daoVault, believerNFT, passwordManager] = await Promise.all([
+  const [usdt, usdc, dai, ink, daoVault, believerNFT, penXKey, passwordManager] = await Promise.all([
     ethers.getContract<MockToken>('USDT'),
     ethers.getContract<MockToken>('USDC'),
     ethers.getContract<MockToken>('DAI'),
     ethers.getContract<INK>('INK'),
     ethers.getContract<DaoVault>('DaoVault'),
     ethers.getContract<BelieverNFT>('BelieverNFT'),
+    ethers.getContract<PenXKey>('PenXKey'),
     ethers.getContract<PasswordManager>('PasswordManager'),
   ])
 
@@ -109,6 +111,7 @@ export async function deployFixture() {
 
     daoVault,
     believerNFT,
+    penXKey,
     passwordManager,
 
     bountyFacet,

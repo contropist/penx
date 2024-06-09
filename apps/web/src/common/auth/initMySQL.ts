@@ -15,7 +15,6 @@ export async function initMySQL() {
         roleType VARCHAR(191) NULL,
         github JSON NULL,
         google JSON NULL,
-        taskGithub JSON NULL,
         username VARCHAR(191) NULL,
         email VARCHAR(191) NULL,
         emailVerified DATETIME(3) NULL,

@@ -1,13 +1,14 @@
 import { Box } from '@fower/react'
-import { useSession } from 'next-auth/react'
+import { usePrivy } from '@privy-io/react-auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'uikit'
+import { useSession } from '@penx/session'
 
 export function UserAvatar() {
   const { data } = useSession()
   if (!data) return null
-  const image = data.user?.image || ''
-  const name = data.user?.name || ''
-  const email = data.user?.email || ''
+  const image = ''
+  const name = data.google?.name || ''
+  const email = data.google?.email || ''
 
   return (
     <Box toCenterY gap3 column toCenterX mt-40>

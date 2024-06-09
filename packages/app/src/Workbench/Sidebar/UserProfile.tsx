@@ -37,17 +37,18 @@ export const UserProfile = ({ isMobile, ...rest }: Props) => {
   const { loading, data: session } = useSession()
 
   const name = useMemo(() => {
-    if (session.user.email) return session.user.email
-    if (session.user.name) return session.user.name
-    if (session.address) {
-      return `${session.address.slice(0, 6)}...${session.address.slice(-4)}`
-    }
-    return 'Unknown'
+    // if (session.user.email) return session.user.email
+    // if (session.user.name) return session.user.name
+    // if (session.address) {
+    //   return `${session.address.slice(0, 6)}...${session.address.slice(-4)}`
+    // }
+    return 'TODO:'
   }, [session])
 
   if (loading || !user) return null
 
-  const image = session.user?.image || ''
+  // const image = session.user?.image || ''
+  const image = ''
 
   return (
     <Popover>

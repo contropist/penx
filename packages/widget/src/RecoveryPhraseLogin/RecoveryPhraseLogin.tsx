@@ -18,15 +18,15 @@ export const RecoveryPhraseLogin: FC<Props> = ({ refetch }) => {
   async function confirm() {
     if (!mnemonic) return toast.error('Please enter your recovery phrase')
 
-    const publicKey = getPublicKey(mnemonic.trim())
+    // const publicKey = getPublicKey(mnemonic.trim())
 
-    if (data?.publicKey !== publicKey) {
-      return toast.error('Invalid recovery phrase')
-    }
+    // if (data?.publicKey !== publicKey) {
+    //   return toast.error('Invalid recovery phrase')
+    // }
 
-    await setMnemonicToLocal(data.userId!, mnemonic)
-    store.user.setMnemonic(mnemonic)
-    await refetch()
+    // await setMnemonicToLocal(data.id!, mnemonic)
+    // store.user.setMnemonic(mnemonic)
+    // await refetch()
   }
 
   return (

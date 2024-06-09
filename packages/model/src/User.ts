@@ -30,19 +30,11 @@ export class User {
   }
 
   get username() {
-    return (
-      this.raw?.name ||
-      this.raw.username ||
-      this.address?.slice(0, 6) + '...' + this.address.slice(-3)
-    )
+    return this.raw?.name || this.raw.username
   }
 
   get publicKey() {
     return this.raw?.publicKey as string
-  }
-
-  get address() {
-    return this.raw.address || ''
   }
 
   get image() {

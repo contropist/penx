@@ -10,7 +10,18 @@ import { SocialNav } from './SocialNav'
 export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
   const { push } = useRouter()
   return (
-    <Box bgWhite column gap4 toBetween toCenterX>
+    <Box
+      bgWhite
+      column
+      gap4
+      toBetween
+      toCenterX
+      black
+      bgZinc900--dark
+      // bgStone900--dark
+      // bgSlate900--dark
+      // bgNeutral900--dark
+    >
       <Box
         toBetween={[false, true]}
         toCenterX={[true, false]}
@@ -26,7 +37,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             size={32}
             cursorPointer
             onClick={() => {
-              location.href = 'https://penx.io'
+              location.href = 'https://app.penx.io'
             }}
           />
         </Box>
@@ -42,7 +53,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             roundedFull
             colorScheme="black"
             onClick={() => {
-              window.open('https://app.penx.io/login')
+              window.open('https://app.penx.io')
             }}
           >
             Log in

@@ -9,6 +9,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
+import { DEFAULT_THEME, FOWER_THEME_MODE } from '@penx/constants'
 import { LogoSpinner } from '@penx/widget'
 
 class MyDocument extends Document {
@@ -16,18 +17,19 @@ class MyDocument extends Document {
     ctx: DocumentContext,
   ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx)
-    const cookieTheme = getCookie('theme-mode', ctx) as string
+    const cookieTheme = getCookie(FOWER_THEME_MODE, ctx) as string
 
     if (!cookieTheme) {
-      setCookie('theme-mode', 'light', { req: ctx.req, res: ctx.res })
+      setCookie(FOWER_THEME_MODE, DEFAULT_THEME, { req: ctx.req, res: ctx.res })
     }
 
-    let theme: string = getCookie('theme-mode', ctx) as string
+    let theme: string = getCookie(FOWER_THEME_MODE, ctx) as string
 
-    ;(initialProps as any).theme = theme
+    ;(initialProps as any).theme = theme || DEFAULT_THEME
 
     return initialProps
   }
+
   render() {
     const theme = (this.props as any).theme
 
@@ -89,11 +91,17 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
 
-          <meta name="twitter:card" content="Your personal database" />
+          <meta
+            name="twitter:card"
+            content="A cross-platform productivity App"
+          />
 
           <meta name="twitter:url" content="https://penx.io" />
           <meta name="twitter:title" content="PenX" />
-          <meta name="twitter:description" content="Your personal database" />
+          <meta
+            name="twitter:description"
+            content="A cross-platform productivity App"
+          />
           <meta
             name="twitter:image"
             content="https://penx.io/images/logo-192.png"
@@ -101,7 +109,10 @@ class MyDocument extends Document {
           <meta name="twitter:creator" content="@coder_zion" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="PenX" />
-          <meta property="og:description" content="Your personal database" />
+          <meta
+            property="og:description"
+            content="A cross-platform productivity App"
+          />
           <meta property="og:site_name" content="PenX" />
           <meta property="og:url" content="https://www.penx.io" />
           <meta
@@ -118,18 +129,18 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=optional"
           />
 
-          {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          {/* {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
             <script
               defer
               src="https://umami.penx.io/script.js"
               data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID!}
             ></script>
-          )}
+          )} */}
         </Head>
         <body>
-          {/* <div id="logo-loader-wrapper">
+          <div id="logo-loader-wrapper">
             <div className="logo-loader"></div>
-          </div> */}
+          </div>
           <Main />
           <NextScript />
         </body>

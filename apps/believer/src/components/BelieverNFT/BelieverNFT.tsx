@@ -1,6 +1,5 @@
 import { Box } from '@fower/react'
 import { useAccount } from 'wagmi'
-import { WalletConnectButton } from '../WalletConnectButton'
 import { BelieverNFTNav } from './BelieverNFTNav'
 import { GenerateReferralCodeModalModal } from './GenerateReferralCodeModal/GenerateReferralCodeModalModal'
 import { InviteInfo } from './InviteInfo'
@@ -66,11 +65,6 @@ export function BelieverNFT() {
           <InviteInfo />
 
           {isConnected && <MintButton />}
-          {!isConnected && (
-            <WalletConnectButton size={56} w-300>
-              Connect to mint
-            </WalletConnectButton>
-          )}
         </Box>
         <PriceChart />
       </Box>

@@ -132,17 +132,17 @@ interface FooterBoxProps extends FowerHTMLProps<'div'> {
 export function FooterBox({ title, items, ...rest }: FooterBoxProps) {
   return (
     <Box {...rest} column gap6>
-      <Box textXL fontBold>
-        {title}
-      </Box>
+      <Box textXL>{title}</Box>
       <Box column gap4>
         {items.map((item, i) => (
           <Box key={i}>
             <StyledLink
               href={item.to}
-              neutral900
+              neutral800
+              neutral400--dark
               transitionCommon
               noUnderline
+              textSM
               onClick={(e) => {
                 if (item.isExternal) {
                   e.preventDefault()

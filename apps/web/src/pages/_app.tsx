@@ -1,34 +1,17 @@
 import { Fragment } from 'react'
-import { Session } from 'next-auth'
-import { SessionProvider } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
-import { isServer } from '@penx/constants'
-import { ClientOnly } from '@penx/widget'
-import { AuthProvider } from '~/components/AuthProvider'
+import { ToastContainer } from 'uikit'
 import { initFower } from '../common/initFower'
-// import { SpeedInsights } from '@vercel/speed-insights/next'
-// import 'prismjs/themes/prism.css'
-// import 'prismjs/themes/prism.css'
-// import 'prismjs/themes/prism-twilight.css'
-
-import 'simplebar-react/dist/simplebar.min.css'
-import 'react-circular-progressbar/dist/styles.css'
-import 'react-datepicker/dist/react-datepicker.css'
+// import 'react-datepicker/dist/react-datepicker.css'
 import '../styles/globals.css'
-import '../styles/command.scss'
 
 initFower()
 
 interface Props<T> extends AppProps<T> {
   Component: AppProps<T>['Component'] & {
     Layout: any
-    session: Session
   }
-}
-
-if (!isServer) {
-  // TODO: move this code to a separate file
 }
 
 function MyApp({ Component, pageProps }: Props<any>) {
@@ -42,22 +25,26 @@ function MyApp({ Component, pageProps }: Props<any>) {
       />
 
       <NextSeo
-        title="PenX: Your personal database"
-        description="Your personal database"
+        title="PenX: A cross-platform productivity App"
+        description="PenX is a cross-platform productivity App built on open-source and Web3."
+        openGraph={{
+          type: 'website',
+          locale: 'en_US',
+          url: 'https://www.penx.io',
+          siteName: 'PenX',
+        }}
+        twitter={{
+          handle: '@coder_zion',
+          site: '@coder_zion',
+          cardType: 'summary_large_image',
+        }}
       />
 
-      <SessionProvider session={pageProps.session} refetchInterval={0}>
-        {/* <SpeedInsights /> */}
-        {/* <Analytics /> */}
-        <ClientOnly>
-          <AuthProvider>
-            <Layout>
-              <Component {...pageProps} />
-              <div id="portal" />
-            </Layout>
-          </AuthProvider>
-        </ClientOnly>
-      </SessionProvider>
+      <Layout>
+        <Component {...pageProps} />
+        <div id="portal" />
+        <ToastContainer position="bottom-right" />
+      </Layout>
     </>
   )
 }
