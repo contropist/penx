@@ -203,6 +203,9 @@ importers:
       tauri-plugin-clipboard-api:
         specifier: ^2.0.0-beta.1
         version: 2.0.0-beta.1
+      tauri-plugin-jarvis-api:
+        specifier: workspace:*
+        version: link:../../packages/tauri-plugin-jarvis
       uikit:
         specifier: workspace:*
         version: link:../../packages/uikit
@@ -29422,6 +29425,47 @@ snapshots:
       - uWebSockets.js
       - utf-8-validate
 
+<<<<<<< HEAD
+=======
+  '@walletconnect/core@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@walletconnect/heartbeat': 1.2.2
+      '@walletconnect/jsonrpc-provider': 1.0.14
+      '@walletconnect/jsonrpc-types': 1.0.4
+      '@walletconnect/jsonrpc-utils': 1.0.8
+      '@walletconnect/jsonrpc-ws-connection': 1.0.14(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@walletconnect/keyvaluestorage': 1.1.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      '@walletconnect/logger': 2.1.2
+      '@walletconnect/relay-api': 1.0.10
+      '@walletconnect/relay-auth': 1.0.4
+      '@walletconnect/safe-json': 1.0.2
+      '@walletconnect/time': 1.0.2
+      '@walletconnect/types': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      '@walletconnect/utils': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      events: 3.3.0
+      isomorphic-unfetch: 3.1.0(encoding@0.1.13)
+      lodash.isequal: 4.5.0
+      uint8arrays: 3.1.0
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - encoding
+      - ioredis
+      - uWebSockets.js
+      - utf-8-validate
+
+>>>>>>> a236677c (feat: enable app icon loading with custom protocol)
   '@walletconnect/core@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
@@ -29530,6 +29574,42 @@ snapshots:
       - uWebSockets.js
       - utf-8-validate
 
+<<<<<<< HEAD
+=======
+  '@walletconnect/ethereum-provider@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(@types/react@18.2.73)(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(react@18.2.0)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@walletconnect/jsonrpc-http-connection': 1.0.8(encoding@0.1.13)
+      '@walletconnect/jsonrpc-provider': 1.0.14
+      '@walletconnect/jsonrpc-types': 1.0.4
+      '@walletconnect/jsonrpc-utils': 1.0.8
+      '@walletconnect/modal': 2.6.2(@types/react@18.2.73)(react@18.2.0)
+      '@walletconnect/sign-client': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)
+      '@walletconnect/types': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      '@walletconnect/universal-provider': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)
+      '@walletconnect/utils': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      events: 3.3.0
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@types/react'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - encoding
+      - ioredis
+      - react
+      - uWebSockets.js
+      - utf-8-validate
+
+>>>>>>> a236677c (feat: enable app icon loading with custom protocol)
   '@walletconnect/ethereum-provider@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(@types/react@18.2.73)(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(react@18.2.0)(utf-8-validate@6.0.3)':
     dependencies:
       '@walletconnect/jsonrpc-http-connection': 1.0.8(encoding@0.1.13)
@@ -29797,6 +29877,39 @@ snapshots:
       - uWebSockets.js
       - utf-8-validate
 
+<<<<<<< HEAD
+=======
+  '@walletconnect/sign-client@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@walletconnect/core': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)
+      '@walletconnect/events': 1.0.1
+      '@walletconnect/heartbeat': 1.2.2
+      '@walletconnect/jsonrpc-utils': 1.0.8
+      '@walletconnect/logger': 2.1.2
+      '@walletconnect/time': 1.0.2
+      '@walletconnect/types': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      '@walletconnect/utils': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      events: 3.3.0
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - encoding
+      - ioredis
+      - uWebSockets.js
+      - utf-8-validate
+
+>>>>>>> a236677c (feat: enable app icon loading with custom protocol)
   '@walletconnect/sign-client@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
     dependencies:
       '@walletconnect/core': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)
@@ -29963,6 +30076,39 @@ snapshots:
       - uWebSockets.js
       - utf-8-validate
 
+<<<<<<< HEAD
+=======
+  '@walletconnect/universal-provider@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@walletconnect/jsonrpc-http-connection': 1.0.8(encoding@0.1.13)
+      '@walletconnect/jsonrpc-provider': 1.0.14
+      '@walletconnect/jsonrpc-types': 1.0.4
+      '@walletconnect/jsonrpc-utils': 1.0.8
+      '@walletconnect/logger': 2.1.2
+      '@walletconnect/sign-client': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)
+      '@walletconnect/types': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      '@walletconnect/utils': 2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
+      events: 3.3.0
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - encoding
+      - ioredis
+      - uWebSockets.js
+      - utf-8-validate
+
+>>>>>>> a236677c (feat: enable app icon loading with custom protocol)
   '@walletconnect/universal-provider@2.13.1(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.3.2)(utf-8-validate@6.0.3)':
     dependencies:
       '@walletconnect/jsonrpc-http-connection': 1.0.8(encoding@0.1.13)
