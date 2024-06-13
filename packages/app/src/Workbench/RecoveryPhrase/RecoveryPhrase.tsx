@@ -8,7 +8,6 @@ import { useSession } from '@penx/session'
 import { useCopyToClipboard } from '@penx/shared'
 import { CloudBackup } from './CloudBackup'
 import { HaveBackedUpButton } from './HaveBackedUpButton'
-import { PasswordOnChain } from './PasswordOnChain'
 
 interface Props {}
 
@@ -86,8 +85,6 @@ export const RecoveryPhrase: FC<Props> = () => {
         </Button>
       </Box>
       <Box toCenter gap4 column>
-        {/* <PasswordOnChain mnemonic={mnemonic} /> */}
-
         <CloudBackup />
         <HaveBackedUpButton />
       </Box>

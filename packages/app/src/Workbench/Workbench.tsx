@@ -34,7 +34,6 @@ import { PageSettings } from './Settings/PageSettings/PageSettings'
 import { SettingsModal } from './Settings/SettingsModal/SettingsModal'
 import { Sidebar } from './Sidebar/Sidebar'
 import { TagHubModal } from './TagHubModal/TagHubModal'
-import { Web3Profile } from './Web3Profile/Web3Profile'
 
 export const Workbench = () => {
   const { activeSpace } = useActiveSpace()
@@ -134,7 +133,6 @@ export const Workbench = () => {
                     <LocalBackup />
                   </Box>
                 )} */}
-                {name === 'WEB3_PROFILE' && <Web3Profile />}
               </Box>
             )}
           </ErrorBoundary>

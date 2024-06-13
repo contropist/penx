@@ -44,7 +44,6 @@
     "@penx/icons": "workspace:*",
     "@penx/local-db": "workspace:*",
     "@penx/session": "workspace:*",
-    "@penx/abi": "workspace:*",
     "@penx/widget": "workspace:*",
     "@penx/encryption": "workspace:*",
     "@penx/wagmi": "workspace:*",

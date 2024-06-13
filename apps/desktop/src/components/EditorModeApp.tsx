@@ -23,8 +23,7 @@ const OnlineProvider = ({ children }: PropsWithChildren) => {
     return <FirstLocalSpaceGenerator>{children}</FirstLocalSpaceGenerator>
   }
 
-  // return <RecoveryPhraseLoginProvider>{children}</RecoveryPhraseLoginProvider>
-  // return <>{children}</>
+  return null
 }
 
 export function EditorModeApp() {

@@ -59,7 +59,6 @@
     "@penx/editor-transforms",
     "@penx/extension-list",
     "@penx/model",
-    "@penx/abi",
     "@penx/shared",
     "@penx/google-translate",
     "@penx/unique-id",

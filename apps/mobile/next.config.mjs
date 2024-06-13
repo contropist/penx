@@ -24,7 +24,6 @@ const nextConfig = {
     '@octokit/openapi-types',
     '@octokit/core',
     '@octokit/app',
-    '@penx/abi',
     '@penx/api',
     '@penx/app',
     '@penx/constants',
