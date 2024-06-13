@@ -366,31 +366,31 @@ importers:
         version: link:../../packages/app
       '@penx/auto-format':
         specifier: workspace:*
-        version: link:../../extensions/auto-format
+        version: link:../../packages/editor-extensions/auto-format
       '@penx/bidirectional-link':
         specifier: workspace:*
-        version: link:../../extensions/bidirectional-link
+        version: link:../../packages/editor-extensions/bidirectional-link
       '@penx/block-selector':
         specifier: workspace:*
-        version: link:../../extensions/block-selector
+        version: link:../../packages/editor-extensions/block-selector
       '@penx/blockquote':
         specifier: workspace:*
-        version: link:../../extensions/blockquote
+        version: link:../../packages/editor-extensions/blockquote
       '@penx/check-list':
         specifier: workspace:*
-        version: link:../../extensions/check-list
+        version: link:../../packages/editor-extensions/check-list
       '@penx/code-block':
         specifier: workspace:*
-        version: link:../../extensions/code-block
+        version: link:../../packages/editor-extensions/code-block
       '@penx/constants':
         specifier: workspace:*
         version: link:../../packages/constants
       '@penx/database':
         specifier: workspace:*
-        version: link:../../extensions/database
+        version: link:../../packages/editor-extensions/database
       '@penx/divider':
         specifier: workspace:*
-        version: link:../../extensions/divider
+        version: link:../../packages/editor-extensions/divider
       '@penx/editor':
         specifier: workspace:*
         version: link:../../packages/editor
@@ -408,10 +408,10 @@ importers:
         version: link:../../packages/extension-typings
       '@penx/file':
         specifier: workspace:*
-        version: link:../../extensions/file
+        version: link:../../packages/editor-extensions/file
       '@penx/heading':
         specifier: workspace:*
-        version: link:../../extensions/heading
+        version: link:../../packages/editor-extensions/heading
       '@penx/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
@@ -420,13 +420,13 @@ importers:
         version: link:../../packages/icons
       '@penx/image':
         specifier: workspace:*
-        version: link:../../extensions/image
+        version: link:../../packages/editor-extensions/image
       '@penx/link':
         specifier: workspace:*
-        version: link:../../extensions/link
+        version: link:../../packages/editor-extensions/link
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../../packages/editor-extensions/list
       '@penx/loader':
         specifier: workspace:*
         version: link:../../packages/loader
@@ -441,7 +441,7 @@ importers:
         version: link:../../packages/model-types
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../../packages/editor-extensions/paragraph
       '@penx/serializer':
         specifier: workspace:*
         version: link:../../packages/serializer
@@ -450,13 +450,13 @@ importers:
         version: link:../../packages/session
       '@penx/storage-estimate':
         specifier: workspace:*
-        version: link:../../extensions/storage-estimate
+        version: link:../../packages/editor-extensions/storage-estimate
       '@penx/store':
         specifier: workspace:*
         version: link:../../packages/store
       '@penx/table':
         specifier: workspace:*
-        version: link:../../extensions/table
+        version: link:../../packages/editor-extensions/table
       '@penx/trpc-client':
         specifier: workspace:*
         version: link:../../packages/trpc-client
@@ -465,7 +465,7 @@ importers:
         version: link:../../packages/widget
       '@penx/word-count':
         specifier: workspace:*
-        version: link:../../extensions/word-count
+        version: link:../../packages/editor-extensions/word-count
       '@plasmohq/storage':
         specifier: ^1.9.0
         version: 1.9.3(react@18.2.0)
@@ -1069,1544 +1069,6 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  extensions/auto-format:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/autoformat':
-        specifier: workspace:*
-        version: link:../../packages/autoformat
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/bidirectional-link:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/code-block':
-        specifier: workspace:*
-        version: link:../code-block
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/model':
-        specifier: workspace:*
-        version: link:../../packages/model
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@penx/store':
-        specifier: workspace:*
-        version: link:../../packages/store
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      mitt:
-        specifier: ^3.0.1
-        version: 3.0.1
-      react-intersection-observer:
-        specifier: ^9.5.3
-        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/block-selector:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/code-block':
-        specifier: workspace:*
-        version: link:../code-block
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-store':
-        specifier: workspace:*
-        version: link:../../packages/extension-store
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/model-types':
-        specifier: workspace:*
-        version: link:../../packages/model-types
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@penx/store':
-        specifier: workspace:*
-        version: link:../../packages/store
-      '@udecode/plate-common':
-        specifier: ^24.5.2
-        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      mitt:
-        specifier: ^3.0.1
-        version: 3.0.1
-      react-intersection-observer:
-        specifier: ^9.5.3
-        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/blockquote:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/check-list:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/code-block:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/paragraph':
-        specifier: workspace:*
-        version: link:../paragraph
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@udecode/plate-common':
-        specifier: ^24.5.2
-        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      markdown-it:
-        specifier: ^13.0.2
-        version: 13.0.2
-      prismjs:
-        specifier: ^1.29.0
-        version: 1.29.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/markdown-it':
-        specifier: ^13.0.7
-        version: 13.0.7
-      '@types/prismjs':
-        specifier: ^1.26.3
-        version: 1.26.3
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/database:
-    dependencies:
-      '@dnd-kit/core':
-        specifier: ^6.1.0
-        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/sortable':
-        specifier: ^7.0.2
-        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/utilities':
-        specifier: ^3.2.2
-        version: 3.2.2(react@18.2.0)
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/color-helper':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@fower/utils':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@glideapps/glide-data-grid':
-        specifier: ^6.0.3
-        version: 6.0.3(lodash@4.17.21)(marked@11.2.0)(react-dom@18.2.0(react@18.2.0))(react-responsive-carousel@3.2.23)(react@18.2.0)
-      '@penx/code-block':
-        specifier: workspace:*
-        version: link:../code-block
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/context-menu':
-        specifier: workspace:*
-        version: link:../../packages/context-menu
-      '@penx/database-context':
-        specifier: workspace:*
-        version: link:../../packages/database-context
-      '@penx/database-ui':
-        specifier: workspace:*
-        version: link:../../packages/database-ui
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-leaf':
-        specifier: workspace:*
-        version: link:../../packages/editor-leaf
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/list':
-        specifier: workspace:*
-        version: link:../list
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/model':
-        specifier: workspace:*
-        version: link:../../packages/model
-      '@penx/model-types':
-        specifier: workspace:*
-        version: link:../../packages/model-types
-      '@penx/node-hooks':
-        specifier: workspace:*
-        version: link:../../packages/node-hooks
-      '@penx/paragraph':
-        specifier: workspace:*
-        version: link:../paragraph
-      '@penx/service':
-        specifier: workspace:*
-        version: link:../../packages/service
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@penx/store':
-        specifier: workspace:*
-        version: link:../../packages/store
-      '@penx/trpc-client':
-        specifier: workspace:*
-        version: link:../../packages/trpc-client
-      '@penx/widget':
-        specifier: workspace:*
-        version: link:../../packages/widget
-      '@tanstack/react-query':
-        specifier: ^4.36.1
-        version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)
-      '@udecode/plate-common':
-        specifier: ^25.0.1
-        version: 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
-      classnames:
-        specifier: ^2.3.2
-        version: 2.5.1
-      date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
-      downshift:
-        specifier: ^8.2.3
-        version: 8.5.0(react@18.2.0)
-      framer-motion:
-        specifier: ^10.16.14
-        version: 10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      immer:
-        specifier: ^10.0.3
-        version: 10.0.4
-      jotai:
-        specifier: ^2.6.0
-        version: 2.7.2(@types/react@18.2.73)(react@18.2.0)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      marked:
-        specifier: ^11.1.0
-        version: 11.2.0
-      mitt:
-        specifier: ^3.0.1
-        version: 3.0.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-datepicker:
-        specifier: ^4.24.0
-        version: 4.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-device-detect:
-        specifier: ^2.2.3
-        version: 2.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-fast-compare:
-        specifier: ^3.2.2
-        version: 3.2.2
-      react-hook-form:
-        specifier: ^7.48.2
-        version: 7.51.2(react@18.2.0)
-      react-intersection-observer:
-        specifier: ^9.5.3
-        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-laag:
-        specifier: ^2.0.5
-        version: 2.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-responsive-carousel:
-        specifier: ^3.2.23
-        version: 3.2.23
-      react-textarea-autosize:
-        specifier: ^8.5.3
-        version: 8.5.3(@types/react@18.2.73)(react@18.2.0)
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-      use-debounce:
-        specifier: ^9.0.4
-        version: 9.0.4(react@18.2.0)
-      vaul:
-        specifier: ^0.9.0
-        version: 0.9.0(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      viem:
-        specifier: ^2.9.28
-        version: 2.9.28(bufferutil@4.0.8)(typescript@5.4.3)(utf-8-validate@6.0.3)(zod@3.23.8)
-      wagmi:
-        specifier: ^2.6.0
-        version: 2.6.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(@tanstack/query-core@4.36.1)(@tanstack/react-query@4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0))(@types/react@18.2.73)(bufferutil@4.0.8)(encoding@0.1.13)(immer@10.0.4)(ioredis@5.3.2)(react-dom@18.2.0(react@18.2.0))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(rollup@4.13.2)(typescript@5.4.3)(utf-8-validate@6.0.3)(viem@2.9.28(bufferutil@4.0.8)(typescript@5.4.3)(utf-8-validate@6.0.3)(zod@3.23.8))(zod@3.23.8)
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-datepicker':
-        specifier: ^4.19.4
-        version: 4.19.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/divider:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/paragraph':
-        specifier: workspace:*
-        version: link:../paragraph
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/file:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/node-hooks':
-        specifier: workspace:*
-        version: link:../../packages/node-hooks
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      prismjs:
-        specifier: ^1.29.0
-        version: 1.29.0
-      re-resizable:
-        specifier: ^6.9.11
-        version: 6.9.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/prismjs':
-        specifier: ^1.26.3
-        version: 1.26.3
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/heading:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      react-intersection-observer:
-        specifier: ^9.5.3
-        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/image:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/encryption':
-        specifier: workspace:*
-        version: link:../../packages/encryption
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/google-drive':
-        specifier: workspace:*
-        version: link:../../packages/google-drive
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/model-types':
-        specifier: workspace:*
-        version: link:../../packages/model-types
-      '@penx/node-hooks':
-        specifier: workspace:*
-        version: link:../../packages/node-hooks
-      '@penx/session':
-        specifier: workspace:*
-        version: link:../../packages/session
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@penx/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-      '@penx/store':
-        specifier: workspace:*
-        version: link:../../packages/store
-      '@penx/trpc-client':
-        specifier: workspace:*
-        version: link:../../packages/trpc-client
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      prismjs:
-        specifier: ^1.29.0
-        version: 1.29.0
-      re-resizable:
-        specifier: ^6.9.11
-        version: 6.9.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/prismjs':
-        specifier: ^1.26.3
-        version: 1.26.3
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/link:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/list:
-    dependencies:
-      '@dnd-kit/core':
-        specifier: ^6.1.0
-        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/sortable':
-        specifier: ^7.0.2
-        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/utilities':
-        specifier: ^3.2.2
-        version: 3.2.2(react@18.2.0)
-      '@floating-ui/react':
-        specifier: ^0.26.3
-        version: 0.26.10(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/autoformat':
-        specifier: workspace:*
-        version: link:../../packages/autoformat
-      '@penx/check-list':
-        specifier: workspace:*
-        version: link:../check-list
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/context-menu':
-        specifier: workspace:*
-        version: link:../../packages/context-menu
-      '@penx/dnd-projection':
-        specifier: workspace:*
-        version: link:../../packages/dnd-projection
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-composition':
-        specifier: workspace:*
-        version: link:../../packages/editor-composition
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/model':
-        specifier: workspace:*
-        version: link:../../packages/model
-      '@penx/model-types':
-        specifier: workspace:*
-        version: link:../../packages/model-types
-      '@penx/node-hooks':
-        specifier: workspace:*
-        version: link:../../packages/node-hooks
-      '@penx/remark-slate':
-        specifier: workspace:*
-        version: link:../../packages/remark-slate
-      '@penx/serializer':
-        specifier: workspace:*
-        version: link:../../packages/serializer
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      '@penx/store':
-        specifier: workspace:*
-        version: link:../../packages/store
-      '@penx/unique-id':
-        specifier: workspace:*
-        version: link:../../packages/unique-id
-      '@penx/widget':
-        specifier: workspace:*
-        version: link:../../packages/widget
-      date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
-      jotai:
-        specifier: ^2.6.0
-        version: 2.7.2(@types/react@18.2.73)(react@18.2.0)
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      mitt:
-        specifier: ^3.0.1
-        version: 3.0.1
-      react-circular-progressbar:
-        specifier: ^2.1.0
-        version: 2.1.0(react@18.2.0)
-      react-datepicker:
-        specifier: ^4.24.0
-        version: 4.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-device-detect:
-        specifier: ^2.2.3
-        version: 2.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-fast-compare:
-        specifier: ^3.2.2
-        version: 3.2.2
-      react-merge-refs:
-        specifier: ^2.1.1
-        version: 2.1.1
-      remark-parse:
-        specifier: ^11.0.0
-        version: 11.0.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-      unified:
-        specifier: ^11.0.4
-        version: 11.0.4
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-datepicker':
-        specifier: ^4.19.4
-        version: 4.19.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/paragraph:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/storage-estimate:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/table:
-    dependencies:
-      '@dnd-kit/core':
-        specifier: ^6.1.0
-        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/sortable':
-        specifier: ^7.0.2
-        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-      '@dnd-kit/utilities':
-        specifier: ^3.2.2
-        version: 3.2.2(react@18.2.0)
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/editor-common':
-        specifier: workspace:*
-        version: link:../../packages/editor-common
-      '@penx/editor-queries':
-        specifier: workspace:*
-        version: link:../../packages/editor-queries
-      '@penx/editor-shared':
-        specifier: workspace:*
-        version: link:../../packages/editor-shared
-      '@penx/editor-transforms':
-        specifier: workspace:*
-        version: link:../../packages/editor-transforms
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/hooks':
-        specifier: workspace:*
-        version: link:../../packages/hooks
-      '@penx/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/paragraph':
-        specifier: workspace:*
-        version: link:../paragraph
-      '@penx/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@penx/slate-lists':
-        specifier: workspace:*
-        version: link:../../packages/slate-lists
-      framer-motion:
-        specifier: ^10.16.14
-        version: 10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      immer:
-        specifier: ^10.0.3
-        version: 10.0.4
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lucide-react:
-        specifier: ^0.344.0
-        version: 0.344.0(react@18.2.0)
-      mitt:
-        specifier: ^3.0.1
-        version: 3.0.1
-      react-merge-refs:
-        specifier: ^2.1.1
-        version: 2.1.1
-      stook:
-        specifier: ^1.17.0
-        version: 1.17.0
-      uikit:
-        specifier: workspace:*
-        version: link:../../packages/uikit
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.17.0
-      '@types/node':
-        specifier: ^20.10.3
-        version: 20.11.30
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      slate:
-        specifier: ^0.103.0
-        version: 0.103.0
-      slate-history:
-        specifier: 0.100.0
-        version: 0.100.0(slate@0.103.0)
-      slate-react:
-        specifier: 0.102.0
-        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
-  extensions/word-count:
-    dependencies:
-      '@fower/react':
-        specifier: ^2.1.1
-        version: 2.1.1
-      '@penx/constants':
-        specifier: workspace:*
-        version: link:../../packages/constants
-      '@penx/extension-typings':
-        specifier: workspace:*
-        version: link:../../packages/extension-typings
-      '@penx/local-db':
-        specifier: workspace:*
-        version: link:../../packages/local-db
-      '@penx/node-hooks':
-        specifier: workspace:*
-        version: link:../../packages/node-hooks
-    devDependencies:
-      '@penx/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.73
-      '@types/react-dom':
-        specifier: ^18.2.17
-        version: 18.2.23
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.3
-
   packages/api:
     dependencies:
       '@octokit/auth-app':
@@ -2780,7 +1242,7 @@ importers:
         version: link:../constants
       '@penx/database':
         specifier: workspace:*
-        version: link:../../extensions/database
+        version: link:../editor-extensions/database
       '@penx/database-context':
         specifier: workspace:*
         version: link:../database-context
@@ -2834,7 +1296,7 @@ importers:
         version: link:../icons
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/loader':
         specifier: workspace:*
         version: link:../loader
@@ -2861,7 +1323,7 @@ importers:
         version: link:../node-normalizer
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/remark-slate':
         specifier: workspace:*
         version: link:../remark-slate
@@ -3709,7 +2171,7 @@ importers:
         version: link:../icons
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/local-db':
         specifier: workspace:*
         version: link:../local-db
@@ -3727,7 +2189,7 @@ importers:
         version: link:../node-hooks
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/service':
         specifier: workspace:*
         version: link:../service
@@ -3913,10 +2375,10 @@ importers:
         version: link:../autoformat
       '@penx/blockquote':
         specifier: workspace:*
-        version: link:../../extensions/blockquote
+        version: link:../editor-extensions/blockquote
       '@penx/code-block':
         specifier: workspace:*
-        version: link:../../extensions/code-block
+        version: link:../editor-extensions/code-block
       '@penx/constants':
         specifier: workspace:*
         version: link:../constants
@@ -3952,7 +2414,7 @@ importers:
         version: link:../extension-typings
       '@penx/heading':
         specifier: workspace:*
-        version: link:../../extensions/heading
+        version: link:../editor-extensions/heading
       '@penx/hooks':
         specifier: workspace:*
         version: link:../hooks
@@ -3961,7 +2423,7 @@ importers:
         version: link:../icons
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/local-db':
         specifier: workspace:*
         version: link:../local-db
@@ -3976,7 +2438,7 @@ importers:
         version: link:../node-hooks
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/service':
         specifier: workspace:*
         version: link:../service
@@ -3991,7 +2453,7 @@ importers:
         version: link:../store
       '@penx/table':
         specifier: workspace:*
-        version: link:../../extensions/table
+        version: link:../editor-extensions/table
       '@penx/unique-id':
         specifier: workspace:*
         version: link:../unique-id
@@ -4178,6 +2640,1544 @@ importers:
       typescript:
         specifier: ^5.3.2
         version: 5.4.3
+
+  packages/editor-extensions/auto-format:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/autoformat':
+        specifier: workspace:*
+        version: link:../../autoformat
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/bidirectional-link:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/code-block':
+        specifier: workspace:*
+        version: link:../code-block
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/model':
+        specifier: workspace:*
+        version: link:../../model
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@penx/store':
+        specifier: workspace:*
+        version: link:../../store
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react-intersection-observer:
+        specifier: ^9.5.3
+        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/block-selector:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/code-block':
+        specifier: workspace:*
+        version: link:../code-block
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-store':
+        specifier: workspace:*
+        version: link:../../extension-store
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/model-types':
+        specifier: workspace:*
+        version: link:../../model-types
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@penx/store':
+        specifier: workspace:*
+        version: link:../../store
+      '@udecode/plate-common':
+        specifier: ^24.5.2
+        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react-intersection-observer:
+        specifier: ^9.5.3
+        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/blockquote:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/check-list:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/code-block:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/paragraph':
+        specifier: workspace:*
+        version: link:../paragraph
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@udecode/plate-common':
+        specifier: ^24.5.2
+        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      markdown-it:
+        specifier: ^13.0.2
+        version: 13.0.2
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/markdown-it':
+        specifier: ^13.0.7
+        version: 13.0.7
+      '@types/prismjs':
+        specifier: ^1.26.3
+        version: 1.26.3
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/database:
+    dependencies:
+      '@dnd-kit/core':
+        specifier: ^6.1.0
+        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/sortable':
+        specifier: ^7.0.2
+        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/utilities':
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.2.0)
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/color-helper':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@fower/utils':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@glideapps/glide-data-grid':
+        specifier: ^6.0.3
+        version: 6.0.3(lodash@4.17.21)(marked@11.2.0)(react-dom@18.2.0(react@18.2.0))(react-responsive-carousel@3.2.23)(react@18.2.0)
+      '@penx/code-block':
+        specifier: workspace:*
+        version: link:../code-block
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/context-menu':
+        specifier: workspace:*
+        version: link:../../context-menu
+      '@penx/database-context':
+        specifier: workspace:*
+        version: link:../../database-context
+      '@penx/database-ui':
+        specifier: workspace:*
+        version: link:../../database-ui
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-leaf':
+        specifier: workspace:*
+        version: link:../../editor-leaf
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/list':
+        specifier: workspace:*
+        version: link:../list
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/model':
+        specifier: workspace:*
+        version: link:../../model
+      '@penx/model-types':
+        specifier: workspace:*
+        version: link:../../model-types
+      '@penx/node-hooks':
+        specifier: workspace:*
+        version: link:../../node-hooks
+      '@penx/paragraph':
+        specifier: workspace:*
+        version: link:../paragraph
+      '@penx/service':
+        specifier: workspace:*
+        version: link:../../service
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@penx/store':
+        specifier: workspace:*
+        version: link:../../store
+      '@penx/trpc-client':
+        specifier: workspace:*
+        version: link:../../trpc-client
+      '@penx/widget':
+        specifier: workspace:*
+        version: link:../../widget
+      '@tanstack/react-query':
+        specifier: ^4.36.1
+        version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)
+      '@udecode/plate-common':
+        specifier: ^25.0.1
+        version: 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.2.73)(immer@10.0.4)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.2.73)(react@18.2.0))
+      classnames:
+        specifier: ^2.3.2
+        version: 2.5.1
+      date-fns:
+        specifier: ^2.30.0
+        version: 2.30.0
+      downshift:
+        specifier: ^8.2.3
+        version: 8.5.0(react@18.2.0)
+      framer-motion:
+        specifier: ^10.16.14
+        version: 10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      immer:
+        specifier: ^10.0.3
+        version: 10.0.4
+      jotai:
+        specifier: ^2.6.0
+        version: 2.7.2(@types/react@18.2.73)(react@18.2.0)
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      marked:
+        specifier: ^11.1.0
+        version: 11.2.0
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-datepicker:
+        specifier: ^4.24.0
+        version: 4.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-device-detect:
+        specifier: ^2.2.3
+        version: 2.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-fast-compare:
+        specifier: ^3.2.2
+        version: 3.2.2
+      react-hook-form:
+        specifier: ^7.48.2
+        version: 7.51.2(react@18.2.0)
+      react-intersection-observer:
+        specifier: ^9.5.3
+        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-laag:
+        specifier: ^2.0.5
+        version: 2.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-responsive-carousel:
+        specifier: ^3.2.23
+        version: 3.2.23
+      react-textarea-autosize:
+        specifier: ^8.5.3
+        version: 8.5.3(@types/react@18.2.73)(react@18.2.0)
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+      use-debounce:
+        specifier: ^9.0.4
+        version: 9.0.4(react@18.2.0)
+      vaul:
+        specifier: ^0.9.0
+        version: 0.9.0(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      viem:
+        specifier: ^2.9.28
+        version: 2.9.28(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.23.8)
+      wagmi:
+        specifier: ^2.6.0
+        version: 2.6.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(@tanstack/query-core@4.36.1)(@tanstack/react-query@4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0))(@types/react@18.2.73)(bufferutil@4.0.8)(encoding@0.1.13)(immer@10.0.4)(ioredis@5.3.2)(react-dom@18.2.0(react@18.2.0))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(rollup@4.13.2)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.28(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.23.8))(zod@3.23.8)
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-datepicker':
+        specifier: ^4.19.4
+        version: 4.19.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/divider:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/paragraph':
+        specifier: workspace:*
+        version: link:../paragraph
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/file:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/node-hooks':
+        specifier: workspace:*
+        version: link:../../node-hooks
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
+      re-resizable:
+        specifier: ^6.9.11
+        version: 6.9.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/prismjs':
+        specifier: ^1.26.3
+        version: 1.26.3
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/heading:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      react-intersection-observer:
+        specifier: ^9.5.3
+        version: 9.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/image:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/encryption':
+        specifier: workspace:*
+        version: link:../../encryption
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/google-drive':
+        specifier: workspace:*
+        version: link:../../google-drive
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/model-types':
+        specifier: workspace:*
+        version: link:../../model-types
+      '@penx/node-hooks':
+        specifier: workspace:*
+        version: link:../../node-hooks
+      '@penx/session':
+        specifier: workspace:*
+        version: link:../../session
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@penx/storage':
+        specifier: workspace:*
+        version: link:../../storage
+      '@penx/store':
+        specifier: workspace:*
+        version: link:../../store
+      '@penx/trpc-client':
+        specifier: workspace:*
+        version: link:../../trpc-client
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
+      re-resizable:
+        specifier: ^6.9.11
+        version: 6.9.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/prismjs':
+        specifier: ^1.26.3
+        version: 1.26.3
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/link:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/list:
+    dependencies:
+      '@dnd-kit/core':
+        specifier: ^6.1.0
+        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/sortable':
+        specifier: ^7.0.2
+        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/utilities':
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.2.0)
+      '@floating-ui/react':
+        specifier: ^0.26.3
+        version: 0.26.10(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/autoformat':
+        specifier: workspace:*
+        version: link:../../autoformat
+      '@penx/check-list':
+        specifier: workspace:*
+        version: link:../check-list
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/context-menu':
+        specifier: workspace:*
+        version: link:../../context-menu
+      '@penx/dnd-projection':
+        specifier: workspace:*
+        version: link:../../dnd-projection
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-composition':
+        specifier: workspace:*
+        version: link:../../editor-composition
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/model':
+        specifier: workspace:*
+        version: link:../../model
+      '@penx/model-types':
+        specifier: workspace:*
+        version: link:../../model-types
+      '@penx/node-hooks':
+        specifier: workspace:*
+        version: link:../../node-hooks
+      '@penx/remark-slate':
+        specifier: workspace:*
+        version: link:../../remark-slate
+      '@penx/serializer':
+        specifier: workspace:*
+        version: link:../../serializer
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      '@penx/store':
+        specifier: workspace:*
+        version: link:../../store
+      '@penx/unique-id':
+        specifier: workspace:*
+        version: link:../../unique-id
+      '@penx/widget':
+        specifier: workspace:*
+        version: link:../../widget
+      date-fns:
+        specifier: ^2.30.0
+        version: 2.30.0
+      jotai:
+        specifier: ^2.6.0
+        version: 2.7.2(@types/react@18.2.73)(react@18.2.0)
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react-circular-progressbar:
+        specifier: ^2.1.0
+        version: 2.1.0(react@18.2.0)
+      react-datepicker:
+        specifier: ^4.24.0
+        version: 4.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-device-detect:
+        specifier: ^2.2.3
+        version: 2.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-fast-compare:
+        specifier: ^3.2.2
+        version: 3.2.2
+      react-merge-refs:
+        specifier: ^2.1.1
+        version: 2.1.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+      unified:
+        specifier: ^11.0.4
+        version: 11.0.4
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-datepicker':
+        specifier: ^4.19.4
+        version: 4.19.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/paragraph:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/storage-estimate:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/table:
+    dependencies:
+      '@dnd-kit/core':
+        specifier: ^6.1.0
+        version: 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/sortable':
+        specifier: ^7.0.2
+        version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+      '@dnd-kit/utilities':
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.2.0)
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/editor-common':
+        specifier: workspace:*
+        version: link:../../editor-common
+      '@penx/editor-queries':
+        specifier: workspace:*
+        version: link:../../editor-queries
+      '@penx/editor-shared':
+        specifier: workspace:*
+        version: link:../../editor-shared
+      '@penx/editor-transforms':
+        specifier: workspace:*
+        version: link:../../editor-transforms
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@penx/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/paragraph':
+        specifier: workspace:*
+        version: link:../paragraph
+      '@penx/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@penx/slate-lists':
+        specifier: workspace:*
+        version: link:../../slate-lists
+      framer-motion:
+        specifier: ^10.16.14
+        version: 10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      immer:
+        specifier: ^10.0.3
+        version: 10.0.4
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@18.2.0)
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      react-merge-refs:
+        specifier: ^2.1.1
+        version: 2.1.1
+      stook:
+        specifier: ^1.17.0
+        version: 1.17.0
+      uikit:
+        specifier: workspace:*
+        version: link:../../uikit
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.17.0
+      '@types/node':
+        specifier: ^20.10.3
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      slate:
+        specifier: ^0.103.0
+        version: 0.103.0
+      slate-history:
+        specifier: 0.100.0
+        version: 0.100.0(slate@0.103.0)
+      slate-react:
+        specifier: 0.102.0
+        version: 0.102.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.103.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  packages/editor-extensions/word-count:
+    dependencies:
+      '@fower/react':
+        specifier: ^2.1.1
+        version: 2.1.1
+      '@penx/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@penx/extension-typings':
+        specifier: workspace:*
+        version: link:../../extension-typings
+      '@penx/local-db':
+        specifier: workspace:*
+        version: link:../../local-db
+      '@penx/node-hooks':
+        specifier: workspace:*
+        version: link:../../node-hooks
+    devDependencies:
+      '@penx/tsconfig':
+        specifier: workspace:*
+        version: link:../../tsconfig
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.3.0
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
 
   packages/editor-leaf:
     dependencies:
@@ -4531,61 +4531,61 @@ importers:
     dependencies:
       '@penx/auto-format':
         specifier: workspace:*
-        version: link:../../extensions/auto-format
+        version: link:../editor-extensions/auto-format
       '@penx/bidirectional-link':
         specifier: workspace:*
-        version: link:../../extensions/bidirectional-link
+        version: link:../editor-extensions/bidirectional-link
       '@penx/block-selector':
         specifier: workspace:*
-        version: link:../../extensions/block-selector
+        version: link:../editor-extensions/block-selector
       '@penx/blockquote':
         specifier: workspace:*
-        version: link:../../extensions/blockquote
+        version: link:../editor-extensions/blockquote
       '@penx/check-list':
         specifier: workspace:*
-        version: link:../../extensions/check-list
+        version: link:../editor-extensions/check-list
       '@penx/code-block':
         specifier: workspace:*
-        version: link:../../extensions/code-block
+        version: link:../editor-extensions/code-block
       '@penx/database':
         specifier: workspace:*
-        version: link:../../extensions/database
+        version: link:../editor-extensions/database
       '@penx/divider':
         specifier: workspace:*
-        version: link:../../extensions/divider
+        version: link:../editor-extensions/divider
       '@penx/extension-typings':
         specifier: workspace:*
         version: link:../extension-typings
       '@penx/file':
         specifier: workspace:*
-        version: link:../../extensions/file
+        version: link:../editor-extensions/file
       '@penx/heading':
         specifier: workspace:*
-        version: link:../../extensions/heading
+        version: link:../editor-extensions/heading
       '@penx/image':
         specifier: workspace:*
-        version: link:../../extensions/image
+        version: link:../editor-extensions/image
       '@penx/link':
         specifier: workspace:*
-        version: link:../../extensions/link
+        version: link:../editor-extensions/link
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/local-db':
         specifier: workspace:*
         version: link:../local-db
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/storage-estimate':
         specifier: workspace:*
-        version: link:../../extensions/storage-estimate
+        version: link:../editor-extensions/storage-estimate
       '@penx/table':
         specifier: workspace:*
-        version: link:../../extensions/table
+        version: link:../editor-extensions/table
       '@penx/word-count':
         specifier: workspace:*
-        version: link:../../extensions/word-count
+        version: link:../editor-extensions/word-count
     devDependencies:
       '@penx/tsconfig':
         specifier: workspace:*
@@ -4877,31 +4877,31 @@ importers:
     dependencies:
       '@penx/auto-format':
         specifier: workspace:*
-        version: link:../../extensions/auto-format
+        version: link:../editor-extensions/auto-format
       '@penx/autoformat':
         specifier: workspace:*
         version: link:../autoformat
       '@penx/bidirectional-link':
         specifier: workspace:*
-        version: link:../../extensions/bidirectional-link
+        version: link:../editor-extensions/bidirectional-link
       '@penx/block-selector':
         specifier: workspace:*
-        version: link:../../extensions/block-selector
+        version: link:../editor-extensions/block-selector
       '@penx/blockquote':
         specifier: workspace:*
-        version: link:../../extensions/blockquote
+        version: link:../editor-extensions/blockquote
       '@penx/check-list':
         specifier: workspace:*
-        version: link:../../extensions/check-list
+        version: link:../editor-extensions/check-list
       '@penx/code-block':
         specifier: workspace:*
-        version: link:../../extensions/code-block
+        version: link:../editor-extensions/code-block
       '@penx/constants':
         specifier: workspace:*
         version: link:../constants
       '@penx/divider':
         specifier: workspace:*
-        version: link:../../extensions/divider
+        version: link:../editor-extensions/divider
       '@penx/editor-common':
         specifier: workspace:*
         version: link:../editor-common
@@ -4916,16 +4916,16 @@ importers:
         version: link:../extension-typings
       '@penx/heading':
         specifier: workspace:*
-        version: link:../../extensions/heading
+        version: link:../editor-extensions/heading
       '@penx/image':
         specifier: workspace:*
-        version: link:../../extensions/image
+        version: link:../editor-extensions/image
       '@penx/link':
         specifier: workspace:*
-        version: link:../../extensions/link
+        version: link:../editor-extensions/link
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/local-db':
         specifier: workspace:*
         version: link:../local-db
@@ -4934,19 +4934,19 @@ importers:
         version: link:../model-types
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/storage-estimate':
         specifier: workspace:*
-        version: link:../../extensions/storage-estimate
+        version: link:../editor-extensions/storage-estimate
       '@penx/store':
         specifier: workspace:*
         version: link:../store
       '@penx/table':
         specifier: workspace:*
-        version: link:../../extensions/table
+        version: link:../editor-extensions/table
       '@penx/word-count':
         specifier: workspace:*
-        version: link:../../extensions/word-count
+        version: link:../editor-extensions/word-count
       immer:
         specifier: ^10.0.3
         version: 10.0.4
@@ -5467,7 +5467,7 @@ importers:
         version: link:../extension-typings
       '@penx/list':
         specifier: workspace:*
-        version: link:../../extensions/list
+        version: link:../editor-extensions/list
       '@penx/local-db':
         specifier: workspace:*
         version: link:../local-db
@@ -6317,7 +6317,7 @@ importers:
         version: link:../node-hooks
       '@penx/paragraph':
         specifier: workspace:*
-        version: link:../../extensions/paragraph
+        version: link:../editor-extensions/paragraph
       '@penx/session':
         specifier: workspace:*
         version: link:../session
@@ -29620,7 +29620,7 @@ snapshots:
   '@walletconnect/jsonrpc-utils@1.0.8':
     dependencies:
       '@walletconnect/environment': 1.0.1
-      '@walletconnect/jsonrpc-types': 1.0.3
+      '@walletconnect/jsonrpc-types': 1.0.4
       tslib: 1.14.1
 
   '@walletconnect/jsonrpc-ws-connection@1.0.14(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
@@ -29997,7 +29997,7 @@ snapshots:
       '@stablelib/random': 1.0.2
       '@stablelib/sha256': 1.0.1
       '@stablelib/x25519': 1.0.3
-      '@walletconnect/relay-api': 1.0.9
+      '@walletconnect/relay-api': 1.0.10
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
       '@walletconnect/types': 2.11.2(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
@@ -30029,7 +30029,7 @@ snapshots:
       '@stablelib/random': 1.0.2
       '@stablelib/sha256': 1.0.1
       '@stablelib/x25519': 1.0.3
-      '@walletconnect/relay-api': 1.0.9
+      '@walletconnect/relay-api': 1.0.10
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
       '@walletconnect/types': 2.11.2(@react-native-async-storage/async-storage@1.23.1(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.3(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.2.0)(utf-8-validate@6.0.3)))(ioredis@5.3.2)
@@ -40751,6 +40751,15 @@ snapshots:
   vaul@0.9.0(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
+
+  vaul@0.9.0(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
