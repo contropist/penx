@@ -11,8 +11,15 @@ export function useThemeMode() {
 
   const setMode = useCallback(
     (mode: string, persistent = true) => {
+      let fowerMode = mode
+
+      if (mode == 'auto') {
+        const media = window.matchMedia('(prefers-color-scheme: dark)')
+        fowerMode = media.matches ? 'dark' : 'light'
+      }
+
       setModeState(mode)
-      fowerStore.setMode(mode)
+      fowerStore.setMode(fowerMode)
       if (persistent) {
         set(FOWER_THEME_MODE, mode)
       }

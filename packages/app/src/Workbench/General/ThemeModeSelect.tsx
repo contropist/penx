@@ -12,8 +12,6 @@ export const ThemeModeSelect = ({}: Props) => {
     { label: 'Auto', value: 'auto' },
   ]
 
-  console.log('=========mode:', mode)
-
   return (
     <RadioGroup
       toCenterY

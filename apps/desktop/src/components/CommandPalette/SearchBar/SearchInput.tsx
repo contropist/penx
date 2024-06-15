@@ -41,6 +41,10 @@ export const SearchInput = memo(
         placeholderZinc500
         textBase
         outlineNone
+        neutral900
+        css={{
+          'caretColor--dark': 'white',
+        }}
         placeholder="Search something..."
         autoFocus
         value={search}
