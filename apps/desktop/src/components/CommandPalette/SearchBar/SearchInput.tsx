@@ -32,7 +32,6 @@ export const SearchInput = memo(
         ref={ref as any}
         id="searchBarInput"
         flex-1
-        bgRed100
         selectNone
         toCenterY
         bgTransparent

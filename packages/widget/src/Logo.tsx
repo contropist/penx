@@ -15,12 +15,7 @@ export const Logo = ({
 }: Props) => {
   const content = (
     <>
-      {/* <Box
-        as="img"
-        src={`${BASE_URL || ''}/images/logo-512.png`}
-        square={size * 0.9}
-      /> */}
-      <IconLogo size={size * 0.9} />
+      <IconLogo size={size * 0.9} strokeWidth={30} stroke="black" />
 
       {showText && (
         <Box>

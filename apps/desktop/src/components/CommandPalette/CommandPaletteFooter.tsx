@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Box } from '@fower/react'
 import { appEmitter } from '@penx/event'
+import { IconLogo } from '@penx/icons'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { ListItemIcon } from './ListItemIcon'
 import { ActionPopover } from './SearchBar/ActionPopover'
@@ -26,17 +27,7 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       {currentCommand && currentCommand.data.extensionIcon ? (
         <ListItemIcon icon={currentCommand.data.extensionIcon} />
       ) : (
-        <Box
-          as="img"
-          src="/logo/128x128.png"
-          alt=""
-          width={20}
-          height={20}
-          style={{ borderRadius: 6 }}
-          onClick={async () => {
-            //
-          }}
-        />
+        <IconLogo fillBlack stroke="black" />
       )}
       <Box
         data-tauri-drag-region

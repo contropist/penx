@@ -21,19 +21,19 @@ export const SidebarItem = ({
     <Box
       toCenterY
       toBetween
+      roundedXL
       gap2
-      rounded
-      px2
+      px3
       black
-      bgGray200={isActive}
-      bgGray200--hover
-      h8
-      transitionCommon
+      bgNeutral200={isActive}
+      bgNeutral800--dark--hover={isActive}
+      bgNeutral200--hover
+      h10
       cursorPointer
       {...rest}
       onClick={onClick}
     >
-      <Box toCenterY gap2>
+      <Box toCenterY gap2 flex-1>
         <Box inlineFlex>{icon}</Box>
         <Box textSM>{label}</Box>
       </Box>

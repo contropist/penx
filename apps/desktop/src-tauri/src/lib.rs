@@ -6,7 +6,7 @@ mod util;
 
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 use std::thread;
-use tauri::{LogicalSize, Manager, Runtime, Size, WebviewWindow, Window};
+use tauri::{is_dev, LogicalSize, Manager, Runtime, Size, WebviewWindow, Window};
 use util::{convert_all_app_icons_to_png, handle_input, open_command};
 use window_shadows::set_shadow;
 use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
@@ -121,9 +121,8 @@ pub fn run() {
 
             let window = app.get_webview_window("main").unwrap();
 
-            // TODO: hide title
-            // #[cfg(target_os = "macos")]
-            // window.set_transparent_titlebar(true, true);
+            #[cfg(target_os = "macos")]
+            window.set_transparent_titlebar(true, true);
 
             // window.set_skip_taskbar(skip)
 

@@ -1,6 +1,7 @@
-import { FowerHTMLProps } from '@fower/react'
+import { Box, FowerHTMLProps } from '@fower/react'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
+import { Minimize } from 'lucide-react'
 import { Button } from 'uikit'
 import { IconSwap } from '@penx/icons'
 import { useMode } from '~/hooks/useMode'
@@ -51,7 +52,12 @@ export const ToggleModeButton = ({ ...rest }: Props) => {
       onClick={() => setWindow()}
       {...rest}
     >
-      <IconSwap rotate={90} />
+      {isEditor && (
+        <Box inlineFlex neutral800>
+          <Minimize size={20} />
+        </Box>
+      )}
+      <IconSwap stroke--dark="neutral200" rotate={90} />
     </Button>
   )
 }

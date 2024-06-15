@@ -82,7 +82,7 @@ export const CommandPalette = () => {
       bottom0
       zIndex-10000
       // bg="#F6F2F0"
-      // bgWhite
+      bgWhite
       style={
         {
           // backdropFilter: 'blur(200px)',

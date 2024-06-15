@@ -44,7 +44,7 @@ export const WORKBENCH_NAV_HEIGHT = 48
 
 export const DATABASE_TOOLBAR_HEIGHT = 42
 
-export const SIDEBAR_WIDTH = 260
+export const SIDEBAR_WIDTH = 220
 
 export const isSelfHosted = env.NEXT_PUBLIC_DEPLOY_MODE !== 'PLATFORM'
 

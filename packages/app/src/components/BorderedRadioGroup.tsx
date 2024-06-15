@@ -32,7 +32,7 @@ export const BorderedRadioGroup = forwardRef<HTMLDivElement, Props>(
                   gapX={[8, 8, 20]}
                   transitionAll
                   border
-                  borderGray200
+                  borderNeutral200
                   rounded-12
                   brand500={checked}
                   borderBrand500={checked}

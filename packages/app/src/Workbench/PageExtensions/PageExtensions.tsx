@@ -7,6 +7,10 @@ export const PageExtensions = () => {
 
   return (
     <Box px={[20, 20]} py={[0, 0, 20]}>
+      <Box neutral900 fontMedium mb10>
+        Extensions
+      </Box>
+
       <Box toCenterY mt2 mb4 gray500 textSM>
         <Box flex-2>Name</Box>
         <Box flex-1>Alias</Box>

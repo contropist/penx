@@ -17,8 +17,11 @@ import { getAuthorizedUser } from '@penx/storage'
 import { Fallback } from '../Fallback/Fallback'
 import { LoginByTokenModal } from '../LoginByTokenModal/LoginByTokenModal'
 import { CommandPanel } from '../Palette'
+import { About } from './About/About'
+import { Account } from './Account/Account'
 import { BackupMnemonicTips } from './BackupMnemonicTips'
 import { BottomBar } from './BottomBar'
+import { General } from './General/General'
 import { MobileNav } from './NodeNav/MobileNav'
 import { PCNav } from './NodeNav/PCNav'
 import { NodePanels } from './NodePanels'
@@ -67,10 +70,10 @@ export const Workbench = () => {
       <TagHubModal />
       <RowModal />
 
-      <Box h-100vh toLeft black flex-1 relative bgWhite>
+      <Box h-100vh toLeft black flex-1 relative bgWhite gapX10>
         {/* {!isBackedUp && session && name === 'NODE' && <BackupMnemonicTips />} */}
 
-        <Box toLeft relative borderRight borderNeutral200--T40>
+        <Box toLeft relative>
           <Box
             w={sidebarOpen ? [0, 0, SIDEBAR_WIDTH] : 0}
             h-100vh
@@ -80,7 +83,7 @@ export const Workbench = () => {
           >
             <Sidebar activeNode={activeNode} />
           </Box>
-          <Box h={WORKBENCH_NAV_HEIGHT} toCenterY absolute right--40 zIndex-100>
+          {/* <Box h={WORKBENCH_NAV_HEIGHT} toCenterY absolute right--40 zIndex-100>
             {!isMobile && <CommandPanel />}
             <Box
               onClick={handleViewSidebar}
@@ -95,9 +98,9 @@ export const Workbench = () => {
             >
               <IconSidebar size={20} fillGray600 />
             </Box>
-          </Box>
+          </Box> */}
         </Box>
-        <Box flex-1 relative overflowHidden>
+        <Box data-tauri-drag-region flex-1 relative overflowHidden>
           <ErrorBoundary fallback={<Fallback />}>
             {name === 'TODOS' && <BottomBar />}
 
@@ -110,13 +113,16 @@ export const Workbench = () => {
             )}
 
             {name !== 'NODE' && (
-              <Box h-100vh overflowYAuto>
-                <PCNav />
+              <Box data-tauri-drag-region h-100vh overflowYAuto toCenterY pl10>
+                {/* <PCNav /> */}
                 <MobileNav />
 
                 {name === 'SETTINGS' && <PageSettings />}
                 {name === 'TODOS' && <PageTodo />}
                 {name === 'DATABASES' && <PageDatabases />}
+                {name === 'GENERAL' && <General />}
+                {name === 'ABOUT' && <About />}
+                {name === 'ACCOUNT' && <Account />}
                 {name === 'EXTENSIONS' && <PageExtensions />}
                 {name === 'ACCOUNT_SETTINGS' && (
                   <Box p5>

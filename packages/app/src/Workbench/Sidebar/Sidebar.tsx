@@ -4,12 +4,15 @@ import { open } from '@tauri-apps/plugin-shell'
 import {
   DatabaseBackup,
   Hash,
+  Info,
   InfoIcon,
   Key,
   LayoutGridIcon,
   LayoutIcon,
   MessageCircle,
   MessageCircleCode,
+  Settings,
+  Settings2,
   User,
 } from 'lucide-react'
 import { Bullet } from 'uikit'
@@ -43,6 +46,8 @@ export const Sidebar = memo(
     const isAccountSettingsActive = name === 'ACCOUNT_SETTINGS'
     const isRecoveryPhraseActive = name === 'RECOVER_PHRASE'
     const isLocalBackupActive = name === 'LOCAL_BACKUP'
+    const isGeneralActive = name === 'GENERAL'
+    const isAboutActive = name === 'ABOUT'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -73,233 +78,123 @@ export const Sidebar = memo(
         // borderGray100
         flex-1
         display={['none', 'none', 'flex']}
-        bgZinc100--T40
         gap3
         h-100vh
         overflowAuto
+        toCenterY
       >
-        <Box px2>
-          <SidebarHeader />
-          <Box column gap-1 flex-1 mt3>
-            {/* <SidebarItem
-              icon={
-                <IconCalendar
-                  size={20}
-                  stroke={isTodayActive ? 'brand500' : 'gray500'}
-                />
-              }
-              label="Today"
-              isActive={isTodayActive}
-              onClick={() => {
-                store.node.selectDailyNote()
-              }}
-            /> */}
+        {/* <SidebarHeader /> */}
 
-            {/* <SidebarItem
-              icon={<Inbox size={18} />}
-              label="Inbox"
-              onClick={() => {
-                store.node.selectInbox()
-              }}
-            /> */}
+        <Box px3 column gap2 pb3 toCenterY>
+          <SidebarItem
+            neutral500
+            isActive={isGeneralActive}
+            icon={
+              <Box neutral500 inlineFlex>
+                <Settings2 size={20} />
+              </Box>
+            }
+            label="General"
+            onClick={() => {
+              store.router.routeTo('GENERAL')
+            }}
+          />
 
-            {/* <SidebarItem
-              icon={
-                <IconTodo
-                  size={20}
-                  stroke={isTodosActive ? 'brand500' : 'gray500'}
-                />
-              }
-              label="Tasks"
-              isActive={isTodosActive}
-              onClick={() => {
-                store.router.routeTo('TODOS')
-              }}
-            /> */}
+          <SidebarItem
+            neutral500
+            icon={
+              <Box
+                inlineFlex
+                neutral500
+                // square5
+                // roundedLG
+                // bgGradientX={['pink500', 'purple500']}
+                // white
+                // toCenter
+              >
+                <LayoutGridIcon size={20} />
+              </Box>
+            }
+            label="Extensions"
+            isActive={isExtensionsActive}
+            onClick={() => {
+              store.router.routeTo('EXTENSIONS')
+            }}
+          />
 
+          {session && (
             <SidebarItem
+              neutral500
+              isActive={isAccountSettingsActive}
               icon={
-                <Box
-                  inlineFlex
-                  square5
-                  roundedLG
-                  brand500={isDatabasesActive}
-                  bgGradientX={['red500', 'orange500']}
-                  white
-                  toCenter
-                >
-                  <Hash size={14} />
+                <Box neutral500 inlineFlex>
+                  <User size={20} />
                 </Box>
               }
-              label="Databases"
-              isActive={isDatabasesActive}
+              label="Account settings"
               onClick={() => {
-                store.router.routeTo('DATABASES')
+                store.router.routeTo('ACCOUNT_SETTINGS')
               }}
             />
+          )}
 
+          {/* {session && (
             <SidebarItem
+              neutral500
+              isActive={isRecoveryPhraseActive}
               icon={
-                <Box
-                  inlineFlex
-                  square5
-                  roundedLG
-                  bgGradientX={['pink500', 'purple500']}
-                  white
-                  toCenter
-                >
-                  <LayoutGridIcon size={12} />
+                <Box neutral500 inlineFlex>
+                  <Key size={20} />
                 </Box>
               }
-              label="Extensions"
-              isActive={isExtensionsActive}
+              label="Recovery phrase"
               onClick={() => {
-                store.router.routeTo('EXTENSIONS')
+                store.router.routeTo('RECOVER_PHRASE')
               }}
             />
+          )} */}
 
-            {/* <SidebarItem
-              icon={
-                <Box
-                  inlineFlex
-                  square5
-                  roundedLG
-                  white
-                  toCenter
-                  bgGradientY={['green500', 'blue500']}
-                >
-                  <LayoutGridIcon size={14} />
-                </Box>
-              }
-              label="Marketplace"
-              isActive={isMarketplaceActive}
-              onClick={() => {
-                store.router.routeTo('MARKETPLACE')
-              }}
-            /> */}
+          {/* <SidebarItem
+            neutral500
+            isActive={isLocalBackupActive}
+            icon={
+              <Box neutral500 inlineFlex>
+                <DatabaseBackup size={20} />
+              </Box>
+            }
+            label="Local auto backup"
+            onClick={() => {
+              store.router.routeTo('LOCAL_BACKUP')
+            }}
+          /> */}
 
-            {/* <SidebarItem
-              icon={
-                <Bullet
-                  mr-4
-                  innerColor={isRootActive ? 'brand500' : undefined}
-                />
-              }
-              label="Nodes"
-              isActive={isRootActive}
-              onClick={() => {
-                store.node.selectSpaceNode()
-              }}
-            /> */}
+          <SidebarItem
+            neutral500
+            icon={
+              <Box neutral500 inlineFlex>
+                <MessageCircle size={18} />
+              </Box>
+            }
+            label="Feedback"
+            onClick={() => {
+              open('https://github.com/penxio/penx/issues')
+            }}
+          />
 
-            {/* <SidebarItem
-              icon={
-                <Box gray500 inlineFlex>
-                  <BoxIcon size={20} strokeWidth={1.5} />
-                </Box>
-              }
-              label="TagHub"
-              onClick={() => {
-                modalController.open(ModalNames.TAG_HUB)
-              }}
-            /> */}
-          </Box>
+          <SidebarItem
+            neutral500
+            isActive={isAboutActive}
+            icon={
+              <Box neutral500 inlineFlex>
+                <Info size={20} />
+              </Box>
+            }
+            label="About"
+            onClick={() => {
+              store.router.routeTo('ABOUT')
+            }}
+          />
         </Box>
-
-        <Box flex-1 zIndex-1 overflowYAuto px2>
-          <FavoriteBox />
-
-          {/* {!activeSpace.isOutliner && <CatalogueBox />}
-            {!activeSpace.isOutliner && <PageList />}
-            {activeSpace.isOutliner && <TreeView nodeList={nodeList} />} */}
-        </Box>
-
-        <Box px3 column gap2 pb3>
-          {/* {!isProd && <CreateDemoDatabaseButton></CreateDemoDatabaseButton>} */}
-
-          {/* <SetupGitHubButton /> */}
-
-          <Box column gap1>
-            {session && (
-              <SidebarItem
-                gray500
-                isActive={isAccountSettingsActive}
-                icon={
-                  <Box gray500 inlineFlex>
-                    <User size={20} />
-                  </Box>
-                }
-                label="Account settings"
-                onClick={() => {
-                  store.router.routeTo('ACCOUNT_SETTINGS')
-                }}
-              />
-            )}
-
-            {session && (
-              <SidebarItem
-                gray500
-                isActive={isRecoveryPhraseActive}
-                icon={
-                  <Box gray500 inlineFlex>
-                    <Key size={20} />
-                  </Box>
-                }
-                label="Recovery phrase"
-                onClick={() => {
-                  store.router.routeTo('RECOVER_PHRASE')
-                }}
-              />
-            )}
-
-            <SidebarItem
-              gray500
-              isActive={isLocalBackupActive}
-              icon={
-                <Box gray500 inlineFlex>
-                  <DatabaseBackup size={20} />
-                </Box>
-              }
-              label="Local auto backup"
-              onClick={() => {
-                store.router.routeTo('LOCAL_BACKUP')
-              }}
-            />
-
-            {/* <SidebarItem
-              gray500
-              icon={
-                <Box gray500 inlineFlex>
-                  <InfoIcon size={18} />
-                </Box>
-              }
-              label="Developer"
-              onClick={() => {
-                open(
-                  'https://docs.penx.io/build-extension/create-first-extension',
-                )
-              }}
-            /> */}
-
-            <SidebarItem
-              gray500
-              icon={
-                <Box gray500 inlineFlex>
-                  <MessageCircle size={18} />
-                </Box>
-              }
-              label="Feedback"
-              onClick={() => {
-                open('https://github.com/penxio/penx/issues')
-              }}
-            />
-          </Box>
-
-          <LoginButton />
-        </Box>
-        {/* <Box px2 toBetween toCenterY pb2>
-          {session && !loading && <SyncPopover />}
-        </Box> */}
       </Box>
     )
   },

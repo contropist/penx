@@ -27,8 +27,11 @@ import { positionAtom } from './hooks/useCommandPosition'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import { useThemeMode } from '@penx/hooks'
 
 initFower()
+
+const isDev = import.meta.env.MODE === 'development'
 
 async function listenForHotkey(shortcut: string) {
   const appWindow = getCurrent()
@@ -78,13 +81,12 @@ async function hideOnBlur() {
   })
 
   listen('tauri://blur', () => {
-    // console.log('blur...........')
-    // if (!isDev) {
-    const mode = store.get(modeAtom)
-    if (mode === 'COMMAND') {
-      appWindow.hide()
+    if (!isDev) {
+      const mode = store.get(modeAtom)
+      if (mode === 'COMMAND') {
+        appWindow.hide()
+      }
     }
-    // }
   })
 }
 
@@ -219,6 +221,12 @@ function MyApp() {
     return () => {
       appEmitter.off('SIGN_OUT', handleSignOut)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const { initMode } = useThemeMode()
+  useEffect(() => {
+    initMode()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

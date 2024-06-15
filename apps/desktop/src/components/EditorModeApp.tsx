@@ -48,7 +48,7 @@ export function EditorModeApp() {
       <OnlineProvider>
         <Box relative>
           <EditorApp />
-          <ToggleModeButton absolute bottom4 right4 />
+          <ToggleModeButton absolute top4 right4 />
         </Box>
       </OnlineProvider>
     </SessionProvider>

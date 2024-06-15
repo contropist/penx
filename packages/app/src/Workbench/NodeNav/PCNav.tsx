@@ -22,7 +22,6 @@ export const PCNav = () => {
       top0
       toCenterY
       toBetween
-      borderBottom
       // pr2
       display={['none', 'none', 'inline-flex']}
       w-100p
@@ -30,12 +29,12 @@ export const PCNav = () => {
       zIndex-10
     >
       <Box pl12>
-        {node && <Breadcrumb />}
+        {/* {node && <Breadcrumb />}
         {name === 'DATABASES' && <Box>Databases</Box>}
         {name === 'EXTENSIONS' && <Box>Extensions</Box>}
         {name === 'ACCOUNT_SETTINGS' && <Box>Account settings</Box>}
         {name === 'RECOVER_PHRASE' && <Box>Recover phrase</Box>}
-        {name === 'LOCAL_BACKUP' && <Box>Local auto backup</Box>}
+        {name === 'LOCAL_BACKUP' && <Box>Local auto backup</Box>} */}
       </Box>
 
       <Box pr2>

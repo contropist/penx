@@ -12,6 +12,8 @@
     "window:allow-show",
     "window:allow-set-focus",
     "window:allow-center",
+    "window:allow-start-dragging",
+    "window:allow-start-resize-dragging",
 
     "webview:default",
 
@@ -21,7 +23,9 @@
     "menu:default",
     "tray:default",
     "fs:default",
+
     "shell:default",
+    "shell:allow-open",
 
     "os:default",
     "os:allow-platform",

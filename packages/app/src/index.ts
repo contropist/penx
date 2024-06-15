@@ -1,5 +1,7 @@
 import { EditorApp } from './EditorApp'
 
+export { useMode } from './components/ModeToggle/useMode'
+
 export * from './common'
 export * from './EditorApp'
 export * from './Dashboard'

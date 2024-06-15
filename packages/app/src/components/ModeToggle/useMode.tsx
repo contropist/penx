@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
-import { store } from '@fower/react'
+import { fowerStore } from '@fower/react'
 import { getCookie, setCookie } from 'cookies-next'
+import { atom, useAtom } from 'jotai'
 
 interface Result {
   mode: string
   setMode: (mode: string) => void
 }
 
+const modeAtom = atom('')
+
 export function useMode(): Result {
-  const [state, setState] = useState<string>('')
+  const [mode, setModeState] = useAtom<string>(modeAtom)
 
   useEffect(() => {
     const mode = getCookie('theme-mode') as string
@@ -17,10 +20,10 @@ export function useMode(): Result {
   }, [])
 
   function setMode(mode: string) {
-    setState(mode)
+    setModeState(mode)
     setCookie('theme-mode', mode)
-    store.setMode(mode)
+    fowerStore.setMode(mode)
   }
 
-  return { mode: state, setMode } as Result
+  return { mode, setMode } as Result
 }

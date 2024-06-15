@@ -20,10 +20,8 @@ export function initFower() {
       autoDarkMode: {
         enabled: true,
         mappings: {
-          black: 'gray100',
-          bgWhite: 'gray900',
-          bgSlate100: 'gray900',
-          brand500: 'brand500',
+          black: 'neutral100',
+          bgWhite: 'neutral900',
         },
       },
     },

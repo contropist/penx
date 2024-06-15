@@ -125,7 +125,7 @@ export class AppService {
         console.log('====store.router.getName():', store.router.getName())
 
         if (!store.router.getName()) {
-          store.router.routeTo('DATABASES')
+          store.router.routeTo('GENERAL')
         }
       }
 
