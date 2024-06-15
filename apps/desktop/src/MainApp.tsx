@@ -18,10 +18,10 @@ import { CommandPalette } from '~/components/CommandPalette/CommandPalette'
 import { DesktopWelcome } from '~/components/DesktopWelcome'
 import { EditorModeApp } from '~/components/EditorModeApp'
 import { InitUserToStore } from '~/components/InitUserToStore'
-import { useMode } from '~/hooks/useMode'
+import { useAppMode } from '~/hooks/useAppMode'
 
 export function MainApp() {
-  const { isEditor } = useMode()
+  const { isEditor } = useAppMode()
 
   const {
     isLoading,

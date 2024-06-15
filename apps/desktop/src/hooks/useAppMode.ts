@@ -2,10 +2,10 @@ import { atom, useAtom } from 'jotai'
 
 type Mode = 'COMMAND' | 'EDITOR'
 
-export const modeAtom = atom<Mode>('COMMAND')
+export const appModeAtom = atom<Mode>('COMMAND')
 
-export function useMode() {
-  const [mode, setMode] = useAtom(modeAtom)
+export function useAppMode() {
+  const [mode, setMode] = useAtom(appModeAtom)
 
   return {
     isEditor: mode === 'EDITOR',

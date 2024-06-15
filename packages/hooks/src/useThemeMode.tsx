@@ -4,16 +4,18 @@ import { get, set } from 'idb-keyval'
 import { atom, useAtom } from 'jotai'
 import { FOWER_THEME_MODE } from '@penx/constants'
 
-const modeAtom = atom('')
+export const themeModeAtom = atom('')
 
 export function useThemeMode() {
-  const [mode, setModeState] = useAtom<string>(modeAtom)
+  const [mode, setModeState] = useAtom<string>(themeModeAtom)
 
   const setMode = useCallback(
-    (mode: string) => {
+    (mode: string, persistent = true) => {
       setModeState(mode)
       fowerStore.setMode(mode)
-      set(FOWER_THEME_MODE, mode)
+      if (persistent) {
+        set(FOWER_THEME_MODE, mode)
+      }
     },
     [setModeState],
   )
@@ -21,11 +23,21 @@ export function useThemeMode() {
   const initMode = useCallback(
     async function () {
       const value = await get(FOWER_THEME_MODE)
-      if (!value) {
-        set(FOWER_THEME_MODE, 'light')
-      }
+      const media = window.matchMedia('(prefers-color-scheme: dark)')
+      let newMode = ''
 
-      setMode(value || 'light')
+      if (value) {
+        if (value === 'auto') {
+          newMode = media.matches ? 'dark' : 'light'
+        } else {
+          newMode = value
+        }
+        setMode(newMode)
+      } else {
+        newMode = media.matches ? 'dark' : 'light'
+        setMode(newMode)
+        await set(FOWER_THEME_MODE, media ? 'dark' : 'light')
+      }
     },
     [setMode],
   )

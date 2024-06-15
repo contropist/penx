@@ -20,14 +20,14 @@ import { setMnemonicToLocal } from '@penx/mnemonic'
 import { ClientOnly } from '@penx/widget'
 import { runWorker } from '@penx/worker'
 import { loginToDesktop } from '~/common/loginToDesktop'
-import { modeAtom } from '~/hooks/useMode'
+import { appModeAtom } from '~/hooks/useAppMode'
 import { focusSearchBarInput } from './common/focusSearchBarInput'
 import { initFower } from './common/initFower'
 import { positionAtom } from './hooks/useCommandPosition'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
-import { useThemeMode } from '@penx/hooks'
+import { useInitThemeMode } from './hooks/useInitThemeMode'
 
 initFower()
 
@@ -57,7 +57,7 @@ async function hideOnBlur() {
   const mainWindow = WebviewWindow.getByLabel('main')
 
   document.addEventListener('keydown', async (event) => {
-    const mode = store.get(modeAtom)
+    const mode = store.get(appModeAtom)
 
     if (event.key === 'Escape') {
       if (mode === 'EDITOR') {
@@ -68,7 +68,7 @@ async function hideOnBlur() {
           focus: true,
         })
         await appWindow?.center()
-        store.set(modeAtom, 'COMMAND')
+        store.set(appModeAtom, 'COMMAND')
       } else {
         const position = store.get(positionAtom)
         if (position === 'ROOT') {
@@ -82,7 +82,7 @@ async function hideOnBlur() {
 
   listen('tauri://blur', () => {
     if (!isDev) {
-      const mode = store.get(modeAtom)
+      const mode = store.get(appModeAtom)
       if (mode === 'COMMAND') {
         appWindow.hide()
       }
@@ -224,11 +224,7 @@ function MyApp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const { initMode } = useThemeMode()
-  useEffect(() => {
-    initMode()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  useInitThemeMode()
 
   return (
     <StoreProvider>

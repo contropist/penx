@@ -4,12 +4,12 @@ import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { Minimize } from 'lucide-react'
 import { Button } from 'uikit'
 import { IconSwap } from '@penx/icons'
-import { useMode } from '~/hooks/useMode'
+import { useAppMode } from '~/hooks/useAppMode'
 
 interface Props extends FowerHTMLProps<'button'> {}
 
 export const ToggleModeButton = ({ ...rest }: Props) => {
-  const { isEditor, setMode } = useMode()
+  const { isEditor, setMode } = useAppMode()
 
   async function setWindow() {
     const appWindow = getCurrent()
