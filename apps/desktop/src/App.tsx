@@ -1,153 +1,24 @@
-import { useEffect, useState } from 'react'
-import { invoke } from '@tauri-apps/api/core'
-import { appDataDir, homeDir, join } from '@tauri-apps/api/path'
-import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
-import { platform } from '@tauri-apps/plugin-os'
-import { open } from '@tauri-apps/plugin-shell'
+import { useEffect } from 'react'
 import { ToastContainer } from 'uikit'
 import { appEmitter } from '@penx/event'
-import { clearAuthorizedUser, setLocalSession } from '@penx/storage'
-import { store, StoreProvider } from '@penx/store'
+import { StoreProvider } from '@penx/store'
 import { TrpcProvider } from '@penx/trpc-client'
 import '@glideapps/glide-data-grid/dist/index.css'
-import { Box } from '@fower/react'
-import { listen } from '@tauri-apps/api/event'
-import { watch } from '@tauri-apps/plugin-fs'
-import { isProd, isServer } from '@penx/constants'
-import { db } from '@penx/local-db'
-import { setMnemonicToLocal } from '@penx/mnemonic'
-import { ClientOnly } from '@penx/widget'
-import { runWorker } from '@penx/worker'
-import { loginToDesktop } from '~/common/loginToDesktop'
-import { appModeAtom } from '~/hooks/useAppMode'
-import { focusSearchBarInput } from './common/focusSearchBarInput'
 import { initFower } from './common/initFower'
-import { positionAtom } from './hooks/useCommandPosition'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import { handleEscape } from './common/handleEscape'
+import { watchDesktopLogin } from './common/watchDesktopLogin'
+import { watchExtensionDevChange } from './common/watchExtensionDevChange'
 import { useInitThemeMode } from './hooks/useInitThemeMode'
 
 initFower()
 
-const isDev = import.meta.env.MODE === 'development'
-
-async function hideOnBlur() {
-  const appWindow = getCurrent()
-  const mainWindow = WebviewWindow.getByLabel('main')
-
-  document.addEventListener('keydown', async (event) => {
-    const mode = store.get(appModeAtom)
-
-    if (event.key === 'Escape') {
-      if (mode === 'EDITOR') {
-        await invoke('set_window_properties', {
-          resizable: false,
-          width: 750.0,
-          height: 470.0,
-          focus: true,
-        })
-        await appWindow?.center()
-        store.set(appModeAtom, 'COMMAND')
-      } else {
-        const position = store.get(positionAtom)
-        if (position === 'ROOT') {
-          mainWindow?.hide()
-        } else {
-          appEmitter.emit('ON_ESCAPE_IN_COMMAND')
-        }
-      }
-    }
-  })
-
-  listen('tauri://blur', () => {
-    if (!isDev) {
-      const mode = store.get(appModeAtom)
-      if (mode === 'COMMAND') {
-        appWindow.hide()
-      }
-    }
-  })
-}
-
 async function init() {
-  console.log('app init............')
-
-  const platformName = await platform()
-  console.log('=====platformName:', platformName)
-
-  // if (platformName === 'macos') {
-  //   // can also watch an array of paths
-  //   const stopWatching = await watch(
-  //     [
-  //       await join(await homeDir(), 'Applications'),
-  //       '/Applications',
-  //       '/System/Applications',
-  //       '/System/Applications/Utilities',
-  //     ],
-  //     (event) => {
-  //       appEmitter.emit('ON_APPLICATION_DIR_CHANGE')
-  //       invoke('convert_all_app_icons_to_png')
-  //     },
-  //     { recursive: true },
-  //   )
-  // }
-
-  const shortcut = 'Command+;'
-
-  hideOnBlur()
-
-  type Payload = {
-    code: string
-    commands: string
-    assets: string
-    name: string
-    title: string
-    icon: string
-    version: string
-  }
-
-  const appWindow = getCurrent()
-  console.log('=======appWindow.label:', appWindow.label)
-
-  if (appWindow.label === 'main') {
-    listen('UPSERT_EXTENSION', async (data) => {
-      const payload = data.payload as Payload
-      const commands = JSON.parse(payload.commands || '[]')
-      const assets = JSON.parse(payload.assets || '{}')
-
-      // console.log('======payload:', payload)
-
-      await db.upsertExtension(payload.name, {
-        isDeveloping: true,
-        title: payload.title,
-        commands,
-        assets,
-        icon: payload.icon,
-        version: payload.version,
-      })
-    })
-  }
-
-  // listen('DESKTOP_LOGIN', async (data: any) => {
-  //   const user = JSON.parse(data.payload?.user || '{}')
-  //   const mnemonic = data.payload.mnemonic
-  //   console.log('open window==========:', user, mnemonic)
-  //   await loginToDesktop(mnemonic, user)
-  //   appWindow.show()
-  //   appWindow.setFocus()
-  // })
-
-  // appEmitter.on('SIGN_IN_DESKTOP', () => {
-  //   open(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/desktop-login`)
-  // })
-
-  // setTimeout(
-  //   () => {
-  //     runWorker()
-  //   },
-  //   isProd ? 5000 : 3000,
-  // )
+  handleEscape()
+  watchExtensionDevChange()
+  watchDesktopLogin()
 }
 
 init()
