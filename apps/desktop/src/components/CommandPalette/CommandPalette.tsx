@@ -100,7 +100,7 @@ export const CommandPalette = () => {
         return 1
       }}
     >
-      {isIframe && (
+      {/* {isIframe && (
         <BackRootButton
           data-tauri-drag-region
           absolute
@@ -112,7 +112,7 @@ export const CommandPalette = () => {
           bgNeutral900--T94
           bgNeutral900--T94--hover
         />
-      )}
+      )} */}
       {!isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
       <Box h={bodyHeight} overflowAuto relative>
         {isCommandApp &&

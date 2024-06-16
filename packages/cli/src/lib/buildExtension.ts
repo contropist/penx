@@ -100,7 +100,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
       postcssPlugin({
         plugins: [
           tailwindcss({
-            content: ['./src/**/*.{js,ts,tsx,vue,svelte}'],
+            content: ['./src/**/*.{js,ts,tsx,vue,svelte}', './node_modules/@penx/react/**/*.js'],
             theme: {
               extend: {},
             },

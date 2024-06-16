@@ -27,7 +27,7 @@ export async function watchExtensionDevChange() {
     const commands = JSON.parse(payload.commands || '[]')
     const assets = JSON.parse(payload.assets || '{}')
 
-    console.log('======payload:', payload)
+    // console.log('======payload:', payload)
 
     await db.upsertExtension(payload.name, {
       isDeveloping: true,

@@ -58,7 +58,6 @@ export const ActionPopover = ({}: Props) => {
     <Popover
       isOpen={open}
       onOpenChange={(v) => {
-        console.log('v==:', v)
         setOpen(v)
         if (!v) {
           appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')

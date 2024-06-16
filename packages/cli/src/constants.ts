@@ -27,20 +27,17 @@ export type AddTextEvent = {
 
 /**
  * original:
-if(typeof document !== 'undefined') {
+ if (typeof document !== 'undefined') {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      window.parent.postMessage(
-        {
-          type: 'escape',
-        },
-        '*',
-      )
+      if (!window.$__IS_ACTION_OPEN__) {
+        window.parent.postMessage({ type: 'escape' }, '*')
+      }
     }
   })
 }
  
  */
 export const escAction = `
-;"undefined"!=typeof document&&document.addEventListener("keydown",e=>{"Escape"===e.key&&window.parent.postMessage({type:"escape"},"*")});
+"undefined"!=typeof document&&document.addEventListener("keydown",e=>{"Escape"!==e.key||window.$__IS_ACTION_OPEN__||window.parent.postMessage({type:"escape"},"*")});
 `
