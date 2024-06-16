@@ -24,8 +24,10 @@ export type PenxAPIRequestMessageEvent<T> = MessageEvent<{
 export function constructAPI<Payload, Result>(
   evtType: EventType,
   retEvtType: EventType,
-): (payload?: Payload) => Promise<Result> {
-  return (payload?: Payload) => {
+): Exclude<Payload, undefined> extends never
+  ? () => Promise<Result>
+  : (payload: Payload) => Promise<Result> {
+  return ((payload?: Payload) => {
     return new Promise((resolve, reject) => {
       const channel = new MessageChannel()
       channel.port1.onmessage = (
@@ -45,7 +47,7 @@ export function constructAPI<Payload, Result>(
         [channel.port2] as any,
       )
     })
-  }
+  }) as any
 }
 
 export function constructAPIExecuter<Payload, Result>(
