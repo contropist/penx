@@ -46,6 +46,9 @@ export async function registerAppHotkey(hotkey: string) {
 }
 
 export async function registerDefaultAppHotkey() {
-  const hotkey = convertKeysToHotkey(appDefaultHotkey)
+  const keys = await getAppHotkey()
+  console.log('========keys:', keys)
+
+  const hotkey = convertKeysToHotkey(keys || appDefaultHotkey)
   await registerAppHotkey(hotkey)
 }

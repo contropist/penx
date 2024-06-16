@@ -8,6 +8,7 @@ import { initFower } from './common/initFower'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import { registerDefaultAppHotkey } from '@penx/app'
 import { handleEscape } from './common/handleEscape'
 import { watchDesktopLogin } from './common/watchDesktopLogin'
 import { watchExtensionDevChange } from './common/watchExtensionDevChange'
@@ -19,6 +20,7 @@ async function init() {
   handleEscape()
   watchExtensionDevChange()
   watchDesktopLogin()
+  registerDefaultAppHotkey()
 }
 
 init()

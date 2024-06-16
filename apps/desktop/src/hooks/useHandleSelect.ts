@@ -1,11 +1,12 @@
 import { invoke } from '@tauri-apps/api/core'
-import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
-import { fetch } from '@tauri-apps/plugin-http'
+import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { open } from '@tauri-apps/plugin-shell'
-import { EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
+import { createBuiltinWorker } from '~/common/createBuiltinWorker'
+import { createCommandWorker } from '~/common/createCommandWorker'
+import { handleWorkerMessage } from '~/common/handleWorkerMessage'
 import { ICommandItem } from '~/common/types'
 import { workerStore } from '~/common/workerStore'
 import { useCommandAppLoading } from './useCommandAppLoading'
@@ -73,127 +74,20 @@ export function useHandleSelect() {
 
       let worker: Worker
       if (command.isBuiltIn) {
-        // console.log('name........:', command)
-
-        if (command.name === 'clipboard-history') {
-          worker = new Worker(
-            new URL('../workers/clipboard-history.ts', import.meta.url),
-            { type: 'module' },
-          )
-        } else if (command.name === 'today') {
-          worker = new Worker(new URL('../workers/today.ts', import.meta.url), {
-            type: 'module',
-          })
-        } else if (command.name === 'database') {
-          worker = new Worker(
-            new URL('../workers/database.ts', import.meta.url),
-            { type: 'module' },
-          )
-        } else {
-          worker = new Worker(
-            new URL('../workers/marketplace.ts', import.meta.url),
-            { type: 'module' },
-          )
-        }
+        worker = createBuiltinWorker(command)
       } else {
-        // console.log('=========command?.code:, ', command?.code)
-
-        const extraCode = `
-          self.onmessage = (event) => {
-            if (event.data === 'BACK_TO_ROOT') {
-              self.close()
-            }
-          }
-          self.input = '${input}';
-        `
-
-        let blob = new Blob([command?.code + extraCode], {
-          type: 'application/javascript',
-        })
-        const url = URL.createObjectURL(blob)
-        worker = new Worker(url)
+        worker = createCommandWorker(command, input)
       }
-      setLoading(false)
 
       workerStore.currentWorker = worker
+
+      setLoading(false)
 
       // worker.terminate()
 
       item.data.commandName && worker.postMessage(item.data.commandName)
 
-      worker.onmessage = async (event: MessageEvent<any>) => {
-        if (event.data.type === EventType.RunAppScript) {
-          const result = await invoke('run_applescript', {
-            script: event.data.script,
-            args: event.data.args,
-            options: event.data.options,
-          })
-
-          event.ports[0].postMessage({
-            type: EventType.RunAppScriptResult,
-            result,
-          })
-        }
-
-        if (event.data.type === EventType.HttpRequestInited) {
-          // const client = await getClient()
-          const { json, ...options } = event.data.options
-
-          // if (json) {
-          //   options.body = Body.json(json)
-          // }
-
-          // const response = await client.request(options)
-          // TODO: test this, not sure if options and response has the same structure
-          const response = await fetch(options)
-          event.ports[0].postMessage({
-            type: EventType.HttpRequestResult,
-            result: response,
-          })
-        }
-
-        if (event.data.type === EventType.InitOnSearchChange) {
-          appEmitter.on('ON_COMMAND_PALETTE_SEARCH_CHANGE', (v) => {
-            event.ports[0].postMessage({
-              type: EventType.OnSearchChange,
-              value: v,
-            })
-          })
-        }
-
-        if (event.data.type === EventType.InitOnFilterChange) {
-          appEmitter.on('ON_COMMAND_PALETTE_FILTER_CHANGE', (v) => {
-            event.ports[0].postMessage({
-              type: EventType.InitOnFilterChange,
-              value: v,
-            })
-          })
-        }
-
-        if (event.data?.type === EventType.Loading) {
-          const content = event.data.content as any
-          setUI({
-            type: 'loading',
-            data: content,
-          })
-        }
-
-        if (
-          ['marketplace', 'today', 'clipboard-history'].includes(
-            event.data?.type,
-          )
-        ) {
-          setUI({ type: event.data?.type })
-        }
-
-        if (event.data?.type === EventType.Render) {
-          const component = event.data.component as any
-          setUI({
-            type: 'render',
-            component,
-          })
-        }
-      }
+      handleWorkerMessage(worker)
     }
 
     if (item.type === 'list-item') {

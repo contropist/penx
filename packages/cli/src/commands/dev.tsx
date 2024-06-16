@@ -43,20 +43,22 @@ class Command {
 
     const assets = await assetsToStringMap()
 
+    const data = {
+      name: `$DEVELOPING-${manifest.name}`,
+      title: manifest.title,
+      version: manifest.version || '',
+      icon: manifest.icon,
+      commands: JSON.stringify(manifest.commands),
+      assets: JSON.stringify(assets),
+    }
+
     try {
       const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: `$DEVELOPING-${manifest.name}`,
-          title: manifest.title,
-          version: manifest.version || '',
-          icon: manifest.icon,
-          commands: JSON.stringify(manifest.commands),
-          assets: JSON.stringify(assets),
-        }),
+        body: JSON.stringify(data),
       }).then((res) => res.json())
     } catch (error) {
       console.log('upsert extension error:', error)
