@@ -2,7 +2,7 @@ import { invoke } from '@tauri-apps/api/core'
 import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { fetch } from '@tauri-apps/plugin-http'
 import { open } from '@tauri-apps/plugin-shell'
-import { EventType } from 'penx'
+import { constructAPIExecuter, EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
@@ -122,18 +122,25 @@ export function useHandleSelect() {
       item.data.commandName && worker.postMessage(item.data.commandName)
 
       worker.onmessage = async (event: MessageEvent<any>) => {
-        if (event.data.type === EventType.RunAppScript) {
-          const result = await invoke('run_applescript', {
+        if (event.data.type === EventType.RunAppleScript) {
+          const result: string = await invoke('run_applescript', {
             script: event.data.script,
             args: event.data.args,
             options: event.data.options,
           })
 
           event.ports[0].postMessage({
-            type: EventType.RunAppScriptResult,
+            type: EventType.RunAppleScriptResult,
             result,
           })
         }
+        constructAPIExecuter<undefined, string>(
+          EventType.ClipboardReadText,
+          EventType.ClipboardReadTextResult,
+          () => {
+            return clipboard.readText()
+          },
+        )(event)
 
         if (event.data.type === EventType.HttpRequestInited) {
           // const client = await getClient()

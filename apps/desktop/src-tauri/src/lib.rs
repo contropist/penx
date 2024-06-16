@@ -5,7 +5,7 @@ mod server;
 mod util;
 
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
-use std::thread;
+use std::{path::PathBuf, thread};
 use tauri::{is_dev, LogicalSize, Manager, Runtime, Size, WebviewWindow, Window};
 use util::{convert_all_app_icons_to_png, handle_input, open_command};
 use window_shadows::set_shadow;

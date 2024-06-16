@@ -6,7 +6,6 @@
   "permissions": [
     "path:default",
     "event:default",
-
     "window:default",
     "window:allow-hide",
     "window:allow-show",
@@ -14,30 +13,25 @@
     "window:allow-center",
     "window:allow-start-dragging",
     "window:allow-start-resize-dragging",
-
     "webview:default",
-
     "app:default",
     "resources:default",
     "image:default",
     "menu:default",
     "tray:default",
     "fs:default",
-
     "shell:default",
     "shell:allow-open",
-
     "os:default",
     "os:allow-platform",
-
     "global-shortcut:default",
     "global-shortcut:allow-register-all",
     "global-shortcut:allow-unregister-all",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-
     "http:default",
-
-    "jarvis:allow-all"
+    "jarvis:allow-all",
+    "clipboard:read-all",
+    "clipboard:write-all"
   ]
 }

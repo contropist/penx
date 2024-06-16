@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export function Main() {
   const [count, setCount] = useState(0)
-
+  console.log('count')
   return (
     <div className="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
       <button

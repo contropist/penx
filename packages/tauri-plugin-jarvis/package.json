@@ -17,7 +17,6 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c",
     "prepublishOnly": "pnpm build",
     "pretest": "pnpm build",
     "develop": "rollup -c --watch"

@@ -1,8 +1,20 @@
+// import { constructAPI } from './common'
 import { EventType } from './constants'
 
 export interface RunAppleScriptOptions {
   humanReadableOutput?: boolean
 }
+
+// type Payload = {
+//   script: string
+//   argsOrOptions?: string[] | RunAppleScriptOptions
+//   options?: RunAppleScriptOptions
+// }
+
+// export const runAppleScript = constructAPI<Payload, string>(
+//   EventType.RunAppleScript,
+//   EventType.RunAppleScriptResult,
+// )
 
 export function runAppleScript(
   script: string,
@@ -15,7 +27,7 @@ export function runAppleScript(
     channel.port1.onmessage = (
       event: MessageEvent<{ type: string; result: string }>,
     ) => {
-      if (event.data.type === EventType.RunAppScriptResult) {
+      if (event.data.type === EventType.RunAppleScriptResult) {
         resolve(event.data.result)
       } else {
         reject(new Error('Unexpected message type'))
@@ -40,7 +52,7 @@ export function runAppleScript(
     // TODO: handle any
     self.postMessage(
       {
-        type: EventType.RunAppScript,
+        type: EventType.RunAppleScript,
         script,
         args,
         options: opts,
