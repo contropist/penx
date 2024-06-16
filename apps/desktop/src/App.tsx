@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { invoke } from '@tauri-apps/api/core'
 import { appDataDir, homeDir, join } from '@tauri-apps/api/path'
 import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
-import { register, unregister } from '@tauri-apps/plugin-global-shortcut'
 import { platform } from '@tauri-apps/plugin-os'
 import { open } from '@tauri-apps/plugin-shell'
 import { ToastContainer } from 'uikit'
@@ -32,25 +31,6 @@ import { useInitThemeMode } from './hooks/useInitThemeMode'
 initFower()
 
 const isDev = import.meta.env.MODE === 'development'
-
-async function listenForHotkey(shortcut: string) {
-  const appWindow = getCurrent()
-
-  await register(shortcut, async () => {
-    if (document.hasFocus()) {
-      // await appWindow.hide()
-    } else {
-      const appWindow = WebviewWindow.getByLabel('main')
-
-      await appWindow?.show()
-      // await appWindow?.center()
-      await appWindow?.setFocus()
-      setTimeout(() => {
-        focusSearchBarInput()
-      }, 0)
-    }
-  })
-}
 
 async function hideOnBlur() {
   const appWindow = getCurrent()
@@ -113,11 +93,7 @@ async function init() {
   //   )
   // }
 
-  const shortcut = 'CommandOrControl+;'
-
-  unregister(shortcut).then(() => {
-    listenForHotkey(shortcut)
-  })
+  const shortcut = 'Command+;'
 
   hideOnBlur()
 
@@ -164,34 +140,6 @@ async function init() {
 
   // appEmitter.on('SIGN_IN_DESKTOP', () => {
   //   open(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/desktop-login`)
-  // })
-
-  // document.addEventListener('keydown', function (event) {
-  //   let keys = []
-
-  //   console.log('event========:', event)
-
-  //   if (event.ctrlKey) {
-  //     keys.push('Control')
-  //   }
-  //   if (event.metaKey) {
-  //     keys.push('Meta')
-  //   }
-  //   if (event.shiftKey) {
-  //     keys.push('Shift')
-  //   }
-  //   if (event.altKey) {
-  //     keys.push('Alt')
-  //   }
-
-  //   if (event.key.length === 1) {
-  //     keys.push(event.key.toUpperCase())
-  //   } else {
-  //     keys.push(event.code)
-  //   }
-
-  //   const combination = keys.join('+')
-  //   console.log('combination:', combination)
   // })
 
   // setTimeout(
