@@ -13,6 +13,6 @@ export type LoadingType = Spinner | Skeleton
 export function renderLoading(data?: LoadingType) {
   postMessage({
     type: EventType.Loading,
-    data: data,
+    payload: data,
   })
 }

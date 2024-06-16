@@ -55,6 +55,28 @@ export function constructAPI<Payload, Result>(
   }) as any
 }
 
+export function constructAPICallback<Payload, Result>(
+  evtType: EventType,
+): Exclude<Payload, undefined> extends never
+  ? (fn: (result: Result) => void) => void
+  : (fn: (result: Result) => void, payload: Payload) => void {
+  return (fn: (result: Result) => void, payload?: Payload) => {
+    const channel = new MessageChannel()
+    channel.port1.onmessage = (
+      event: MessageEvent<{ type: string; result: Result }>,
+    ) => {
+      fn(event.data.result)
+    }
+    self.postMessage(
+      {
+        type: evtType,
+        payload,
+      },
+      [channel.port2] as any,
+    )
+  }
+}
+
 export function constructAPIExecuter<Payload, Result>(
   evtType: EventType,
   handlerFn: (payload: Payload) => Promise<Result>,
@@ -68,6 +90,17 @@ export function constructAPIExecuter<Payload, Result>(
           result,
         })
       })
+    }
+  }
+}
+
+export function constructAPICallbackExecuter<Payload>(
+  evtType: EventType,
+  handlerFn: (payload: Payload) => void,
+) {
+  return (event: PenxAPIRequestMessageEvent<Payload>) => {
+    if (event.data.type === evtType) {
+      handlerFn(event.data.payload)
     }
   }
 }

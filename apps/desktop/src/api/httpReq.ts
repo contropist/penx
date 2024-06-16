@@ -42,8 +42,6 @@ export function handleHttpReadBody(event: MessageEvent) {
   return constructAPIExecuter<{ rid: number }, ArrayBuffer | number[]>(
     EventType.HttpFetchReadBody,
     (payload) => {
-      console.log('http read body payload', payload)
-
       return invoke<ArrayBuffer | number[]>(
         'plugin:http|fetch_read_body',
         payload,

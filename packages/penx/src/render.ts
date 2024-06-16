@@ -6,8 +6,10 @@ import { EventType } from './constants'
 export function render(
   component: ListBuilder | MarkdownBuilder | DataListBuilder,
 ) {
+  console.log('render component', component.toJSON())
+
   postMessage({
     type: EventType.Render,
-    component: component.toJSON(),
+    payload: component.toJSON(),
   })
 }
