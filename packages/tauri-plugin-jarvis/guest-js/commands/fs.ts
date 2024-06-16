@@ -1,7 +1,7 @@
 import { invoke } from '@tauri-apps/api/core'
 
-export function pathExists(path: string): Promise<boolean> {
-  return invoke('plugin:jarvis|path_exists', { path })
+export function pathExists(path: string) {
+  return invoke<boolean>('plugin:jarvis|path_exists', { path })
 }
 
 /**
@@ -18,8 +18,8 @@ export function decompressTarball(
   options?: {
     overwrite?: boolean
   },
-): Promise<string> {
-  return invoke('plugin:jarvis|decompress_tarball', {
+) {
+  return invoke<string>('plugin:jarvis|decompress_tarball', {
     path,
     destinationFolder,
     overwrite: options?.overwrite ?? false,
@@ -39,8 +39,8 @@ export function compressTarball(
   options?: {
     overwrite?: boolean
   },
-): Promise<string> {
-  return invoke('plugin:jarvis|compress_tarball', {
+) {
+  return invoke<string>('plugin:jarvis|compress_tarball', {
     srcDir,
     destFile,
     overwrite: options?.overwrite ?? false,

@@ -2,44 +2,44 @@ import { invoke } from '@tauri-apps/api/core'
 import { platform } from '@tauri-apps/plugin-os'
 import { AppInfo, CommandType, TCommand } from '../models'
 
-export function openTrash(): Promise<void> {
-  return invoke('plugin:jarvis|open_trash')
+export function openTrash() {
+  return invoke<void>('plugin:jarvis|open_trash')
 }
 
-export function emptyTrash(): Promise<void> {
-  return invoke('plugin:jarvis|empty_trash')
+export function emptyTrash() {
+  return invoke<void>('plugin:jarvis|empty_trash')
 }
 
-export function shutdown(): Promise<void> {
-  return invoke('plugin:jarvis|shutdown')
+export function shutdown() {
+  return invoke<void>('plugin:jarvis|shutdown')
 }
 
-export function reboot(): Promise<void> {
-  return invoke('plugin:jarvis|reboot')
+export function reboot() {
+  return invoke<void>('plugin:jarvis|reboot')
 }
 
-export function sleep(): Promise<void> {
-  return invoke('plugin:jarvis|sleep')
+export function sleep() {
+  return invoke<void>('plugin:jarvis|sleep')
 }
 
-export function toggleSystemAppearance(): Promise<void> {
-  return invoke('plugin:jarvis|toggle_system_appearance')
+export function toggleSystemAppearance() {
+  return invoke<void>('plugin:jarvis|toggle_system_appearance')
 }
 
-export function showDesktop(): Promise<void> {
-  return invoke('plugin:jarvis|show_desktop')
+export function showDesktop() {
+  return invoke<void>('plugin:jarvis|show_desktop')
 }
 
-export function quitAllApps(): Promise<void> {
-  return invoke('plugin:jarvis|quit_app_apps')
+export function quitAllApps() {
+  return invoke<void>('plugin:jarvis|quit_app_apps')
 }
 
-export function sleepDisplays(): Promise<void> {
-  return invoke('plugin:jarvis|sleep_displays')
+export function sleepDisplays() {
+  return invoke<void>('plugin:jarvis|sleep_displays')
 }
 
-export function setVolume(percentage: number): Promise<void> {
-  return invoke('plugin:jarvis|set_volume', { percentage })
+export function setVolume(percentage: number) {
+  return invoke<void>('plugin:jarvis|set_volume', { percentage })
 }
 
 export function setVolumeTo0(): Promise<void> {
@@ -62,58 +62,58 @@ export function setVolumeTo100(): Promise<void> {
   return setVolume(100)
 }
 
-export function turnVolumeUp(): Promise<void> {
-  return invoke('plugin:jarvis|turn_volume_up')
+export function turnVolumeUp() {
+  return invoke<void>('plugin:jarvis|turn_volume_up')
 }
 
-export function turnVolumeDown(): Promise<void> {
-  return invoke('plugin:jarvis|turn_volume_down')
+export function turnVolumeDown() {
+  return invoke<void>('plugin:jarvis|turn_volume_down')
 }
 
-export function toggleStageManager(): Promise<void> {
-  return invoke('plugin:jarvis|toggle_stage_manager')
+export function toggleStageManager() {
+  return invoke<void>('plugin:jarvis|toggle_stage_manager')
 }
 
-export function toggleBluetooth(): Promise<void> {
-  return invoke('plugin:jarvis|toggle_bluetooth')
+export function toggleBluetooth() {
+  return invoke<void>('plugin:jarvis|toggle_bluetooth')
 }
 
-export function toggleHiddenFiles(): Promise<void> {
-  return invoke('plugin:jarvis|toggle_hidden_files')
+export function toggleHiddenFiles() {
+  return invoke<void>('plugin:jarvis|toggle_hidden_files')
 }
 
-export function ejectAllDisks(): Promise<void> {
-  return invoke('plugin:jarvis|eject_all_disks')
+export function ejectAllDisks() {
+  return invoke<void>('plugin:jarvis|eject_all_disks')
 }
 
-export function logoutUser(): Promise<void> {
-  return invoke('plugin:jarvis|logout_user')
+export function logoutUser() {
+  return invoke<void>('plugin:jarvis|logout_user')
 }
 
-export function toggleMute(): Promise<void> {
-  return invoke('plugin:jarvis|toggle_mute')
+export function toggleMute() {
+  return invoke<void>('plugin:jarvis|toggle_mute')
 }
 
-export function mute(): Promise<void> {
-  return invoke('plugin:jarvis|mute')
+export function mute() {
+  return invoke<void>('plugin:jarvis|mute')
 }
 
-export function unmute(): Promise<void> {
-  return invoke('plugin:jarvis|unmute')
+export function unmute() {
+  return invoke<void>('plugin:jarvis|unmute')
 }
 
-export function getFrontmostApp(): Promise<AppInfo> {
-  return invoke('plugin:jarvis|get_frontmost_app').then((app) =>
+export function getFrontmostApp() {
+  return invoke<AppInfo>('plugin:jarvis|get_frontmost_app').then((app) =>
     AppInfo.parse(app),
   )
 }
 
-export function hideAllAppsExceptFrontmost(): Promise<void> {
-  return invoke('plugin:jarvis|hide_all_apps_except_frontmost')
+export function hideAllAppsExceptFrontmost() {
+  return invoke<void>('plugin:jarvis|hide_all_apps_except_frontmost')
 }
 
-export function getSelectedFilesInFileExplorer(): Promise<string[]> {
-  return invoke('plugin:jarvis|get_selected_files_in_file_explorer')
+export function getSelectedFilesInFileExplorer() {
+  return invoke<string[]>('plugin:jarvis|get_selected_files_in_file_explorer')
 }
 
 export const rawSystemCommands = [

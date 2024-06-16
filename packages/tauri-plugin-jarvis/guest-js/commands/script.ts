@@ -7,17 +7,14 @@ export const ScriptOutput = z.object({
 })
 export type ScriptOutput = z.infer<typeof ScriptOutput>
 
-export function runAppleScript(script: string): Promise<ScriptOutput> {
-  return invoke('plugin:jarvis|run_apple_script', { script })
+export function runAppleScript(script: string) {
+  return invoke<ScriptOutput>('plugin:jarvis|run_apple_script', { script })
 }
 
-export function runPowershell(script: string): Promise<ScriptOutput> {
-  return invoke('plugin:jarvis|run_powershell', { script })
+export function runPowershell(script: string) {
+  return invoke<ScriptOutput>('plugin:jarvis|run_powershell', { script })
 }
 
-export function runScript(
-  command: string,
-  args: string[],
-): Promise<ScriptOutput> {
-  return invoke('plugin:jarvis|run_script', { command, args })
+export function runScript(command: string, args: string[]) {
+  return invoke<ScriptOutput>('plugin:jarvis|run_script', { command, args })
 }
