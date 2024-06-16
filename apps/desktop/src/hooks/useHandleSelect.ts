@@ -14,6 +14,7 @@ import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
 import { useCurrentDatabase } from './useCurrentDatabase'
 import { useSearch } from './useSearch'
+import { useWorkerOnMsg } from './useWorker'
 
 export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
@@ -22,6 +23,7 @@ export function useHandleSelect() {
   const { setDatabase } = useCurrentDatabase()
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
+  const workerOnMsg = useWorkerOnMsg()
 
   return async (item: ICommandItem, input = '') => {
     if (item.data?.type === 'Database') {
@@ -114,93 +116,9 @@ export function useHandleSelect() {
         worker = new Worker(url)
       }
       setLoading(false)
-
       workerStore.currentWorker = worker
-
-      // worker.terminate()
-
       item.data.commandName && worker.postMessage(item.data.commandName)
-
-      worker.onmessage = async (event: MessageEvent<any>) => {
-        if (event.data.type === EventType.RunAppleScript) {
-          const result: string = await invoke('run_applescript', {
-            script: event.data.script,
-            args: event.data.args,
-            options: event.data.options,
-          })
-
-          event.ports[0].postMessage({
-            type: EventType.RunAppleScriptResult,
-            result,
-          })
-        }
-        constructAPIExecuter<undefined, string>(
-          EventType.ClipboardReadText,
-          EventType.ClipboardReadTextResult,
-          () => {
-            return clipboard.readText()
-          },
-        )(event)
-
-        if (event.data.type === EventType.HttpRequestInited) {
-          // const client = await getClient()
-          const { json, ...options } = event.data.options
-
-          // if (json) {
-          //   options.body = Body.json(json)
-          // }
-
-          // const response = await client.request(options)
-          // TODO: test this, not sure if options and response has the same structure
-          const response = await fetch(options)
-          event.ports[0].postMessage({
-            type: EventType.HttpRequestResult,
-            result: response,
-          })
-        }
-
-        if (event.data.type === EventType.InitOnSearchChange) {
-          appEmitter.on('ON_COMMAND_PALETTE_SEARCH_CHANGE', (v) => {
-            event.ports[0].postMessage({
-              type: EventType.OnSearchChange,
-              value: v,
-            })
-          })
-        }
-
-        if (event.data.type === EventType.InitOnFilterChange) {
-          appEmitter.on('ON_COMMAND_PALETTE_FILTER_CHANGE', (v) => {
-            event.ports[0].postMessage({
-              type: EventType.InitOnFilterChange,
-              value: v,
-            })
-          })
-        }
-
-        if (event.data?.type === EventType.Loading) {
-          const content = event.data.content as any
-          setUI({
-            type: 'loading',
-            data: content,
-          })
-        }
-
-        if (
-          ['marketplace', 'today', 'clipboard-history'].includes(
-            event.data?.type,
-          )
-        ) {
-          setUI({ type: event.data?.type })
-        }
-
-        if (event.data?.type === EventType.Render) {
-          const component = event.data.component as any
-          setUI({
-            type: 'render',
-            component,
-          })
-        }
-      }
+      worker.onmessage = workerOnMsg
     }
 
     if (item.type === 'list-item') {
@@ -215,7 +133,7 @@ export function useHandleSelect() {
           await clipboard.writeText(defaultAction.content)
         }
       }
-      console.log('list item:', item)
+      // console.log('list item:', item)
     }
   }
 }

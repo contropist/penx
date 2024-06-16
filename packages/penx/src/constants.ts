@@ -38,6 +38,8 @@ export enum EventType {
   ClipboardWriteRtfResult = 'ClipboardWriteRtfResult',
   ClipboardWriteFilesUris = 'ClipboardWriteFilesUris',
   ClipboardWriteFilesUrisResult = 'ClipboardWriteFilesUrisResult',
+  ClipboardWriteFiles = 'ClipboardWriteFiles',
+  ClipboardWriteFilesResult = 'ClipboardWriteFilesResult',
   ClipboardClear = 'ClipboardClear',
   ClipboardClearResult = 'ClipboardClearResult',
   ClipboardReadText = 'ClipboardReadText',

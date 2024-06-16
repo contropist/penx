@@ -37,7 +37,6 @@ export function constructAPI<Payload, Result>(
           reject(new Error('Unexpected message type'))
         }
       }
-
       self.postMessage(
         {
           type: evtType,
