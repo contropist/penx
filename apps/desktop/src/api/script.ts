@@ -9,7 +9,6 @@ import {
 export function handleRunAppleScript(event: MessageEvent) {
   return constructAPIExecuter<RunAppleScriptPayload, string>(
     EventType.RunAppleScript,
-    EventType.RunAppleScriptResult,
     async (payload) => {
       let args: string[] = []
       let opts: RunAppleScriptOptions
@@ -32,5 +31,6 @@ export function handleRunAppleScript(event: MessageEvent) {
         options: opts,
       })
     },
+    EventType.RunAppleScriptResult,
   )(event)
 }

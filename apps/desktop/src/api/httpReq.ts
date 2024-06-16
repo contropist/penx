@@ -15,30 +15,31 @@ export function handleHttpRawFetch(event: MessageEvent) {
       }
     },
     number
-  >(EventType.HttpRawFetch, EventType.HttpRawFetch, (payload) =>
-    invoke<number>('plugin:http|fetch', payload),
+  >(
+    EventType.HttpRawFetch,
+    (payload) => invoke<number>('plugin:http|fetch', payload),
+    EventType.HttpRawFetch,
   )(event)
 }
 
 export function handleHttpFetchCancel(event: MessageEvent) {
   return constructAPIExecuter<{ rid: number }, void>(
     EventType.HttpFetchCancel,
-    EventType.HttpFetchCancel,
     (payload) => invoke<void>('plugin:http|fetch_cancel', payload),
+    EventType.HttpFetchCancel,
   )(event)
 }
 
 export function handleHttpFetchSend(event: MessageEvent) {
   return constructAPIExecuter<{ rid: number }, FetchSendResponse>(
     EventType.HttpFetchSend,
-    EventType.HttpFetchSend,
     (payload) => invoke<FetchSendResponse>('plugin:http|fetch_send', payload),
+    EventType.HttpFetchSend,
   )(event)
 }
 
 export function handleHttpReadBody(event: MessageEvent) {
   return constructAPIExecuter<{ rid: number }, ArrayBuffer | number[]>(
-    EventType.HttpFetchReadBody,
     EventType.HttpFetchReadBody,
     (payload) => {
       console.log('http read body payload', payload)
@@ -48,5 +49,6 @@ export function handleHttpReadBody(event: MessageEvent) {
         payload,
       )
     },
+    EventType.HttpFetchReadBody,
   )(event)
 }

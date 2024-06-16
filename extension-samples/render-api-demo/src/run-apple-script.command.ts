@@ -1,4 +1,4 @@
-import { MarkdownBuilder, render, runAppleScript, fetch } from 'penx'
+import { MarkdownBuilder, render, runAppleScript, fetch, clipboard } from 'penx'
 
 export async function main() {
   // const script = 'return "unicorn"'
@@ -13,7 +13,7 @@ export async function main() {
   // console.log(typeof img)
   // console.log(await clipboard.readFiles())
   // console.log(await clipboard.readHtml())
-  // console.log(await clipboard.readText())
+  console.log(await clipboard.readText())
   // await clipboard.writeHtmlAndText({
   //   html: '<h1>hello world</h1>',
   //   text: 'hello huakun',

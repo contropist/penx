@@ -23,7 +23,7 @@ export type PenxAPIRequestMessageEvent<T> = MessageEvent<{
  */
 export function constructAPI<Payload, Result>(
   evtType: EventType,
-  retEvtType: EventType,
+  retEvtType?: EventType,
 ): Exclude<Payload, undefined> extends never
   ? () => Promise<Result>
   : (payload: Payload) => Promise<Result> {
@@ -33,10 +33,15 @@ export function constructAPI<Payload, Result>(
       channel.port1.onmessage = (
         event: PenxAPIResponseMessageEvent<Result>,
       ) => {
-        if (event.data.type === retEvtType) {
+        const expectedEvtType = retEvtType ?? evtType
+        if (event.data.type === expectedEvtType) {
           resolve(event.data.result)
         } else {
-          reject(new Error('Unexpected message type'))
+          reject(
+            new Error(
+              `Unexpected message type: ${event.data.type} (expected: ${expectedEvtType})`,
+            ),
+          )
         }
       }
       self.postMessage(
@@ -52,14 +57,14 @@ export function constructAPI<Payload, Result>(
 
 export function constructAPIExecuter<Payload, Result>(
   evtType: EventType,
-  retEvtType: EventType,
   handlerFn: (payload: Payload) => Promise<Result>,
+  retEvtType?: EventType,
 ) {
   return (event: PenxAPIRequestMessageEvent<Payload>) => {
     if (event.data.type === evtType) {
       return handlerFn(event.data.payload).then((result) => {
         event.ports[0].postMessage({
-          type: retEvtType,
+          type: retEvtType ?? evtType,
           result,
         })
       })
