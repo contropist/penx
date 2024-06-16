@@ -1,4 +1,4 @@
-import { MarkdownBuilder, render, runAppleScript, clipboard } from 'penx'
+import { MarkdownBuilder, render, runAppleScript, fetch } from 'penx'
 
 export async function main() {
   // const script = 'return "unicorn"'
@@ -21,14 +21,20 @@ export async function main() {
   // await clipboard.writeText('hello huakun')
   // await clipboard.writeHtml('<h1>hello world</h1>')
 
-  const res = await runAppleScript(
-    `
+  fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
+    console.log(response)
+  })
+  // .then((response) => response.json())
+  // .then((json) => console.log(json))
+
+  const res = await runAppleScript({
+    script: `
       on run argv
         return "hello, " & item 1 of argv & "!"
       end run
     `,
-    ['PenX'],
-  )
+    argsOrOptions: ['PenX'],
+  })
 
   render(new MarkdownBuilder('# hello world. ' + res))
 }
