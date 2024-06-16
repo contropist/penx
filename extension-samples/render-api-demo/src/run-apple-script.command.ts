@@ -21,9 +21,9 @@ export async function main() {
   // await clipboard.writeText('hello huakun')
   // await clipboard.writeHtml('<h1>hello world</h1>')
 
-  fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
-    console.log(response)
-  })
+  fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then((res) => res.json())
+    .then(console.log)
   // .then((response) => response.json())
   // .then((json) => console.log(json))
 

@@ -19,7 +19,12 @@ import {
   handleClipboardWriteRtf,
   handleClipboardWriteText,
 } from '~/api/clipboard'
-import { handleFetch } from '~/api/httpReq'
+import {
+  handleHttpFetchCancel,
+  handleHttpFetchSend,
+  handleHttpRawFetch,
+  handleHttpReadBody,
+} from '~/api/httpReq'
 import { handleRunAppleScript } from '~/api/script'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
@@ -41,7 +46,10 @@ const handlers = [
   handleClipboardReadHtml,
   handleClipboardWriteHtml,
   handleClipboardWriteHtmlAndText,
-  handleFetch,
+  handleHttpRawFetch,
+  handleHttpFetchCancel,
+  handleHttpFetchSend,
+  handleHttpReadBody,
 ]
 
 export function useWorkerOnMsg() {

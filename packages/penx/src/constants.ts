@@ -16,6 +16,10 @@ export enum EventType {
 
   HttpRequestInited = 'HttpRequestInited',
   HttpRequestResult = 'HttpRequestResult',
+  HttpRawFetch = 'HttpRawFetch',
+  HttpFetchCancel = 'HttpFetchCancel',
+  HttpFetchSend = 'HttpFetchSend',
+  HttpFetchReadBody = 'HttpFetchReadBody',
 
   // Clipboard
   ClipboardHasText = 'ClipboardHasText',

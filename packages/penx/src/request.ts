@@ -1,19 +1,16 @@
-import { fetch as tauriFetch } from '@tauri-apps/plugin-http'
+/**
+ * This module is a modified versioin of Tauri's official `http` plugin.
+ * https://github.com/tauri-apps/plugins-workspace/blob/e162e811fe5f6787eddd2cacac24ab0701539b45/plugins/http/guest-js/index.ts#L103
+ */
 import { constructAPI } from './common'
 import { EventType } from './constants'
 
-type FetchParams = Parameters<typeof tauriFetch>
-
-/**
- * !This fetch only supports json response due to the limitation of postMessage
- * @param args
- * @returns
- */
-export const fetch = (...args: FetchParams) => {
-  return constructAPI<FetchParams, any>(
-    EventType.HttpRequestInited,
-    EventType.HttpRequestResult,
-  )(args)
+export interface FetchSendResponse {
+  status: number
+  statusText: string
+  headers: [[string, string]]
+  url: string
+  rid: number
 }
 
 export interface ProxyConfig {
@@ -55,6 +52,31 @@ export interface Proxy {
   https?: string | ProxyConfig
 }
 
+// invoke<number>("plugin:http|fetch", {
+export const rawFetch = constructAPI<any, number>(
+  EventType.HttpRawFetch,
+  EventType.HttpRawFetch,
+)
+export const fetchCancel = constructAPI<number, void>(
+  EventType.HttpFetchCancel,
+  EventType.HttpFetchCancel,
+)
+export const fetchSend = constructAPI<
+  {
+    rid: number
+  },
+  FetchSendResponse
+>(EventType.HttpFetchSend, EventType.HttpFetchSend)
+export const fetchReadBody = constructAPI<
+  {
+    rid: number
+  },
+  ArrayBuffer | number[]
+>(EventType.HttpFetchReadBody, EventType.HttpFetchReadBody)
+// invoke("plugin:http|fetch_cancel", {
+// invoke<FetchSendResponse>("plugin:http|fetch_send", {
+// invoke<ArrayBuffer | number[]>(
+
 /**
  * Options to configure the Rust client used to make fetch requests
  *
@@ -74,181 +96,125 @@ export interface ClientOptions {
   proxy?: Proxy
 }
 
-// export async function fetch(
-//   input: URL | Request | string,
-//   init?: RequestInit & ClientOptions,
-// ): Promise<Response> {
-//   const maxRedirections = init?.maxRedirections;
-//   const connectTimeout = init?.connectTimeout;
-//   const proxy = init?.proxy;
-
-//   // Remove these fields before creating the request
-//   if (init) {
-//     delete init.maxRedirections;
-//     delete init.connectTimeout;
-//     delete init.proxy;
-//   }
-
-//   const signal = init?.signal;
-
-//   const headers = init?.headers
-//     ? init.headers instanceof Headers
-//       ? init.headers
-//       : new Headers(init.headers)
-//     : new Headers();
-
-//   const req = new Request(input, init);
-//   const buffer = await req.arrayBuffer();
-//   const data =
-//     buffer.byteLength !== 0 ? Array.from(new Uint8Array(buffer)) : null;
-
-//   // append new headers created by the browser `Request` implementation,
-//   // if not already declared by the caller of this function
-//   for (const [key, value] of req.headers) {
-//     if (!headers.get(key)) {
-//       headers.set(key, value);
-//     }
-//   }
-
-//   const headersArray =
-//     headers instanceof Headers
-//       ? Array.from(headers.entries())
-//       : Array.isArray(headers)
-//         ? headers
-//         : Object.entries(headers);
-
-//   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-//   const mappedHeaders: Array<[string, string]> = headersArray.map(
-//     ([name, val]) => [
-//       name,
-//       // we need to ensure we have all header values as strings
-//       // eslint-disable-next-line
-//       typeof val === "string" ? val : (val as any).toString(),
-//     ],
-//   );
-
-//   const rid = await invoke<number>("plugin:http|fetch", {
-//     clientConfig: {
-//       method: req.method,
-//       url: req.url,
-//       headers: mappedHeaders,
-//       data,
-//       maxRedirections,
-//       connectTimeout,
-//       proxy,
-//     },
-//   });
-
-//   signal?.addEventListener("abort", () => {
-//     void invoke("plugin:http|fetch_cancel", {
-//       rid,
-//     });
-//   });
-
-//   interface FetchSendResponse {
-//     status: number;
-//     statusText: string;
-//     headers: [[string, string]];
-//     url: string;
-//     rid: number;
-//   }
-
-//   const {
-//     status,
-//     statusText,
-//     url,
-//     headers: responseHeaders,
-//     rid: responseRid,
-//   } = await invoke<FetchSendResponse>("plugin:http|fetch_send", {
-//     rid,
-//   });
-
-//   const body = await invoke<ArrayBuffer | number[]>(
-//     "plugin:http|fetch_read_body",
-//     {
-//       rid: responseRid,
-//     },
-//   );
-
-//   const res = new Response(
-//     body instanceof ArrayBuffer && body.byteLength !== 0
-//       ? body
-//       : body instanceof Array && body.length > 0
-//         ? new Uint8Array(body)
-//         : null,
-//     {
-//       headers: responseHeaders,
-//       status,
-//       statusText,
-//     },
-//   );
-
-//   // url is read only but seems like we can do this
-//   Object.defineProperty(res, "url", { value: url });
-
-//   return res;
+// type FetchParams = {
+//   input: URL | Request | string
+//   init?: RequestInit & ClientOptions
 // }
 
-// type HttpVerb =
-//   | 'GET'
-//   | 'POST'
-//   | 'PUT'
-//   | 'DELETE'
-//   | 'PATCH'
-//   | 'HEAD'
-//   | 'OPTIONS'
-//   | 'CONNECT'
-//   | 'TRACE'
+// export const fetch = constructAPI<FetchParams, Response>(
+//   EventType.HttpRequestInited,
+//   EventType.HttpRequestResult,
+// )
 
-// interface Duration {
-//   secs: number
-//   nanos: number
-// }
+export async function fetch(
+  input: URL | Request | string,
+  init?: RequestInit & ClientOptions,
+): Promise<Response> {
+  const maxRedirections = init?.maxRedirections
+  const connectTimeout = init?.connectTimeout
+  const proxy = init?.proxy
 
-// export interface HttpOptions {
-//   method: HttpVerb
-//   url: string
-//   headers?: Record<string, any>
-//   query?: Record<string, any>
-//   body?: Body
-//   timeout?: number | Duration
-//   responseType?: ResponseType
+  // Remove these fields before creating the request
+  if (init != null) {
+    delete init.maxRedirections
+    delete init.connectTimeout
+    delete init.proxy
+  }
 
-//   json?: Record<string, any>
-// }
+  const signal = init?.signal
 
-// interface Response<T> {
-//   data: T
-//   headers: Record<string, string>
-//   rawheaders: Record<string, any>
-//   status: number
-//   url: string
-//   ok: boolean
-// }
+  const headers =
+    init?.headers == null
+      ? []
+      : init.headers instanceof Headers
+        ? Array.from(init.headers.entries())
+        : Array.isArray(init.headers)
+          ? init.headers
+          : Object.entries(init.headers)
 
-// export function request<T = any>(options: HttpOptions) {
-//   return new Promise<Response<T>>((resolve, reject) => {
-//     const channel = new MessageChannel()
-//     channel.port1.onmessage = (
-//       event: MessageEvent<{
-//         type: string
-//         result: any
-//       }>,
-//     ) => {
-//       if (event.data.type === EventType.HttpRequestResult) {
-//         resolve(event.data.result as Response<T>)
-//       } else {
-//         // TODO：
-//         reject(new Error('Unexpected message type'))
-//       }
-//     }
-//     // TODO: handle any
-//     self.postMessage(
-//       {
-//         type: EventType.HttpRequestInited,
-//         options,
-//       },
-//       [channel.port2] as any,
-//     )
-//   })
-// }
+  const mappedHeaders: Array<[string, string]> = headers.map(([name, val]) => [
+    name,
+    // we need to ensure we have all values as strings
+    // eslint-disable-next-line
+    typeof val === 'string' ? val : (val as any).toString(),
+  ])
+
+  const req = new Request(input, init)
+  const buffer = await req.arrayBuffer()
+  const reqData =
+    buffer.byteLength !== 0 ? Array.from(new Uint8Array(buffer)) : null
+  const rid = await rawFetch({
+    clientConfig: {
+      method: req.method,
+      url: req.url,
+      headers: mappedHeaders,
+      data: reqData,
+      maxRedirections,
+      connectTimeout,
+      proxy,
+    },
+  })
+  // const rid = await invoke<number>('plugin:http|fetch', {
+  //   clientConfig: {
+  //     method: req.method,
+  //     url: req.url,
+  //     headers: mappedHeaders,
+  //     data: reqData,
+  //     maxRedirections,
+  //     connectTimeout,
+  //     proxy,
+  //   },
+  // })
+
+  signal?.addEventListener('abort', () => {
+    // void invoke('plugin:http|fetch_cancel', {
+    //   rid,
+    // })
+    void fetchCancel(rid)
+  })
+
+  // const {
+  //   status,
+  //   statusText,
+  //   url,
+  //   headers: responseHeaders,
+  //   rid: responseRid,
+  // } = await invoke<FetchSendResponse>('plugin:http|fetch_send', {
+  //   rid,
+  // })
+
+  const {
+    status,
+    statusText,
+    url,
+    headers: responseHeaders,
+    rid: responseRid,
+  } = await fetchSend({ rid })
+
+  // const body = await invoke<ArrayBuffer | number[]>(
+  //   'plugin:http|fetch_read_body',
+  //   {
+  //     rid: responseRid,
+  //   },
+  // )
+
+  const body = await fetchReadBody({ rid: responseRid })
+
+  const res = new Response(
+    body instanceof ArrayBuffer && body.byteLength !== 0
+      ? body
+      : body instanceof Array && body.length > 0
+        ? new Uint8Array(body)
+        : null,
+    {
+      headers: responseHeaders,
+      status,
+      statusText,
+    },
+  )
+
+  // url is read only but seems like we can do this
+  Object.defineProperty(res, 'url', { value: url })
+
+  return res
+}
