@@ -53,26 +53,20 @@ export interface Proxy {
 }
 
 // invoke<number>("plugin:http|fetch", {
-export const rawFetch = constructAPI<any, number>(
-  EventType.HttpRawFetch,
-  EventType.HttpRawFetch,
-)
-export const fetchCancel = constructAPI<number, void>(
-  EventType.HttpFetchCancel,
-  EventType.HttpFetchCancel,
-)
+export const rawFetch = constructAPI<any, number>(EventType.HttpRawFetch)
+export const fetchCancel = constructAPI<number, void>(EventType.HttpFetchCancel)
 export const fetchSend = constructAPI<
   {
     rid: number
   },
   FetchSendResponse
->(EventType.HttpFetchSend, EventType.HttpFetchSend)
+>(EventType.HttpFetchSend)
 export const fetchReadBody = constructAPI<
   {
     rid: number
   },
   ArrayBuffer | number[]
->(EventType.HttpFetchReadBody, EventType.HttpFetchReadBody)
+>(EventType.HttpFetchReadBody)
 // invoke("plugin:http|fetch_cancel", {
 // invoke<FetchSendResponse>("plugin:http|fetch_send", {
 // invoke<ArrayBuffer | number[]>(

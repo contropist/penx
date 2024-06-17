@@ -217,13 +217,6 @@ function MyApp() {
       // store.user.setMnemonic('')
       // appEmitter.emit('SIGN_OUT_SUCCESSFULLY')
     }
-    ;(async () => {
-      const file = await dialogOpen({
-        multiple: false,
-        directory: false,
-      })
-      console.log(file)
-    })()
     appEmitter.on('SIGN_OUT', handleSignOut)
     return () => {
       appEmitter.off('SIGN_OUT', handleSignOut)
