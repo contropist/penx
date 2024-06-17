@@ -1,0 +1,20 @@
+{
+  "name": "extension-react-example",
+  "title": "extension react example",
+  "description": "This is a custom UI demo.",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello React",
+      "runtime": "iframe",
+      "framework": "react"
+    },
+    {
+      "name": "count",
+      "title": "React Count",
+      "runtime": "iframe",
+      "framework": "react"
+    }
+  ]
+}

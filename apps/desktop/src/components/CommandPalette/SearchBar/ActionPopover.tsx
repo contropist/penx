@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, FowerHTMLProps } from '@fower/react'
 import { DoorOpenIcon, EyeOffIcon, Star } from 'lucide-react'
-import { Popover, PopoverContent, PopoverTrigger } from 'uikit'
+import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
 import { appEmitter } from '@penx/event'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
@@ -15,7 +15,6 @@ import {
   StyledCommandItem,
   StyledCommandList,
 } from './../CommandComponents'
-import { Kbd } from './Kbd'
 
 function useOnCmdK(fn: () => void) {
   useEffect(() => {
@@ -59,7 +58,6 @@ export const ActionPopover = ({}: Props) => {
     <Popover
       isOpen={open}
       onOpenChange={(v) => {
-        console.log('v==:', v)
         setOpen(v)
         if (!v) {
           appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')

@@ -1,5 +1,5 @@
 import { MarkdownBuilder, render } from 'penx'
 
 export async function main() {
-  render(new MarkdownBuilder('# Hello world'))
+  render(new MarkdownBuilder('# Hello world...'))
 }

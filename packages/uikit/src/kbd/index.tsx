@@ -1,14 +1,35 @@
 import { Box, FowerHTMLProps } from '@fower/react'
 
+/**
+ * ⌥ -> lef option
+ * ⎇ -> right option
+ * ⇧ -> shift
+ * ⌘ -> command
+ * ↵ -> enter
+ * ⌃ -> control
+ * ⌦ -> delete
+ */
+
 interface Props extends FowerHTMLProps<'kbd'> {}
 
+const map: Record<string, string> = {
+  Control: '⌃',
+  Meta: '⌘',
+  Command: '⌘',
+  Shift: '⇧',
+  Alt: '⌥',
+}
+
 export const Kbd = ({ children, ...rest }: Props) => {
+  const modifierKey = map[children as any]
   return (
     <Box
       as="kbd"
       bgNeutral300
       neutral600
-      square5
+      h5
+      minW5
+      px1
       rounded-4
       toCenter
       text-12
@@ -19,7 +40,8 @@ export const Kbd = ({ children, ...rest }: Props) => {
       }}
       {...rest}
     >
-      {children}
+      {!modifierKey && children}
+      {!!modifierKey && modifierKey}
     </Box>
   )
 }

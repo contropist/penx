@@ -14,6 +14,7 @@ export const BackRootButton = ({ ...rest }: Props) => {
     <Box
       cursorPointer
       toCenter
+      neutral900
       {...rest}
       onClick={() => {
         if (isCommandAppDetail) {

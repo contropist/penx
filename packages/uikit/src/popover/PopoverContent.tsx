@@ -49,7 +49,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
           outlineNone
           white--dark
           bgWhite
-          bgGray800--dark
+          bgNeutral800--dark
           zIndex={10000}
           overflowHidden
           style={{

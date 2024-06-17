@@ -1,5 +1,6 @@
 import { Box, styled } from '@fower/react'
 import { Checkbox } from 'uikit'
+import { BindAppHotkey } from '../../components/BindAppHotkey'
 import { ThemeModeSelect } from './ThemeModeSelect'
 
 interface Props {}
@@ -15,9 +16,7 @@ export const General = ({}: Props) => {
       </Box>
       <Item>
         <Label>PenX Hotkey</Label>
-        <Box bgNeutral200 h-40 w-200 rounded2XL toCenter>
-          Cmd + K
-        </Box>
+        <BindAppHotkey />
       </Item>
       <Item>
         <Label>Theme Mode</Label>

@@ -1,11 +1,13 @@
 import { invoke } from '@tauri-apps/api/core'
-import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
-import { fetch } from '@tauri-apps/plugin-http'
+import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { open } from '@tauri-apps/plugin-shell'
 import { constructAPIExecuter, EventType } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
+import { createBuiltinWorker } from '~/common/createBuiltinWorker'
+import { createCommandWorker } from '~/common/createCommandWorker'
+import { handleWorkerMessage } from '~/common/handleWorkerMessage'
 import { ICommandItem } from '~/common/types'
 import { workerStore } from '~/common/workerStore'
 import { useCommandAppLoading } from './useCommandAppLoading'
@@ -85,50 +87,16 @@ export function useHandleSelect() {
 
       let worker: Worker
       if (command.isBuiltIn) {
-        // console.log('name........:', command)
-
-        if (command.name === 'clipboard-history') {
-          worker = new Worker(
-            new URL('../workers/clipboard-history.ts', import.meta.url),
-            { type: 'module' },
-          )
-        } else if (command.name === 'today') {
-          worker = new Worker(new URL('../workers/today.ts', import.meta.url), {
-            type: 'module',
-          })
-        } else if (command.name === 'database') {
-          worker = new Worker(
-            new URL('../workers/database.ts', import.meta.url),
-            { type: 'module' },
-          )
-        } else {
-          worker = new Worker(
-            new URL('../workers/marketplace.ts', import.meta.url),
-            { type: 'module' },
-          )
-        }
+        worker = createBuiltinWorker(command)
       } else {
-        // console.log('=========command?.code:, ', command?.code)
-
-        const extraCode = `
-          self.onmessage = (event) => {
-            if (event.data === 'BACK_TO_ROOT') {
-              self.close()
-            }
-          }
-          self.input = '${input}';
-        `
-
-        let blob = new Blob([command?.code + extraCode], {
-          type: 'application/javascript',
-        })
-        const url = URL.createObjectURL(blob)
-        worker = new Worker(url)
+        worker = createCommandWorker(command, input)
       }
       setLoading(false)
       workerStore.currentWorker = worker
       item.data.commandName && worker.postMessage(item.data.commandName)
       worker.onmessage = workerOnMsg
+
+      // // worker.terminate()
     }
 
     if (item.type === 'list-item') {

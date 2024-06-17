@@ -15,7 +15,13 @@ export const Logo = ({
 }: Props) => {
   const content = (
     <>
-      <IconLogo size={size * 0.9} strokeWidth={30} stroke="black" />
+      <IconLogo
+        size={size * 0.9}
+        strokeWidth={30}
+        stroke="black"
+        fillWhite--dark
+        stroke--dark="white"
+      />
 
       {showText && (
         <Box>
