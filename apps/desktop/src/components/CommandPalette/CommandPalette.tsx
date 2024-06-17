@@ -35,9 +35,9 @@ if (!isServer) {
   window.addEventListener('message', (event) => {
     const position = store.get(positionAtom)
     if (position !== 'ROOT') {
-      store.set(positionAtom, 'ROOT')
-      store.set(currentCommandAtom, null as any)
-      store.set(commandUIAtom, {} as any)
+      // store.set(positionAtom, 'ROOT')
+      // store.set(currentCommandAtom, null as any)
+      // store.set(commandUIAtom, {} as any)
     }
   })
 }
