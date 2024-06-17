@@ -42,6 +42,12 @@
     },
     "jarvis:allow-all",
     "clipboard:read-all",
-    "clipboard:write-all"
+    "clipboard:write-all",
+    "dialog:default",
+    "dialog:allow-ask",
+    "dialog:allow-open",
+    "dialog:allow-confirm",
+    "dialog:allow-save",
+    "dialog:allow-message"
   ]
 }

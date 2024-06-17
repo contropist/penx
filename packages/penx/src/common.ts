@@ -62,9 +62,7 @@ export function constructAPICallback<Payload, Result>(
   : (fn: (result: Result) => void, payload: Payload) => void {
   return (fn: (result: Result) => void, payload?: Payload) => {
     const channel = new MessageChannel()
-    channel.port1.onmessage = (
-      event: MessageEvent<{ type: string; result: Result }>,
-    ) => {
+    channel.port1.onmessage = (event: PenxAPIResponseMessageEvent<Result>) => {
       fn(event.data.result)
     }
     self.postMessage(

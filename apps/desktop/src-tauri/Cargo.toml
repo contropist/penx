@@ -45,6 +45,7 @@ tauri-plugin-os = "2.0.0-beta.6"
 tauri-plugin-http = "2.0.0-beta.9"
 urlencoding = "2.1.3"
 tauri-plugin-jarvis = { path = "../../../packages/tauri-plugin-jarvis"}
+tauri-plugin-dialog = "2.0.0-beta.9"
 
 # MacOS
 [target."cfg(target_os = \"macos\")".dependencies]

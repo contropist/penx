@@ -27,6 +27,7 @@ import { positionAtom } from './hooks/useCommandPosition'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import { open as dialogOpen } from '@tauri-apps/plugin-dialog'
 import { useInitThemeMode } from './hooks/useInitThemeMode'
 
 initFower()
@@ -216,7 +217,13 @@ function MyApp() {
       // store.user.setMnemonic('')
       // appEmitter.emit('SIGN_OUT_SUCCESSFULLY')
     }
-
+    ;(async () => {
+      const file = await dialogOpen({
+        multiple: false,
+        directory: false,
+      })
+      console.log(file)
+    })()
     appEmitter.on('SIGN_OUT', handleSignOut)
     return () => {
       appEmitter.off('SIGN_OUT', handleSignOut)

@@ -43,4 +43,11 @@ export enum EventType {
   ClipboardReadImageBase64 = 'ClipboardReadImageBase64',
   ClipboardWriteImageBinary = 'ClipboardWriteImageBinary',
   ClipboardWriteImageBase64 = 'ClipboardWriteImageBase64',
+
+  // Dialog
+  DialogAsk = 'DialogAsk',
+  DialogConfirm = 'DialogConfirm',
+  DialogMessage = 'DialogMessage',
+  DialogOpen = 'DialogOpen',
+  DialogSave = 'DialogSave',
 }

@@ -4,6 +4,7 @@ export * from './constants'
 export * from './types'
 
 export * from './clipboard'
+export * from './dialog'
 export * from './request'
 
 export * from './onSearchChange'
