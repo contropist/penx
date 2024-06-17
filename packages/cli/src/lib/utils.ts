@@ -32,3 +32,12 @@ export function readConfig(): Config {
   if (!jetpack.exists(configPath)) return {} as Config
   return jetpack.read(configPath, 'json') || {}
 }
+
+type IconifyIconType = {
+  name: string
+  className: string
+}
+
+export function isIconify(icon: any): icon is IconifyIconType {
+  return typeof icon === 'object' && icon.name
+}

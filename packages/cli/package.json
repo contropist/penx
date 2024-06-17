@@ -27,6 +27,7 @@
     "@egoist/tailwindcss-icons": "^1.8.1",
     "@iconify-json/lucide": "^1.1.192",
     "@iconify-json/mdi": "^1.1.66",
+    "@iconify-json/tabler": "^1.1.113",
     "@iconify/json": "^2.2.219",
     "@iconify/tailwind": "^1.1.1",
     "@inquirer/prompts": "^4.3.0",

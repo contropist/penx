@@ -25,7 +25,7 @@ export const BackRootButton = ({ ...rest }: Props) => {
         }
       }}
     >
-      <ArrowLeft size={20}></ArrowLeft>
+      <ArrowLeft size={16}></ArrowLeft>
     </Box>
   )
 }

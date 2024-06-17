@@ -107,9 +107,12 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
               extend: {},
             },
             plugins: [
-              iconsPlugin({
-                collections: getIconCollections(['mdi', 'lucide']),
-              }),
+              addIconSelectors(['mdi', 'mdi-light', 'lucide', 'tabler']),
+
+              // iconsPlugin({
+              //   prefix: 'icon',
+              //   collections: getIconCollections(['mdi', 'lucide', 'tabler']),
+              // }),
             ],
           }),
           autoprefixer,

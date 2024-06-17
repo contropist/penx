@@ -9,7 +9,7 @@ export interface Command {
   subtitle: string
   description: string
   filters?: Record<string, FilterItem[]>
-  icon?: string
+  icon?: string | Record<string, string>
   code: string
   runtime?: string
   isBuiltIn?: boolean
@@ -31,7 +31,7 @@ export interface IExtension {
 
   assets: Record<string, string>
 
-  icon?: string
+  icon?: string | Record<string, string>
 
   description?: string
 

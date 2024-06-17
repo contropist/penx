@@ -11,6 +11,7 @@ import { AppInfo } from 'tauri-plugin-jarvis-api/models'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
 import { Node } from '@penx/model'
+import { isIconify } from '~/common/isIconify'
 import { ICommandItem } from '~/common/types'
 import { useSearch } from './useSearch'
 
@@ -115,18 +116,25 @@ export function useLoadCommands() {
       // console.log('applicationsRes', applicationsRes)
       // console.log('allApps', allApps)
 
+      // console.log('=========extensions:', extensions)
+
       const commands = extensions.reduce((acc, cur) => {
         return [
           ...acc,
           ...cur.commands.map<ICommandItem>((item) => {
             function getIcon() {
-              const defaultIcon = cur.icon ? cur.assets?.[cur.icon] : ''
-              if (!item.icon) return defaultIcon
+              if (!item.icon) {
+                return cur.icon
+              }
 
-              if (item.icon?.startsWith('/')) return item.icon
+              if (isIconify(item.icon)) return item.icon
 
-              const commandIcon = cur.assets?.[item.icon]
-              return commandIcon || defaultIcon
+              if (typeof item.icon === 'string') {
+                if (item.icon?.startsWith('/')) return item.icon
+                const commandIcon = cur.assets?.[item.icon]
+                return commandIcon
+              }
+              return ''
             }
 
             return {

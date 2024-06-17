@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import { Command } from 'cmdk'
-import { actionMap } from './common/actionMap'
-import { Kbd } from './components/Kbd'
-import { useOnCmdK } from './hooks/useOnCmdK'
-import { useValue } from './hooks/useValue'
+import { actionMap } from '../common/actionMap'
+import { useOnCmdK } from '../hooks/useOnCmdK'
+import { useValue } from '../hooks/useValue'
+import { Kbd } from './Kbd'
 
 interface Props {
   inputRef: React.RefObject<HTMLInputElement>

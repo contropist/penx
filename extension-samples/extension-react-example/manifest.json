@@ -2,7 +2,10 @@
   "name": "extension-react-example",
   "title": "extension react example",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
   "commands": [
     {
       "name": "hello",
@@ -13,6 +16,10 @@
     {
       "name": "count",
       "title": "React Count",
+      "icon": {
+        "name": "mdi--user",
+        "className": "bg-gradient-to-r from-green-500 to-blue-500"
+      },
       "runtime": "iframe",
       "framework": "react"
     }

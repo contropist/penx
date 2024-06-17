@@ -12,7 +12,7 @@ export class PenxDB extends Dexie {
   constructor() {
     // super('PenxDB')
     super('penx-local')
-    this.version(17).stores({
+    this.version(18).stores({
       // Primary key and indexed props
       space: 'id, name, userId',
       node: 'id, spaceId, databaseId, type, date, [type+spaceId+databaseId], [type+spaceId], [type+databaseId]',

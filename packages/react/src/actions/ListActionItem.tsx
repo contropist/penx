@@ -18,7 +18,7 @@ export function ListActionItem({
       className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-1.5 rounded-lg flex items-center justify-between text-sm"
     >
       <div className="flex items-center gap-1">
-        <span className={icon?.name}></span>
+        {icon?.name && <span className={`iconify ${icon?.name}`}></span>}
         <div>{children}</div>
       </div>
       {shortcut && (

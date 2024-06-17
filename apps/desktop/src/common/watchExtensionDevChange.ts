@@ -27,13 +27,23 @@ export async function watchExtensionDevChange() {
     const assets = JSON.parse(payload.assets || '{}')
 
     // console.log('======payload:', payload)
+    console.log('========commands:', commands)
+
+    const getIcon = () => {
+      try {
+        const icon = JSON.parse(payload.icon)
+        return typeof icon === 'object' ? icon : payload.icon
+      } catch (error) {
+        return payload.icon
+      }
+    }
 
     await db.upsertExtension(payload.name, {
       isDeveloping: true,
       title: payload.title,
       commands,
       assets,
-      icon: payload.icon,
+      icon: getIcon(),
       version: payload.version,
     })
 

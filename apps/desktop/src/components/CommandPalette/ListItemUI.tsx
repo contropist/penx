@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from 'react'
-import { Box, FowerHTMLProps } from '@fower/react'
+import { Box, css, FowerHTMLProps } from '@fower/react'
 import { IAccessory, isAccessoryObjectText } from 'penx'
 import { ICommandItem } from '~/common/types'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
@@ -31,7 +31,7 @@ export const ListItemUI = ({
   const itemIcon = useMemo(() => {
     if (!isListApp) return item.icon
     const assets = currentCommand?.data?.assets || {}
-    return assets[item.icon as string]
+    return assets[item.icon as string] || item.icon
   }, [isListApp, item, currentCommand])
 
   const title = typeof item.title === 'string' ? item.title : item.title.value

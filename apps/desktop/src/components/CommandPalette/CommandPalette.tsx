@@ -106,17 +106,26 @@ export const CommandPalette = () => {
       }}
     >
       {isIframe && (
-        <BackRootButton
+        <Box
           data-tauri-drag-region
           absolute
-          top1
-          left1
-          zIndex-100
-          square8
-          roundedXL
-          bgNeutral900--T94
-          bgNeutral900--T94--hover
-        />
+          top0
+          left0
+          toCenterY
+          toRight
+          w={searchBarHeight - 16}
+          h={searchBarHeight}
+          zIndex-10000
+        >
+          <BackRootButton
+            data-tauri-drag-region
+            zIndex-100
+            square6
+            roundedXL
+            bgNeutral900--T94
+            bgNeutral900--T94--hover
+          />
+        </Box>
       )}
       {!isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
       <Box h={bodyHeight} overflowAuto relative>

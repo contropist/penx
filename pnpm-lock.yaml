@@ -56,6 +56,9 @@ importers:
       '@glideapps/glide-data-grid':
         specifier: ^6.0.3
         version: 6.0.3(lodash@4.17.21)(marked@11.2.0)(react-dom@18.2.0(react@18.2.0))(react-responsive-carousel@3.2.23)(react@18.2.0)
+      '@iconify/react':
+        specifier: ^5.0.1
+        version: 5.0.1(react@18.2.0)
       '@octokit/auth-app':
         specifier: ^6.0.1
         version: 6.0.4
@@ -1863,6 +1866,9 @@ importers:
       '@iconify-json/mdi':
         specifier: ^1.1.66
         version: 1.1.66
+      '@iconify-json/tabler':
+        specifier: ^1.1.113
+        version: 1.1.113
       '@iconify/json':
         specifier: ^2.2.219
         version: 2.2.219
@@ -8913,8 +8919,16 @@ packages:
   '@iconify-json/mdi@1.1.66':
     resolution: {integrity: sha512-7KPF2RVUUWav/hXCM8Ti/smqu3cmgePJpiX9CSkldiL+80+eBRBeKlc4vPOc9jhAItlqIU1vKsbKoPP0JIfgbg==}
 
+  '@iconify-json/tabler@1.1.113':
+    resolution: {integrity: sha512-dT34D0gyqxgK2t91+8scQ+U387yZ/zb4r7/3CHqhmvaVMsnOT8DFtX0FhJzdr6ldnVH82pGAp59GGr97IT/UfQ==}
+
   '@iconify/json@2.2.219':
     resolution: {integrity: sha512-q8asqbM61woVZ9rJGm/gvW46i5vdeHrq4TqZQ/5wF5ypk4pAZU9+4qVa5NQE2MZngYkMPeO68PDGGl7WaEV8jQ==}
+
+  '@iconify/react@5.0.1':
+    resolution: {integrity: sha512-octpAJRtHZLLS1o6fmz2Ek2Rfwx75kVg48MZyGTqL3QqoxRddEsuLqOt6ADDhRosmlrYnIrVL+7obo1bz2ikNw==}
+    peerDependencies:
+      react: '>=16'
 
   '@iconify/tailwind@1.1.1':
     resolution: {integrity: sha512-4mmA//qjZigv7D4KlqcVSYTqfRIJzyts2/lSCAJfCL0rVMIE76+ifJnaE5jxCo1+nYGBF8FsFo0qFOs+sX4EnA==}
@@ -24490,10 +24504,19 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/tabler@1.1.113':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify/json@2.2.219':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
+
+  '@iconify/react@5.0.1(react@18.2.0)':
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 18.2.0
 
   '@iconify/tailwind@1.1.1':
     dependencies:

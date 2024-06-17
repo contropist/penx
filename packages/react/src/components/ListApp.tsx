@@ -1,6 +1,6 @@
 import { PropsWithChildren, useRef } from 'react'
 import { Command } from 'cmdk'
-import { useValue } from './hooks/useValue'
+import { useValue } from '../hooks/useValue'
 import { ListAppFooter } from './ListAppFooter'
 
 export const ListApp = ({ children }: PropsWithChildren) => {
@@ -20,7 +20,7 @@ export const ListApp = ({ children }: PropsWithChildren) => {
         ref={inputRef}
         autoFocus
         placeholder="Search..."
-        className="border-b border-b-neutral-200 w-full outline-none  h-[54] px-4"
+        className="border-b border-b-neutral-200 w-full outline-none  h-[54] pr-4 pl-[50]"
       />
       <Command.List ref={listRef} className="p-2 h-[376] overflow-auto">
         {children}

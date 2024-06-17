@@ -36,12 +36,17 @@ export function Main() {
           key={index}
           title={item + index}
           subtitle={100 + index}
+          icon={{
+            name: 'tabler--brand-mysql',
+            classNames:
+              'text-white bg-gradient-to-tl from-cyan-500 to-blue-500',
+          }}
           actions={
             <ActionPanel>
               <Action.CopyToClipboard
                 content="Hello"
                 icon={{
-                  name: 'i-mdi-home',
+                  name: 'mdi--home',
                 }}
                 shortcut={{
                   modifiers: ['cmd'],

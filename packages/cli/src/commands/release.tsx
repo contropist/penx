@@ -10,7 +10,7 @@ import { getTRPC } from '../lib/trpc'
 import { getManifest } from '../lib/getManifest'
 import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
-import { readConfig } from '../lib/utils'
+import { isIconify, readConfig } from '../lib/utils'
 import { getReadme } from '../lib/getReadme'
 import { escAction } from '../constants'
 
@@ -93,7 +93,9 @@ class Command {
               screenshots: screenshotsPaths,
             }),
             readme,
-            logo: await iconToString(manifest.icon),
+            logo: isIconify(manifest.icon)
+              ? JSON.stringify(manifest.icon)
+              : await iconToString(manifest.icon),
           })
 
           spinner.succeed('Release success!')

@@ -1,13 +1,15 @@
 import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
+import { Icon } from '@iconify/react'
 import { useQuery } from '@tanstack/react-query'
 import { isObjectIcon } from 'penx'
 import { getRandomColor } from '@penx/local-db'
 import { getIcon } from '~/common/icon'
+import { IconifyIconType, isIconify } from '~/common/isIconify'
 
 interface ListItemIconProps extends FowerHTMLProps<'div'> {
-  icon?: string | number
+  icon?: any
   size?: number
   bg?: string
   isApplication?: boolean
@@ -25,6 +27,10 @@ export const ListItemIcon = memo(
       return (
         <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
       )
+    }
+
+    if (isIconify(icon)) {
+      return <IconifyIcon {...icon} />
     }
 
     if (isApplication) {
@@ -136,5 +142,33 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
       height={size}
       style={{ borderRadius: 6 }}
     />
+  )
+}
+
+function IconifyIcon(icon: IconifyIconType) {
+  // TODO: parse className to fower props
+  let props: Record<string, any> = {}
+  const bgGradientX: string[] = []
+  const classNames = icon.className.split(/\s+/)
+
+  for (const item of classNames) {
+    if (item.startsWith('from-')) {
+      bgGradientX[0] = item.replace('from-', '').split('-').join('')
+    }
+    if (item.startsWith('to-')) {
+      bgGradientX[1] = item.replace('to-', '').split('-').join('')
+    }
+  }
+
+  props.bgGradientX = bgGradientX
+  if (props.bgGradientX?.length > 0) {
+    props.white = true
+    props.p = 2
+  }
+
+  return (
+    <Box neutral900 square5 rounded-6 textSM toCenter {...props}>
+      <Icon icon={icon.name.split('--').join(':')} />
+    </Box>
   )
 }

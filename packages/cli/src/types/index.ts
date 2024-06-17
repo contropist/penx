@@ -3,7 +3,7 @@ export type CommandItem = {
   title: string
   subtitle: string
   description: string
-  icon?: string
+  icon?: string | Record<string, string>
   code?: string
   runtime: 'iframe' | 'worker'
   framework: 'vue' | 'react' | 'solid' | 'svelte'
@@ -16,7 +16,7 @@ export type Manifest = {
   description: string
   main: string
   code: string
-  icon: string
+  icon: string | Record<string, string>
   commands: CommandItem[]
   screenshots: Record<string, string>
 }

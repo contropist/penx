@@ -7,6 +7,7 @@ import { buildExtension } from '../lib/buildExtension'
 import { iconToString } from '../lib/iconToString'
 import { assetsToStringMap } from '../lib/assetsToStringMap'
 import { escAction } from '../constants'
+import { isIconify } from '../lib/utils'
 
 type Args = {}
 
@@ -38,7 +39,7 @@ class Command {
       const code = jetpack.read(codePath, 'utf8')
 
       command.code = code + escAction
-      command.icon = await iconToString(command.icon)
+      command.icon = isIconify(command.icon) ? command.icon : await iconToString(command.icon)
     }
 
     const assets = await assetsToStringMap()
@@ -47,7 +48,7 @@ class Command {
       name: `$DEVELOPING-${manifest.name}`,
       title: manifest.title,
       version: manifest.version || '',
-      icon: manifest.icon,
+      icon: typeof manifest.icon === 'object' ? JSON.stringify(manifest.icon) : manifest.icon,
       commands: JSON.stringify(manifest.commands),
       assets: JSON.stringify(assets),
     }

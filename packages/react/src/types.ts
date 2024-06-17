@@ -76,11 +76,13 @@ export type ShortcutKey =
   | 'enter'
   | 'backspace'
 
+export type Icon = {
+  name: string
+  classNames?: string
+}
+
 export interface BaseActionProps {
-  icon?: {
-    name: string
-    classNames?: string[]
-  }
+  icon?: Icon
   shortcut?: {
     modifiers: ShortcutModifier[]
     key: ShortcutKey
