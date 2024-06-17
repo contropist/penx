@@ -14,11 +14,41 @@
       "framework": "react"
     },
     {
-      "name": "count",
-      "title": "React Count",
+      "name": "list",
+      "title": "React List App",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "runtime": "iframe",
+      "framework": "react"
+    },
+    {
+      "name": "github-trending",
+      "title": "React List App",
+      "icon": {
+        "name": "lucide--github",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "runtime": "iframe",
+      "framework": "react"
+    },
+    {
+      "name": "detail",
+      "title": "React Detail App",
       "icon": {
         "name": "mdi--user",
         "className": "bg-gradient-to-r from-green-500 to-blue-500"
+      },
+      "runtime": "iframe",
+      "framework": "react"
+    },
+    {
+      "name": "form",
+      "title": "React Form App",
+      "icon": {
+        "name": "lucide--grid-3x3",
+        "className": "bg-gradient-to-r from-red-500 to-orange-500"
       },
       "runtime": "iframe",
       "framework": "react"

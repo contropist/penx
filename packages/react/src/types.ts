@@ -76,15 +76,37 @@ export type ShortcutKey =
   | 'enter'
   | 'backspace'
 
-export type Icon = {
-  name: string
-  classNames?: string
+export type IconifyIconType = {
+  name: string | number
+  className?: string
 }
 
 export interface BaseActionProps {
-  icon?: Icon
+  icon?: IconifyIconType
   shortcut?: {
     modifiers: ShortcutModifier[]
     key: ShortcutKey
   }
+}
+
+interface AccessoryObjectText {
+  value: string | number
+  color?: string
+}
+
+export type IAccessory = {
+  text?: (string | number) | AccessoryObjectText
+  icon?: IconifyIconType
+  tag?: {
+    value: string | number
+    bg?: string
+  }
+}
+
+export function isIconify(icon: any): icon is IconifyIconType {
+  return typeof icon === 'object' && icon.name
+}
+
+export function isAccessoryObjectText(obj: any): obj is AccessoryObjectText {
+  return obj?.value !== undefined
 }

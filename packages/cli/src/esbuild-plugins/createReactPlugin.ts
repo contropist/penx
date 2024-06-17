@@ -2,6 +2,24 @@ import * as esbuild from 'esbuild'
 import fs from 'fs'
 import { CommandItem } from '../types'
 
+const prefix = `
+  import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+  import { createRoot } from 'react-dom/client'
+  import '../.penx/index.css'
+
+  const queryClient = new QueryClient()
+`
+const postfix = `
+  const domNode = document.getElementById('root')!  
+  const root = createRoot(domNode)
+
+  root.render(
+    <QueryClientProvider client={queryClient}>
+      <Main />
+    </QueryClientProvider>
+  )
+`
+
 export function createReactPlugin(commands: CommandItem[]) {
   const plugin: esbuild.Plugin = {
     name: 'add-react-code',
@@ -18,16 +36,6 @@ export function createReactPlugin(commands: CommandItem[]) {
         if (!cmd) return null
 
         if (cmd.framework !== 'react') return null
-
-        const prefix = `
-              import { createRoot } from 'react-dom/client'
-              import '../.penx/index.css'
-            `
-        const postfix = `
-              const domNode = document.getElementById('root')!  
-              const root = createRoot(domNode)
-              root.render(<Main />)
-            `
 
         const modifiedContents = `${prefix}${contents}${postfix}`
 

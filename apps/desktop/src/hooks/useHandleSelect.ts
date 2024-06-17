@@ -67,6 +67,7 @@ export function useHandleSelect() {
         const $iframe = document.getElementById('command-app-iframe')!
         if (!$iframe) return
         const currentWindow = ($iframe as any).contentWindow as Window
+
         window.addEventListener('message', (event) => {
           console.log('parent received event:', event)
           // currentWindow.postMessage("Hello from the parent!")
@@ -79,7 +80,11 @@ export function useHandleSelect() {
         })
         // currentWindow.parent.postMessage('Hello from the extension!', '*')
         currentWindow.document.body.innerHTML = '<div id="root"></div>'
-        ;(currentWindow as any).eval(command.code)
+
+        // TODO: window.__COMMAND__  is too hack
+        ;(currentWindow as any).eval(
+          `window.__COMMAND__ = ${JSON.stringify(item)} \n ${command.code}`,
+        )
 
         return
       }

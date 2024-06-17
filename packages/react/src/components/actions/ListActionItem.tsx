@@ -1,7 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { Command } from 'cmdk'
-import { Kbd } from '../components/Kbd'
-import { BaseActionProps } from '../types'
+import { BaseActionProps } from '../../types'
+import { Icon } from '../Icon'
+import { Kbd } from '../Kbd'
 
 interface Props extends BaseActionProps {}
 
@@ -15,10 +16,10 @@ export function ListActionItem({
       // onSelect={(item) => {
       //   console.log('item========:', item)
       // }}
-      className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-1.5 rounded-lg flex items-center justify-between text-sm"
+      className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-2 rounded-lg flex items-center justify-between text-sm"
     >
-      <div className="flex items-center gap-1">
-        {icon?.name && <span className={`iconify ${icon?.name}`}></span>}
+      <div className="flex items-center gap-1 text-sm">
+        {icon?.name && <Icon icon={icon} />}
         <div>{children}</div>
       </div>
       {shortcut && (

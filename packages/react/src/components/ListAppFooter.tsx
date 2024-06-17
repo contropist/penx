@@ -4,6 +4,7 @@ import { Command } from 'cmdk'
 import { actionMap } from '../common/actionMap'
 import { useOnCmdK } from '../hooks/useOnCmdK'
 import { useValue } from '../hooks/useValue'
+import { CommandInfo } from './CommandInfo'
 import { Kbd } from './Kbd'
 
 interface Props {
@@ -47,7 +48,7 @@ export function ListAppFooter({ inputRef, listRef }: Props) {
 
   return (
     <div className="flex h-[40] items-center justify-between border-t px-2">
-      <div></div>
+      <CommandInfo />
 
       <Popover.Root open={open} onOpenChange={setOpen} modal>
         <Popover.Trigger

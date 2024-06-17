@@ -1,17 +1,31 @@
 import { forwardRef, ReactNode, useMemo } from 'react'
 import { Command } from 'cmdk'
 import { actionMap } from '../common/actionMap'
-import { Icon } from '../types'
+import { IAccessory, IconifyIconType } from '../types'
+import { Accessory } from './Accessory'
+import { Icon } from './Icon'
 
 interface ListItemProps {
   title: string
   subtitle?: ReactNode
+  titleLayout?: 'horizontal' | 'vertical'
   actions?: ReactNode
-  icon?: Icon
+  icon?: IconifyIconType
+  accessories?: IAccessory[]
 }
 
 export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
-  function ListItem({ title, subtitle, actions, icon }, ref) {
+  function ListItem(
+    {
+      title,
+      subtitle,
+      actions,
+      icon,
+      accessories = [],
+      titleLayout = 'horizontal',
+    },
+    ref,
+  ) {
     //TODO: title maybe not a string
     useMemo(() => {
       actionMap.set(title, actions)
@@ -24,20 +38,24 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         onSelect={(item) => {
           console.log('item========:', item)
         }}
-        className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-1.5 rounded-lg flex items-center gap-x-1"
+        className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-2 rounded-lg flex items-center justify-between"
       >
-        {icon && (
+        <div className="flex items-center gap-x-2">
+          {icon && <Icon icon={icon} />}
           <div
-            className={`rounded-md h-5 w-5 flex items-center justify-center text-sm ${!!icon.classNames && icon.classNames}`}
+            className={`flex ${titleLayout === 'vertical' ? 'flex-col justify-center gap-y-0' : 'flex-row items-center gap-x-2'}`}
           >
-            <span className={`iconify ${icon?.name}`}></span>
+            <div className="text-sm">{title}</div>
+            {!!subtitle && (
+              <div className="text-neutral-500 text-sm">{subtitle}</div>
+            )}
           </div>
-        )}
-        <div className="flex items-center gap-2">
-          <div>{title}</div>
-          {!!subtitle && (
-            <div className="text-neutral-500 text-sm">{title}</div>
-          )}
+        </div>
+        <div className="flex items-center gap-x-2">
+          {accessories.length &&
+            accessories.map((accessory, index) => (
+              <Accessory key={index} item={accessory} />
+            ))}
         </div>
       </Command.Item>
     )

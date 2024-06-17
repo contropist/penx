@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { BaseActionProps } from '../types'
+import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 
 interface CopyToClipboardProps extends BaseActionProps {
@@ -11,7 +11,9 @@ export function CopyToClipboard({
   content,
   title = 'Copy to Clipboard',
   shortcut,
-  icon,
+  icon = {
+    name: 'lucide--copy',
+  },
 }: CopyToClipboardProps) {
   return (
     <ListActionItem shortcut={shortcut} icon={icon}>
