@@ -11,6 +11,11 @@ export function CopyToClipboard({
   content,
   title = 'Copy to Clipboard',
   shortcut,
+  icon,
 }: CopyToClipboardProps) {
-  return <ListActionItem shortcut={shortcut}>{title}</ListActionItem>
+  return (
+    <ListActionItem shortcut={shortcut} icon={icon}>
+      {title}
+    </ListActionItem>
+  )
 }

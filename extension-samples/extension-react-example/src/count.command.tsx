@@ -40,6 +40,9 @@ export function Main() {
             <ActionPanel>
               <Action.CopyToClipboard
                 content="Hello"
+                icon={{
+                  name: 'i-mdi-home',
+                }}
                 shortcut={{
                   modifiers: ['cmd'],
                   key: 'enter',

@@ -6,6 +6,8 @@ import vuePlugin from 'esbuild-plugin-vue3'
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import sveltePlugin from 'esbuild-svelte'
+import { addIconSelectors } from '@iconify/tailwind'
+import { iconsPlugin, getIconCollections, dynamicIconsPlugin } from '@egoist/tailwindcss-icons'
 
 import { getManifest } from './getManifest'
 import { CommandItem } from '../types'
@@ -104,7 +106,11 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
             theme: {
               extend: {},
             },
-            plugins: [],
+            plugins: [
+              iconsPlugin({
+                collections: getIconCollections(['mdi', 'lucide']),
+              }),
+            ],
           }),
           autoprefixer,
           cssnano,

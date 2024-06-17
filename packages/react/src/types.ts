@@ -77,6 +77,10 @@ export type ShortcutKey =
   | 'backspace'
 
 export interface BaseActionProps {
+  icon?: {
+    name: string
+    classNames?: string[]
+  }
   shortcut?: {
     modifiers: ShortcutModifier[]
     key: ShortcutKey
