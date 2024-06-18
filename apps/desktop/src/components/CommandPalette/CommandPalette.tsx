@@ -30,18 +30,6 @@ const windowHeight = 470
 const searchBarHeight = 54
 const footerHeight = 40
 
-// message from iframe
-if (!isServer) {
-  window.addEventListener('message', (event) => {
-    const position = store.get(positionAtom)
-    if (position !== 'ROOT') {
-      // store.set(positionAtom, 'ROOT')
-      // store.set(currentCommandAtom, null as any)
-      // store.set(commandUIAtom, {} as any)
-    }
-  })
-}
-
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
 
