@@ -1,14 +1,18 @@
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { Command } from 'cmdk'
+import { loaderStyle } from '../common/constants'
+import { detailMap } from '../common/store'
 import { useValue } from '../hooks/useValue'
 import { ListAppFooter } from './ListAppFooter'
 
 interface ListAppProps {
   isLoading?: boolean
+  isDetailVisible?: boolean
 }
 
 export const ListApp = ({
   isLoading,
+  isDetailVisible,
   children,
 }: PropsWithChildren<ListAppProps>) => {
   const { value, setValue } = useValue()
@@ -23,60 +27,7 @@ export const ListApp = ({
         setValue(v)
       }}
     >
-      <style>
-        {`
-
-        [list-app-loader] {
-          border: 0;
-          width: 100%;
-          height: 1px;
-          background: transparent;
-          position: absolute;
-          bottom: -1px;
-          overflow: visible;
-          display: block;
-          margin: 0;
-          z-index: 10;
-        }
-
-        [list-app-loader]:after {
-          content: '';
-          width: 50%;
-          height: 1px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            #333 40%,
-            transparent 100%
-          );
-          top: -1px;
-          opacity: 0;
-          animation-duration: 1.5s;
-          animation-delay: 1s;
-          animation-timing-function: ease;
-          animation-name: listAppLoading;
-          animation-iteration-count: infinite;
-        }
-
-        @keyframes listAppLoading {
-          0% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-
-          50% {
-            opacity: 1;
-            transform: translateX(100%);
-          }
-
-          100% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-        }
-      `}
-      </style>
+      <style>{loaderStyle}</style>
       <div className="relative border-b border-b-neutral-200 h-[54] bg-amber-200">
         <Command.Input
           ref={inputRef}
@@ -87,15 +38,38 @@ export const ListApp = ({
 
         {isLoading && <hr list-app-loader="" />}
       </div>
-      <Command.List ref={listRef} className="p-2 h-[376] overflow-auto">
-        {isLoading && (
-          <Command.Loading className="h-full flex items-center justify-center text-neutral-400 text-sm">
-            Hang on...
-          </Command.Loading>
-        )}
-        {children}
+      <Command.List ref={listRef} className="h-[376] relative">
+        <div className="flex flex-row w-full overflow-hidden absolute top-0 bottom-0 left-0 right-0">
+          <Command.Group
+            className={`overflow-auto p-2 ${isDetailVisible ? 'w-[280]' : 'w-full'}`}
+          >
+            {isLoading && (
+              <Command.Loading className="h-full flex items-center justify-center text-neutral-400 text-sm">
+                Loading...
+              </Command.Loading>
+            )}
+            {children}
+          </Command.Group>
+
+          {isDetailVisible && (
+            <>
+              <div className=" bg-neutral-200 w-[1] h-full" />
+              <Detail />
+            </>
+          )}
+        </div>
       </Command.List>
       <ListAppFooter listRef={listRef} inputRef={inputRef} />
     </Command>
   )
+}
+
+function Detail() {
+  const { value } = useValue()
+  const [content, setContent] = useState<any>()
+  useEffect(() => {
+    setContent(detailMap.get(value))
+  }, [value])
+
+  return <div className="flex-1 overflow-auto p-2">{content}</div>
 }

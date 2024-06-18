@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import { Command } from 'cmdk'
-import { actionMap } from '../common/actionMap'
+import { actionMap } from '../common/store'
 import { useOnCmdK } from '../hooks/useOnCmdK'
 import { useValue } from '../hooks/useValue'
 import { CommandInfo } from './CommandInfo'

@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode, useMemo } from 'react'
 import { Command } from 'cmdk'
-import { actionMap } from '../common/actionMap'
+import { actionMap, detailMap } from '../common/store'
 import { IAccessory, IconifyIconType } from '../types'
 import { Accessory } from './Accessory'
 import { Icon } from './Icon'
@@ -10,6 +10,7 @@ interface ListItemProps {
   subtitle?: ReactNode
   titleLayout?: 'horizontal' | 'vertical'
   actions?: ReactNode
+  detail?: ReactNode
   icon?: IconifyIconType
   accessories?: IAccessory[]
 }
@@ -21,6 +22,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
       subtitle,
       actions,
       icon,
+      detail,
       accessories = [],
       titleLayout = 'horizontal',
     },
@@ -28,8 +30,10 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   ) {
     //TODO: title maybe not a string
     useMemo(() => {
-      actionMap.set(title, actions)
-    }, [title, actions])
+      const id = title
+      if (actions) actionMap.set(id, actions)
+      if (detail) detailMap.set(id, detail)
+    }, [title, actions, detail])
 
     return (
       <Command.Item
@@ -38,7 +42,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         onSelect={(item) => {
           console.log('item========:', item)
         }}
-        className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-2 rounded-lg flex items-center justify-between"
+        className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-2 rounded-lg flex items-center justify-between gap-x-3"
       >
         <div className="flex items-center gap-x-2">
           {icon && <Icon icon={icon} />}

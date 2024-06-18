@@ -11,7 +11,11 @@ export function Accessory({ item }: AccessoryProps) {
       return <div className="">{item.text}</div>
     }
     if (isAccessoryObjectText(item.text)) {
-      return <div color={'gray600'}>{item.text?.value || ''}</div>
+      return (
+        <div className={item.text.color ? item.text.color : 'text-gray-600'}>
+          {item.text?.value || ''}
+        </div>
+      )
     }
     return null
   }, [item.text])

@@ -13,7 +13,7 @@ export const Icon = ({ icon, size, ...rest }: Props) => {
 
   return (
     <div
-      className={`rounded-md flex items-center justify-center ${hasBg ? 'text-white h-5 w-5 text-sm' : 'text-base'} ${!!icon.className && icon.className} `}
+      className={`rounded-md flex flex-shrink-0 items-center justify-center ${hasBg ? 'text-white h-5 w-5 text-sm' : 'text-base'} ${!!icon.className && icon.className} `}
       {...rest}
     >
       {typeof name === 'number' && <span className="text-xs">{name}</span>}
