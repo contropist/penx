@@ -5,6 +5,7 @@ export * from './types'
 
 export * from './clipboard'
 export * from './dialog'
+export * from './fs'
 export * from './request'
 
 export * from './onSearchChange'

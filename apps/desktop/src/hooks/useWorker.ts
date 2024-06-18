@@ -29,6 +29,7 @@ import {
   handleDialogOpen,
   handleDialogSave,
 } from '~/api/dialog'
+import { handleFsReadFile, handleFsReadTextFile } from '~/api/fs'
 import {
   handleHttpFetchCancel,
   handleHttpFetchSend,
@@ -71,6 +72,9 @@ export function useWorkerOnMsg() {
     handleHttpFetchCancel,
     handleHttpFetchSend,
     handleHttpReadBody,
+    // fs
+    handleFsReadFile,
+    handleFsReadTextFile,
     // app
     handleSearchChange,
     handleFilterChange,

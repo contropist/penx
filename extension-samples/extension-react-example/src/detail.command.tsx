@@ -1,10 +1,15 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
-import { clipboard, dialog } from 'penx'
+import { clipboard, dialog, fs } from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
   useEffect(() => {
     ;(async () => {
+      console.log(
+        await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
+      )
+      console.log(await fs.readFile('/Users/hacker/Desktop/penx/package.json'))
+
       // await clipboard.writeText('Hello from huakun')
       // const cbText = await clipboard.readText()
       // console.log('Clipboard text:', cbText)

@@ -50,4 +50,23 @@ export enum EventType {
   DialogMessage = 'DialogMessage',
   DialogOpen = 'DialogOpen',
   DialogSave = 'DialogSave',
+
+  // File System
+  // FsReadDir = 'FsReadDir',
+  FsReadFile = 'FsReadFile',
+  // FsOpen = 'FsOpen',
+  FsReadTextFile = 'FsReadTextFile',
+  // FsReadTextFileLines = 'FsReadTextFileLines',
+  // FsStat = 'FsStat',
+  // FsLstat = 'FsLstat',
+  // FsExists = 'FsExists',
+  // FsWatch = 'FsWatch',
+  // FsMkdir = 'FsMkdir',
+  // FsCreate = 'FsCreate',
+  // FsCopyFile = 'FsCopyFile',
+  // FsRemove = 'FsRemove',
+  // FsRename = 'FsRename',
+  // FsTruncate = 'FsTruncate',
+  // FsWriteFile = 'FsWriteFile',
+  // FsWriteTextFile = 'FsWriteTextFile',
 }

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
+import * as fs from '@tauri-apps/plugin-fs'
 import { Command } from 'cmdk'
 import {
   getAllApps,
@@ -32,6 +33,18 @@ const footerHeight = 40
 
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
+
+  useEffect(() => {
+    ;(async () => {
+      // const file = await fs.open('/Users/hacker/Desktop/penx/package.json')
+      // const f = await fs.readTextFileLines('/Users/hacker/Desktop/penx/package.json')
+      // console.log(await fs.readFile('/Users/hacker/Desktop/penx/package.json'))
+      // console.log(
+      //   await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
+      // )
+      // console.log(file)
+    })()
+  }, [])
 
   const { developingItems, commandItems, databaseItems, applicationItems } =
     useItems()
