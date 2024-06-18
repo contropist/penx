@@ -1,38 +1,73 @@
-import dialog from '@tauri-apps/plugin-dialog'
+import * as _dialogApi from '@tauri-apps/plugin-dialog'
 import { constructAPI } from './common'
 import { EventType } from './constants'
 
-type AskParameters = Parameters<typeof dialog.ask>
-export type AskPayload = {
-  message: AskParameters[0]
-  options: AskParameters[1]
+export type DialogAskPayload = {
+  message: string
+  options?: string | _dialogApi.ConfirmDialogOptions
 }
-export const ask = constructAPI<AskPayload, boolean>(EventType.DialogAsk)
 
-type MessageParameters = Parameters<typeof dialog.message>
-export type MessagePayload = {
-  message: MessageParameters[0]
-  options: MessageParameters[1]
+export type DialogMessagePayload = {
+  message: string
+  options?: string | _dialogApi.MessageDialogOptions
 }
-export const message = constructAPI<MessagePayload, void>(
-  EventType.DialogMessage,
-)
 
-type ConfirmParameters = Parameters<typeof dialog.confirm>
-export type ConfirmPayload = {
-  message: ConfirmParameters[0]
-  options: ConfirmParameters[1]
+export type DialogConfirmPayload = {
+  message: string
+  options?: string | _dialogApi.ConfirmDialogOptions
 }
-export const confirm = constructAPI<ConfirmPayload, boolean>(
-  EventType.DialogConfirm,
-)
 
-type SaveParameters = Parameters<typeof dialog.save>
-export type SavePayload = SaveParameters[0]
-export const save = constructAPI<SavePayload, string>(EventType.DialogSave)
+export interface IDialog {
+  ask: (
+    ...args: Parameters<typeof _dialogApi.ask>
+  ) => ReturnType<typeof _dialogApi.ask>
+  confirm: (
+    ...args: Parameters<typeof _dialogApi.confirm>
+  ) => ReturnType<typeof _dialogApi.confirm>
+  message: (
+    ...args: Parameters<typeof _dialogApi.message>
+  ) => ReturnType<typeof _dialogApi.message>
+  open: (
+    options?: _dialogApi.OpenDialogOptions,
+  ) => ReturnType<typeof _dialogApi.open>
+  save: (
+    options?: _dialogApi.SaveDialogOptions,
+  ) => ReturnType<typeof _dialogApi.save>
+}
 
-type OpenParameter = Parameters<typeof dialog.open>
-export type OpenPayload = OpenParameter[0]
-export const open = constructAPI<OpenPayload, dialog.OpenDialogReturn<any>>(
-  EventType.DialogOpen,
-)
+export const dialog: IDialog = {
+  ask: function (
+    message: string,
+    options?: string | _dialogApi.ConfirmDialogOptions,
+  ) {
+    return constructAPI<DialogAskPayload, boolean>(EventType.DialogAsk)({
+      message,
+      options,
+    })
+  },
+  confirm: function (
+    message: string,
+    options?: string | _dialogApi.ConfirmDialogOptions,
+  ) {
+    return constructAPI<DialogConfirmPayload, boolean>(EventType.DialogConfirm)(
+      { message, options },
+    )
+  },
+
+  message: function (
+    message: string,
+    options?: string | _dialogApi.MessageDialogOptions,
+  ) {
+    return constructAPI<DialogMessagePayload, void>(EventType.DialogMessage)({
+      message,
+      options,
+    })
+  },
+  open: constructAPI<
+    _dialogApi.OpenDialogOptions | undefined,
+    ReturnType<typeof _dialogApi.open>
+  >(EventType.DialogOpen),
+  save: constructAPI<_dialogApi.SaveDialogOptions | undefined, string | null>(
+    EventType.DialogSave,
+  ),
+}

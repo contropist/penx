@@ -1,6 +1,3 @@
-import { invoke } from '@tauri-apps/api/core'
-import { EventType } from 'penx'
-import { appEmitter } from '@penx/event'
 import {
   handleFilterChange,
   handleSearchChange,
@@ -26,6 +23,13 @@ import {
   handleClipboardWriteText,
 } from '~/api/clipboard'
 import {
+  handleDialogAsk,
+  handleDialogConfirm,
+  handleDialogMessage,
+  handleDialogOpen,
+  handleDialogSave,
+} from '~/api/dialog'
+import {
   handleHttpFetchCancel,
   handleHttpFetchSend,
   handleHttpRawFetch,
@@ -39,6 +43,7 @@ export function useWorkerOnMsg() {
 
   const handlers = [
     handleRunAppleScript,
+    // clipboard
     handleClipboardReadText,
     handleClipboardWriteText,
     handleClipboardReadImageBase64,
@@ -55,10 +60,18 @@ export function useWorkerOnMsg() {
     handleClipboardReadHtml,
     handleClipboardWriteHtml,
     handleClipboardWriteHtmlAndText,
+    // dialog
+    handleDialogAsk,
+    handleDialogConfirm,
+    handleDialogMessage,
+    handleDialogOpen,
+    handleDialogSave,
+    // web
     handleHttpRawFetch,
     handleHttpFetchCancel,
     handleHttpFetchSend,
     handleHttpReadBody,
+    // app
     handleSearchChange,
     handleFilterChange,
     useHandleLoading(setUI),

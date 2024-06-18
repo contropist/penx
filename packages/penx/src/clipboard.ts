@@ -1,7 +1,7 @@
 import { constructAPI } from './common'
 import { EventType } from './constants'
 
-interface IClipboard {
+export interface IClipboard {
   readText: () => Promise<string>
   writeText: (text: string) => Promise<void>
   readImageBase64: () => Promise<string>
