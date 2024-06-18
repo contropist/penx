@@ -29,7 +29,22 @@ import {
   handleDialogOpen,
   handleDialogSave,
 } from '~/api/dialog'
-import { handleFsReadFile, handleFsReadTextFile } from '~/api/fs'
+import {
+  handleFsCopyFile,
+  handleFsCreate,
+  handleFsExists,
+  handleFsLStat,
+  handleFsMkdir,
+  handleFsReadDir,
+  handleFsReadFile,
+  handleFsReadTextFile,
+  handleFsRemove,
+  handleFsRename,
+  handleFsStat,
+  handleFsTruncate,
+  handleFsWriteFile,
+  handleFsWriteTextFile,
+} from '~/api/fs'
 import {
   handleHttpFetchCancel,
   handleHttpFetchSend,
@@ -75,6 +90,20 @@ export function useWorkerOnMsg() {
     // fs
     handleFsReadFile,
     handleFsReadTextFile,
+    handleFsStat,
+    handleFsLStat,
+    handleFsStat,
+    handleFsLStat,
+    handleFsExists,
+    handleFsMkdir,
+    handleFsCreate,
+    handleFsCopyFile,
+    handleFsRemove,
+    handleFsRename,
+    handleFsWriteFile,
+    handleFsWriteTextFile,
+    handleFsTruncate,
+    handleFsReadDir,
     // app
     handleSearchChange,
     handleFilterChange,

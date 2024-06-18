@@ -36,6 +36,11 @@ export const CommandPalette = () => {
 
   useEffect(() => {
     ;(async () => {
+      // console.log(await fs.stat('/Users/hacker/Desktop/penx/package.json'));
+      // console.log(await fs.lstat('/Users/hacker/Desktop/penx/package.json'));
+      // fs.rename('/Users/hacker/Desktop/b.txt', '/Users/hacker/Desktop/d.txt')
+      // fs.truncate('/Users/hacker/Desktop/d.txt', 1)
+      // console.log(await fs.readDir('/Users/hacker/Desktop'))
       // const file = await fs.open('/Users/hacker/Desktop/penx/package.json')
       // const f = await fs.readTextFileLines('/Users/hacker/Desktop/penx/package.json')
       // console.log(await fs.readFile('/Users/hacker/Desktop/penx/package.json'))
