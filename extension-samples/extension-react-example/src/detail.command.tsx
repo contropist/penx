@@ -1,10 +1,12 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
-import { clipboard, dialog, fs, os } from 'penx'
+import { clipboard, dialog, fs, os, notificaiton } from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
   useEffect(() => {
     ;(async () => {
+      // console.log(await notificaiton.isPermissionGranted())
+      // notificaiton.sendNotification('Hello from huakun')
       // console.log(
       //   await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
       // )

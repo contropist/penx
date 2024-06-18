@@ -69,7 +69,10 @@ export enum EventType {
   FsTruncate = 'FsTruncate',
   FsWriteFile = 'FsWriteFile',
   FsWriteTextFile = 'FsWriteTextFile',
-
+  // Notification
+  NotificationSendNotification = 'NotificationSendNotification',
+  NotificationRequestPermission = 'NotificationRequestPermission',
+  NotificationIsPermissionGranted = 'NotificationIsPermissionGranted',
   // OS
   OsPlatform = 'OsPlatform',
   OsArch = 'OsArch',

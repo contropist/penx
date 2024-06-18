@@ -305,4 +305,4 @@ export const fs: IFs = {
     })
   },
 }
-export { BaseDirectory, FileHandle, SeekMode } from '@tauri-apps/plugin-fs'
+// export { BaseDirectory, FileHandle, SeekMode } from '@tauri-apps/plugin-fs'

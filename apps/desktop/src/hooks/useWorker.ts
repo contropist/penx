@@ -52,6 +52,11 @@ import {
   handleHttpReadBody,
 } from '~/api/httpReq'
 import {
+  handleNotificationIsPermissionGranted,
+  handleNotificationRequestPermission,
+  handleNotificationSendNotification,
+} from '~/api/notification'
+import {
   handleOsArch,
   handleOsEol,
   handleOsExeExtension,
@@ -123,6 +128,10 @@ export function useWorkerOnMsg() {
     handleFsWriteTextFile,
     handleFsTruncate,
     handleFsReadDir,
+    // notification
+    handleNotificationRequestPermission,
+    handleNotificationIsPermissionGranted,
+    handleNotificationSendNotification,
     // app
     handleSearchChange,
     handleFilterChange,

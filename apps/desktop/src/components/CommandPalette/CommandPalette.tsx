@@ -1,12 +1,6 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import * as fs from '@tauri-apps/plugin-fs'
 import { Command } from 'cmdk'
-import {
-  getAllApps,
-  refreshApplicationsList,
-} from 'tauri-plugin-jarvis-api/commands'
-import { isServer } from '@penx/constants'
 import { store } from '@penx/store'
 import { ICommandItem } from '~/common/types'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'

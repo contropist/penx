@@ -6,6 +6,7 @@ export * from './types'
 export * from './clipboard'
 export * from './dialog'
 export * from './fs'
+export * from './notification'
 export * from './os'
 export * from './request'
 
