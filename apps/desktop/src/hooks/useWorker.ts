@@ -65,6 +65,10 @@ export function useWorkerOnMsg() {
     useHandleRender(setUI),
   ]
   return async (event: MessageEvent<any>) => {
+    if (event.ports.length === 0) {
+      console.error('No ports found in message event:', event)
+      return
+    }
     handlers.forEach((handler) => handler(event))
     if (
       ['marketplace', 'today', 'clipboard-history'].includes(event.data?.type)

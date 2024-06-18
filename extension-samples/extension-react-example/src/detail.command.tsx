@@ -1,6 +1,15 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
+import { clipboard } from 'penx'
+import { useEffect } from 'react'
 
 export function Main() {
+  useEffect(() => {
+    ;(async () => {
+      await clipboard.writeText('Hello from huakun')
+      const cbText = await clipboard.readText()
+      console.log('Clipboard text:', cbText)
+    })()
+  }, [])
   const list = [
     'Foo',
     'Foo',

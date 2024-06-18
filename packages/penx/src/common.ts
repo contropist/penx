@@ -44,12 +44,13 @@ export function constructAPI<Payload, Result>(
           )
         }
       }
-      self.postMessage(
+      window.parent.postMessage(
         {
           type: evtType,
           payload,
         },
-        [channel.port2] as any,
+        '*',
+        [channel.port2],
       )
     })
   }) as any
@@ -65,12 +66,13 @@ export function constructAPICallback<Payload, Result>(
     channel.port1.onmessage = (event: PenxAPIResponseMessageEvent<Result>) => {
       fn(event.data.result)
     }
-    self.postMessage(
+    window.parent.postMessage(
       {
         type: evtType,
         payload,
       },
-      [channel.port2] as any,
+      '*',
+      [channel.port2],
     )
   }
 }

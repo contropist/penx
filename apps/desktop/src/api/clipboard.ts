@@ -38,7 +38,7 @@ export function handleClipboardReadFiles(event: MessageEvent) {
 
 export function handleClipboardWriteFiles(event: MessageEvent) {
   return constructAPIExecuter<string[], void>(
-    EventType.ClipboardWriteText,
+    EventType.ClipboardWriteFiles,
     (payload) => clipboard.writeFiles(payload),
   )(event)
 }
