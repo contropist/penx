@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "dev": "tsup --watch --dts",
+    "build:docs": "typedoc src/index.ts",
     "build": "tsup --dts"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^18.19.33",
     "tsup": "^7.2.0",
+    "typedoc": "^0.25.13",
     "typescript": "^5.4.5"
   }
 }
