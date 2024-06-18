@@ -51,6 +51,16 @@ import {
   handleHttpRawFetch,
   handleHttpReadBody,
 } from '~/api/httpReq'
+import {
+  handleOsArch,
+  handleOsEol,
+  handleOsExeExtension,
+  handleOsFamily,
+  handleOsHostname,
+  handleOsLocale,
+  handleOsPlatform,
+  handleOsVersion,
+} from '~/api/os'
 import { handleRunAppleScript } from '~/api/script'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
@@ -87,6 +97,15 @@ export function useWorkerOnMsg() {
     handleHttpFetchCancel,
     handleHttpFetchSend,
     handleHttpReadBody,
+    // os
+    handleOsPlatform,
+    handleOsArch,
+    handleOsExeExtension,
+    handleOsFamily,
+    handleOsHostname,
+    handleOsEol,
+    handleOsVersion,
+    handleOsLocale,
     // fs
     handleFsReadFile,
     handleFsReadTextFile,

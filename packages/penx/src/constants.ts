@@ -69,4 +69,14 @@ export enum EventType {
   FsTruncate = 'FsTruncate',
   FsWriteFile = 'FsWriteFile',
   FsWriteTextFile = 'FsWriteTextFile',
+
+  // OS
+  OsPlatform = 'OsPlatform',
+  OsArch = 'OsArch',
+  OsExeExtension = 'OsExeExtension',
+  OsFamily = 'OsFamily',
+  OsHostname = 'OsHostname',
+  OsEol = 'OsEol',
+  OsVersion = 'OsVersion',
+  OsLocale = 'OsLocale',
 }
