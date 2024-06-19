@@ -12,7 +12,6 @@ links = "tauri-plugin-jarvis"
 tauri = { version = "2.0.0-beta" }
 serde = "1.0"
 thiserror = "1.0"
-# applications = { version = "0.2.1-alpha.2" }
 anyhow = "1.0.86"
 tar = "0.4.40"
 flate2 = "1.0.30"
@@ -27,7 +26,7 @@ tower-http = { version = "0.4.0", features = ["fs", "trace"] }
 tonic = "0.11"
 tonic-reflection = "0.11.0"
 uuid = { version = "1.8.0", features = ["v4"] }
-applications = "0.2.2"
+applications = "0.2.3"
 
 
 [build-dependencies]

@@ -3,14 +3,6 @@ import { constructAPI } from './common'
 import { EventType } from './constants'
 import { UnwrapPromise } from './type'
 
-// notificationApi.requestPermission
-// notificationApi.isPermissionGranted
-// notificationApi.channels
-// notificationApi.createChannel
-// notificationApi.removeChannel
-// notificationApi.active
-// notificationApi.
-
 export interface INotification {
   sendNotification: (
     ...args: Parameters<typeof notificationApi.sendNotification>
