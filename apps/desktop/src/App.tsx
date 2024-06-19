@@ -8,6 +8,7 @@ import { initFower } from './common/initFower'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import { fixPathEnv } from 'tauri-plugin-shellx-api'
 import { registerDefaultAppHotkey } from '@penx/app'
 import { handleEscape } from './common/handleEscape'
 import { watchDesktopLogin } from './common/watchDesktopLogin'
@@ -27,6 +28,7 @@ init()
 
 function MyApp() {
   useEffect(() => {
+    fixPathEnv() // without this, PATH variable may not be loaded and thus non-system shell commands may fail
     const handleSignOut = async () => {
       // const user = store.user.getUser()
       // await setMnemonicToLocal(user.id, '')

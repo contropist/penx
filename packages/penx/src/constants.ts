@@ -71,6 +71,10 @@ export enum EventType {
   FsWriteTextFile = 'FsWriteTextFile',
   // Shell
   ShellxExecute = 'ShellxExecute',
+  ShellxKill = 'ShellxKill',
+  ShellxStdinWrite = 'ShellxStdinWrite',
+  ShellxOpen = 'ShellxOpen',
+  ShellxSpawn = 'ShellxSpawn',
   // Notification
   NotificationSendNotification = 'NotificationSendNotification',
   NotificationRequestPermission = 'NotificationRequestPermission',

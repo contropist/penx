@@ -5,9 +5,25 @@ import { useEffect } from 'react'
 export function Main() {
   useEffect(() => {
     ;(async () => {
-      const cmd = Command.create('ls', ['/Users/hacker/Dev/'])
-      const out = await cmd.execute()
-      console.log(out.stdout)
+      // const cmd = Command.create('echo', ['hello'])
+      // let start = Date.now()
+      // const cmd = Command.create('ffmpeg', [
+      //   '-i',
+      //   '/Users/hacker/Downloads/video.mp4',
+      //   '/Users/hacker/Downloads/video.mov',
+      // ])
+      // cmd.on('close', (data) => {
+      //   console.log(
+      //     `command finished with code ${data.code} and signal ${data.signal}`,
+      //   )
+      // })
+      // cmd.on('error', (error) => console.error(`command error: "${error}"`))
+      // cmd.stdout.on('data', (line) => console.log(`command stdout: "${line}"`))
+      // cmd.stderr.on('data', (line) => console.log(`command stderr: "${line}"`))
+      // const child = await cmd.spawn()
+      // console.log('pid:', child.pid)
+      // const out = await cmd.execute()
+      // console.log(out.stdout)
       // console.log((await cmd.execute()).stdout.toString())
       // console.log(await notificaiton.isPermissionGranted())
       // notificaiton.sendNotification('Hello from huakun')
