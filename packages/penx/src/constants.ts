@@ -69,6 +69,8 @@ export enum EventType {
   FsTruncate = 'FsTruncate',
   FsWriteFile = 'FsWriteFile',
   FsWriteTextFile = 'FsWriteTextFile',
+  // Shell
+  ShellxExecute = 'ShellxExecute',
   // Notification
   NotificationSendNotification = 'NotificationSendNotification',
   NotificationRequestPermission = 'NotificationRequestPermission',

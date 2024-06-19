@@ -26,6 +26,17 @@
     "shell:default",
     "shell:allow-open",
     "shellx:allow-execute",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "echo",
+          "cmd": "echo",
+          "args": true,
+          "sidecar": false
+        }
+      ]
+    },
     "shellx:allow-spawn",
     "shellx:allow-kill",
     "shellx:allow-open",

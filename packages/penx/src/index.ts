@@ -3,6 +3,7 @@ export * from './common'
 export * from './constants'
 export * from './types'
 
+export * from './shell'
 export * from './clipboard'
 export * from './dialog'
 export * from './fs'

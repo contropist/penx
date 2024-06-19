@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
+import { Command as ShellCmd } from '@tauri-apps/plugin-shell'
 import { Command } from 'cmdk'
+import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
 import { store } from '@penx/store'
 import { ICommandItem } from '~/common/types'
 import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
@@ -27,23 +29,6 @@ const footerHeight = 40
 
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
-
-  useEffect(() => {
-    ;(async () => {
-      // console.log(await fs.stat('/Users/hacker/Desktop/penx/package.json'));
-      // console.log(await fs.lstat('/Users/hacker/Desktop/penx/package.json'));
-      // fs.rename('/Users/hacker/Desktop/b.txt', '/Users/hacker/Desktop/d.txt')
-      // fs.truncate('/Users/hacker/Desktop/d.txt', 1)
-      // console.log(await fs.readDir('/Users/hacker/Desktop'))
-      // const file = await fs.open('/Users/hacker/Desktop/penx/package.json')
-      // const f = await fs.readTextFileLines('/Users/hacker/Desktop/penx/package.json')
-      // console.log(await fs.readFile('/Users/hacker/Desktop/penx/package.json'))
-      // console.log(
-      //   await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
-      // )
-      // console.log(file)
-    })()
-  }, [])
 
   const { developingItems, commandItems, databaseItems, applicationItems } =
     useItems()

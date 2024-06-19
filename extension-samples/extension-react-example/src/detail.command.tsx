@@ -1,10 +1,14 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
-import { clipboard, dialog, fs, os, notificaiton } from 'penx'
+import { clipboard, dialog, fs, os, notificaiton, Command } from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
   useEffect(() => {
     ;(async () => {
+      const cmd = Command.create('ls', ['/Users/hacker/Dev/'])
+      const out = await cmd.execute()
+      console.log(out.stdout)
+      // console.log((await cmd.execute()).stdout.toString())
       // console.log(await notificaiton.isPermissionGranted())
       // notificaiton.sendNotification('Hello from huakun')
       // console.log(

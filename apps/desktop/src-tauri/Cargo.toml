@@ -46,7 +46,7 @@ urlencoding = "2.1.3"
 tauri-plugin-jarvis = { path = "../../../packages/tauri-plugin-jarvis" }
 tauri-plugin-dialog = "2.0.0-beta.9"
 tauri-plugin-notification = "2.0.0-beta.8"
-tauri-plugin-shellx = { git = "https://github.com/HuakunShen/tauri-plugin-shellx.git", branch = "v2" }
+tauri-plugin-shellx = "0.0.4"
 
 # MacOS
 [target."cfg(target_os = \"macos\")".dependencies]

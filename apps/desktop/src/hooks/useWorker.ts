@@ -67,6 +67,7 @@ import {
   handleOsVersion,
 } from '~/api/os'
 import { handleRunAppleScript } from '~/api/script'
+import { handleShellxExecute } from '~/api/shell'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
 export function useWorkerOnMsg() {
@@ -132,6 +133,8 @@ export function useWorkerOnMsg() {
     handleNotificationRequestPermission,
     handleNotificationIsPermissionGranted,
     handleNotificationSendNotification,
+    // shellx
+    handleShellxExecute,
     // app
     handleSearchChange,
     handleFilterChange,
