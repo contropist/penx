@@ -1,5 +1,9 @@
 import { constructAPICallbackExecuter, EventType, LoadingType } from 'penx'
 import { appEmitter } from '@penx/event'
+import { store } from '@penx/store'
+import { commandUIAtom } from '~/hooks/useCommandAppUI'
+import { positionAtom } from '~/hooks/useCommandPosition'
+import { currentCommandAtom } from '~/hooks/useCurrentCommand'
 
 export function handleSearchChange(event: MessageEvent) {
   return constructAPICallbackExecuter<undefined>(
@@ -62,5 +66,13 @@ export function useHandleRender(
         })
       },
     )(event)
+  }
+}
+
+export function handleEscape(event: MessageEvent<{ type: string }>) {
+  if (event.data.type === 'escape') {
+    store.set(positionAtom, 'ROOT')
+    store.set(currentCommandAtom, null as any)
+    store.set(commandUIAtom, {} as any)
   }
 }
