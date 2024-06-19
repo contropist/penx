@@ -1,21 +1,14 @@
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
-import { open } from '@tauri-apps/plugin-shell'
-import { constructAPIExecuter, EventType } from 'penx'
-import clipboard from 'tauri-plugin-clipboard-api'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
-import { createBuiltinWorker } from '~/common/createBuiltinWorker'
-import { createCommandWorker } from '~/common/createCommandWorker'
 import { ICommandItem } from '~/common/types'
-import { workerStore } from '~/common/workerStore'
 import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
 import { useCurrentDatabase } from './useCurrentDatabase'
 import { useSearch } from './useSearch'
-import { useWorkerOnMsg } from './useWorker'
 
 export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
@@ -24,9 +17,10 @@ export function useHandleSelect() {
   const { setDatabase } = useCurrentDatabase()
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
-  const workerOnMsg = useWorkerOnMsg()
 
   return async (item: ICommandItem, input = '') => {
+    console.log('=======item:', item)
+
     if (item.data?.type === 'Database') {
       setSearch('')
       setDatabase(item.data.database)
@@ -63,15 +57,11 @@ export function useHandleSelect() {
         (c) => c.name === item.data.commandName,
       )!
 
-      let port2: MessagePort
       if (command.runtime === 'iframe') {
         const $iframe = document.getElementById('command-app-iframe')!
         if (!$iframe) return
         const currentWindow = ($iframe as any).contentWindow as Window
 
-        window.addEventListener('message', (event) => {
-          workerOnMsg(event)
-        })
         currentWindow.document.body.innerHTML = '<div id="root"></div>'
 
         // TODO: window.__COMMAND__  is too hack
@@ -81,34 +71,6 @@ export function useHandleSelect() {
 
         return
       }
-
-      let worker: Worker
-      if (command.isBuiltIn) {
-        worker = createBuiltinWorker(command)
-      } else {
-        worker = createCommandWorker(command, input)
-      }
-      setLoading(false)
-      workerStore.currentWorker = worker
-      item.data.commandName && worker.postMessage(item.data.commandName)
-      worker.onmessage = workerOnMsg
-
-      // // worker.terminate()
-    }
-
-    if (item.type === 'list-item') {
-      if (item.actions?.[0]) {
-        const defaultAction = item.actions?.[0]
-        if (defaultAction.type === 'OpenInBrowser') {
-          // console.log('========defaultAction.url:', defaultAction.url)
-          open(defaultAction.url)
-        }
-
-        if (defaultAction.type === 'CopyToClipboard') {
-          await clipboard.writeText(defaultAction.content)
-        }
-      }
-      // console.log('list item:', item)
     }
   }
 }

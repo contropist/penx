@@ -14,6 +14,7 @@ import {
 } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
+import { useOnWindowMessage } from '~/hooks/useOnWindowMessage'
 import { useReset } from '~/hooks/useReset'
 import { useValue } from '~/hooks/useValue'
 import { CommandApp } from './CommandApp/CommandApp'
@@ -49,6 +50,8 @@ export const CommandPalette = () => {
   const handleSelect = useHandleSelect()
 
   useQueryCommands()
+
+  useOnWindowMessage()
 
   useReset(setValue)
   const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'

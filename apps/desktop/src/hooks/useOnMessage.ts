@@ -76,7 +76,7 @@ import {
 } from '~/api/shell'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
-export function useWorkerOnMsg() {
+export function useOnMessage() {
   const { setUI } = useCommandAppUI()
 
   const handlers = [
