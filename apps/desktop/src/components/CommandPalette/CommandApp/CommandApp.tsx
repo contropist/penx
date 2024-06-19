@@ -19,48 +19,21 @@ interface CommandAppProps {
 
 export const CommandApp = memo(
   function CommandApp({ loading, ui, currentCommand }: CommandAppProps) {
-    // if (loading) {
-    //   // return <Box>loading...</Box>
-    //   return null
-    // }
-
     if (ui.type === 'marketplace') {
       return <MarketplaceApp />
     }
 
-    if (ui.type === 'today') {
-      return <TodayApp />
-    }
+    // if (ui.type === 'today') {
+    //   return <TodayApp />
+    // }
 
     // if (ui.type === 'database') {
     //   return <DatabaseApp />
     // }
 
-    if (ui.type === 'clipboard-history') {
-      return <ClipboardHistoryApp />
-    }
-
-    if (ui.type === 'render') {
-      const component = ui.component as any
-
-      if (isMarkdownJSON(component)) {
-        return <Markdown content={component.content} />
-      }
-
-      if (isListJSON(component)) {
-        return <ListApp component={component} />
-      }
-
-      return null
-    }
-
-    if (ui.type === 'loading') {
-      return (
-        <Box absolute top0 right0 left0 bottom0 toCenter>
-          <Spinner></Spinner>
-        </Box>
-      )
-    }
+    // if (ui.type === 'clipboard-history') {
+    //   return <ClipboardHistoryApp />
+    // }
 
     return null
   },

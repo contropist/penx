@@ -19,7 +19,15 @@ export function useHandleSelect() {
   const { setSearch } = useSearch()
 
   return async (item: ICommandItem, input = '') => {
-    console.log('=======item:', item)
+    if (item.data.commandName === 'marketplace') {
+      setSearch('')
+      setCurrentCommand(item)
+      setUI({ type: 'marketplace' })
+      setPosition('COMMAND_APP')
+
+      appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
+      return
+    }
 
     if (item.data?.type === 'Database') {
       setSearch('')
