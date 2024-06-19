@@ -10,6 +10,7 @@ export * from './fs'
 export * from './notification'
 export * from './os'
 export * from './request'
+export * from './shell'
 
 export * from './onSearchChange'
 export * from './onFilterChange'

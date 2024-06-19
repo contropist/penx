@@ -79,7 +79,7 @@ export const CommandPalette = () => {
           // backdropFilter: 'blur(200px)',
         }
       }
-      loop
+      // loop
       value={value}
       onValueChange={(v) => {
         setValue(v)
@@ -113,7 +113,15 @@ export const CommandPalette = () => {
         </Box>
       )}
       {!isIframe && <SearchBar searchBarHeight={searchBarHeight} />}
-      <Box h={bodyHeight} overflowAuto relative>
+      <Box
+        h={bodyHeight}
+        overflowAuto
+        relative
+        style={{
+          overscrollBehavior: 'contain',
+          scrollPaddingBlockEnd: 40,
+        }}
+      >
         {isCommandApp &&
           currentCommand &&
           (currentCommand.data.runtime === 'iframe' ? (

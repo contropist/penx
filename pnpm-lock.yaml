@@ -1739,7 +1739,7 @@ importers:
         specifier: workspace:*
         version: link:../model-types
       mitt:
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: 3.0.1
     devDependencies:
       '@penx/tsconfig':
@@ -5370,6 +5370,9 @@ importers:
 
   packages/penx:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.45.1
+        version: 5.45.1(react@18.2.0)
       '@tauri-apps/api':
         specifier: 2.0.0-beta.13
         version: 2.0.0-beta.13
@@ -5388,6 +5391,9 @@ importers:
       '@tauri-apps/plugin-os':
         specifier: 2.0.0-beta.3
         version: 2.0.0-beta.3
+      '@tauri-apps/plugin-shell':
+        specifier: 2.0.0-beta.6
+        version: 2.0.0-beta.6
       tauri-plugin-clipboard-api:
         specifier: ^2.0.0-beta.2
         version: 2.0.0-beta.2
@@ -5425,6 +5431,12 @@ importers:
       jotai:
         specifier: ^2.6.0
         version: 2.7.2(@types/react@18.2.73)(react@18.2.0)
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      penx:
+        specifier: workspace:*
+        version: link:../penx
       react:
         specifier: ^18.2.0
         version: 18.2.0

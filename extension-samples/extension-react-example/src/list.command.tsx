@@ -28,18 +28,16 @@ export function Main() {
           ]}
           actions={
             <ActionPanel>
-              <Action.CopyToClipboard
-                content="Hello"
-                // icon={{
-                //   name: 'mdi--home',
-                // }}
+              <Action.OpenInBrowser
+                url={item.url}
                 shortcut={{
                   modifiers: ['cmd'],
                   key: 'enter',
                 }}
               />
-              <Action.OpenInBrowser
-                url="https://iconify.design/docs/usage/css/tailwind/iconify/"
+
+              <Action.CopyToClipboard
+                content={item.title}
                 shortcut={{
                   modifiers: ['cmd', 'shift'],
                   key: 'enter',

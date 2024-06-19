@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export type ShortcutModifier = 'cmd' | 'ctrl' | 'opt' | 'shift'
 
 export type ShortcutKey =
@@ -81,7 +83,9 @@ export type IconifyIconType = {
   className?: string
 }
 
-export interface BaseActionProps {
+export interface BaseActionProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  title?: ReactNode
   icon?: IconifyIconType
   shortcut?: {
     modifiers: ShortcutModifier[]

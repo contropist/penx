@@ -56,7 +56,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
           </div>
         </div>
         <div className="flex items-center gap-x-2">
-          {accessories.length &&
+          {!!accessories.length &&
             accessories.map((accessory, index) => (
               <Accessory key={index} item={accessory} />
             ))}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import { Command } from 'cmdk'
 import { actionMap } from '../common/store'
+import { emitter } from '../emitter'
 import { useOnCmdK } from '../hooks/useOnCmdK'
 import { useValue } from '../hooks/useValue'
 import { CommandInfo } from './CommandInfo'
@@ -33,6 +34,16 @@ export function ListAppFooter({ inputRef, listRef }: Props) {
       ;(window as any).$__IS_ACTION_OPEN__ = false
     }
   }, [open, value])
+
+  useEffect(() => {
+    function handler() {
+      setOpen(false)
+    }
+    emitter.on('ON_ACTION_SELECT', handler)
+    return () => {
+      emitter.off('ON_ACTION_SELECT', handler)
+    }
+  }, [])
 
   // React.useEffect(() => {
   //   const el = listRef.current

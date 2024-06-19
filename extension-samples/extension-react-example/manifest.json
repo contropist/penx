@@ -25,7 +25,7 @@
     },
     {
       "name": "github-trending",
-      "title": "React List App",
+      "title": "Github trending",
       "icon": {
         "name": "lucide--github",
         "className": "bg-gradient-to-r from-rose-500 to-purple-500"
