@@ -36,7 +36,6 @@ chrono-tz = { version = "0.6.1", default-features = false }
 num-format = { version = "0.4", features = ["with-system-locale"] }
 localzone = "0.2.0"
 sys-locale = "0.2.3"
-
 chrono = "0.4"
 objc = "0.2.7"
 tauri-plugin-fs = "2.0.0-beta.9"
@@ -44,9 +43,10 @@ tauri-plugin-shell = "2.0.0-beta.7"
 tauri-plugin-os = "2.0.0-beta.6"
 tauri-plugin-http = "2.0.0-beta.9"
 urlencoding = "2.1.3"
-tauri-plugin-jarvis = { path = "../../../packages/tauri-plugin-jarvis"}
+tauri-plugin-jarvis = { path = "../../../packages/tauri-plugin-jarvis" }
 tauri-plugin-dialog = "2.0.0-beta.9"
 tauri-plugin-notification = "2.0.0-beta.8"
+tauri-plugin-shellx = { git = "https://github.com/HuakunShen/tauri-plugin-shellx.git", branch = "v2" }
 
 # MacOS
 [target."cfg(target_os = \"macos\")".dependencies]

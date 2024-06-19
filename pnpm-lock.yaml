@@ -215,6 +215,9 @@ importers:
       tauri-plugin-jarvis-api:
         specifier: workspace:*
         version: link:../../packages/tauri-plugin-jarvis
+      tauri-plugin-shellx-api:
+        specifier: ^0.0.1
+        version: 0.0.1
       uikit:
         specifier: workspace:*
         version: link:../../packages/uikit
@@ -20006,6 +20009,9 @@ packages:
 
   tauri-plugin-clipboard-api@2.0.0-beta.2:
     resolution: {integrity: sha512-zGrInYnTE9lfpGFvTdUhvxeHXlDYiQwEiX9sz1uRDWvQH9fAV+YEknlI8QDzx71YuFos8ZpBlnartskGNch4iA==}
+
+  tauri-plugin-shellx-api@0.0.1:
+    resolution: {integrity: sha512-WIsIMoEvS2VKbtK58PkLlxTuCJrxrkQVmmYQmsEsN35Kmb/stQBrtT36RknesrGO2aKNX+K/WQL1IKoSnpLojg==}
 
   temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
@@ -40346,6 +40352,11 @@ snapshots:
   tauri-plugin-clipboard-api@2.0.0-beta.2:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
+      zod: 3.23.8
+
+  tauri-plugin-shellx-api@0.0.1:
+    dependencies:
+      '@tauri-apps/api': 2.0.0-beta.13
       zod: 3.23.8
 
   temp-dir@2.0.0: {}
