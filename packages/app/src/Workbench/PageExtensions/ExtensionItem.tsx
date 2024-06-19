@@ -27,7 +27,7 @@ export function ExtensionItem({ extension }: ExtensionItemProps) {
     <Box borderBottom borderNeutral100 pb3>
       <Box toCenterY toBetween>
         <Box toCenterY gap1>
-          <ExtensionIcon icon={assets?.[extension.icon!]} />
+          {/* <ExtensionIcon icon={assets?.[extension.icon!]} /> */}
           <Box>{extension.name}</Box>
           {isDeveloping && (
             <Tag size="sm" variant="light" colorScheme="gray400" ml2>

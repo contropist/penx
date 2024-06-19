@@ -1,5 +1,5 @@
-import { AppInfo } from '@/models'
 import { invoke } from '@tauri-apps/api/core'
+import { AppInfo } from '../models'
 
 export function getAllApps() {
   return invoke<AppInfo[]>('plugin:jarvis|get_applications')

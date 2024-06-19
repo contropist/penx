@@ -9,9 +9,7 @@
     "noImplicitAny": true,
     "noEmit": true,
     "baseUrl": "guest-js",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "paths": {}
   },
   "include": ["guest-js/*.ts"],
   "exclude": ["dist-js", "node_modules"]
