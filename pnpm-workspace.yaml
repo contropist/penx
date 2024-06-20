@@ -2,4 +2,5 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'packages/editor-extensions/*'
+  - 'extension-samples/preset-ui/*'
   - 'extension-samples/*'
