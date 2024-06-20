@@ -5,7 +5,8 @@ import typescript from '@rollup/plugin-typescript'
 
 const pkg = JSON.parse(readFileSync(join(cwd(), 'package.json'), 'utf8'))
 
-export default {
+/** @type {import('rollup').RollupOptions} */
+const config = {
   input: 'src/index.ts',
   output: [
     {
@@ -17,5 +18,8 @@ export default {
       format: 'cjs',
     },
   ],
+  treeshake: true,
   plugins: [typescript()],
 }
+
+export default config
