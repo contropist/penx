@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Box } from '@fower/react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { DownloadCloud } from 'lucide-react'
@@ -24,6 +25,15 @@ export function ExtensionItem({
 }: ExtensionItemProps) {
   const manifest = new Manifest(item.manifest as any)
   const installed = !!extensions.find((e) => e.name === manifest.name)
+
+  const icon = useMemo(() => {
+    try {
+      const icon = JSON.parse(item.logo)
+      return typeof icon === 'object' ? icon : item.logo
+    } catch (error) {
+      return item.logo
+    }
+  }, [item.logo])
 
   const { refetch } = useQuery({
     queryKey: ['extension', 'installed'],
@@ -61,7 +71,7 @@ export function ExtensionItem({
       onClick={() => onSelectExtension(item)}
     >
       <Box toCenterY gap2>
-        <ListItemIcon icon={item.logo as string} />
+        <ListItemIcon icon={icon} />
         <Box column>
           <Box textSM>{manifest.name}</Box>
           <Box text-13 gray400>
