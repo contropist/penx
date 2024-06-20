@@ -140,7 +140,7 @@ export function useLoadCommands() {
             return {
               type: 'list-item',
               title: item.title,
-              subtitle: cur.name,
+              subtitle: cur.title,
               icon: getIcon(),
               keywords: [],
               data: {

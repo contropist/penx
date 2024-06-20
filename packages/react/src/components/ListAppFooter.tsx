@@ -58,7 +58,7 @@ export function ListAppFooter({ inputRef, listRef }: Props) {
   // }, [open, listRef])
 
   return (
-    <div className="flex h-[40] items-center justify-between border-t px-2">
+    <div className="flex h-[40] items-center justify-between border-t border-t-neutral-200 dark:border-t-neutral-800 px-2">
       <CommandInfo />
 
       <Popover.Root open={open} onOpenChange={setOpen} modal>

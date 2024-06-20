@@ -42,7 +42,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         onSelect={(item) => {
           console.log('item========:', item)
         }}
-        className="text-neutral-900 cursor-pointer data-[selected=true]:bg-neutral-200 px-2 py-2 rounded-lg flex items-center justify-between gap-x-3"
+        className="cursor-pointer text-neutral-900 data-[selected=true]:bg-neutral-200 dark:text-neutral-300 dark:data-[selected=true]:bg-neutral-800  px-2 py-2 rounded-lg flex items-center justify-between gap-x-3"
       >
         <div className="flex items-center gap-x-2">
           {icon && <Icon icon={icon} />}
