@@ -1,6 +1,5 @@
 import { ActionPanel, ListApp, ListItem, Action, useQuery } from '@penxio/react'
 import { getData } from './libs/getData'
-import './command.css'
 
 export function Main() {
   const { data = [], isLoading } = useQuery({

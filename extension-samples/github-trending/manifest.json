@@ -2,14 +2,21 @@
   "name": "github-trending",
   "title": "GitHub Trending",
   "description": "GitHub Trending",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--github",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
   "commands": [
     {
       "name": "index",
       "title": "GitHub Trending",
-      "subtitle": "",
       "description": "",
-      "runtime": "worker",
+      "icon": {
+        "name": "mdi--github",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "runtime": "iframe",
+      "framework": "react",
       "filters": {
         "language": [
           {
