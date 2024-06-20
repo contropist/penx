@@ -5,12 +5,16 @@ import { appEmitter } from '@penx/event'
 import { themeModeAtom } from '@penx/hooks'
 import { db } from '@penx/local-db'
 import { store } from '@penx/store'
+import { createBuiltinWorker } from '~/common/createBuiltinWorker'
+import { createCommandWorker } from '~/common/createCommandWorker'
 import { ICommandItem } from '~/common/types'
+import { workerStore } from '~/common/workerStore'
 import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
 import { useCurrentDatabase } from './useCurrentDatabase'
+import { useOnMessage } from './useOnMessage'
 import { useSearch } from './useSearch'
 
 export function useHandleSelect() {
@@ -20,6 +24,7 @@ export function useHandleSelect() {
   const { setDatabase } = useCurrentDatabase()
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
+  const onMessage = useOnMessage()
 
   return async (item: ICommandItem, input = '') => {
     if (item.data.commandName === 'marketplace') {
@@ -83,6 +88,19 @@ export function useHandleSelect() {
 
         return
       }
+
+      // run time
+      let worker: Worker
+      if (command.isBuiltIn) {
+        worker = createBuiltinWorker(command)
+      } else {
+        worker = createCommandWorker(command, input)
+      }
+
+      setLoading(false)
+      workerStore.currentWorker = worker
+      item.data.commandName && worker.postMessage(item.data.commandName)
+      worker.onmessage = onMessage
     }
   }
 }

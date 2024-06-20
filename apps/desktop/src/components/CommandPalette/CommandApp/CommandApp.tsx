@@ -34,6 +34,19 @@ export const CommandApp = memo(
     // if (ui.type === 'clipboard-history') {
     //   return <ClipboardHistoryApp />
     // }
+    if (ui.type === 'render') {
+      const component = ui.component as any
+
+      if (isMarkdownJSON(component)) {
+        return <Markdown content={component.content} />
+      }
+
+      if (isListJSON(component)) {
+        return <ListApp component={component} />
+      }
+
+      return null
+    }
 
     return null
   },

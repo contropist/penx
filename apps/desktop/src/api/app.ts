@@ -54,12 +54,10 @@ type ComponentJSON = string
 export function useHandleRender(
   setUI: (ui: { type: 'render'; component: ComponentJSON }) => void,
 ) {
-  return function handleLoading(event: MessageEvent) {
+  return (event: MessageEvent) => {
     return constructAPICallbackExecuter<ComponentJSON>(
       EventType.Render,
       (payload) => {
-        console.log('payload', payload)
-
         setUI({
           type: 'render',
           component: payload,
