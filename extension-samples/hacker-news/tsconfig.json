@@ -9,11 +9,10 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
+    "jsx": "react-jsx",
     "allowJs": true,
     "noEmit": true,
     "outDir": "dist",
     "resolveJsonModule": true
-  },
-  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  }
 }
