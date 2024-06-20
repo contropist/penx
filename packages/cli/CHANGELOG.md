@@ -1,5 +1,11 @@
 # penx-cli
 
+## 0.4.0
+
+### Minor Changes
+
+- release react api
+
 ## 0.3.0
 
 ### Minor Changes

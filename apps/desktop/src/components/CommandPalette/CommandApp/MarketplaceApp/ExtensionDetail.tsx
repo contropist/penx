@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Box } from '@fower/react'
 import { open } from '@tauri-apps/plugin-shell'
 import { DownloadCloud } from 'lucide-react'
@@ -22,13 +23,22 @@ export function ExtensionDetail({ item, extensions }: ExtensionDetailProps) {
   const manifest = new Manifest(item.manifest as any)
   const installed = extensions.find((e) => e.name === manifest.name)
 
+  const icon = useMemo(() => {
+    try {
+      const icon = JSON.parse(item.logo)
+      return typeof icon === 'object' ? icon : item.logo
+    } catch (error) {
+      return item.logo
+    }
+  }, [item.logo])
+
   return (
     <Box p4>
       <Box>
         <Box gap2 column>
           <Box toCenterY toBetween>
             <Box toCenterY gap2 mb3>
-              <ListItemIcon icon={item.logo as string} size={36} />
+              <ListItemIcon icon={icon} size={36} />
               <Box text2XL fontBlack>
                 {manifest.title}
               </Box>

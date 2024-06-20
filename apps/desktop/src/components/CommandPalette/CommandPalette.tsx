@@ -160,7 +160,7 @@ export const CommandPalette = () => {
                     <ListItemUI
                       key={index}
                       index={index}
-                      value={item.data.commandName}
+                      value={`${item.data.extensionSlug}__${item.data.commandName}`}
                       item={item}
                       onSelect={(item) => handleSelect(item)}
                     />
@@ -184,6 +184,7 @@ export const CommandPalette = () => {
 
             <ListGroup
               heading="Applications"
+              isApplication
               items={applicationItems.splice(0, 10)}
               onSelect={(item) => handleSelect(item)}
             />
@@ -198,18 +199,27 @@ export const CommandPalette = () => {
 interface ListGroupProps {
   heading: string
   items: ICommandItem[]
+  isApplication?: boolean
   onSelect?: (item: ICommandItem) => void
 }
 
-function ListGroup({ heading, items, onSelect }: ListGroupProps) {
+function ListGroup({
+  heading,
+  items,
+  onSelect,
+  isApplication = false,
+}: ListGroupProps) {
   return (
     <Command.Group heading={heading}>
       {items.map((item, index) => {
+        const value = isApplication
+          ? item.data.applicationPath
+          : `${item.data.extensionSlug}__${item.data.commandName}`
         return (
           <ListItemUI
             key={index}
             index={index}
-            value={item.data.commandName}
+            value={value}
             item={item}
             onSelect={onSelect}
           />

@@ -216,8 +216,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tauri-plugin-jarvis
       tauri-plugin-shellx-api:
-        specifier: ^2.0.4
-        version: 2.0.4
+        specifier: ^2.0.7
+        version: 2.0.7
       uikit:
         specifier: workspace:*
         version: link:../../packages/uikit
@@ -917,7 +917,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@penx/react':
+      '@penxio/react':
         specifier: workspace:*
         version: link:../../packages/react
       '@types/react':
@@ -1025,7 +1025,26 @@ importers:
         version: 5.4.5
 
   extension-samples/github-trending:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.45.1
+        version: 5.45.1(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/react':
+        specifier: workspace:*
+        version: link:../../packages/react
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
       penx:
         specifier: workspace:*
         version: link:../../packages/penx
@@ -1040,7 +1059,26 @@ importers:
         version: 5.4.5
 
   extension-samples/hacker-news:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.45.1
+        version: 5.45.1(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/react':
+        specifier: workspace:*
+        version: link:../../packages/react
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.73
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
       penx:
         specifier: workspace:*
         version: link:../../packages/penx
@@ -5334,8 +5372,8 @@ importers:
         specifier: ^2.0.0-beta.2
         version: 2.0.0-beta.2
       tauri-plugin-shellx-api:
-        specifier: ^2.0.4
-        version: 2.0.4
+        specifier: ^2.0.7
+        version: 2.0.7
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -19970,8 +20008,8 @@ packages:
   tauri-plugin-clipboard-api@2.0.0-beta.2:
     resolution: {integrity: sha512-zGrInYnTE9lfpGFvTdUhvxeHXlDYiQwEiX9sz1uRDWvQH9fAV+YEknlI8QDzx71YuFos8ZpBlnartskGNch4iA==}
 
-  tauri-plugin-shellx-api@2.0.4:
-    resolution: {integrity: sha512-RxGhXSAfvChUj9Cb7cYTySLqxWYzx8B8getDAn8x/EezwhnG04Ecb5D+L047pIYl/0vU09bw2V3N1D2KxBYWRg==}
+  tauri-plugin-shellx-api@2.0.7:
+    resolution: {integrity: sha512-yYV546xhOn4Z9bRLUpyQp89k0U32jR6nmgfg0W+JOjnunabgwwStilIo2wUyeTcGs89GAZIRSBeBhgVnF8/E7w==}
 
   temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
@@ -32865,7 +32903,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.1(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
@@ -32916,7 +32954,7 @@ snapshots:
       enhanced-resolve: 5.16.0
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.3
       is-core-module: 2.13.1
@@ -32942,6 +32980,16 @@ snapshots:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
       - eslint-import-resolver-webpack
+      - supports-color
+
+  eslint-module-utils@2.8.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
+    dependencies:
+      debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 5.62.0(eslint@8.57.0)(typescript@5.4.3)
+      eslint: 8.57.0
+      eslint-import-resolver-node: 0.3.9
+    transitivePeerDependencies:
       - supports-color
 
   eslint-module-utils@2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
@@ -32976,7 +33024,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.3))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
@@ -32986,7 +33034,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.13.1
       is-glob: 4.0.3
@@ -32997,7 +33045,7 @@ snapshots:
       semver: 6.3.1
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.3)
+      '@typescript-eslint/parser': 5.62.0(eslint@8.57.0)(typescript@5.4.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -40314,7 +40362,7 @@ snapshots:
       '@tauri-apps/api': 2.0.0-beta.11
       zod: 3.23.8
 
-  tauri-plugin-shellx-api@2.0.4:
+  tauri-plugin-shellx-api@2.0.7:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.13
       zod: 3.23.8

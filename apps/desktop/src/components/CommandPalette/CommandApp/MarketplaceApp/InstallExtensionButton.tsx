@@ -28,9 +28,10 @@ export function InstallExtensionButton({ item }: Props) {
     mutationKey: ['extension', item.id],
     mutationFn: async () => {
       const json = await fetchInstallationJSON(manifest.name)
+
       if (json) {
-        const { id: slug, ...data } = json
-        await db.upsertExtension(slug, data as any)
+        const { name, ...data } = json
+        await db.upsertExtension(name, data as any)
         await refetchCommands()
       }
     },

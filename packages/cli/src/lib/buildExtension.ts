@@ -105,7 +105,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
             content: [
               './src/**/*.{js,ts,tsx,vue,svelte}',
               './manifest.json',
-              './node_modules/@penx/react/**/*.js',
+              './node_modules/@penxio/react/**/*.js',
             ],
             theme: {
               extend: {},

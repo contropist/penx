@@ -1,7 +1,9 @@
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { appEmitter } from '@penx/event'
+import { themeModeAtom } from '@penx/hooks'
 import { db } from '@penx/local-db'
+import { store } from '@penx/store'
 import { ICommandItem } from '~/common/types'
 import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
@@ -70,6 +72,12 @@ export function useHandleSelect() {
         if (!$iframe) return
         const currentWindow = ($iframe as any).contentWindow as Window
 
+        const theme = store.get(themeModeAtom)
+        currentWindow.document.documentElement.className = theme
+
+        // TODO: dark mode splash bug in iframe
+        currentWindow.document.body.style.background =
+          theme === 'dark' ? '#171717' : 'white'
         currentWindow.document.body.innerHTML = '<div id="root"></div>'
 
         // TODO: window.__COMMAND__  is too hack

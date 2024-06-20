@@ -21,19 +21,19 @@ export const ListApp = ({
 
   return (
     <Command
-      className="h-full"
+      className="h-full bg-white dark:bg-neutral-900 black dark:text-white"
       value={value}
       onValueChange={(v) => {
         setValue(v)
       }}
     >
       <style>{loaderStyle}</style>
-      <div className="relative border-b border-b-neutral-200 h-[54] bg-amber-200">
+      <div className="relative border-b border-b-neutral-200 dark:border-b-neutral-800 h-[54] ">
         <Command.Input
           ref={inputRef}
           autoFocus
           placeholder="Search..."
-          className="w-full outline-none h-full pr-4 pl-[50]"
+          className="w-full outline-none h-full pr-4 pl-[50] bg-white dark:bg-neutral-900"
         />
 
         {isLoading && <hr list-app-loader="" />}
