@@ -1,4 +1,4 @@
-import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
+import { ActionPanel, ListApp, ListItem, Action } from '@penxio/react'
 import { clipboard, dialog, fs, os, notificaiton, Command } from 'penx'
 import { useEffect } from 'react'
 

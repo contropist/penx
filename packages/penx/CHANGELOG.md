@@ -1,5 +1,11 @@
 ### Patch Changes
 
+## 0.4.0
+
+### Minor Changes
+
+- release react api
+
 ## 0.2.0
 
 ### Minor Changes

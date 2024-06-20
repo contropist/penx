@@ -1,4 +1,4 @@
-import { ActionPanel, ListApp, ListItem, Action, useQuery } from '@penx/react'
+import { ActionPanel, ListApp, ListItem, Action, useQuery } from '@penxio/react'
 import { getData } from './libs/getData'
 
 export function Main() {

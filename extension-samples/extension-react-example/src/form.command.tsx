@@ -1,4 +1,4 @@
-import { ActionPanel, ListApp, ListItem, Action } from '@penx/react'
+import { ActionPanel, ListApp, ListItem, Action } from '@penxio/react'
 
 export function Main() {
   const list = [

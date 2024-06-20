@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './src/**/*.{js,ts,tsx,vue,svelte}',
-    './node_modules/@penx/react/**/*.js',
+    './node_modules/@penxio/react/**/*.js',
   ],
   theme: {
     extend: {},
