@@ -1,4 +1,5 @@
 import * as Comlink from '@huakunshen/comlink'
+import * as dialog from '@tauri-apps/plugin-dialog'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { IApi } from './types'
 
@@ -20,6 +21,12 @@ const api: IApi = {
   clipboardHasHTML: clipboard.hasHTML,
   clipboardHasImage: clipboard.hasImage,
   clipboardHasFiles: clipboard.hasFiles,
+  // Dialog
+  dialogAsk: dialog.ask,
+  dialogConfirm: dialog.confirm,
+  dialogMessage: dialog.message,
+  dialogOpen: dialog.open,
+  dialogSave: dialog.save,
 }
 
 /**

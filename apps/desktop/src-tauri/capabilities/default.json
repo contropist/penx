@@ -41,6 +41,7 @@
     "shellx:allow-kill",
     "shellx:allow-open",
     "shellx:allow-stdin-write",
+    "shellx:allow-fix-path-env",
     "os:default",
     "os:allow-platform",
     "os:allow-arch",

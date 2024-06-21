@@ -51,8 +51,10 @@ export function Main() {
       // fs.rename('/Users/hacker/Desktop/a.txt', '/Users/hacker/Desktop/q.txt')
       // fs.rename('/Users/hacker/Desktop/b.txt', '/Users/hacker/Desktop/d.txt')
       // await clipboard.writeText('Hello from huakun')
-      const cbText = await clipboard.readText()
-      console.log('Clipboard text:', cbText)
+      // const cbText = await clipboard.readText()
+      // console.log('Clipboard text:', cbText)
+      const ans = await dialog.ask('????')
+      console.log(ans)
     })()
   }, [])
   const list = [

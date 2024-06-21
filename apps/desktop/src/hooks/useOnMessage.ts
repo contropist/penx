@@ -1,10 +1,4 @@
-import {
-  handleEscape,
-  handleFilterChange,
-  handleSearchChange,
-  useHandleLoading,
-  useHandleRender,
-} from '~/api/app'
+import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading, useHandleRender } from '~/api/app'
 import {
   handleClipboardHasFiles,
   handleClipboardHasHtml,
@@ -46,12 +40,7 @@ import {
   handleFsWriteFile,
   handleFsWriteTextFile,
 } from '~/api/fs'
-import {
-  handleHttpFetchCancel,
-  handleHttpFetchSend,
-  handleHttpRawFetch,
-  handleHttpReadBody,
-} from '~/api/httpReq'
+import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
 import {
   handleNotificationIsPermissionGranted,
   handleNotificationRequestPermission,
@@ -83,28 +72,28 @@ export function useOnMessage() {
   const handlers = [
     handleRunAppleScript,
     // clipboard
-    handleClipboardReadText,
-    handleClipboardWriteText,
-    handleClipboardReadImageBase64,
-    handleClipboardWriteImageBase64,
-    handleClipboardReadFiles,
-    handleClipboardWriteFiles,
-    handleClipboardReadRtf,
-    handleClipboardWriteRtf,
-    handleClipboardHasText,
-    handleClipboardHasRtf,
-    handleClipboardHasHtml,
-    handleClipboardHasImage,
-    handleClipboardHasFiles,
-    handleClipboardReadHtml,
-    handleClipboardWriteHtml,
-    handleClipboardWriteHtmlAndText,
+    // handleClipboardReadText,
+    // handleClipboardWriteText,
+    // handleClipboardReadImageBase64,
+    // handleClipboardWriteImageBase64,
+    // handleClipboardReadFiles,
+    // handleClipboardWriteFiles,
+    // handleClipboardReadRtf,
+    // handleClipboardWriteRtf,
+    // handleClipboardHasText,
+    // handleClipboardHasRtf,
+    // handleClipboardHasHtml,
+    // handleClipboardHasImage,
+    // handleClipboardHasFiles,
+    // handleClipboardReadHtml,
+    // handleClipboardWriteHtml,
+    // handleClipboardWriteHtmlAndText,
     // dialog
-    handleDialogAsk,
-    handleDialogConfirm,
-    handleDialogMessage,
-    handleDialogOpen,
-    handleDialogSave,
+    // handleDialogAsk,
+    // handleDialogConfirm,
+    // handleDialogMessage,
+    // handleDialogOpen,
+    // handleDialogSave,
     // web
     handleHttpRawFetch,
     handleHttpFetchCancel,

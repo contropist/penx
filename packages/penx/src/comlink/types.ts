@@ -1,28 +1,36 @@
-export interface IClipboard {
-  clipboardReadText(): Promise<string>
-  clipboardWriteText(text: string): Promise<void>
-  clipboardReadImageBase64(): Promise<string>
-  clipboardWriteImageBase64(base64: string): Promise<void>
-  clipboardReadFiles(): Promise<string[]>
-  clipboardWriteFiles(files: string[]): Promise<void>
-  clipboardReadRtf(): Promise<string>
-  clipboardWriteRtf(rtf: string): Promise<void>
-  clipboardReadHtml(): Promise<string>
-  clipboardWriteHtml(html: string): Promise<void>
-  clipboardWriteHtmlAndText(html: string, text: string): Promise<void>
-  clipboardHasText(): Promise<boolean>
-  clipboardHasRTF(): Promise<boolean>
-  clipboardHasHTML(): Promise<boolean>
-  clipboardHasImage(): Promise<boolean>
-  clipboardHasFiles(): Promise<boolean>
+import { IClipboard, IDialog } from '../apiTypes'
+
+export interface IClipboardApi {
+  clipboardReadText: IClipboard['readText']
+  clipboardWriteText: IClipboard['writeText']
+  clipboardReadImageBase64: IClipboard['readImageBase64']
+  clipboardWriteImageBase64: IClipboard['writeImageBase64']
+  clipboardReadFiles: IClipboard['readFiles']
+  clipboardWriteFiles: IClipboard['writeFiles']
+  clipboardReadRtf: IClipboard['readRtf']
+  clipboardWriteRtf: IClipboard['writeRtf']
+  clipboardReadHtml: IClipboard['readHtml']
+  clipboardWriteHtml: IClipboard['writeHtml']
+  clipboardWriteHtmlAndText: IClipboard['writeHtmlAndText']
+  clipboardHasText: IClipboard['hasText']
+  clipboardHasRTF: IClipboard['hasRTF']
+  clipboardHasHTML: IClipboard['hasHTML']
+  clipboardHasImage: IClipboard['hasImage']
+  clipboardHasFiles: IClipboard['hasFiles']
 }
 
-export interface INotification {}
+export interface INotificationApi {}
 
-export interface IDialog {}
+export interface IDialogApi {
+  dialogAsk: IDialog['ask']
+  dialogConfirm: IDialog['confirm']
+  dialogMessage: IDialog['message']
+  dialogOpen: IDialog['open']
+  dialogSave: IDialog['save']
+}
 
-export interface IFS {}
+export interface IFSApi {}
 
-export interface IShell {}
+export interface IShellApi {}
 
-export type IApi = IClipboard & INotification & IDialog & IFS & IShell
+export type IApi = IClipboardApi & INotificationApi & IDialogApi & IFSApi & IShellApi
