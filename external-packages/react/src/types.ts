@@ -83,8 +83,7 @@ export type IconifyIconType = {
   className?: string
 }
 
-export interface BaseActionProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface BaseActionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: ReactNode
   icon?: IconifyIconType
   shortcut?: {

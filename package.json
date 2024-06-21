@@ -5,7 +5,7 @@
     "dev": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
     "dev:web": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
     "build": "turbo run build",
-    "build:packages": "turbo run build --filter=./packages/*",
+    "build:packages": "turbo run build --filter=./external-packages/*",
     "build:web": "turbo run build --filter=web...",
     "build:home": "turbo run build --filter=home...",
     "build:ink": "turbo run build --filter=ink...",

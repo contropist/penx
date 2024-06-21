@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 import { Box } from '@fower/react'
-import { IDataListItem } from 'penx'
+import { IDataListItem } from '@penxio/worker-ui'
 
 interface DataListItemProps {
   item: IDataListItem

@@ -40,9 +40,7 @@ export const ListApp = ({
       </div>
       <Command.List ref={listRef} className="h-[376] relative">
         <div className="flex flex-row w-full overflow-hidden absolute top-0 bottom-0 left-0 right-0">
-          <Command.Group
-            className={`overflow-auto p-2 ${isDetailVisible ? 'w-[280]' : 'w-full'}`}
-          >
+          <Command.Group className={`overflow-auto p-2 ${isDetailVisible ? 'w-[280]' : 'w-full'}`}>
             {isLoading && (
               <Command.Loading className="h-full flex items-center justify-center text-neutral-400 text-sm">
                 Loading...

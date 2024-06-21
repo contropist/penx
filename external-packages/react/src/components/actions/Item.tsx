@@ -8,12 +8,7 @@ interface ItemProps extends BaseActionProps {
   onSelect?: () => void
 }
 
-export function Item({
-  title,
-  shortcut,
-  icon = { name: 'lucide--cat' },
-  onSelect,
-}: ItemProps) {
+export function Item({ title, shortcut, icon = { name: 'lucide--cat' }, onSelect }: ItemProps) {
   return (
     <ListActionItem
       shortcut={shortcut}

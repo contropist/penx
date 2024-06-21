@@ -2,8 +2,8 @@ import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import { Icon } from '@iconify/react'
+import { isObjectIcon } from '@penxio/worker-ui'
 import { useQuery } from '@tanstack/react-query'
-import { isObjectIcon } from 'penx'
 import { getRandomColor } from '@penx/local-db'
 import { getIcon } from '~/common/icon'
 import { IconifyIconType, isIconify } from '~/common/isIconify'
@@ -16,17 +16,9 @@ interface ListItemIconProps extends FowerHTMLProps<'div'> {
 }
 
 export const ListItemIcon = memo(
-  function ListItemIcon({
-    icon,
-    bg,
-    isApplication,
-    size = 20,
-    ...rest
-  }: ListItemIconProps) {
+  function ListItemIcon({ icon, bg, isApplication, size = 20, ...rest }: ListItemIconProps) {
     if (!icon) {
-      return (
-        <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
-      )
+      return <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
     }
 
     if (isIconify(icon)) {
@@ -40,22 +32,10 @@ export const ListItemIcon = memo(
     if (typeof icon === 'number') {
       const colorName = bg || getRandomColor('500')
 
-      const arr = [
-        colorName.replace('500', '400'),
-        colorName,
-        colorName.replace('500', '600'),
-      ]
+      const arr = [colorName.replace('500', '400'), colorName, colorName.replace('500', '600')]
 
       return (
-        <Box
-          square={size}
-          flexShrink-0
-          rounded-6
-          toCenter
-          textXS
-          white
-          bgGradientX={arr}
-        >
+        <Box square={size} flexShrink-0 rounded-6 toCenter textXS white bgGradientX={arr}>
           {icon}
         </Box>
       )
@@ -83,36 +63,15 @@ export const ListItemIcon = memo(
 
     if (icon.startsWith('/')) {
       return (
-        <Box
-          as="img"
-          src={icon}
-          alt=""
-          width={size}
-          height={size}
-          style={{ borderRadius: 6 }}
-        />
+        <Box as="img" src={icon} alt="" width={size} height={size} style={{ borderRadius: 6 }} />
       )
     }
 
     const isSVG = icon.startsWith('<svg')
     if (isSVG) {
-      return (
-        <SVG
-          width={size}
-          height={size}
-          className={css({ rounded: 6 })}
-          src={icon as string}
-        />
-      )
+      return <SVG width={size} height={size} className={css({ rounded: 6 })} src={icon as string} />
     }
-    return (
-      <Box
-        as="img"
-        square={size}
-        rounded-6
-        src={`data:image/png;base64, ${icon}`}
-      />
-    )
+    return <Box as="img" square={size} rounded-6 src={`data:image/png;base64, ${icon}`} />
   },
   (prev, next) => {
     return prev.icon === next.icon
@@ -133,16 +92,7 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
 
   // console.log('===============appIcon:', data)
 
-  return (
-    <Box
-      as="img"
-      src={data}
-      alt=""
-      width={size}
-      height={size}
-      style={{ borderRadius: 6 }}
-    />
-  )
+  return <Box as="img" src={data} alt="" width={size} height={size} style={{ borderRadius: 6 }} />
 }
 
 function IconifyIcon(icon: IconifyIconType) {

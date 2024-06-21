@@ -30,17 +30,13 @@ export function constructAPI<Payload, Result>(
   return ((payload?: Payload) => {
     return new Promise((resolve, reject) => {
       const channel = new MessageChannel()
-      channel.port1.onmessage = (
-        event: PenxAPIResponseMessageEvent<Result>,
-      ) => {
+      channel.port1.onmessage = (event: PenxAPIResponseMessageEvent<Result>) => {
         const expectedEvtType = retEvtType ?? evtType
         if (event.data.type === expectedEvtType) {
           resolve(event.data.result)
         } else {
           reject(
-            new Error(
-              `Unexpected message type: ${event.data.type} (expected: ${expectedEvtType})`,
-            ),
+            new Error(`Unexpected message type: ${event.data.type} (expected: ${expectedEvtType})`),
           )
         }
       }

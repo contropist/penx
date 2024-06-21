@@ -1,5 +1,5 @@
+import { IListItem, LoadingType } from '@penxio/worker-ui'
 import { atom, useAtom } from 'jotai'
-import { IListItem, LoadingType } from 'penx'
 
 type MarketplaceUI = {
   type: 'marketplace'

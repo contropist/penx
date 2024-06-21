@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 import { Box } from '@fower/react'
-import { IListItem, isListJSON, isMarkdownJSON } from 'penx'
+import { IListItem, isListJSON, isMarkdownJSON } from '@penxio/worker-ui'
 import { Spinner } from 'uikit'
 import { Markdown } from '~/components/Markdown'
 import { CommandAppUI } from '~/hooks/useCommandAppUI'
@@ -55,8 +55,7 @@ export const CommandApp = memo(
 
     if (
       // prev.loading === next.loading &&
-      prev.currentCommand?.data?.commandName ===
-        next.currentCommand?.data?.commandName &&
+      prev.currentCommand?.data?.commandName === next.currentCommand?.data?.commandName &&
       isEqual(prev.ui, next.ui)
     ) {
       return true

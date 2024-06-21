@@ -1,4 +1,4 @@
-import { IListItem } from 'penx'
+import { IListItem } from '@penxio/worker-ui'
 import { FilterItem, IDatabaseNode } from '@penx/model-types'
 
 export interface ICommandItem extends IListItem {

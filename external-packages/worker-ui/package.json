@@ -1,0 +1,33 @@
+{
+  "name": "@penxio/worker-ui",
+  "version": "0.4.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build:docs": "typedoc src/index.ts",
+    "build": "rollup -c"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^18.19.33",
+    "rollup": "^4.9.6",
+    "typedoc": "^0.25.13",
+    "typescript": "^5.4.5"
+  }
+}

@@ -19,7 +19,6 @@ import { EventType } from './constants'
 //   )
 // }
 
-export const onFilterChange = constructAPICallback<
-  undefined,
-  Record<string, any>
->(EventType.InitOnFilterChange)
+export const onFilterChange = constructAPICallback<undefined, Record<string, any>>(
+  EventType.InitOnFilterChange,
+)

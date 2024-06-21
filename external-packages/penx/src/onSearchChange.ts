@@ -25,6 +25,4 @@ import { EventType } from './constants'
 //   }))
 // }
 
-export const onSearchChange = constructAPICallback<undefined, string>(
-  EventType.InitOnSearchChange,
-)
+export const onSearchChange = constructAPICallback<undefined, string>(EventType.InitOnSearchChange)

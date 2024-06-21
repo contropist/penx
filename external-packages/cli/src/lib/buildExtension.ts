@@ -147,7 +147,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     plugins.push(onEndPlugin)
     const ctx = await esbuild.context({
       ...buildOptions,
-      minify: true,
+      minify: hasIframeRuntime,
       plugins,
     })
 

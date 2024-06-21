@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react'
 import { Box, css, FowerHTMLProps } from '@fower/react'
-import { IAccessory, isAccessoryObjectText } from 'penx'
+import { IAccessory, isAccessoryObjectText } from '@penxio/worker-ui'
 import { ICommandItem } from '~/common/types'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { StyledCommandItem } from './CommandComponents'
@@ -36,8 +36,7 @@ export const ListItemUI = ({
 
   const title = typeof item.title === 'string' ? item.title : item.title.value
 
-  const subtitle =
-    typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.value
+  const subtitle = typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.value
 
   if (item.type === 'list-heading') {
     return (
@@ -74,10 +73,7 @@ export const ListItemUI = ({
     >
       <Box toCenterY gap2>
         {showIcon && (
-          <ListItemIcon
-            isApplication={item.data?.isApplication}
-            icon={itemIcon as string}
-          />
+          <ListItemIcon isApplication={item.data?.isApplication} icon={itemIcon as string} />
         )}
         <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
           <Box text-14>{title}</Box>
@@ -85,16 +81,7 @@ export const ListItemUI = ({
             {subtitle}
           </Box>
           {item?.data?.alias && (
-            <Box
-              rounded
-              textXS
-              border
-              borderNeutral200
-              gray400
-              h-20
-              px-6
-              toCenterY
-            >
+            <Box rounded textXS border borderNeutral200 gray400 h-20 px-6 toCenterY>
               {item.data.alias}
             </Box>
           )}
@@ -128,9 +115,7 @@ function Accessory({ item }: AccessoryProps) {
       return <Box>{item.text}</Box>
     }
     if (isAccessoryObjectText(item.text)) {
-      return (
-        <Box color={item.text.color || 'gray600'}>{item.text?.value || ''}</Box>
-      )
+      return <Box color={item.text.color || 'gray600'}>{item.text?.value || ''}</Box>
     }
     return null
   }, [item.text])
@@ -140,9 +125,7 @@ function Accessory({ item }: AccessoryProps) {
     </Box>
   ) : null
 
-  let icon: ReactNode = item.icon ? (
-    <ListItemIcon roundedFull icon={assets[item.icon]} />
-  ) : null
+  let icon: ReactNode = item.icon ? <ListItemIcon roundedFull icon={assets[item.icon]} /> : null
 
   return (
     <Box toCenterY gap1>

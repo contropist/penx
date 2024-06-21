@@ -1,8 +1,8 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
+import { ListJSON } from '@penxio/worker-ui'
 import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { open } from '@tauri-apps/plugin-shell'
-import { ListJSON } from 'penx'
 import clipboard from 'tauri-plugin-clipboard-api'
 import { Divider } from 'uikit'
 import { useSearch } from '~/hooks/useSearch'
@@ -26,10 +26,7 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
   const filteredItems = !filtering
     ? items
     : items.filter((item) => {
-        return item.title
-          .toString()
-          .toLowerCase()
-          .includes(search.toLowerCase())
+        return item.title.toString().toLowerCase().includes(search.toLowerCase())
       })
   useEffect(() => {
     const find = component.items.find((item) => item.title === value)

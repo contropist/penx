@@ -43,6 +43,7 @@
     "@penx/wagmi": "workspace:*",
     "@penx/widget": "workspace:*",
     "@penx/worker": "workspace:*",
+    "@penxio/worker-ui": "workspace:*",
     "@tanstack/react-query": "^4.36.1",
     "@tauri-apps/api": "2.0.0-beta.13",
     "@tauri-apps/plugin-dialog": "2.0.0-beta.5",
