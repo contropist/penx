@@ -4,6 +4,13 @@ import notificationApi from '@tauri-apps/plugin-notification'
 import { INotification } from './apiTypes'
 import { clientApi } from './comlink'
 
+/**
+ * @example
+ * ```ts
+ * console.log(await notification.isPermissionGranted())
+ * notification.sendNotification('Hello from huakun')
+ * ```
+ */
 export const notification: INotification = {
   sendNotification: clientApi.notificationSendNotification,
   requestPermission: clientApi.notificationRequestPermission,

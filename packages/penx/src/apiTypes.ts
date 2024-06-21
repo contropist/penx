@@ -4,7 +4,7 @@ import notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
-import { FetchSendResponse, Proxy } from './fetch/types'
+import { FetchOptions, FetchSendResponse } from './fetch/types'
 
 export interface IDialog {
   ask: typeof dialog.ask
@@ -18,7 +18,9 @@ export interface IClipboard {
   readText: typeof clipboard.readText
   writeText: typeof clipboard.writeText
   readImageBase64: typeof clipboard.readImageBase64
+  readImageBinary: typeof clipboard.readImageBinary
   writeImageBase64: typeof clipboard.writeImageBase64
+  writeImageBinary: typeof clipboard.writeImageBinary
   readFiles: typeof clipboard.readFiles
   writeFiles: typeof clipboard.writeFiles
   readRtf: typeof clipboard.readRtf
@@ -102,18 +104,6 @@ export interface IShell {
   executeNodeScript: typeof shellx.executeNodeScript
   hasCommand: typeof shellx.hasCommand
   likelyOnWindows: typeof shellx.likelyOnWindows
-}
-
-export type FetchOptions = {
-  clientConfig: {
-    method: string
-    url: string
-    headers: [string, string][]
-    data: number[] | null
-    maxRedirections: number | undefined
-    connectTimeout: number | undefined
-    proxy: Proxy | undefined
-  }
 }
 
 export interface IFetch {

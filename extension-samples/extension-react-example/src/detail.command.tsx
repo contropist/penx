@@ -72,6 +72,7 @@ export function Main() {
       // await clipboard.writeText('Hello from huakun')
       // const cbText = await clipboard.readText()
       // console.log('Clipboard text:', cbText)
+      // console.log(await clipboard.readImageBase64())
       // const ans = await dialog.ask('????')
       // console.log(ans)
     })()

@@ -2,21 +2,12 @@ import * as _dialogApi from '@tauri-apps/plugin-dialog'
 import { IDialog } from './apiTypes'
 import { clientApi } from './comlink'
 
-export type DialogAskPayload = {
-  message: string
-  options?: string | _dialogApi.ConfirmDialogOptions
-}
-
-export type DialogMessagePayload = {
-  message: string
-  options?: string | _dialogApi.MessageDialogOptions
-}
-
-export type DialogConfirmPayload = {
-  message: string
-  options?: string | _dialogApi.ConfirmDialogOptions
-}
-
+/**
+ * @example
+ * ```ts
+ * const ans = await dialog.ask('Are you sure')
+ * ```
+ */
 export const dialog: IDialog = {
   ask: clientApi.dialogAsk,
   confirm: clientApi.dialogConfirm,

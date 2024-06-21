@@ -13,6 +13,17 @@ const webFetch: IFetch = {
   fetchReadBody: clientApi.fetchFetchReadBody,
 }
 
+/**
+ * @example
+ * ```ts
+ * fetch('https://jsonplaceholder.typicode.com/todos')
+ *   .then((res) => res.json())
+ *   .then(console.log)
+ * ```
+ * @param input
+ * @param init
+ * @returns
+ */
 export async function fetch(
   input: URL | Request | string,
   init?: RequestInit & ClientOptions,
