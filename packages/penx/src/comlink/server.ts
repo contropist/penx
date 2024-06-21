@@ -1,9 +1,11 @@
 import * as Comlink from '@huakunshen/comlink'
+import { invoke } from '@tauri-apps/api/core'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
+import * as shellx from 'tauri-plugin-shellx-api'
 import { IApi } from './types'
 
 const api: IApi = {
@@ -58,6 +60,28 @@ const api: IApi = {
   osEol: () => Promise.resolve(os.eol()),
   osVersion: os.version,
   osLocale: os.locale,
+  // Shell
+  shellExecute: (
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+  ): Promise<shellx.ChildProcess<shellx.IOPayload>> =>
+    invoke<shellx.ChildProcess<shellx.IOPayload>>('plugin:shellx|execute', {
+      program: program,
+      args: args,
+      options: options,
+    }),
+  shellKill: (pid: number) =>
+    invoke<void>('plugin:shellx|kill', {
+      cmd: 'killChild',
+      pid: pid,
+    }),
+  shellStdinWrite: (buffer: string | number[], pid: number) =>
+    invoke('plugin:shellx|stdin_write', {
+      buffer: buffer,
+      pid: pid,
+    }),
+  shellOpen: (path: string, openWith?: string) => shellx.open(path, openWith),
 }
 
 /**

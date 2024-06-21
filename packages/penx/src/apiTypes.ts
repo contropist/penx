@@ -2,6 +2,7 @@ import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
+import * as shellx from 'tauri-plugin-shellx-api'
 
 export interface IDialog {
   ask: (...args: Parameters<typeof dialog.ask>) => ReturnType<typeof dialog.ask>
@@ -64,4 +65,21 @@ export interface IOs {
   eol: () => Promise<string>
   version: () => ReturnType<typeof os.version>
   locale: () => ReturnType<typeof os.locale>
+}
+
+export type ShellxExecutePayload = {
+  program: string
+  args: string[]
+  options: shellx.InternalSpawnOptions
+}
+
+export interface IShell {
+  execute(
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+  ): Promise<shellx.ChildProcess<shellx.IOPayload>>
+  kill(pid: number): Promise<void>
+  stdinWrite(buffer: string | number[], pid: number): Promise<void>
+  open(path: string, openWith?: string): Promise<void>
 }

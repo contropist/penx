@@ -1,4 +1,4 @@
-import { IClipboard, IDialog, IFs, INotification, IOs } from '../apiTypes'
+import { IClipboard, IDialog, IFs, INotification, IOs, IShell } from '../apiTypes'
 
 export interface IClipboardApi {
   clipboardReadText: IClipboard['readText']
@@ -61,6 +61,13 @@ export interface IOsApi {
   osEol: IOs['eol']
   osVersion: IOs['version']
   osLocale: IOs['locale']
+}
+
+export interface IShellApi {
+  shellExecute: IShell['execute']
+  shellKill: IShell['kill']
+  shellStdinWrite: IShell['stdinWrite']
+  shellOpen: IShell['open']
 }
 
 export type IApi = IClipboardApi & INotificationApi & IDialogApi & IFSApi & IShellApi & IOsApi

@@ -1,48 +1,27 @@
 import * as shellx from 'tauri-plugin-shellx-api'
 import { IOPayload } from 'tauri-plugin-shellx-api'
-import { constructAPI, PenxAPIResponseMessageEvent } from './common'
+import { IShell } from './apiTypes'
+import { clientApi } from './comlink'
+import { PenxAPIResponseMessageEvent } from './common'
 import { EventType } from './constants'
 
-const shellxExecute = constructAPI<
-  ShellxExecutePayload,
-  shellx.ChildProcess<IOPayload>
->(EventType.ShellxExecute)
+const shell: IShell = {
+  execute: clientApi.shellExecute,
+  kill: clientApi.shellKill,
+  stdinWrite: clientApi.shellStdinWrite,
+  open: clientApi.shellOpen,
+}
 
-const shellxKill = constructAPI<{ cmd: string; pid: number }, void>(
-  EventType.ShellxKill,
-)
-
-const shellxStdinWrite = constructAPI<
-  { buffer: string | number[]; pid: number },
-  void
->(EventType.ShellxStdinWrite)
-
-export const shellxOpen = constructAPI<
-  { path: string; openWith?: string },
-  void
->(EventType.ShellxOpen)
+export const shellOpen = shell.open
 
 export class Child extends shellx.Child {
   write(data: IOPayload): Promise<void> {
-    return shellxStdinWrite({
-      pid: this.pid,
-      // correctly serialize Uint8Arrays
-      buffer: typeof data === 'string' ? data : Array.from(data),
-    })
+    return shell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
   }
 
   kill(): Promise<void> {
-    return shellxKill({
-      cmd: 'killChild',
-      pid: this.pid,
-    })
+    return shell.kill(this.pid)
   }
-}
-
-export type ShellxExecutePayload = {
-  program: string
-  args: string[]
-  options: shellx.InternalSpawnOptions
 }
 
 export class Command<O extends IOPayload> extends shellx.Command<O> {
@@ -64,9 +43,7 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
     }
 
     const eventChannel = new MessageChannel()
-    eventChannel.port1.onmessage = (
-      msgEvent: MessageEvent<shellx.CommandEvent<O>>,
-    ) => {
+    eventChannel.port1.onmessage = (msgEvent: MessageEvent<shellx.CommandEvent<O>>) => {
       const event = msgEvent.data
       switch (event.event) {
         case 'Error':
@@ -85,18 +62,12 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
     }
     const pidReceiverChannel = new MessageChannel()
     return new Promise((resolve, reject) => {
-      pidReceiverChannel.port1.onmessage = (
-        event: PenxAPIResponseMessageEvent<number>,
-      ) => {
+      pidReceiverChannel.port1.onmessage = (event: PenxAPIResponseMessageEvent<number>) => {
         if (event.data.type === EventType.ShellxSpawn) {
           const pid = event.data.result
           resolve(new Child(pid))
         } else {
-          reject(
-            new Error(
-              `Unexpected message type: ${event.data.type} (expected: ${EventType.ShellxSpawn})`,
-            ),
-          )
+          reject(new Error(`Unexpected message type: ${event.data.type} (expected: ${EventType.ShellxSpawn})`))
         }
       }
       const payload = {
@@ -125,8 +96,7 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
     if (typeof args === 'object') {
       Object.freeze(args)
     }
-    return shellxExecute({ program, args, options }) as Promise<
-      shellx.ChildProcess<O>
-    >
+    // return shellxExecute({ program, args, options }) as Promise<shellx.ChildProcess<O>>
+    return shell.execute(program, args, options) as Promise<shellx.ChildProcess<O>>
   }
 }

@@ -2,11 +2,11 @@ import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading,
 import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
 import { handleRunAppleScript } from '~/api/script'
 import {
-  handleShellxExecute,
-  handleShellxKill,
-  handleShellxOpen,
+  // handleShellxExecute,
+  // handleShellxKill,
+  // handleShellxOpen,
   handleShellxSpawn,
-  handleShellxStdinWrite,
+  // handleShellxStdinWrite,
 } from '~/api/shell'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
@@ -21,10 +21,10 @@ export function useOnMessage() {
     handleHttpFetchSend,
     handleHttpReadBody,
     // shellx
-    handleShellxExecute,
-    handleShellxOpen,
-    handleShellxKill,
-    handleShellxStdinWrite,
+    // handleShellxExecute,
+    // handleShellxOpen,
+    // handleShellxKill,
+    // handleShellxStdinWrite,
     handleShellxSpawn,
     // app
     handleSearchChange,

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { shellxOpen } from 'penx'
+import { shellOpen } from 'penx'
 import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 
@@ -17,7 +17,7 @@ export function OpenInBrowser({
       shortcut={shortcut}
       icon={icon}
       onSelect={() => {
-        shellxOpen({ path: url })
+        shellOpen(url)
       }}
     >
       {title}

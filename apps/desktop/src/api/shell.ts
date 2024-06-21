@@ -1,46 +1,6 @@
 import { Channel, invoke } from '@tauri-apps/api/core'
-import {
-  constructAPIExecuter,
-  EventType,
-  PenxAPIRequestMessageEvent,
-  ShellxExecutePayload,
-} from 'penx'
+import { constructAPIExecuter, EventType, PenxAPIRequestMessageEvent } from 'penx'
 import * as shellx from 'tauri-plugin-shellx-api'
-
-export const handleShellxExecute = constructAPIExecuter<
-  ShellxExecutePayload,
-  shellx.ChildProcess<shellx.IOPayload>
->(EventType.ShellxExecute, (payload) =>
-  invoke<shellx.ChildProcess<shellx.IOPayload>>('plugin:shellx|execute', {
-    program: payload.program,
-    args: payload.args,
-    options: payload.options,
-  }),
-)
-
-export const handleShellxOpen = constructAPIExecuter<
-  { path: string; openWith?: string },
-  void
->(EventType.ShellxOpen, (payload) =>
-  shellx.open(payload.path, payload.openWith),
-)
-
-export const handleShellxKill = constructAPIExecuter<
-  { cmd: string; pid: number },
-  void
->(EventType.ShellxKill, (payload) =>
-  invoke('plugin:shellx|kill', {
-    cmd: 'killChild',
-    pid: payload.pid,
-  }),
-)
-
-export const handleShellxStdinWrite = constructAPIExecuter<
-  { buffer: string | number[]; pid: number },
-  void
->(EventType.ShellxStdinWrite, (payload) =>
-  invoke('plugin:shellx|stdin_write', payload),
-)
 
 export function handleShellxSpawn(
   event: PenxAPIRequestMessageEvent<{
@@ -55,9 +15,7 @@ export function handleShellxSpawn(
   const payload = event.data.payload
   const ports = event.ports
   if (ports.length !== 2) {
-    throw new Error(
-      'Expected 2 ports. One for pid, one for child process events.',
-    )
+    throw new Error('Expected 2 ports. One for pid, one for child process events.')
   }
   const [pidPort, eventPort] = ports
   const onEvent = new Channel<shellx.CommandEvent<shellx.IOPayload>>()
