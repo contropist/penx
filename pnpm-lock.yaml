@@ -210,8 +210,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.2.73)(react@18.2.0)
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.0-beta.2
-        version: 2.0.0-beta.2
+        specifier: ^2.0.2
+        version: 2.0.2
       tauri-plugin-jarvis-api:
         specifier: workspace:*
         version: link:../../packages/tauri-plugin-jarvis
@@ -5344,6 +5344,9 @@ importers:
 
   packages/penx:
     dependencies:
+      '@huakunshen/comlink':
+        specifier: ^4.4.1
+        version: 4.4.1
       '@tanstack/react-query':
         specifier: ^5.45.1
         version: 5.45.1(react@18.2.0)
@@ -5369,8 +5372,8 @@ importers:
         specifier: 2.0.0-beta.6
         version: 2.0.0-beta.6
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.0-beta.2
-        version: 2.0.0-beta.2
+        specifier: ^2.0.2
+        version: 2.0.2
       tauri-plugin-shellx-api:
         specifier: ^2.0.7
         version: 2.0.7
@@ -8917,6 +8920,9 @@ packages:
     resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
+
+  '@huakunshen/comlink@4.4.1':
+    resolution: {integrity: sha512-rxWFQ0NEc28z/r6Ixy0ZllNaRqvkqbmuT3oTwzVnwVyDFdIkqoicrwr1Z718ZQbWoVFBdmqSjm93N273ludHMA==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -20005,8 +20011,8 @@ packages:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
 
-  tauri-plugin-clipboard-api@2.0.0-beta.2:
-    resolution: {integrity: sha512-zGrInYnTE9lfpGFvTdUhvxeHXlDYiQwEiX9sz1uRDWvQH9fAV+YEknlI8QDzx71YuFos8ZpBlnartskGNch4iA==}
+  tauri-plugin-clipboard-api@2.0.2:
+    resolution: {integrity: sha512-52KUG3E6/ebYCvXDS1KeGWSnHYnQaK868GtC+MFF4SeZrBX6LGe7ZuWtSC0B56LK8A3OXfZbH70hdEtHHbRgtA==}
 
   tauri-plugin-shellx-api@2.0.7:
     resolution: {integrity: sha512-yYV546xhOn4Z9bRLUpyQp89k0U32jR6nmgfg0W+JOjnunabgwwStilIo2wUyeTcGs89GAZIRSBeBhgVnF8/E7w==}
@@ -24506,6 +24512,8 @@ snapshots:
   '@hookform/resolvers@3.3.4(react-hook-form@7.51.2(react@18.2.0))':
     dependencies:
       react-hook-form: 7.51.2(react@18.2.0)
+
+  '@huakunshen/comlink@4.4.1': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -40357,7 +40365,7 @@ snapshots:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  tauri-plugin-clipboard-api@2.0.0-beta.2:
+  tauri-plugin-clipboard-api@2.0.2:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
       zod: 3.23.8

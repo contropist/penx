@@ -23,6 +23,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
+    "@huakunshen/comlink": "^4.4.1",
     "@tanstack/react-query": "^5.45.1",
     "@tauri-apps/api": "2.0.0-beta.13",
     "@tauri-apps/plugin-dialog": "2.0.0-beta.5",
@@ -31,7 +32,7 @@
     "@tauri-apps/plugin-notification": "2.0.0-beta.5",
     "@tauri-apps/plugin-os": "2.0.0-beta.3",
     "@tauri-apps/plugin-shell": "2.0.0-beta.6",
-    "tauri-plugin-clipboard-api": "^2.0.0-beta.2",
+    "tauri-plugin-clipboard-api": "^2.0.2",
     "tauri-plugin-shellx-api": "^2.0.7",
     "zod": "^3.23.8"
   },

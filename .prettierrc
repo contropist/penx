@@ -3,7 +3,7 @@
   "tabWidth": 2,
   "singleQuote": true,
   "trailingComma": "all",
-  "printWidth": 80,
+  "printWidth": 120,
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],
   "importOrder": [
     "^react",

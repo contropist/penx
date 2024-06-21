@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
+import { comlink } from 'penx'
 import { appEmitter } from '@penx/event'
 import { themeModeAtom } from '@penx/hooks'
 import { db } from '@penx/local-db'
@@ -63,27 +64,22 @@ export function useHandleSelect() {
       const ext = await db.getExtensionByName(item.data.extensionSlug)
       if (!ext) return
 
-      const command = ext.commands.find(
-        (c) => c.name === item.data.commandName,
-      )!
+      const command = ext.commands.find((c) => c.name === item.data.commandName)!
 
       if (command.runtime === 'iframe') {
-        const $iframe = document.getElementById('command-app-iframe')!
+        const $iframe = document.getElementById('command-app-iframe')! as HTMLIFrameElement
         if (!$iframe) return
-        const currentWindow = ($iframe as any).contentWindow as Window
-
+        const currentWindow = $iframe.contentWindow as Window
+        comlink.exposeApiToWindow(currentWindow)
         const theme = store.get(themeModeAtom)
         currentWindow.document.documentElement.className = theme
 
         // TODO: dark mode splash bug in iframe
-        currentWindow.document.body.style.background =
-          theme === 'dark' ? '#171717' : 'white'
+        currentWindow.document.body.style.background = theme === 'dark' ? '#171717' : 'white'
         currentWindow.document.body.innerHTML = '<div id="root"></div>'
 
         // TODO: window.__COMMAND__  is too hack
-        ;(currentWindow as any).eval(
-          `window.__COMMAND__ = ${JSON.stringify(item)} \n ${command.code}`,
-        )
+        ;(currentWindow as any).eval(`window.__COMMAND__ = ${JSON.stringify(item)} \n ${command.code}`)
 
         return
       }

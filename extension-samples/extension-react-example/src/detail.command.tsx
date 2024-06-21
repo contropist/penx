@@ -1,10 +1,13 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penxio/react'
-import { clipboard, dialog, fs, os, notificaiton, Command } from 'penx'
+import { clipboard, dialog, fs, os, notificaiton, Command, comlink } from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
   useEffect(() => {
     ;(async () => {
+      const api = comlink.getApi(window.parent)
+      const text = await api.readText()
+      console.log('Clipboard text 1:', text)
       // const cmd = Command.create('echo', ['hello'])
       // let start = Date.now()
       // const cmd = Command.create('ffmpeg', [
@@ -51,8 +54,8 @@ export function Main() {
       // fs.rename('/Users/hacker/Desktop/a.txt', '/Users/hacker/Desktop/q.txt')
       // fs.rename('/Users/hacker/Desktop/b.txt', '/Users/hacker/Desktop/d.txt')
       // await clipboard.writeText('Hello from huakun')
-      // const cbText = await clipboard.readText()
-      // console.log('Clipboard text:', cbText)
+      const cbText = await clipboard.readText()
+      console.log('Clipboard text:', cbText)
     })()
   }, [])
   const list = [
