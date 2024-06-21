@@ -1,10 +1,22 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penxio/react'
-import { clipboard, dialog, fs, os, notification, Command, shell } from 'penx'
+import {
+  clipboard,
+  dialog,
+  fs,
+  os,
+  notification,
+  Command,
+  shell,
+  fetch,
+} from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
   useEffect(() => {
     ;(async () => {
+      fetch('https://jsonplaceholder.typicode.com/todos')
+        .then((res) => res.json())
+        .then(console.log)
       // console.log(await shell.executeBashScript('echo "Hello from huakun"'))
       // const cmd = shell.makeBashScript('echo "Hello from huakun make script"')
       // console.log(await cmd.execute())

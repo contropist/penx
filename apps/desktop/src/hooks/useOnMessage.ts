@@ -1,28 +1,17 @@
-import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading, useHandleRender } from '~/api/app'
-import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
 import {
-  // handleShellxExecute,
-  // handleShellxKill,
-  // handleShellxOpen,
-  handleShellxSpawn,
-  // handleShellxStdinWrite,
-} from '~/api/shell'
+  handleEscape,
+  handleFilterChange,
+  handleSearchChange,
+  useHandleLoading,
+  useHandleRender,
+} from '~/api/app'
+import { handleShellxSpawn } from '~/api/shell'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 
 export function useOnMessage() {
   const { setUI } = useCommandAppUI()
 
   const handlers = [
-    // web
-    handleHttpRawFetch,
-    handleHttpFetchCancel,
-    handleHttpFetchSend,
-    handleHttpReadBody,
-    // shellx
-    // handleShellxExecute,
-    // handleShellxOpen,
-    // handleShellxKill,
-    // handleShellxStdinWrite,
     handleShellxSpawn,
     // app
     handleSearchChange,

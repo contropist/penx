@@ -1,4 +1,4 @@
-import { IClipboard, IDialog, IFs, INotification, IOs, IShell } from '../apiTypes'
+import { IClipboard, IDialog, IFetch, IFs, INotification, IOs, IShell } from '../apiTypes'
 
 export interface IClipboardApi {
   clipboardReadText: IClipboard['readText']
@@ -74,4 +74,17 @@ export interface IShellApi {
   shellExecuteNodeScript: IShell['executeNodeScript']
 }
 
-export type IApi = IClipboardApi & INotificationApi & IDialogApi & IFSApi & IShellApi & IOsApi
+export interface IFetchApi {
+  fetchRawFetch: IFetch['rawFetch']
+  fetchFetchCancel: IFetch['fetchCancel']
+  fetchFetchSend: IFetch['fetchSend']
+  fetchFetchReadBody: IFetch['fetchReadBody']
+}
+
+export type IApi = IClipboardApi &
+  INotificationApi &
+  IDialogApi &
+  IFSApi &
+  IShellApi &
+  IOsApi &
+  IFetchApi

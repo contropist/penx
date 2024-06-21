@@ -18,7 +18,7 @@
     "src"
   ],
   "scripts": {
-    "dev": "tsup --watch --dts",
+    "dev": "rollup -c --watch",
     "build:docs": "typedoc src/index.ts",
     "build": "rollup -c"
   },
@@ -40,7 +40,6 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^18.19.33",
     "rollup": "^4.9.6",
-    "tsup": "^7.2.0",
     "typedoc": "^0.25.13",
     "typescript": "^5.4.5"
   }

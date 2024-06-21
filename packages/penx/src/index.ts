@@ -9,7 +9,7 @@ export * from './dialog'
 export * from './fs'
 export * from './notification'
 export * from './os'
-export * from './request'
+export * from './fetch'
 export * from './shell'
 
 export * from './onSearchChange'

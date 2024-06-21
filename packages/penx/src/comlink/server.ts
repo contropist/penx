@@ -6,6 +6,7 @@ import * as notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import * as shellx from 'tauri-plugin-shellx-api'
+import { FetchOptions, FetchSendResponse } from '../fetch/types'
 import { IApi } from './types'
 
 const api: IApi = {
@@ -88,6 +89,11 @@ const api: IApi = {
   shellExecutePythonScript: shellx.executePythonScript,
   shellExecuteZshScript: shellx.executeZshScript,
   shellExecuteNodeScript: shellx.executeNodeScript,
+  fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
+  fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
+  fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
+  fetchFetchReadBody: (rid: number) =>
+    invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid }),
 }
 
 /**

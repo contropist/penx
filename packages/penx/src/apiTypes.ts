@@ -3,6 +3,7 @@ import * as fs from '@tauri-apps/plugin-fs'
 import notification from '@tauri-apps/plugin-notification'
 import * as os from '@tauri-apps/plugin-os'
 import * as shellx from 'tauri-plugin-shellx-api'
+import { FetchSendResponse, Proxy } from './fetch/types'
 
 export interface IDialog {
   ask: (...args: Parameters<typeof dialog.ask>) => ReturnType<typeof dialog.ask>
@@ -53,7 +54,9 @@ export interface IFs {
   rename: (...args: Parameters<typeof fs.rename>) => ReturnType<typeof fs.rename>
   truncate: (...args: Parameters<typeof fs.truncate>) => ReturnType<typeof fs.truncate>
   writeFile: (...args: Parameters<typeof fs.writeFile>) => ReturnType<typeof fs.writeFile>
-  writeTextFile: (...args: Parameters<typeof fs.writeTextFile>) => ReturnType<typeof fs.writeTextFile>
+  writeTextFile: (
+    ...args: Parameters<typeof fs.writeTextFile>
+  ) => ReturnType<typeof fs.writeTextFile>
 }
 
 export interface IOs {
@@ -94,4 +97,23 @@ export interface IShell {
   executePythonScript(script: string): Promise<shellx.ChildProcess<string>>
   executeZshScript(script: string): Promise<shellx.ChildProcess<string>>
   executeNodeScript(script: string): Promise<shellx.ChildProcess<string>>
+}
+
+export type FetchOptions = {
+  clientConfig: {
+    method: string
+    url: string
+    headers: [string, string][]
+    data: number[] | null
+    maxRedirections: number | undefined
+    connectTimeout: number | undefined
+    proxy: Proxy | undefined
+  }
+}
+
+export interface IFetch {
+  rawFetch(options: FetchOptions): Promise<number>
+  fetchCancel(rid: number): Promise<void>
+  fetchSend(rid: number): Promise<FetchSendResponse>
+  fetchReadBody(rid: number): Promise<ArrayBuffer | number[]>
 }
