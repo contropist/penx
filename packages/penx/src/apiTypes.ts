@@ -1,6 +1,7 @@
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import notification from '@tauri-apps/plugin-notification'
+import * as os from '@tauri-apps/plugin-os'
 
 export interface IDialog {
   ask: (...args: Parameters<typeof dialog.ask>) => ReturnType<typeof dialog.ask>
@@ -52,4 +53,15 @@ export interface IFs {
   truncate: (...args: Parameters<typeof fs.truncate>) => ReturnType<typeof fs.truncate>
   writeFile: (...args: Parameters<typeof fs.writeFile>) => ReturnType<typeof fs.writeFile>
   writeTextFile: (...args: Parameters<typeof fs.writeTextFile>) => ReturnType<typeof fs.writeTextFile>
+}
+
+export interface IOs {
+  platform: () => ReturnType<typeof os.platform>
+  arch: () => ReturnType<typeof os.arch>
+  exeExtension: () => ReturnType<typeof os.exeExtension>
+  family: () => ReturnType<typeof os.family>
+  hostname: () => ReturnType<typeof os.hostname>
+  eol: () => Promise<string>
+  version: () => ReturnType<typeof os.version>
+  locale: () => ReturnType<typeof os.locale>
 }

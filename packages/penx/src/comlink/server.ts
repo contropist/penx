@@ -2,6 +2,7 @@ import * as Comlink from '@huakunshen/comlink'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
+import * as os from '@tauri-apps/plugin-os'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import { IApi } from './types'
 
@@ -48,6 +49,15 @@ const api: IApi = {
   fsTruncate: fs.truncate,
   fsWriteFile: fs.writeFile,
   fsWriteTextFile: fs.writeTextFile,
+  // OS
+  osPlatform: os.platform,
+  osArch: os.arch,
+  osExeExtension: os.exeExtension,
+  osFamily: os.family,
+  osHostname: os.hostname,
+  osEol: () => Promise.resolve(os.eol()),
+  osVersion: os.version,
+  osLocale: os.locale,
 }
 
 /**

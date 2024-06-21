@@ -1,15 +1,5 @@
 import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading, useHandleRender } from '~/api/app'
 import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
-import {
-  handleOsArch,
-  handleOsEol,
-  handleOsExeExtension,
-  handleOsFamily,
-  handleOsHostname,
-  handleOsLocale,
-  handleOsPlatform,
-  handleOsVersion,
-} from '~/api/os'
 import { handleRunAppleScript } from '~/api/script'
 import {
   handleShellxExecute,
@@ -25,42 +15,11 @@ export function useOnMessage() {
 
   const handlers = [
     handleRunAppleScript,
-    // clipboard
     // web
     handleHttpRawFetch,
     handleHttpFetchCancel,
     handleHttpFetchSend,
     handleHttpReadBody,
-    // os
-    handleOsPlatform,
-    handleOsArch,
-    handleOsExeExtension,
-    handleOsFamily,
-    handleOsHostname,
-    handleOsEol,
-    handleOsVersion,
-    handleOsLocale,
-    // fs
-    // handleFsReadFile,
-    // handleFsReadTextFile,
-    // handleFsStat,
-    // handleFsLStat,
-    // handleFsStat,
-    // handleFsLStat,
-    // handleFsExists,
-    // handleFsMkdir,
-    // handleFsCreate,
-    // handleFsCopyFile,
-    // handleFsRemove,
-    // handleFsRename,
-    // handleFsWriteFile,
-    // handleFsWriteTextFile,
-    // handleFsTruncate,
-    // handleFsReadDir,
-    // notification
-    // handleNotificationRequestPermission,
-    // handleNotificationIsPermissionGranted,
-    // handleNotificationSendNotification,
     // shellx
     handleShellxExecute,
     handleShellxOpen,
