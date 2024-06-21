@@ -30,4 +30,5 @@ export const clipboard: IClipboard = {
   hasHTML: clientApi.clipboardHasHTML,
   hasImage: clientApi.clipboardHasImage,
   hasFiles: clientApi.clipboardHasFiles,
+  startMonitor: clientApi.clipboardStartMonitor,
 }

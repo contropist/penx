@@ -12,7 +12,7 @@ export function useOnMessage() {
   const { setUI } = useCommandAppUI()
 
   const handlers = [
-    handleShellxSpawn,
+    // handleShellxSpawn,
     // app
     handleSearchChange,
     handleFilterChange,

@@ -19,6 +19,7 @@ export interface IClipboardApi {
   clipboardHasHTML: IClipboard['hasHTML']
   clipboardHasImage: IClipboard['hasImage']
   clipboardHasFiles: IClipboard['hasFiles']
+  clipboardStartMonitor: IClipboard['startMonitor']
 }
 
 export interface INotificationApi {
@@ -80,6 +81,7 @@ export interface IShellApi {
   shellKill: IShell['kill']
   shellStdinWrite: IShell['stdinWrite']
   shellOpen: IShell['open']
+  shellRawSpawn: IShell['rawSpawn']
   shellExecuteBashScript: IShell['executeBashScript']
   shellExecutePowershellScript: IShell['executePowershellScript']
   shellExecuteAppleScript: IShell['executeAppleScript']

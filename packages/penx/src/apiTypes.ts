@@ -33,7 +33,19 @@ export interface IClipboard {
   hasHTML: typeof clipboard.hasHTML
   hasImage: typeof clipboard.hasImage
   hasFiles: typeof clipboard.hasFiles
+  startMonitor: typeof clipboard.startMonitor
 }
+// clipboard.isMonitorRunning
+// clipboard.listenToClipboard
+// clipboard.listenToMonitorStatusUpdate
+// clipboard.stopMonitor
+// clipboard.onClipboardUpdate
+// clipboard.onTextUpdate
+// clipboard.onSomethingUpdate
+// clipboard.onHTMLUpdate
+// clipboard.onRTFUpdate
+// clipboard.onFilesUpdate
+// clipboard.onImageUpdate
 
 export interface INotification {
   isPermissionGranted: typeof notification.isPermissionGranted
@@ -89,6 +101,12 @@ export interface IShell {
   ): Promise<shellx.ChildProcess<shellx.IOPayload>>
   kill(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
+  rawSpawn<O extends shellx.IOPayload>(
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+    cb: (evt: shellx.CommandEvent<O>) => void,
+  ): Promise<number>
   open: typeof shellx.open
   makeBashScript: typeof shellx.makeBashScript
   makePowershellScript: typeof shellx.makePowershellScript

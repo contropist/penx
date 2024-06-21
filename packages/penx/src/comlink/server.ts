@@ -1,5 +1,5 @@
 import * as Comlink from '@huakunshen/comlink'
-import { invoke } from '@tauri-apps/api/core'
+import { Channel, invoke } from '@tauri-apps/api/core'
 import * as dialog from '@tauri-apps/plugin-dialog'
 import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
@@ -29,6 +29,7 @@ const api: IApi = {
   clipboardHasHTML: clipboard.hasHTML,
   clipboardHasImage: clipboard.hasImage,
   clipboardHasFiles: clipboard.hasFiles,
+  clipboardStartMonitor: clipboard.startMonitor,
   // Dialog
   dialogAsk: dialog.ask,
   dialogConfirm: dialog.confirm,
@@ -97,6 +98,21 @@ const api: IApi = {
       pid: pid,
     }),
   shellOpen: (path: string, openWith?: string) => shellx.open(path, openWith),
+  shellRawSpawn: <O extends shellx.IOPayload>(
+    program: string,
+    args: string[],
+    options: shellx.InternalSpawnOptions,
+    cb: (evt: shellx.CommandEvent<O>) => void,
+  ): Promise<number> => {
+    const onEvent = new Channel<shellx.CommandEvent<O>>()
+    onEvent.onmessage = cb
+    return invoke<number>('plugin:shellx|spawn', {
+      program: program,
+      args: args,
+      options: options,
+      onEvent,
+    })
+  },
   shellExecuteBashScript: shellx.executeBashScript,
   shellExecutePowershellScript: shellx.executePowershellScript,
   shellExecuteAppleScript: shellx.executeAppleScript,
