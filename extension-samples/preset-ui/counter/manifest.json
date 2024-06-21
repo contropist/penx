@@ -1,0 +1,15 @@
+{
+  "name": "counter",
+  "title": "Counter",
+  "description": "Counter Example",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Counter",
+      "subtitle": "",
+      "description": "",
+      "runtime": "worker"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Run apple script",
+  "name": "run-apple-script",
+  "description": "",
+  "icon": "logo.svg",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Run apple script",
+      "subtitle": "",
+      "description": "",
+      "runtime": "worker"
+    }
+  ]
+}
