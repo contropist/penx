@@ -1,34 +1,25 @@
 import * as Comlink from '@huakunshen/comlink'
-import clipboardApi from 'tauri-plugin-clipboard-api'
-import { IApi, IClipboard } from './types'
-
-export const clipboard: IClipboard = {
-  readText: clipboardApi.readText,
-  writeText: clipboardApi.writeText,
-  readImageBase64: clipboardApi.readImageBase64,
-  writeImageBase64: clipboardApi.writeImageBase64,
-  readFiles: clipboardApi.readFiles,
-  writeFiles: clipboardApi.writeFiles,
-  readRtf: clipboardApi.readRtf,
-  writeRtf: clipboardApi.writeRtf,
-  readHtml: clipboardApi.readHtml,
-  writeHtml: clipboardApi.writeHtml,
-  writeHtmlAndText: clipboardApi.writeHtmlAndText,
-  hasText: clipboardApi.hasText,
-  hasRTF: clipboardApi.hasRTF,
-  hasHTML: clipboardApi.hasHTML,
-  hasImage: clipboardApi.hasImage,
-  hasFiles: clipboardApi.hasFiles,
-}
-
-// export const clipboard: IClipboard = clipboardApi
+import clipboard from 'tauri-plugin-clipboard-api'
+import { IApi } from './types'
 
 const api: IApi = {
-  clipboard,
-  // notification: undefined,
-  // dialog: undefined,
-  // fs: undefined,
-  // shell: undefined
+  // Clipboard
+  clipboardReadText: clipboard.readText,
+  clipboardWriteText: clipboard.writeText,
+  clipboardReadImageBase64: clipboard.readImageBase64,
+  clipboardWriteImageBase64: clipboard.writeImageBase64,
+  clipboardReadFiles: clipboard.readFiles,
+  clipboardWriteFiles: clipboard.writeFiles,
+  clipboardReadRtf: clipboard.readRtf,
+  clipboardWriteRtf: clipboard.writeRtf,
+  clipboardReadHtml: clipboard.readHtml,
+  clipboardWriteHtml: clipboard.writeHtml,
+  clipboardWriteHtmlAndText: clipboard.writeHtmlAndText,
+  clipboardHasText: clipboard.hasText,
+  clipboardHasRTF: clipboard.hasRTF,
+  clipboardHasHTML: clipboard.hasHTML,
+  clipboardHasImage: clipboard.hasImage,
+  clipboardHasFiles: clipboard.hasFiles,
 }
 
 /**
@@ -37,5 +28,5 @@ const api: IApi = {
  * @returns
  */
 export function exposeApiToWindow(win: Window) {
-  return Comlink.expose(clipboard, Comlink.windowEndpoint(win))
+  return Comlink.expose(api, Comlink.windowEndpoint(win))
 }

@@ -1,3 +1,4 @@
+import { iframeSideApi } from './comlink'
 import { constructAPI } from './common'
 import { EventType } from './constants'
 
@@ -12,35 +13,29 @@ export interface IClipboard {
   writeRtf: (rtf: string) => Promise<void>
   readHtml: () => Promise<string>
   writeHtml: (html: string) => Promise<void>
-  writeHtmlAndText: (data: { html: string; text: string }) => Promise<void>
+  writeHtmlAndText: (html: string, text: string) => Promise<void>
   hasText: () => Promise<boolean>
-  hasRtf: () => Promise<boolean>
-  hasHtml: () => Promise<boolean>
+  hasRTF: () => Promise<boolean>
+  hasHTML: () => Promise<boolean>
   hasImage: () => Promise<boolean>
   hasFiles: () => Promise<boolean>
 }
 
 export const clipboard: IClipboard = {
-  readText: constructAPI<undefined, string>(EventType.ClipboardReadText),
-  writeText: constructAPI<string, void>(EventType.ClipboardWriteText),
-  readImageBase64: constructAPI<undefined, string>(
-    EventType.ClipboardReadImageBase64,
-  ),
-  writeImageBase64: constructAPI<string, void>(
-    EventType.ClipboardWriteImageBase64,
-  ),
-  readFiles: constructAPI<undefined, string[]>(EventType.ClipboardReadFiles),
-  writeFiles: constructAPI<string[], void>(EventType.ClipboardWriteFiles),
-  readRtf: constructAPI<undefined, string>(EventType.ClipboardReadRtf),
-  writeRtf: constructAPI<string, void>(EventType.ClipboardWriteRtf),
-  readHtml: constructAPI<undefined, string>(EventType.ClipboardReadHtml),
-  writeHtml: constructAPI<string, void>(EventType.ClipboardWriteHtml),
-  writeHtmlAndText: constructAPI<{ html: string; text: string }, void>(
-    EventType.ClipboardWriteHtmlAndText,
-  ),
-  hasText: constructAPI<void, boolean>(EventType.ClipboardHasText),
-  hasRtf: constructAPI<void, boolean>(EventType.ClipboardHasRtf),
-  hasHtml: constructAPI<void, boolean>(EventType.ClipboardHasHtml),
-  hasImage: constructAPI<void, boolean>(EventType.ClipboardHasImage),
-  hasFiles: constructAPI<void, boolean>(EventType.ClipboardHasFiles),
+  readText: iframeSideApi.clipboardReadText,
+  writeText: iframeSideApi.clipboardWriteText,
+  readImageBase64: iframeSideApi.clipboardReadImageBase64,
+  writeImageBase64: iframeSideApi.clipboardWriteImageBase64,
+  readFiles: iframeSideApi.clipboardReadFiles,
+  writeFiles: iframeSideApi.clipboardWriteFiles,
+  readRtf: iframeSideApi.clipboardReadRtf,
+  writeRtf: iframeSideApi.clipboardWriteRtf,
+  readHtml: iframeSideApi.clipboardReadHtml,
+  writeHtml: iframeSideApi.clipboardWriteHtml,
+  writeHtmlAndText: iframeSideApi.clipboardWriteHtmlAndText,
+  hasText: iframeSideApi.clipboardHasText,
+  hasRTF: iframeSideApi.clipboardHasRTF,
+  hasHTML: iframeSideApi.clipboardHasHTML,
+  hasImage: iframeSideApi.clipboardHasImage,
+  hasFiles: iframeSideApi.clipboardHasFiles,
 }

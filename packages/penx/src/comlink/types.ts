@@ -1,20 +1,20 @@
 export interface IClipboard {
-  readText(): Promise<string>
-  writeText(text: string): Promise<void>
-  readImageBase64(): Promise<string>
-  writeImageBase64(base64: string): Promise<void>
-  readFiles(): Promise<string[]>
-  writeFiles(files: string[]): Promise<void>
-  readRtf(): Promise<string>
-  writeRtf(rtf: string): Promise<void>
-  readHtml(): Promise<string>
-  writeHtml(html: string): Promise<void>
-  writeHtmlAndText(html: string, text: string): Promise<void>
-  hasText(): Promise<boolean>
-  hasRTF(): Promise<boolean>
-  hasHTML(): Promise<boolean>
-  hasImage(): Promise<boolean>
-  hasFiles(): Promise<boolean>
+  clipboardReadText(): Promise<string>
+  clipboardWriteText(text: string): Promise<void>
+  clipboardReadImageBase64(): Promise<string>
+  clipboardWriteImageBase64(base64: string): Promise<void>
+  clipboardReadFiles(): Promise<string[]>
+  clipboardWriteFiles(files: string[]): Promise<void>
+  clipboardReadRtf(): Promise<string>
+  clipboardWriteRtf(rtf: string): Promise<void>
+  clipboardReadHtml(): Promise<string>
+  clipboardWriteHtml(html: string): Promise<void>
+  clipboardWriteHtmlAndText(html: string, text: string): Promise<void>
+  clipboardHasText(): Promise<boolean>
+  clipboardHasRTF(): Promise<boolean>
+  clipboardHasHTML(): Promise<boolean>
+  clipboardHasImage(): Promise<boolean>
+  clipboardHasFiles(): Promise<boolean>
 }
 
 export interface INotification {}
@@ -25,10 +25,4 @@ export interface IFS {}
 
 export interface IShell {}
 
-export interface IApi {
-  clipboard: IClipboard
-  //   notification: INotification
-  //   dialog: IDialog
-  //   fs: IFS
-  //   shell: IShell
-}
+export type IApi = IClipboard & INotification & IDialog & IFS & IShell
