@@ -7,6 +7,9 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/penxio/penx',
   },
+  components: {
+    na: () => <div>Helo</div>,
+  },
   chat: {
     link: 'https://discord.gg/nyVpH9njDu',
   },
@@ -14,9 +17,7 @@ const config: DocsThemeConfig = {
   sidebar: {
     autoCollapse: false,
   },
-  footer: {
-    text: 'PenX Docs',
-  },
+  footer: (() => null) as any,
 }
 
 export default config

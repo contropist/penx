@@ -5,11 +5,6 @@
   "custom-ui": "Custom UI (IFrame)",
   "examples": "Examples",
   "api-reference": "API reference",
-  "contributing": "Contributing",
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://discord.gg/nyVpH9njDu",
-    "newWindow": true
-  }
+  "api-typedoc": "API Typedoc",
+  "contributing": "Contributing"
 }
