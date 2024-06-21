@@ -58,7 +58,11 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
           const pid = event.data.result
           resolve(new Child(pid))
         } else {
-          reject(new Error(`Unexpected message type: ${event.data.type} (expected: ${EventType.ShellxSpawn})`))
+          reject(
+            new Error(
+              `Unexpected message type: ${event.data.type} (expected: ${EventType.ShellxSpawn})`,
+            ),
+          )
         }
       }
       const payload = {
@@ -133,6 +137,8 @@ export const shell: IShell = {
   executePythonScript: clientApi.shellExecutePythonScript,
   executeZshScript: clientApi.shellExecuteZshScript,
   executeNodeScript: clientApi.shellExecuteNodeScript,
+  hasCommand: clientApi.shellHasCommand,
+  likelyOnWindows: clientApi.shellLikelyOnWindows,
 }
 
 export const shellOpen = shell.open

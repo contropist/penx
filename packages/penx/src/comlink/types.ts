@@ -23,6 +23,18 @@ export interface INotificationApi {
   notificationSendNotification: INotification['sendNotification']
   notificationRequestPermission: INotification['requestPermission']
   notificationIsPermissionGranted: INotification['isPermissionGranted']
+  notificationRegisterActionTypes: INotification['registerActionTypes']
+  notificationPending: INotification['pending']
+  notificationCancel: INotification['cancel']
+  notificationCancelAll: INotification['cancelAll']
+  notificationActive: INotification['active']
+  notificationRemoveActive: INotification['removeActive']
+  notificationRemoveAllActive: INotification['removeAllActive']
+  notificationCreateChannel: INotification['createChannel']
+  notificationRemoveChannel: INotification['removeChannel']
+  notificationChannels: INotification['channels']
+  notificationOnNotificationReceived: INotification['onNotificationReceived']
+  notificationOnAction: INotification['onAction']
 }
 
 export interface IDialogApi {
@@ -72,6 +84,8 @@ export interface IShellApi {
   shellExecutePythonScript: IShell['executePythonScript']
   shellExecuteZshScript: IShell['executeZshScript']
   shellExecuteNodeScript: IShell['executeNodeScript']
+  shellHasCommand: IShell['hasCommand']
+  shellLikelyOnWindows: IShell['likelyOnWindows']
 }
 
 export interface IFetchApi {

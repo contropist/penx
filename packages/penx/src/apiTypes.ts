@@ -34,9 +34,21 @@ export interface IClipboard {
 }
 
 export interface INotification {
-  sendNotification: typeof notification.sendNotification
-  requestPermission: typeof notification.requestPermission
   isPermissionGranted: typeof notification.isPermissionGranted
+  requestPermission: typeof notification.requestPermission
+  sendNotification: typeof notification.sendNotification
+  registerActionTypes: typeof notification.registerActionTypes
+  pending: typeof notification.pending
+  cancel: typeof notification.cancel
+  cancelAll: typeof notification.cancelAll
+  active: typeof notification.active
+  removeActive: typeof notification.removeActive
+  removeAllActive: typeof notification.removeAllActive
+  createChannel: typeof notification.createChannel
+  removeChannel: typeof notification.removeChannel
+  channels: typeof notification.channels
+  onNotificationReceived: typeof notification.onNotificationReceived
+  onAction: typeof notification.onAction
 }
 
 export interface IFs {
@@ -88,6 +100,8 @@ export interface IShell {
   executePythonScript: typeof shellx.executePythonScript
   executeZshScript: typeof shellx.executeZshScript
   executeNodeScript: typeof shellx.executeNodeScript
+  hasCommand: typeof shellx.hasCommand
+  likelyOnWindows: typeof shellx.likelyOnWindows
 }
 
 export type FetchOptions = {

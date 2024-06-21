@@ -14,9 +14,11 @@ import { useEffect } from 'react'
 export function Main() {
   useEffect(() => {
     ;(async () => {
-      fetch('https://jsonplaceholder.typicode.com/todos')
-        .then((res) => res.json())
-        .then(console.log)
+      // fetch('https://jsonplaceholder.typicode.com/todos')
+      //   .then((res) => res.json())
+      //   .then(console.log)
+      // shell.likelyOnWindows().then(console.log)
+      // shell.hasCommand('ls').then(console.log)
       // console.log(await shell.executeBashScript('echo "Hello from huakun"'))
       // const cmd = shell.makeBashScript('echo "Hello from huakun make script"')
       // console.log(await cmd.execute())
