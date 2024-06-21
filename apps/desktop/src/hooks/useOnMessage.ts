@@ -1,6 +1,5 @@
 import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading, useHandleRender } from '~/api/app'
 import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
-import { handleRunAppleScript } from '~/api/script'
 import {
   // handleShellxExecute,
   // handleShellxKill,
@@ -14,7 +13,6 @@ export function useOnMessage() {
   const { setUI } = useCommandAppUI()
 
   const handlers = [
-    handleRunAppleScript,
     // web
     handleHttpRawFetch,
     handleHttpFetchCancel,

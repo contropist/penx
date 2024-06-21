@@ -82,6 +82,12 @@ const api: IApi = {
       pid: pid,
     }),
   shellOpen: (path: string, openWith?: string) => shellx.open(path, openWith),
+  shellExecuteBashScript: shellx.executeBashScript,
+  shellExecutePowershellScript: shellx.executePowershellScript,
+  shellExecuteAppleScript: shellx.executeAppleScript,
+  shellExecutePythonScript: shellx.executePythonScript,
+  shellExecuteZshScript: shellx.executeZshScript,
+  shellExecuteNodeScript: shellx.executeNodeScript,
 }
 
 /**

@@ -22,6 +22,4 @@ export * from './components/MarkdownBuilder'
 export * from './components/ListBuilder'
 export * from './components/DataListBuilder'
 
-export * from './runAppleScript'
-
 export * as comlink from './comlink'

@@ -82,4 +82,16 @@ export interface IShell {
   kill(pid: number): Promise<void>
   stdinWrite(buffer: string | number[], pid: number): Promise<void>
   open(path: string, openWith?: string): Promise<void>
+  makeBashScript(script: string): shellx.Command<string>
+  makePowershellScript(script: string): shellx.Command<string>
+  makeAppleScript(script: string): shellx.Command<string>
+  makePythonScript(script: string): shellx.Command<string>
+  makeZshScript(script: string): shellx.Command<string>
+  makeNodeScript(script: string): shellx.Command<string>
+  executeBashScript(script: string): Promise<shellx.ChildProcess<string>>
+  executePowershellScript(script: string): Promise<shellx.ChildProcess<string>>
+  executeAppleScript(script: string): Promise<shellx.ChildProcess<string>>
+  executePythonScript(script: string): Promise<shellx.ChildProcess<string>>
+  executeZshScript(script: string): Promise<shellx.ChildProcess<string>>
+  executeNodeScript(script: string): Promise<shellx.ChildProcess<string>>
 }

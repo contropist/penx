@@ -50,8 +50,6 @@ export interface IFSApi {
   fsWriteTextFile: IFs['writeTextFile']
 }
 
-export interface IShellApi {}
-
 export interface IOsApi {
   osPlatform: IOs['platform']
   osArch: IOs['arch']
@@ -68,6 +66,12 @@ export interface IShellApi {
   shellKill: IShell['kill']
   shellStdinWrite: IShell['stdinWrite']
   shellOpen: IShell['open']
+  shellExecuteBashScript: IShell['executeBashScript']
+  shellExecutePowershellScript: IShell['executePowershellScript']
+  shellExecuteAppleScript: IShell['executeAppleScript']
+  shellExecutePythonScript: IShell['executePythonScript']
+  shellExecuteZshScript: IShell['executeZshScript']
+  shellExecuteNodeScript: IShell['executeNodeScript']
 }
 
 export type IApi = IClipboardApi & INotificationApi & IDialogApi & IFSApi & IShellApi & IOsApi

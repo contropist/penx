@@ -5,15 +5,6 @@ import { clientApi } from './comlink'
 import { PenxAPIResponseMessageEvent } from './common'
 import { EventType } from './constants'
 
-const shell: IShell = {
-  execute: clientApi.shellExecute,
-  kill: clientApi.shellKill,
-  stdinWrite: clientApi.shellStdinWrite,
-  open: clientApi.shellOpen,
-}
-
-export const shellOpen = shell.open
-
 export class Child extends shellx.Child {
   write(data: IOPayload): Promise<void> {
     return shell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
@@ -100,3 +91,48 @@ export class Command<O extends IOPayload> extends shellx.Command<O> {
     return shell.execute(program, args, options) as Promise<shellx.ChildProcess<O>>
   }
 }
+
+function makeBashScript(script: string): Command<string> {
+  return Command.create('bash', ['-c', script])
+}
+
+function makePowershellScript(script: string): Command<string> {
+  return Command.create('powershell', ['-Command', script])
+}
+
+function makeAppleScript(script: string): Command<string> {
+  return Command.create('osascript', ['-e', script])
+}
+
+function makePythonScript(script: string): Command<string> {
+  return Command.create('python', ['-c', script])
+}
+
+function makeZshScript(script: string): Command<string> {
+  return Command.create('zsh', ['-c', script])
+}
+
+function makeNodeScript(script: string): Command<string> {
+  return Command.create('node', ['-e', script])
+}
+
+export const shell: IShell = {
+  execute: clientApi.shellExecute,
+  kill: clientApi.shellKill,
+  stdinWrite: clientApi.shellStdinWrite,
+  open: clientApi.shellOpen,
+  makeBashScript,
+  makePowershellScript,
+  makeAppleScript,
+  makePythonScript,
+  makeZshScript,
+  makeNodeScript,
+  executeBashScript: clientApi.shellExecuteBashScript,
+  executePowershellScript: clientApi.shellExecutePowershellScript,
+  executeAppleScript: clientApi.shellExecuteAppleScript,
+  executePythonScript: clientApi.shellExecutePythonScript,
+  executeZshScript: clientApi.shellExecuteZshScript,
+  executeNodeScript: clientApi.shellExecuteNodeScript,
+}
+
+export const shellOpen = shell.open
