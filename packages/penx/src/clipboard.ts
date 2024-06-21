@@ -1,21 +1,21 @@
 import { IClipboard } from './apiTypes'
-import { iframeSideApi } from './comlink'
+import { clientApi } from './comlink'
 
 export const clipboard: IClipboard = {
-  readText: iframeSideApi.clipboardReadText,
-  writeText: iframeSideApi.clipboardWriteText,
-  readImageBase64: iframeSideApi.clipboardReadImageBase64,
-  writeImageBase64: iframeSideApi.clipboardWriteImageBase64,
-  readFiles: iframeSideApi.clipboardReadFiles,
-  writeFiles: iframeSideApi.clipboardWriteFiles,
-  readRtf: iframeSideApi.clipboardReadRtf,
-  writeRtf: iframeSideApi.clipboardWriteRtf,
-  readHtml: iframeSideApi.clipboardReadHtml,
-  writeHtml: iframeSideApi.clipboardWriteHtml,
-  writeHtmlAndText: iframeSideApi.clipboardWriteHtmlAndText,
-  hasText: iframeSideApi.clipboardHasText,
-  hasRTF: iframeSideApi.clipboardHasRTF,
-  hasHTML: iframeSideApi.clipboardHasHTML,
-  hasImage: iframeSideApi.clipboardHasImage,
-  hasFiles: iframeSideApi.clipboardHasFiles,
+  readText: clientApi.clipboardReadText,
+  writeText: clientApi.clipboardWriteText,
+  readImageBase64: clientApi.clipboardReadImageBase64,
+  writeImageBase64: clientApi.clipboardWriteImageBase64,
+  readFiles: clientApi.clipboardReadFiles,
+  writeFiles: clientApi.clipboardWriteFiles,
+  readRtf: clientApi.clipboardReadRtf,
+  writeRtf: clientApi.clipboardWriteRtf,
+  readHtml: clientApi.clipboardReadHtml,
+  writeHtml: clientApi.clipboardWriteHtml,
+  writeHtmlAndText: clientApi.clipboardWriteHtmlAndText,
+  hasText: clientApi.clipboardHasText,
+  hasRTF: clientApi.clipboardHasRTF,
+  hasHTML: clientApi.clipboardHasHTML,
+  hasImage: clientApi.clipboardHasImage,
+  hasFiles: clientApi.clipboardHasFiles,
 }

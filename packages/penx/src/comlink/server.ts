@@ -1,6 +1,7 @@
 import * as Comlink from '@huakunshen/comlink'
 import * as dialog from '@tauri-apps/plugin-dialog'
-import clipboard from 'tauri-plugin-clipboard-api'
+import * as notification from '@tauri-apps/plugin-notification'
+import * as clipboard from 'tauri-plugin-clipboard-api'
 import { IApi } from './types'
 
 const api: IApi = {
@@ -27,6 +28,10 @@ const api: IApi = {
   dialogMessage: dialog.message,
   dialogOpen: dialog.open,
   dialogSave: dialog.save,
+  // Notification
+  notificationIsPermissionGranted: notification.isPermissionGranted,
+  notificationRequestPermission: notification.requestPermission,
+  notificationSendNotification: notification.sendNotification,
 }
 
 /**

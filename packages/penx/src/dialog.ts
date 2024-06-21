@@ -1,6 +1,6 @@
 import * as _dialogApi from '@tauri-apps/plugin-dialog'
 import { IDialog } from './apiTypes'
-import { iframeSideApi } from './comlink'
+import { clientApi } from './comlink'
 
 export type DialogAskPayload = {
   message: string
@@ -18,9 +18,9 @@ export type DialogConfirmPayload = {
 }
 
 export const dialog: IDialog = {
-  ask: iframeSideApi.dialogAsk,
-  confirm: iframeSideApi.dialogConfirm,
-  message: iframeSideApi.dialogMessage,
-  open: iframeSideApi.dialogOpen,
-  save: iframeSideApi.dialogSave,
+  ask: clientApi.dialogAsk,
+  confirm: clientApi.dialogConfirm,
+  message: clientApi.dialogMessage,
+  open: clientApi.dialogOpen,
+  save: clientApi.dialogSave,
 }

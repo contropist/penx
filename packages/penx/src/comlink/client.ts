@@ -6,4 +6,5 @@ export function getApi(win: Window) {
 }
 
 export const isInIframe = window !== window.parent
-export const iframeSideApi = getApi(window.parent)
+const iframeSideApi = getApi(window.parent)
+export const clientApi = iframeSideApi

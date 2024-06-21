@@ -1,5 +1,5 @@
 import { ActionPanel, ListApp, ListItem, Action } from '@penxio/react'
-import { clipboard, dialog, fs, os, notificaiton, Command } from 'penx'
+import { clipboard, dialog, fs, os, notification, Command } from 'penx'
 import { useEffect } from 'react'
 
 export function Main() {
@@ -25,8 +25,8 @@ export function Main() {
       // const out = await cmd.execute()
       // console.log(out.stdout)
       // console.log((await cmd.execute()).stdout.toString())
-      // console.log(await notificaiton.isPermissionGranted())
-      // notificaiton.sendNotification('Hello from huakun')
+      // console.log(await notification.isPermissionGranted())
+      // notification.sendNotification('Hello from huakun')
       // console.log(
       //   await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
       // )
@@ -53,8 +53,8 @@ export function Main() {
       // await clipboard.writeText('Hello from huakun')
       // const cbText = await clipboard.readText()
       // console.log('Clipboard text:', cbText)
-      const ans = await dialog.ask('????')
-      console.log(ans)
+      // const ans = await dialog.ask('????')
+      // console.log(ans)
     })()
   }, [])
   const list = [

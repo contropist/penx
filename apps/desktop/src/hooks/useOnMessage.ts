@@ -1,30 +1,5 @@
 import { handleEscape, handleFilterChange, handleSearchChange, useHandleLoading, useHandleRender } from '~/api/app'
 import {
-  handleClipboardHasFiles,
-  handleClipboardHasHtml,
-  handleClipboardHasImage,
-  handleClipboardHasRtf,
-  handleClipboardHasText,
-  handleClipboardReadFiles,
-  handleClipboardReadHtml,
-  handleClipboardReadImageBase64,
-  handleClipboardReadRtf,
-  handleClipboardReadText,
-  handleClipboardWriteFiles,
-  handleClipboardWriteHtml,
-  handleClipboardWriteHtmlAndText,
-  handleClipboardWriteImageBase64,
-  handleClipboardWriteRtf,
-  handleClipboardWriteText,
-} from '~/api/clipboard'
-import {
-  handleDialogAsk,
-  handleDialogConfirm,
-  handleDialogMessage,
-  handleDialogOpen,
-  handleDialogSave,
-} from '~/api/dialog'
-import {
   handleFsCopyFile,
   handleFsCreate,
   handleFsExists,
@@ -41,11 +16,6 @@ import {
   handleFsWriteTextFile,
 } from '~/api/fs'
 import { handleHttpFetchCancel, handleHttpFetchSend, handleHttpRawFetch, handleHttpReadBody } from '~/api/httpReq'
-import {
-  handleNotificationIsPermissionGranted,
-  handleNotificationRequestPermission,
-  handleNotificationSendNotification,
-} from '~/api/notification'
 import {
   handleOsArch,
   handleOsEol,
@@ -72,28 +42,6 @@ export function useOnMessage() {
   const handlers = [
     handleRunAppleScript,
     // clipboard
-    // handleClipboardReadText,
-    // handleClipboardWriteText,
-    // handleClipboardReadImageBase64,
-    // handleClipboardWriteImageBase64,
-    // handleClipboardReadFiles,
-    // handleClipboardWriteFiles,
-    // handleClipboardReadRtf,
-    // handleClipboardWriteRtf,
-    // handleClipboardHasText,
-    // handleClipboardHasRtf,
-    // handleClipboardHasHtml,
-    // handleClipboardHasImage,
-    // handleClipboardHasFiles,
-    // handleClipboardReadHtml,
-    // handleClipboardWriteHtml,
-    // handleClipboardWriteHtmlAndText,
-    // dialog
-    // handleDialogAsk,
-    // handleDialogConfirm,
-    // handleDialogMessage,
-    // handleDialogOpen,
-    // handleDialogSave,
     // web
     handleHttpRawFetch,
     handleHttpFetchCancel,
@@ -126,9 +74,9 @@ export function useOnMessage() {
     handleFsTruncate,
     handleFsReadDir,
     // notification
-    handleNotificationRequestPermission,
-    handleNotificationIsPermissionGranted,
-    handleNotificationSendNotification,
+    // handleNotificationRequestPermission,
+    // handleNotificationIsPermissionGranted,
+    // handleNotificationSendNotification,
     // shellx
     handleShellxExecute,
     handleShellxOpen,

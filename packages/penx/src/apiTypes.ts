@@ -1,4 +1,5 @@
 import * as dialog from '@tauri-apps/plugin-dialog'
+import notification from '@tauri-apps/plugin-notification'
 
 export interface IDialog {
   ask: (...args: Parameters<typeof dialog.ask>) => ReturnType<typeof dialog.ask>
@@ -25,4 +26,12 @@ export interface IClipboard {
   hasHTML: () => Promise<boolean>
   hasImage: () => Promise<boolean>
   hasFiles: () => Promise<boolean>
+}
+
+export interface INotification {
+  sendNotification: (
+    ...args: Parameters<typeof notification.sendNotification>
+  ) => ReturnType<typeof notification.sendNotification>
+  requestPermission: () => ReturnType<typeof notification.requestPermission>
+  isPermissionGranted: () => ReturnType<typeof notification.isPermissionGranted>
 }

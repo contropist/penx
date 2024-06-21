@@ -1,4 +1,4 @@
-import { IClipboard, IDialog } from '../apiTypes'
+import { IClipboard, IDialog, INotification } from '../apiTypes'
 
 export interface IClipboardApi {
   clipboardReadText: IClipboard['readText']
@@ -19,7 +19,11 @@ export interface IClipboardApi {
   clipboardHasFiles: IClipboard['hasFiles']
 }
 
-export interface INotificationApi {}
+export interface INotificationApi {
+  notificationSendNotification: INotification['sendNotification']
+  notificationRequestPermission: INotification['requestPermission']
+  notificationIsPermissionGranted: INotification['isPermissionGranted']
+}
 
 export interface IDialogApi {
   dialogAsk: IDialog['ask']
