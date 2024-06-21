@@ -2,8 +2,6 @@ name: "Tauri App Publish"
 
 on:
   push:
-    branches:
-      - feat/api
     tags:
       - "v*"
   workflow_dispatch:
