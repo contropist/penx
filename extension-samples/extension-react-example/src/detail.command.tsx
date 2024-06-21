@@ -28,10 +28,12 @@ export function Main() {
       // console.log(await notification.isPermissionGranted())
       // notification.sendNotification('Hello from huakun')
       // console.log(
-      //   await fs.readTextFile('/Users/hacker/Desktop/penx/package.json'),
+      //   await fs.readTextFile(
+      //     '/Users/hacker/Dev/projects/penx/extension-samples/extension-react-example/src/detail.command.tsx',
+      //   ),
       // )
       // console.log(await fs.readFile('/Users/hacker/Desktop/penx/package.json'))
-      // console.log(await fs.stat('/Users/hacker/Desktop/penx/package.json'))
+      // console.log(await fs.stat('/Users/hacker/Desktop/'))
       // console.log(await fs.lstat('/Users/hacker/Desktop/penx/package.json'))
       // fs.truncate('/Users/hacker/Desktop/q.txt', 1)
       // console.log(await fs.readDir('/Users/hacker/Desktop'))

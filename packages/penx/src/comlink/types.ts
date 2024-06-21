@@ -1,4 +1,4 @@
-import { IClipboard, IDialog, INotification } from '../apiTypes'
+import { IClipboard, IDialog, IFs, INotification } from '../apiTypes'
 
 export interface IClipboardApi {
   clipboardReadText: IClipboard['readText']
@@ -33,7 +33,22 @@ export interface IDialogApi {
   dialogSave: IDialog['save']
 }
 
-export interface IFSApi {}
+export interface IFSApi {
+  fsReadDir: IFs['readDir']
+  fsReadFile: IFs['readFile']
+  fsReadTextFile: IFs['readTextFile']
+  fsStat: IFs['stat']
+  fsLstat: IFs['lstat']
+  fsExists: IFs['exists']
+  fsMkdir: IFs['mkdir']
+  fsCreate: IFs['create']
+  fsCopyFile: IFs['copyFile']
+  fsRemove: IFs['remove']
+  fsRename: IFs['rename']
+  fsTruncate: IFs['truncate']
+  fsWriteFile: IFs['writeFile']
+  fsWriteTextFile: IFs['writeTextFile']
+}
 
 export interface IShellApi {}
 

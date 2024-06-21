@@ -1,4 +1,5 @@
 import * as dialog from '@tauri-apps/plugin-dialog'
+import * as fs from '@tauri-apps/plugin-fs'
 import notification from '@tauri-apps/plugin-notification'
 
 export interface IDialog {
@@ -34,4 +35,21 @@ export interface INotification {
   ) => ReturnType<typeof notification.sendNotification>
   requestPermission: () => ReturnType<typeof notification.requestPermission>
   isPermissionGranted: () => ReturnType<typeof notification.isPermissionGranted>
+}
+
+export interface IFs {
+  readDir: (...args: Parameters<typeof fs.readDir>) => ReturnType<typeof fs.readDir>
+  readFile: (...args: Parameters<typeof fs.readFile>) => ReturnType<typeof fs.readFile>
+  readTextFile: (...args: Parameters<typeof fs.readTextFile>) => ReturnType<typeof fs.readTextFile>
+  stat: (...args: Parameters<typeof fs.stat>) => ReturnType<typeof fs.stat>
+  lstat: (...args: Parameters<typeof fs.lstat>) => ReturnType<typeof fs.lstat>
+  exists: (...args: Parameters<typeof fs.exists>) => ReturnType<typeof fs.exists>
+  mkdir: (...args: Parameters<typeof fs.mkdir>) => ReturnType<typeof fs.mkdir>
+  create: (...args: Parameters<typeof fs.create>) => ReturnType<typeof fs.create>
+  copyFile: (...args: Parameters<typeof fs.copyFile>) => ReturnType<typeof fs.copyFile>
+  remove: (...args: Parameters<typeof fs.remove>) => ReturnType<typeof fs.remove>
+  rename: (...args: Parameters<typeof fs.rename>) => ReturnType<typeof fs.rename>
+  truncate: (...args: Parameters<typeof fs.truncate>) => ReturnType<typeof fs.truncate>
+  writeFile: (...args: Parameters<typeof fs.writeFile>) => ReturnType<typeof fs.writeFile>
+  writeTextFile: (...args: Parameters<typeof fs.writeTextFile>) => ReturnType<typeof fs.writeTextFile>
 }

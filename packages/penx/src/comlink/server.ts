@@ -1,5 +1,6 @@
 import * as Comlink from '@huakunshen/comlink'
 import * as dialog from '@tauri-apps/plugin-dialog'
+import * as fs from '@tauri-apps/plugin-fs'
 import * as notification from '@tauri-apps/plugin-notification'
 import * as clipboard from 'tauri-plugin-clipboard-api'
 import { IApi } from './types'
@@ -32,6 +33,21 @@ const api: IApi = {
   notificationIsPermissionGranted: notification.isPermissionGranted,
   notificationRequestPermission: notification.requestPermission,
   notificationSendNotification: notification.sendNotification,
+  // File System
+  fsReadDir: fs.readDir,
+  fsReadFile: fs.readFile,
+  fsReadTextFile: fs.readTextFile,
+  fsStat: fs.stat,
+  fsLstat: fs.lstat,
+  fsExists: fs.exists,
+  fsMkdir: fs.mkdir,
+  fsCreate: fs.create,
+  fsCopyFile: fs.copyFile,
+  fsRemove: fs.remove,
+  fsRename: fs.rename,
+  fsTruncate: fs.truncate,
+  fsWriteFile: fs.writeFile,
+  fsWriteTextFile: fs.writeTextFile,
 }
 
 /**
