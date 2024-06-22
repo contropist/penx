@@ -1,5 +1,5 @@
-import { MarkdownBuilder, render } from '@penxio/worker-ui'
+import { MarkdownApp } from '@penxio/worker-ui'
 
 export async function main() {
-  render(new MarkdownBuilder('# Hello world...'))
+  new MarkdownApp({ content: '# Hello world...' })
 }

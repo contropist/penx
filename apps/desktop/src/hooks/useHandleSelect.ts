@@ -1,3 +1,4 @@
+import * as Comlink from '@huakunshen/comlink'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { comlink } from 'penx'

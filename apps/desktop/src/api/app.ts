@@ -1,5 +1,4 @@
-import { LoadingType } from '@penxio/worker-ui'
-import { constructAPICallbackExecuter, EventType } from 'penx'
+import { constructAPICallbackExecuter, EventType, LoadingType } from '@penxio/worker-ui'
 import { appEmitter } from '@penx/event'
 import { store } from '@penx/store'
 import { commandUIAtom } from '~/hooks/useCommandAppUI'
