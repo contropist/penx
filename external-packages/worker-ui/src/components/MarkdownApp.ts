@@ -1,30 +1,40 @@
 import { EventType } from '../constants'
 
-interface MarkdownJSON {
-  type: 'markdown'
+interface State {
   content: string
+}
+
+interface MarkdownJSON extends State {
+  type: 'markdown'
 }
 
 export function isMarkdownJSON(json: any): json is MarkdownJSON {
   return json.type === 'markdown'
 }
 
-interface Options {
-  content: string
-}
 export class MarkdownApp {
-  constructor(private data: Options) {
+  state: State
+
+  constructor(initialState: Partial<State>) {
+    this.state = { ...initialState } as State
+    this.render()
+  }
+
+  setState = (nextState: Partial<State>) => {
+    this.state = {
+      ...this.state,
+      ...nextState,
+    }
+    this.render()
+  }
+
+  private render = () => {
     postMessage({
       type: EventType.Render,
       payload: {
         type: 'markdown',
-        ...data,
+        ...this.state,
       },
     })
-  }
-
-  setContent = (content: string) => {
-    this.data.content = content
-    return this
   }
 }

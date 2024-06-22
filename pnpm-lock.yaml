@@ -1166,6 +1166,9 @@ importers:
       '@penxio/worker-ui':
         specifier: workspace:*
         version: link:../../../external-packages/worker-ui
+      penx:
+        specifier: workspace:*
+        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli

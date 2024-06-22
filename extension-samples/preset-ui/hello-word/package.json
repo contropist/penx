@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@penxio/worker-ui": "workspace:*",
+    "penx": "workspace:*",
     "penx-cli": "workspace:*",
     "@huakunshen/comlink": "^4.4.1",
     "prettier": "^3.2.5",

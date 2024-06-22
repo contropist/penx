@@ -26,6 +26,8 @@ export function useOnMessage() {
     //   return
     // }
 
+    console.log('======event:', event)
+
     handlers.forEach((handler) => handler(event))
   }
 }

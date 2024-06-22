@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Box, FowerHTMLProps } from '@fower/react'
-import { DoorOpenIcon, EyeOffIcon, Star } from 'lucide-react'
+import { Box } from '@fower/react'
 import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
 import { appEmitter } from '@penx/event'
+import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
@@ -12,9 +12,10 @@ import {
   StyledCommand,
   StyledCommandGroup,
   StyledCommandInput,
-  StyledCommandItem,
   StyledCommandList,
 } from './../CommandComponents'
+import { CommandAppActions } from './CommandAppActions'
+import { RootActions } from './RootActions'
 
 function useOnCmdK(fn: () => void) {
   useEffect(() => {
@@ -42,6 +43,7 @@ export const ActionPopover = ({}: Props) => {
   const { value } = useValue()
   const { items } = useItems()
   const { isRoot } = useCommandPosition()
+  const { ui } = useCommandAppUI()
 
   const selectItem = items.find((item) => item.data.commandName === value)
 
@@ -89,12 +91,7 @@ export const ActionPopover = ({}: Props) => {
           </Box>
         </Box>
       </PopoverTrigger>
-      <PopoverContent
-        className="action-menu"
-        shadow2XL
-        border
-        borderNeutral200--T30
-      >
+      <PopoverContent className="action-menu" shadow2XL border borderNeutral200--T30>
         <StyledCommand w-320>
           <StyledCommandList
             p2
@@ -107,46 +104,18 @@ export const ActionPopover = ({}: Props) => {
           >
             <StyledCommandGroup
               heading={
-                currentCommand?.data?.commandName ||
-                (selectItem?.title as string) ||
-                'Actions'
+                currentCommand?.data?.commandName || (selectItem?.title as string) || 'Actions'
               }
             >
-              {isRoot && (
-                <>
-                  <MenuItem
-                    shortcut="↵"
-                    onSelect={() => {
-                      selectItem && handleSelect(selectItem)
-                      setOpen(false)
-                    }}
-                  >
-                    <Box toCenterY gap2 inlineFlex>
-                      <Box gray800>
-                        <DoorOpenIcon size={16} />
-                      </Box>
-                      <Box>Open Command</Box>
-                    </Box>
-                  </MenuItem>
-                  {/* <MenuItem shortcut="⌘ ↵">Show in Finder</MenuItem> */}
-                  <MenuItem shortcut="⌘ ⇧ F">
-                    <Box toCenterY gap2 inlineFlex>
-                      <Box gray800>
-                        <Star size={16} />
-                      </Box>
-                      <Box>Add to Favorites</Box>
-                    </Box>
-                  </MenuItem>
+              {ui?.type === 'render' && <CommandAppActions />}
 
-                  <MenuItem shortcut="">
-                    <Box toCenterY gap2>
-                      <Box gray800 inlineFlex>
-                        <EyeOffIcon size={16} />
-                      </Box>
-                      <Box>Disable Command</Box>
-                    </Box>
-                  </MenuItem>
-                </>
+              {isRoot && (
+                <RootActions
+                  onSelect={() => {
+                    selectItem && handleSelect(selectItem)
+                    setOpen(false)
+                  }}
+                />
               )}
             </StyledCommandGroup>
           </StyledCommandList>
@@ -154,47 +123,5 @@ export const ActionPopover = ({}: Props) => {
         </StyledCommand>
       </PopoverContent>
     </Popover>
-  )
-}
-
-interface MenuItemProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
-  shortcut: string
-  onSelect?: () => void
-}
-function MenuItem({ children, shortcut, onSelect, ...rest }: MenuItemProps) {
-  return (
-    <StyledCommandItem
-      h-40
-      cursorPointer
-      text-13
-      rounded-8
-      gap2
-      px2
-      toCenterY
-      transitionCommon
-      onSelect={() => {
-        onSelect?.()
-      }}
-      onClick={() => {
-        onSelect?.()
-      }}
-      css={{
-        "&[aria-selected='true']": {
-          bgNeutral100: true,
-        },
-
-        "&[aria-disabled='true']": {
-          cursorNotAllowed: true,
-        },
-      }}
-      {...rest}
-    >
-      {children}
-      <Box toBetween toCenterY ml-auto gap1>
-        {shortcut.split(' ').map((key) => {
-          return <Kbd key={key}>{key}</Kbd>
-        })}
-      </Box>
-    </StyledCommandItem>
   )
 }

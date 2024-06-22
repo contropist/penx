@@ -1,5 +1,9 @@
 import { MarkdownApp } from '@penxio/worker-ui'
 
 export async function main() {
-  new MarkdownApp({ content: '# Hello world...' })
+  const app = new MarkdownApp({ content: '# Hello world...' })
+
+  setTimeout(() => {
+    app.setState({ content: '# Hi penx...' })
+  }, 2000)
 }

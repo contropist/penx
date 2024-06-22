@@ -1,4 +1,7 @@
-import { IAccessory } from '../types'
+import * as Comlink from '@huakunshen/comlink'
+import { api } from '../api'
+import { EventType } from '../constants'
+import { ActionItem, IAccessory, isCustomAction } from '../types'
 import { DataListBuilder, DataListJSON } from './DataListBuilder'
 
 type URL = string
@@ -6,20 +9,6 @@ type Asset = string
 type Icon = string
 
 export type ImageLike = URL | Asset | Icon | number
-
-export type OpenInBrowser = {
-  type: 'OpenInBrowser'
-  title?: string
-  url: string
-}
-
-export type CopyToClipboard = {
-  type: 'CopyToClipboard'
-  title?: string
-  content: string
-}
-
-export type ListItemAction = OpenInBrowser | CopyToClipboard
 
 export interface ListHeading {
   type: 'list-heading'
@@ -54,7 +43,7 @@ export interface IListItem {
 
   icon?: ImageLike | ObjectIcon
 
-  actions?: ListItemAction[]
+  actions?: ActionItem[]
 
   detail?: DataListBuilder
 
@@ -84,61 +73,67 @@ export function isObjectIcon(icon: any): icon is ObjectIcon {
   return typeof icon === 'object' && icon?.value !== undefined
 }
 
+interface State {
+  items: IListItem[]
+  isShowingDetail: boolean
+  isLoading: boolean
+  filtering: boolean
+  titleLayout: 'column' | 'row'
+}
+
 export class ListApp {
-  isShowingDetail = false
-  isLoading = false
+  state: State
 
-  filtering = true
+  constructor(initialState: Partial<State>) {
+    this.state = {
+      items: [],
+      isShowingDetail: false,
+      isLoading: false,
+      filtering: true,
+      titleLayout: 'row',
+      ...initialState,
+    } as State
 
-  titleLayout: 'column' | 'row' = 'row'
-
-  constructor(public items: IListItem[] = []) {}
-
-  setItems = (items: IListItem[]) => {
-    this.items = items
-    return this
+    this.render()
   }
 
-  addItem = (item: IListItem) => {
-    this.items.push(item)
-    return this
-  }
-
-  setLoading = (loading: boolean) => {
-    this.isLoading = loading
-    return this
-  }
-
-  setShowingDetail = (showingDetail: boolean) => {
-    this.isShowingDetail = showingDetail
-    return this
-  }
-
-  setTitleLayout(layout: 'column' | 'row') {
-    this.titleLayout = layout
-    return this
-  }
-
-  setFiltering(filtering: boolean) {
-    this.filtering = filtering
-    return this
-  }
-
-  toJSON(): ListJSON {
-    return {
-      type: 'list',
-      isLoading: this.isLoading,
-      isShowingDetail: this.isShowingDetail,
-      filtering: this.filtering,
-      titleLayout: this.titleLayout,
-      items: this.items.map((item) => {
-        if (!item.detail) return item as any as ListItemJSON
-        return {
-          ...item,
-          // TODO: handle array detail
-          detail: item.detail.toJSON(),
-        }
-      }),
+  setState = (nextState: Partial<State>) => {
+    this.state = {
+      ...this.state,
+      ...nextState,
     }
+    this.render()
+  }
+
+  private formatAction(state: State) {
+    const newItems = state.items.map((item) => {
+      return {
+        ...item,
+        actions: item.actions?.map((action, index) => {
+          if (isCustomAction(action)) {
+            const { onClick, ...rest } = action
+            console.log('=========onClick========', onClick)
+            api[`CustomAction_${index}`] = onClick
+            Comlink.expose(api)
+            return rest
+          }
+          return action
+        }),
+      }
+    })
+    return {
+      ...this.state,
+      items: newItems,
+    }
+  }
+
+  private render = () => {
+    postMessage({
+      type: EventType.Render,
+      payload: {
+        type: 'list',
+        ...this.formatAction(this.state),
+      },
+    })
   }
 }
