@@ -1,10 +1,12 @@
 name: "Tauri App Publish"
 
-on:
-  push:
-    tags:
-      - "v*"
-  workflow_dispatch:
+# on:
+#   push:
+#     tags:
+#       - "v*"
+#   workflow_dispatch:
+
+on: push
 
 jobs:
   publish-tauri:
@@ -71,7 +73,9 @@ jobs:
         #   SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           pnpm install # change this to npm or pnpm depending on which one you use.
-          pnpm build:packages
+          npx turbo run build --filter=desktop...
+
+      # pnpm build:packages
 
       - uses: tauri-apps/tauri-action@v0
         env:

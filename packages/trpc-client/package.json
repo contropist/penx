@@ -17,7 +17,6 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "@penx/api": "workspace:*",
     "@penx/constants": "workspace:*",
     "@penx/local-db": "workspace:*",
     "@penx/model": "workspace:*",

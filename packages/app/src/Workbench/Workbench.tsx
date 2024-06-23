@@ -5,12 +5,7 @@ import { Box } from '@fower/react'
 import { useQuery } from '@tanstack/react-query'
 import { SIDEBAR_WIDTH, WORKBENCH_NAV_HEIGHT } from '@penx/constants'
 import { EditorProvider } from '@penx/editor'
-import {
-  useActiveNodes,
-  useActiveSpace,
-  useRouterName,
-  useUser,
-} from '@penx/hooks'
+import { useActiveNodes, useActiveSpace, useRouterName, useUser } from '@penx/hooks'
 import { IconSidebar } from '@penx/icons'
 import { useSession } from '@penx/session'
 import { getAuthorizedUser } from '@penx/storage'
@@ -30,8 +25,6 @@ import { PageExtensions } from './PageExtensions/PageExtensions'
 import { PageTodo } from './PageTodo/PageTodo'
 import { RecoveryPhrase } from './RecoveryPhrase/RecoveryPhrase'
 import { RowModal } from './RowModal'
-import { AccountSettings } from './Settings/AccountSettings/AccountSettings'
-import { GoogleBackup } from './Settings/Backup/GoogleBackup'
 // import { LocalBackup } from './Settings/LocalBackup/LocalBackup'
 import { PageSettings } from './Settings/PageSettings/PageSettings'
 import { SettingsModal } from './Settings/SettingsModal/SettingsModal'
@@ -106,12 +99,6 @@ export const Workbench = () => {
 
             {name === 'NODE' && <NodePanels />}
 
-            {name === 'RESTORE_BACKUP' && (
-              <Box p10 mt10>
-                <GoogleBackup />
-              </Box>
-            )}
-
             {name !== 'NODE' && (
               <Box data-tauri-drag-region h-100vh overflowYAuto toCenterY pl10>
                 {/* <PCNav /> */}
@@ -124,11 +111,6 @@ export const Workbench = () => {
                 {name === 'ABOUT' && <About />}
                 {name === 'ACCOUNT' && <Account />}
                 {name === 'EXTENSIONS' && <PageExtensions />}
-                {name === 'ACCOUNT_SETTINGS' && (
-                  <Box p5>
-                    <AccountSettings />
-                  </Box>
-                )}
                 {name === 'RECOVER_PHRASE' && (
                   <Box p5>
                     <RecoveryPhrase />

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Box } from '@fower/react'
 import { useQuery } from '@tanstack/react-query'
 import { Skeleton } from 'uikit'
-import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
 import { trpc } from '@penx/trpc-client'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
@@ -10,7 +9,7 @@ import { StyledCommandGroup } from '../../CommandComponents'
 import { ExtensionDetail } from './ExtensionDetail'
 import { ExtensionItem } from './ExtensionItem'
 
-type ExtensionItem = RouterOutputs['extension']['all'][0]
+type ExtensionItem = any
 
 export function MarketplaceApp() {
   const { data = [], isLoading } = trpc.extension.all.useQuery()
@@ -34,11 +33,9 @@ export function MarketplaceApp() {
 
   return (
     <StyledCommandGroup>
-      {isCommandAppDetail && (
-        <ExtensionDetail item={extension} extensions={extensions} />
-      )}
+      {isCommandAppDetail && <ExtensionDetail item={extension} extensions={extensions} />}
       {!isCommandAppDetail &&
-        data?.map((item) => {
+        data?.map((item: any) => {
           return (
             <ExtensionItem
               key={item.id}

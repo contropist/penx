@@ -1,14 +1,14 @@
 import { Box } from '@fower/react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Button, Spinner } from 'uikit'
-import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
 import { Manifest } from '@penx/model'
 import { api } from '@penx/trpc-client'
 import { fetchInstallationJSON } from '~/common/fetchInstallationJSON'
 import { useLoadCommands } from '~/hooks/useItems'
 
-type ExtensionItem = RouterOutputs['extension']['all'][0]
+// any
+type ExtensionItem = any
 
 interface Props {
   item: ExtensionItem

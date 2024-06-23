@@ -24,7 +24,6 @@
     "@fower/react": "^2.1.1",
     "@hookform/resolvers": "^3.3.2",
     "@mozilla/readability": "^0.4.4",
-    "@penx/api": "workspace:*",
     "@penx/app": "workspace:*",
     "@penx/auto-format": "workspace:*",
     "@penx/bidirectional-link": "workspace:*",

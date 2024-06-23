@@ -43,7 +43,6 @@
     "@glideapps/glide-data-grid": "^6.0.3",
     "@hookform/resolvers": "^3.3.2",
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@penx/api": "workspace:*",
     "@penx/catalogue": "workspace:*",
     "@penx/cmdk": "workspace:*",
     "@penx/constants": "workspace:*",

@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { Box } from '@fower/react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { DownloadCloud } from 'lucide-react'
-import { RouterOutputs } from '@penx/api'
 import { db } from '@penx/local-db'
 import { Manifest } from '@penx/model'
 import { IExtension } from '@penx/model-types'
@@ -10,7 +9,8 @@ import { fetchInstallationJSON } from '~/common/fetchInstallationJSON'
 import { StyledCommandItem } from '../../CommandComponents'
 import { ListItemIcon } from '../../ListItemIcon'
 
-type ExtensionItem = RouterOutputs['extension']['all'][0]
+// TODO: handle any
+type ExtensionItem = any
 
 interface ExtensionItemProps {
   item: ExtensionItem
@@ -18,11 +18,7 @@ interface ExtensionItemProps {
   onSelect: (item: ExtensionItem) => void
 }
 
-export function ExtensionItem({
-  item,
-  extensions,
-  onSelect,
-}: ExtensionItemProps) {
+export function ExtensionItem({ item, extensions, onSelect }: ExtensionItemProps) {
   const manifest = new Manifest(item.manifest as any)
   const installed = !!extensions.find((e) => e.name === manifest.name)
 

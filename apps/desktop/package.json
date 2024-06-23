@@ -21,7 +21,6 @@
     "@octokit/auth-app": "^6.0.1",
     "@octokit/oauth-app": "^6.0.0",
     "@octokit/rest": "^20.0.2",
-    "@penx/api": "workspace:*",
     "@penx/app": "workspace:*",
     "@penx/cell-fields": "workspace:*",
     "@penx/cmdk": "workspace:*",

@@ -1,13 +1,11 @@
-import { RouterOutputs } from '@penx/api'
 import { appEmitter } from '@penx/event'
 import { setMnemonicToLocal } from '@penx/mnemonic'
 import { User } from '@penx/model'
 import { setAuthorizedUser, setLocalSession } from '@penx/storage'
 import { store } from '@penx/store'
 
-type UserInfo = RouterOutputs['user']['loginDesktop']
-
-export async function loginToDesktop(mnemonic: string, user: UserInfo) {
+// TODO: handle any
+export async function loginToDesktop(mnemonic: string, user: any) {
   const token = user.token
   store.setToken(token as string)
   store.user.setUser(new User(user as any))

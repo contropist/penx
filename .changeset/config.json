@@ -37,7 +37,6 @@
     "@penx/file",
     "@penx/link",
     "@penx/storage-estimate",
-    "@penx/api",
     "@penx/db",
     "@penx/editor-shared",
     "@penx/extension-dev-server",

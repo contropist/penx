@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { DownloadCloudIcon } from 'lucide-react'
 import { Button, toast } from 'uikit'
-import type { RouterOutputs } from '@penx/api'
 import { useActiveSpace } from '@penx/hooks'
 import { db } from '@penx/local-db'
 import { store } from '@penx/store'
@@ -10,7 +9,6 @@ import { useInstalledExtensions } from './hooks/useInstalledExtension'
 
 interface ExtensionItemProps {
   selected: boolean
-  // extension: RouterOutputs['extension']['all']['0']
   extension: any
 }
 export function ExtensionItem({ selected, extension }: ExtensionItemProps) {

@@ -3,7 +3,6 @@ import { Box } from '@fower/react'
 import { open } from '@tauri-apps/plugin-shell'
 import { DownloadCloud } from 'lucide-react'
 import { Divider } from 'uikit'
-import { RouterOutputs } from '@penx/api'
 import { IconGitHub } from '@penx/icons'
 import { Manifest } from '@penx/model'
 import { IExtension } from '@penx/model-types'
@@ -12,7 +11,8 @@ import { ListItemIcon } from '../../ListItemIcon'
 import { InstallExtensionButton } from './InstallExtensionButton'
 import { UninstallExtensionButton } from './UninstallExtensionButton'
 
-type ExtensionItem = RouterOutputs['extension']['all'][0]
+// handle any
+type ExtensionItem = any
 
 interface ExtensionDetailProps {
   item: ExtensionItem
@@ -44,9 +44,7 @@ export function ExtensionDetail({ item, extensions }: ExtensionDetailProps) {
               </Box>
             </Box>
             <Box>
-              {!!installed && (
-                <UninstallExtensionButton localExtensionId={installed.id} />
-              )}
+              {!!installed && <UninstallExtensionButton localExtensionId={installed.id} />}
 
               {!installed && <InstallExtensionButton item={item} />}
 
@@ -82,13 +80,7 @@ export function ExtensionDetail({ item, extensions }: ExtensionDetailProps) {
             {manifest.repo && (
               <Box toCenterY gap1 cursorPointer>
                 <IconGitHub size={16} gray600 />
-                <Box
-                  as="a"
-                  textBase
-                  gray800
-                  inlineFlex
-                  onClick={() => open(manifest.repoURL)}
-                >
+                <Box as="a" textBase gray800 inlineFlex onClick={() => open(manifest.repoURL)}>
                   {manifest.repo}
                 </Box>
               </Box>

@@ -3,11 +3,7 @@ import { Box } from '@fower/react'
 import { Editor, Node, Path, Transforms } from 'slate'
 import { createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
-import {
-  ELEMENT_TAG,
-  FILE_DATABASE_NAME,
-  TODO_DATABASE_NAME,
-} from '@penx/constants'
+import { ELEMENT_TAG, FILE_DATABASE_NAME, TODO_DATABASE_NAME } from '@penx/constants'
 import { PenxEditor, useEditorStatic } from '@penx/editor-common'
 import { findNodePath, getNodeByPath } from '@penx/editor-queries'
 import { db, formatTagName, getRandomColor } from '@penx/local-db'
@@ -15,7 +11,6 @@ import { INode } from '@penx/model-types'
 import { useNodes } from '@penx/node-hooks'
 import { getEmptyParagraph } from '@penx/paragraph'
 import { store } from '@penx/store'
-import { api, trpc } from '@penx/trpc-client'
 import { TagElement, TagSelectorElement } from '../../types'
 import { useKeyDownList } from '../../useKeyDownList'
 import { TagSelectorItem } from './TagSelectorItem'
@@ -76,9 +71,7 @@ export const TagSelectorContent = ({ close, element }: Props) => {
 
     let tags = tagNames
       .filter((item) => {
-        return (
-          item.toLowerCase().includes(q) && item.toLowerCase() !== 'untitled'
-        )
+        return item.toLowerCase().includes(q) && item.toLowerCase() !== 'untitled'
       })
       .filter((item) => !item.startsWith('$template__'))
     return tags
@@ -109,45 +102,11 @@ export const TagSelectorContent = ({ close, element }: Props) => {
         }
       }
 
-      if (tagName === TRANSLATOR) {
-        const blockText = getBlockText(editor, element)
+      // focus to next node
+      const nextNode = getNodeByPath(editor, Path.next(path))!
 
-        api.translator.googleTranslate
-          .query({
-            text: blockText,
-            from: 'auto',
-            to: 'en',
-          })
-          .then((res) => {
-            // console.log('=======res:', res)
-            Transforms.insertNodes(editor, getEmptyParagraph(res.text), {
-              at: Path.next(Path.parent(path)),
-              select: true,
-            })
-          })
-      } else if (tagName === GAS_PRICE) {
-        client.getGasPrice().then((res) => {
-          const gas_price = res / BigInt(1000000000)
-          const eth = Number(gas_price)
-          const usd = eth * 3450
-
-          // console.log('gasPrice==========:', res, gas_price.toString())
-          Transforms.insertNodes(
-            editor,
-            getEmptyParagraph(`Gas Price: ${gas_price.toString()}Gwei `),
-            {
-              at: Path.next(Path.parent(path)),
-              select: true,
-            },
-          )
-        })
-      } else {
-        // focus to next node
-        const nextNode = getNodeByPath(editor, Path.next(path))!
-
-        if (nextNode) {
-          Transforms.select(editor, Editor.start(editor, Path.next(path)))
-        }
+      if (nextNode) {
+        Transforms.select(editor, Editor.start(editor, Path.next(path)))
       }
 
       setTimeout(() => {
@@ -187,10 +146,7 @@ export const TagSelectorContent = ({ close, element }: Props) => {
         roundedLG
         cursorPointer
         onClick={async () => {
-          const database = await store.node.createDatabase(
-            editor.spaceId,
-            tagName,
-          )
+          const database = await store.node.createDatabase(editor.spaceId, tagName)
           selectTag(tagName, database.id)
         }}
       >
