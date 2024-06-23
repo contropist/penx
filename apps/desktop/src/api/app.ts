@@ -1,9 +1,10 @@
-import { constructAPICallbackExecuter, EventType, LoadingType } from '@penxio/worker-ui'
+import { constructAPICallbackExecuter, EventType } from '@penxio/worker-ui'
 import { appEmitter } from '@penx/event'
 import { store } from '@penx/store'
 import { commandUIAtom } from '~/hooks/useCommandAppUI'
 import { positionAtom } from '~/hooks/useCommandPosition'
 import { currentCommandAtom } from '~/hooks/useCurrentCommand'
+import { detailAtom } from '~/hooks/useDetail'
 
 export function handleSearchChange(event: MessageEvent) {
   return constructAPICallbackExecuter<undefined>(EventType.InitOnSearchChange, () => {
@@ -27,17 +28,6 @@ export function handleFilterChange(event: MessageEvent) {
   })(event)
 }
 
-export function useHandleLoading(setUI: (ui: { type: 'loading'; data: LoadingType }) => void) {
-  return function handleLoading(event: MessageEvent) {
-    return constructAPICallbackExecuter<LoadingType>(EventType.Loading, (payload) => {
-      setUI({
-        type: 'loading',
-        data: payload,
-      })
-    })(event)
-  }
-}
-
 type ComponentJSON = string
 
 export function useHandleRender(setUI: (ui: { type: 'render'; component: ComponentJSON }) => void) {
@@ -48,6 +38,15 @@ export function useHandleRender(setUI: (ui: { type: 'render'; component: Compone
         component: payload,
       })
     })(event)
+  }
+}
+
+export function handleDetail(event: MessageEvent<{ type: string; isLoading: boolean; data: any }>) {
+  if (event.data.type === 'detail') {
+    store.set(detailAtom, {
+      isLoading: event.data.isLoading,
+      data: event.data.data,
+    })
   }
 }
 

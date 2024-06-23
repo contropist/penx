@@ -1,7 +1,10 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Box } from '@fower/react'
-import { isCopyToClipboard, isListJSON, isOpenInBrowser } from '@penxio/worker-ui'
+import * as Comlink from '@huakunshen/comlink'
+import { isCopyToClipboard, isCustomAction, isListApp, isOpenInBrowser } from '@penxio/worker-ui'
 import { DoorOpenIcon } from 'lucide-react'
+import { comlink } from 'penx'
+import { workerStore } from '~/common/workerStore'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useValue } from '~/hooks/useValue'
 import { MenuItem } from './MenuItem'
@@ -14,18 +17,21 @@ export const CommandAppActions = ({ onSelect }: Props) => {
   const { value } = useValue()
   const { ui } = useCommandAppUI()
 
+  const itemIndexRef = useRef(0)
+
   const actions = useMemo(() => {
     if (ui.type !== 'render') return []
 
-    if (isListJSON(ui.component)) {
-      const item = ui.component.items.find((i) => i.title === value)
+    if (isListApp(ui.component)) {
+      const { items = [] } = ui.component
+      const index = items.findIndex((i) => i.title === value)
+      itemIndexRef.current = index
+      const item = items[index]
       if (!item?.actions?.length) return []
       return item.actions
     }
     return []
   }, [ui, value])
-
-  console.log('========actions:', actions)
 
   return (
     <>
@@ -33,7 +39,15 @@ export const CommandAppActions = ({ onSelect }: Props) => {
         <MenuItem
           key={index}
           shortcut="↵"
-          onSelect={() => {
+          onSelect={async () => {
+            if (isCustomAction(item)) {
+              workerStore.currentWorker!.postMessage({
+                type: 'customAction',
+                itemIndex: itemIndexRef.current,
+                actionIndex: index,
+              })
+            }
+
             onSelect?.()
           }}
         >
@@ -57,5 +71,5 @@ function getDefaultTitle(item: any) {
   if (isCopyToClipboard(item)) {
     return 'Copy to clipboard'
   }
-  return ''
+  return 'TODO:'
 }

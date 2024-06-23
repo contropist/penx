@@ -1,4 +1,4 @@
-import { IListItem, LoadingType } from '@penxio/worker-ui'
+import { IListItem } from '@penxio/worker-ui'
 import { atom, useAtom } from 'jotai'
 
 type MarketplaceUI = {
@@ -15,11 +15,6 @@ type TodayUI = {
 
 type DatabaseUI = {
   type: 'database'
-}
-
-type LoadingUI = {
-  type: 'loading'
-  data: LoadingType
 }
 
 type MarkdownUI = {
@@ -40,7 +35,6 @@ type RenderUI = {
 export type CommandAppUI =
   | ListUI
   | MarkdownUI
-  | LoadingUI
   | MarketplaceUI
   | TodayUI
   | DatabaseUI

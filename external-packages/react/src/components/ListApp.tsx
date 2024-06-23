@@ -65,6 +65,7 @@ export const ListApp = ({
 function Detail() {
   const { value } = useValue()
   const [content, setContent] = useState<any>()
+
   useEffect(() => {
     setContent(detailMap.get(value))
   }, [value])

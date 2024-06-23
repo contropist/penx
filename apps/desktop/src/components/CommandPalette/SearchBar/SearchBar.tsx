@@ -5,10 +5,10 @@ import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useCommands, useItems } from '~/hooks/useItems'
-import { useLoading } from '~/hooks/useLoading'
 import { useSearch } from '~/hooks/useSearch'
 import { AddRowButton } from './AddRowButton'
 import { BackRootButton } from './BackRootButton'
+import { CommandAppLoading } from './CommandAppLoading'
 import { DatabaseName } from './DatabaseName'
 import { SearchBarFilter } from './SearchBarFilter'
 import { SearchInput } from './SearchInput'
@@ -20,27 +20,17 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { search, setSearch } = useSearch()
   const { items, setItems } = useItems()
   const { commands } = useCommands()
-  const { loading } = useLoading()
-  const { isCommandApp, isCommandAppDetail, backToRoot, backToCommandApp } =
-    useCommandPosition()
+  const { isCommandApp, isCommandAppDetail, backToRoot, backToCommandApp } = useCommandPosition()
   const handleSelect = useHandleSelect()
   const { currentCommand } = useCurrentCommand()
 
   const currentCommandName = currentCommand?.data?.commandName
-  const isMarketplaceDetail =
-    currentCommandName === 'marketplace' && isCommandAppDetail
+  const isMarketplaceDetail = currentCommandName === 'marketplace' && isCommandAppDetail
 
   const isDatabaseApp = currentCommand?.data?.type === 'Database'
 
   return (
-    <Box
-      data-tauri-drag-region
-      toCenterY
-      borderBottom
-      borderGray200
-      relative
-      h={searchBarHeight}
-    >
+    <Box data-tauri-drag-region toCenterY borderBottom borderGray200 relative h={searchBarHeight}>
       {isCommandApp && <BackRootButton pl3 mr--8 />}
 
       {isDatabaseApp && <DatabaseName />}
@@ -94,7 +84,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
         <SearchBarFilter filters={currentCommand?.data?.filters} />
       )}
 
-      {loading && <hr command-palette-loader="" />}
+      <CommandAppLoading />
     </Box>
   )
 }

@@ -22,9 +22,6 @@
     "build:docs": "typedoc src/index.ts",
     "build": "rollup -c"
   },
-  "dependencies": {
-    "@huakunshen/comlink": "^4.4.1"
-  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^18.19.33",

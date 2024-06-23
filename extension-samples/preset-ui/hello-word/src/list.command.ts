@@ -1,11 +1,8 @@
 import { IListItem, ListApp } from '@penxio/worker-ui'
-import { getData } from './libs/getData'
+import { getHackNewsData } from './libs/getHackNewsData'
 
 export async function main() {
-  const app = new ListApp({
-    isLoading: true,
-    items: [],
-  })
+  const app = new ListApp({ isLoading: true, items: [] }).run()
 
   getItems().then((items) => {
     app.setState({ items })
@@ -13,7 +10,7 @@ export async function main() {
 }
 
 async function getItems(type = 'top') {
-  const data = await getData(type)
+  const data = await getHackNewsData(type)
 
   // list items
   const items = data.map(
@@ -32,19 +29,27 @@ async function getItems(type = 'top') {
           },
           {
             type: 'CustomAction',
+            title: 'CustomAction 1',
             onClick: () => {
-              console.log('=======CustomAction......')
+              console.log('CustomAction 1.........', Math.random())
+            },
+          },
+          {
+            type: 'CustomAction',
+            title: 'CustomAction 2',
+            onClick: () => {
+              console.log('CustomAction 2.........', Math.random())
             },
           },
         ],
         extra: [
           {
             icon: 'comment.svg',
-            text: item.descendants || 0,
+            text: item.descendants,
           },
           {
             icon: 'up.svg',
-            text: item.score || 0,
+            text: item.score,
           },
         ],
       }) as IListItem,

@@ -107,7 +107,13 @@ export const ActionPopover = ({}: Props) => {
                 currentCommand?.data?.commandName || (selectItem?.title as string) || 'Actions'
               }
             >
-              {ui?.type === 'render' && <CommandAppActions />}
+              {ui?.type === 'render' && (
+                <CommandAppActions
+                  onSelect={() => {
+                    setOpen(false)
+                  }}
+                />
+              )}
 
               {isRoot && (
                 <RootActions

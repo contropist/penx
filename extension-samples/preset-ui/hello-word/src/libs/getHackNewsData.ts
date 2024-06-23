@@ -10,7 +10,7 @@ interface Item {
   url: string
 }
 
-export async function getData(type: string) {
+export async function getHackNewsData(type: string) {
   const apiUrl = `https://hacker-news.firebaseio.com/v0/${type}stories.json`
 
   const newsItems = await fetch(apiUrl)

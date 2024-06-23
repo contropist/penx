@@ -1,8 +1,5 @@
-import * as Comlink from '@huakunshen/comlink'
-import { api } from '../api'
 import { EventType } from '../constants'
 import { ActionItem, IAccessory, isCustomAction } from '../types'
-import { DataListBuilder, DataListJSON } from './DataListBuilder'
 
 type URL = string
 type Asset = string
@@ -45,86 +42,149 @@ export interface IListItem {
 
   actions?: ActionItem[]
 
-  detail?: DataListBuilder
+  detail?: DetailItem[] | (() => DetailItem[] | Promise<DetailItem[]>)
 
   extra?: IAccessory[]
 
   data?: any
 }
 
-export type ListItemJSON = Omit<IListItem, 'detail'> & {
-  detail: DataListJSON
-}
-
-export interface ListJSON {
-  type: 'list'
-  isLoading: boolean
-  isShowingDetail: boolean
-  filtering: boolean
-  titleLayout: 'column' | 'row'
-  items: ListItemJSON[]
-}
-
-export function isListJSON(json: any): json is ListJSON {
-  return json.type === 'list'
-}
-
 export function isObjectIcon(icon: any): icon is ObjectIcon {
   return typeof icon === 'object' && icon?.value !== undefined
 }
 
+interface CustomActionPayload {
+  type: 'customAction'
+  itemIndex: number
+  actionIndex: number
+}
+
+export function isCustomActionPayload(value: any): value is CustomActionPayload {
+  return value?.type === 'customAction' && Reflect.has(value, 'itemIndex')
+}
+
+interface OnItemSelectPayload {
+  type: 'onItemSelect'
+  itemIndex: number
+  item: IListItem
+}
+
+export function isOnItemSelectPayload(value: any): value is OnItemSelectPayload {
+  // return value?.type === 'onItemSelect' && Reflect.has(value, 'itemIndex')
+  return value?.type === 'onItemSelect'
+}
+
+type DetailMarkdown = {
+  content: string
+}
+
+type DetailImage = {
+  src: string
+}
+
+type DetailDataItem = {
+  label: string
+  value: string
+}
+
+export type DetailItem = DetailMarkdown | DetailDataItem | DetailImage
+
 interface State {
   items: IListItem[]
-  isShowingDetail: boolean
   isLoading: boolean
+  isShowingDetail: boolean
   filtering: boolean
   titleLayout: 'column' | 'row'
 }
 
+export interface ListJSON extends State {
+  type: 'list'
+}
+
+export function isListApp(json: any): json is ListJSON {
+  return json.type === 'list'
+}
+
+type OnItemSelectCallback = (item: IListItem, index: number) => Promise<void> | void
+
 export class ListApp {
   state: State
+
+  onItemSelectCallback: OnItemSelectCallback
 
   constructor(initialState: Partial<State>) {
     this.state = {
       items: [],
-      isShowingDetail: false,
       isLoading: false,
       filtering: true,
       titleLayout: 'row',
+      isShowingDetail: false,
       ...initialState,
     } as State
-
-    this.render()
   }
 
   setState = (nextState: Partial<State>) => {
+    const isLoading = nextState?.items?.length ? false : this.state.isLoading
     this.state = {
       ...this.state,
+      isLoading,
       ...nextState,
     }
     this.render()
   }
 
-  private formatAction(state: State) {
+  onSelectItem = (fn: OnItemSelectCallback) => {
+    this.onItemSelectCallback = fn
+    return this
+  }
+
+  run = () => {
+    this.render()
+
+    self.addEventListener('message', async (event) => {
+      if (isCustomActionPayload(event.data)) {
+        const item = this.state.items[event.data.itemIndex]
+        const action = item.actions![event.data.actionIndex]
+        isCustomAction(action) && action.onClick?.()
+      }
+
+      // handle function detail
+
+      if (isOnItemSelectPayload(event.data)) {
+        const item = this.state.items[event.data.itemIndex]
+        if (typeof item.detail === 'function') {
+          postMessage({
+            type: 'detail',
+            isLoading: true,
+            data: [],
+          })
+
+          const data = await item.detail()
+          postMessage({
+            type: 'detail',
+            isLoading: false,
+            data,
+          })
+        }
+      }
+    })
+    return this
+  }
+
+  private formatState(state: State) {
     const newItems = state.items.map((item) => {
       return {
         ...item,
-        actions: item.actions?.map((action, index) => {
-          if (isCustomAction(action)) {
-            const { onClick, ...rest } = action
-            console.log('=========onClick========', onClick)
-            api[`CustomAction_${index}`] = onClick
-            Comlink.expose(api)
-            return rest
-          }
-          return action
+        detail: typeof item.detail === 'function' ? 'functionDetail' : item.detail,
+        actions: item.actions?.map((action) => {
+          if (!isCustomAction(action)) return action
+          const { onClick, ...rest } = action
+          return rest
         }),
       }
     })
-    return {
-      ...this.state,
-      items: newItems,
-    }
+
+    return { ...this.state, items: newItems }
   }
 
   private render = () => {
@@ -132,7 +192,7 @@ export class ListApp {
       type: EventType.Render,
       payload: {
         type: 'list',
-        ...this.formatAction(this.state),
+        ...this.formatState(this.state),
       },
     })
   }

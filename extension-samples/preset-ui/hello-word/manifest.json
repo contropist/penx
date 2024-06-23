@@ -17,6 +17,15 @@
       "runtime": "worker"
     },
     {
+      "name": "todo",
+      "title": "Todo Demo",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "runtime": "worker"
+    },
+    {
       "name": "list",
       "title": "List Demo",
       "icon": {

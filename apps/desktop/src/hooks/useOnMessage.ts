@@ -1,8 +1,8 @@
 import {
+  handleDetail,
   handleEscape,
   handleFilterChange,
   handleSearchChange,
-  useHandleLoading,
   useHandleRender,
 } from '~/api/app'
 import { handleShellxSpawn } from '~/api/shell'
@@ -17,7 +17,7 @@ export function useOnMessage() {
     handleSearchChange,
     handleFilterChange,
     handleEscape,
-    useHandleLoading(setUI),
+    handleDetail,
     useHandleRender(setUI),
   ]
   return async (event: MessageEvent<any>) => {
@@ -25,8 +25,6 @@ export function useOnMessage() {
     //   console.error('No ports found in message event:', event)
     //   return
     // }
-
-    console.log('======event:', event)
 
     handlers.forEach((handler) => handler(event))
   }

@@ -76,7 +76,7 @@ export interface ListJSON {
   items: ListItemJSON[]
 }
 
-export function isListJSON(json: any): json is ListJSON {
+export function isListApp(json: any): json is ListJSON {
   return json.type === 'list'
 }
 

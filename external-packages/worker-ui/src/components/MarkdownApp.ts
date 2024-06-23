@@ -1,6 +1,7 @@
 import { EventType } from '../constants'
 
 interface State {
+  isLoading: boolean
   content: string
 }
 
@@ -16,16 +17,24 @@ export class MarkdownApp {
   state: State
 
   constructor(initialState: Partial<State>) {
-    this.state = { ...initialState } as State
-    this.render()
+    this.state = {
+      isLoading: false,
+      ...initialState,
+    } as State
   }
 
   setState = (nextState: Partial<State>) => {
+    const isLoading = nextState?.content ? false : this.state.isLoading
     this.state = {
       ...this.state,
+      isLoading,
       ...nextState,
     }
     this.render()
+  }
+  run = () => {
+    this.render()
+    return this
   }
 
   private render = () => {

@@ -64,9 +64,13 @@ export const ListItemUI = ({
       value={value || title}
       keywords={keywords}
       onSelect={() => {
+        console.log('onselect....')
+
         onSelect?.(item)
       }}
       onClick={() => {
+        console.log('onCLi.....xxxxxxxx')
+
         onSelect?.(item)
       }}
       {...rest}

@@ -5,13 +5,9 @@ import { Command } from 'cmdk'
 import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
 import { store } from '@penx/store'
 import { ICommandItem } from '~/common/types'
-import { useCommandAppLoading } from '~/hooks/useCommandAppLoading'
 import { commandUIAtom, useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { positionAtom, useCommandPosition } from '~/hooks/useCommandPosition'
-import {
-  currentCommandAtom,
-  useCurrentCommand,
-} from '~/hooks/useCurrentCommand'
+import { currentCommandAtom, useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useOnWindowMessage } from '~/hooks/useOnWindowMessage'
@@ -31,8 +27,7 @@ const footerHeight = 40
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
 
-  const { developingItems, commandItems, databaseItems, applicationItems } =
-    useItems()
+  const { developingItems, commandItems, databaseItems, applicationItems } = useItems()
 
   // console.log('========items:', items)
 
@@ -45,7 +40,6 @@ export const CommandPalette = () => {
   const { isRoot, isCommandApp } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()
   const { ui } = useCommandAppUI()
-  const { loading } = useCommandAppLoading()
 
   const handleSelect = useHandleSelect()
 
@@ -56,9 +50,7 @@ export const CommandPalette = () => {
   useReset(setValue)
   const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'
 
-  const bodyHeight = isIframe
-    ? windowHeight
-    : windowHeight - searchBarHeight - footerHeight
+  const bodyHeight = isIframe ? windowHeight : windowHeight - searchBarHeight - footerHeight
 
   return (
     <StyledCommand
@@ -144,11 +136,7 @@ export const CommandPalette = () => {
             </Box>
           ) : (
             <StyledCommandList p2>
-              <CommandApp
-                loading={loading}
-                ui={ui}
-                currentCommand={currentCommand}
-              />
+              <CommandApp ui={ui} currentCommand={currentCommand} />
             </StyledCommandList>
           ))}
         {isRoot && (
@@ -203,12 +191,7 @@ interface ListGroupProps {
   onSelect?: (item: ICommandItem) => void
 }
 
-function ListGroup({
-  heading,
-  items,
-  onSelect,
-  isApplication = false,
-}: ListGroupProps) {
+function ListGroup({ heading, items, onSelect, isApplication = false }: ListGroupProps) {
   return (
     <Command.Group heading={heading}>
       {items.map((item, index) => {
@@ -216,13 +199,7 @@ function ListGroup({
           ? item.data.applicationPath
           : `${item.data.extensionSlug}__${item.data.commandName}`
         return (
-          <ListItemUI
-            key={index}
-            index={index}
-            value={value}
-            item={item}
-            onSelect={onSelect}
-          />
+          <ListItemUI key={index} index={index} value={value} item={item} onSelect={onSelect} />
         )
       })}
     </Command.Group>

@@ -1517,10 +1517,6 @@ importers:
         version: 5.4.5
 
   external-packages/worker-ui:
-    dependencies:
-      '@huakunshen/comlink':
-        specifier: ^4.4.1
-        version: 4.4.1
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
