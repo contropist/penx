@@ -2,13 +2,18 @@
   "name": "counter",
   "title": "Counter",
   "description": "Counter Example",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "lucide--clock"
+  },
   "commands": [
     {
       "name": "index",
       "title": "Counter",
       "subtitle": "",
       "description": "",
+      "icon": {
+        "name": "lucide--clock"
+      },
       "runtime": "worker"
     }
   ]

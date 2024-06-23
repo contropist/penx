@@ -2,13 +2,20 @@
   "title": "Run apple script",
   "name": "run-apple-script",
   "description": "",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
   "commands": [
     {
       "name": "index",
       "title": "Run apple script",
       "subtitle": "",
       "description": "",
+      "icon": {
+        "name": "mdi--react",
+        "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+      },
       "runtime": "worker"
     }
   ]

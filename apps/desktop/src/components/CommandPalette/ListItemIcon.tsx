@@ -99,7 +99,7 @@ function IconifyIcon(icon: IconifyIconType) {
   // TODO: parse className to fower props
   let props: Record<string, any> = {}
   const bgGradientX: string[] = []
-  const classNames = icon.className.split(/\s+/)
+  const classNames = icon.className?.split(/\s+/) || []
 
   for (const item of classNames) {
     if (item.startsWith('from-')) {

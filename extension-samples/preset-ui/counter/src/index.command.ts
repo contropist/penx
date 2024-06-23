@@ -1,12 +1,12 @@
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownApp } from '@penxio/worker-ui'
 
 export function main() {
   let counter = 1
 
-  render(new MarkdownBuilder(`# ${counter}`))
+  const app = new MarkdownApp({ content: `## ${counter}` }).run()
 
   setInterval(() => {
     counter++
-    render(new MarkdownBuilder(`# ${counter}`))
+    app.setState({ content: `## ${counter}` })
   }, 1000)
 }

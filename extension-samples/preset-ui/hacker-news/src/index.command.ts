@@ -1,29 +1,17 @@
-import {
-  IListItem,
-  ListBuilder,
-  MarkdownBuilder,
-  onFilterChange,
-  render,
-  renderLoading,
-} from 'penx'
+import { IListItem, ListApp } from '@penxio/worker-ui'
 import { getData } from './libs/getData'
 
 export async function main() {
-  renderLoading({ type: 'spinner' })
+  const app = new ListApp({ isLoading: true, items: [] }).run()
 
-  // render(new MarkdownBuilder('# Hello world...'))
-
-  const items = await getItems()
-  const list = new ListBuilder(items)
+  getItems().then((items) => {
+    app.setState({ items })
+  })
 
   // onFilterChange(async (filters) => {
-  //   renderLoading({ type: 'spinner' })
-  //   const newItems = await getItems(filters.type)
-  //   list.setItems(newItems)
-  //   render(list)
+  // const newItems = await getItems(filters.type)
+  // app.setItems(newItems)
   // })
-
-  render(list)
 }
 
 async function getItems(type = 'top') {

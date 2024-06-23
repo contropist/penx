@@ -896,22 +896,7 @@ importers:
         specifier: ^5.3.2
         version: 5.4.3
 
-  extension-samples/base64:
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/extension-react-example:
+  extension-samples/custom-ui-react/extension-react-example:
     dependencies:
       '@tanstack/react-query':
         specifier: ^5.45.1
@@ -925,7 +910,7 @@ importers:
     devDependencies:
       '@penxio/react':
         specifier: workspace:*
-        version: link:../../external-packages/react
+        version: link:../../../external-packages/react
       '@types/react':
         specifier: ^18.2.61
         version: 18.2.73
@@ -934,10 +919,10 @@ importers:
         version: 18.3.0
       penx:
         specifier: workspace:*
-        version: link:../../external-packages/penx
+        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
-        version: link:../../external-packages/cli
+        version: link:../../../external-packages/cli
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -945,7 +930,7 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  extension-samples/extension-template-react:
+  extension-samples/custom-ui-react/extension-template-react:
     dependencies:
       react:
         specifier: ^18.2.0
@@ -962,10 +947,10 @@ importers:
         version: 18.3.0
       penx:
         specifier: workspace:*
-        version: link:../../external-packages/penx
+        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
-        version: link:../../external-packages/cli
+        version: link:../../../external-packages/cli
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -973,64 +958,7 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  extension-samples/extension-template-solid:
-    dependencies:
-      solid-js:
-        specifier: ^1.8.17
-        version: 1.8.17
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/extension-template-svelte:
-    dependencies:
-      svelte:
-        specifier: ^4.2.17
-        version: 4.2.17
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/extension-template-vue:
-    dependencies:
-      vue:
-        specifier: ^3.4.27
-        version: 3.4.27(typescript@5.4.5)
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/github-trending:
+  extension-samples/custom-ui-react/github-trending:
     dependencies:
       '@tanstack/react-query':
         specifier: ^5.45.1
@@ -1044,7 +972,7 @@ importers:
     devDependencies:
       '@penxio/react':
         specifier: workspace:*
-        version: link:../../external-packages/react
+        version: link:../../../external-packages/react
       '@types/react':
         specifier: ^18.2.61
         version: 18.2.73
@@ -1053,10 +981,10 @@ importers:
         version: 18.3.0
       penx:
         specifier: workspace:*
-        version: link:../../external-packages/penx
+        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
-        version: link:../../external-packages/cli
+        version: link:../../../external-packages/cli
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -1064,7 +992,7 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  extension-samples/hacker-news:
+  extension-samples/custom-ui-react/hacker-news:
     dependencies:
       '@tanstack/react-query':
         specifier: ^5.45.1
@@ -1078,7 +1006,7 @@ importers:
     devDependencies:
       '@penxio/react':
         specifier: workspace:*
-        version: link:../../external-packages/react
+        version: link:../../../external-packages/react
       '@types/react':
         specifier: ^18.2.61
         version: 18.2.73
@@ -1087,10 +1015,10 @@ importers:
         version: 18.3.0
       penx:
         specifier: workspace:*
-        version: link:../../external-packages/penx
+        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
-        version: link:../../external-packages/cli
+        version: link:../../../external-packages/cli
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -1100,69 +1028,6 @@ importers:
 
   extension-samples/preset-ui/base64:
     devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/preset-ui/counter:
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/preset-ui/github-trending:
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/preset-ui/hacker-news:
-    devDependencies:
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
-      penx-cli:
-        specifier: workspace:*
-        version: link:../../../external-packages/cli
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.2
-        version: 5.4.5
-
-  extension-samples/preset-ui/hello-word:
-    devDependencies:
-      '@huakunshen/comlink':
-        specifier: ^4.4.1
-        version: 4.4.1
       '@penxio/worker-ui':
         specifier: workspace:*
         version: link:../../../external-packages/worker-ui
@@ -1179,12 +1044,65 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  extension-samples/preset-ui/render-api-demo:
-    dependencies:
-      ky:
-        specifier: ^1.1.3
-        version: 1.2.3
+  extension-samples/preset-ui/counter:
     devDependencies:
+      '@penxio/worker-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/worker-ui
+      penx:
+        specifier: workspace:*
+        version: link:../../../external-packages/penx
+      penx-cli:
+        specifier: workspace:*
+        version: link:../../../external-packages/cli
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  extension-samples/preset-ui/github-trending:
+    devDependencies:
+      '@penxio/worker-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/worker-ui
+      penx:
+        specifier: workspace:*
+        version: link:../../../external-packages/penx
+      penx-cli:
+        specifier: workspace:*
+        version: link:../../../external-packages/cli
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  extension-samples/preset-ui/hacker-news:
+    devDependencies:
+      '@penxio/worker-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/worker-ui
+      penx:
+        specifier: workspace:*
+        version: link:../../../external-packages/penx
+      penx-cli:
+        specifier: workspace:*
+        version: link:../../../external-packages/cli
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.3.2
+        version: 5.4.5
+
+  extension-samples/preset-ui/hello-word:
+    devDependencies:
+      '@penxio/worker-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/worker-ui
       penx:
         specifier: workspace:*
         version: link:../../../external-packages/penx
@@ -1200,6 +1118,9 @@ importers:
 
   extension-samples/preset-ui/run-apple-script:
     devDependencies:
+      '@penxio/worker-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/worker-ui
       penx:
         specifier: workspace:*
         version: link:../../../external-packages/penx
@@ -29437,7 +29358,7 @@ snapshots:
 
   '@vue/compiler-sfc@3.4.27':
     dependencies:
-      '@babel/parser': 7.24.6
+      '@babel/parser': 7.24.7
       '@vue/compiler-core': 3.4.27
       '@vue/compiler-dom': 3.4.27
       '@vue/compiler-ssr': 3.4.27

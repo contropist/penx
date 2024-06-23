@@ -1,26 +1,21 @@
-import {
-  IListItem,
-  ListBuilder,
-  onFilterChange,
-  render,
-  renderLoading,
-} from 'penx'
+import { IListItem, ListApp, onFilterChange } from '@penxio/worker-ui'
 import { getTrendingData } from './libs/getTrendingData'
 
 export async function main() {
-  renderLoading({ type: 'spinner' })
+  const app = new ListApp({
+    isLoading: true,
+    items: [],
+    titleLayout: 'column',
+  }).run()
 
-  const items = await getItems()
-  const list = new ListBuilder(items).setTitleLayout('column')
-
-  onFilterChange(async (filters) => {
-    renderLoading({ type: 'spinner' })
-    const newItems = await getItems(filters.since, filters.language)
-    list.setItems(newItems)
-    render(list)
+  getItems().then((items) => {
+    app.setState({ items })
   })
 
-  render(list)
+  onFilterChange(async (filters) => {
+    const newItems = await getItems(filters.since, filters.language)
+    app.setState({ items: newItems })
+  })
 }
 
 async function getItems(since = '', language = '') {

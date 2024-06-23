@@ -6,6 +6,7 @@
     "release": "penx release"
   },
   "devDependencies": {
+    "@penxio/worker-ui": "workspace:*",
     "penx": "workspace:*",
     "penx-cli": "workspace:*",
     "prettier": "^3.2.5",

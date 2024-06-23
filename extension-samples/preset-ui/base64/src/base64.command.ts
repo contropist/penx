@@ -1,18 +1,22 @@
-import { IListItem, ListBuilder, onSearchChange, render } from 'penx'
+import { IListItem, ListApp, onSearchChange } from '@penxio/worker-ui'
 import { toBase64 } from './libs/toBase64'
 import { toString } from './libs/toString'
 
 export async function main() {
-  const items = await getItems()
-  const list = new ListBuilder(items).setFiltering(false)
+  const app = new ListApp({
+    isLoading: true,
+    items: [],
+    filtering: false,
+  }).run()
+
+  getItems().then((items) => {
+    app.setState({ items })
+  })
 
   onSearchChange(async (value) => {
     const newItems = await getItems(value)
-    list.setItems(newItems)
-    render(list)
+    app.setState({ items: newItems })
   })
-
-  render(list)
 }
 
 async function getItems(text: string = '') {
