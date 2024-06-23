@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "PenX"
-version = "0.0.0"
+version = "0.3.32"
 dependencies = [
  "actix-cors",
  "actix-web",
@@ -38,6 +38,7 @@ dependencies = [
  "tauri-plugin-shell",
  "tauri-plugin-shellx",
  "urlencoding",
+ "winapi",
  "window-shadows",
  "window-vibrancy",
 ]

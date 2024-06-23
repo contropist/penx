@@ -1,6 +1,6 @@
 [package]
 name = "PenX"
-version = "0.0.0"
+version = "0.3.32"
 description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
@@ -47,6 +47,9 @@ tauri-plugin-jarvis = { path = "../../../packages/tauri-plugin-jarvis" }
 tauri-plugin-dialog = "2.0.0-beta.9"
 tauri-plugin-notification = "2.0.0-beta.8"
 tauri-plugin-shellx = "2.0.7"
+
+winapi = { version = "0.3", features = ["errhandlingapi"] }
+
 
 # MacOS
 [target."cfg(target_os = \"macos\")".dependencies]
