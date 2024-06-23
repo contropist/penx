@@ -75,22 +75,8 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   let authorization = req.headers['authorization'] || ''
 
   try {
-    if (authorization.startsWith('privy_')) {
-      authorization = authorization.replace('privy_', '')
-      const decoded = await client.verifyAuthToken(authorization)
-      const { id } = await prisma.user.findUniqueOrThrow({
-        where: { privyId: decoded.userId },
-        select: { id: true },
-      })
-
-      token = { ...decoded, uid: id }
-    } else {
-      const decoded = jwt.verify(
-        authorization,
-        process.env.NEXTAUTH_SECRET!,
-      ) as any
-      token = { ...decoded, uid: decoded.sub }
-    }
+    const decoded = jwt.verify(authorization, process.env.NEXTAUTH_SECRET!) as any
+    token = { ...decoded, uid: decoded.sub }
   } catch (error) {}
 
   return createInnerTRPCContext({
@@ -112,8 +98,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       cause: error.cause,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     }
   },

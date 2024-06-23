@@ -43,37 +43,6 @@ export const userRouter = createTRPCRouter({
   //     return users
   //   }),
 
-  upsertByPrivyUser: protectedProcedure
-    .input(
-      z.object({
-        privyUser: z.string(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      const privyUser = JSON.parse(input.privyUser)
-      const privyId = privyUser?.id
-      if (!privyId) {
-        throw new TRPCError({
-          code: 'BAD_REQUEST',
-          message: 'privyUser is not valid',
-        })
-      }
-
-      let user = await ctx.prisma.user.findFirst({ where: { privyId } })
-
-      if (!user) {
-        user = await ctx.prisma.user.create({
-          data: { privyId, privyUser },
-        })
-      } else {
-        user = await ctx.prisma.user.update({
-          where: { id: user.id },
-          data: { privyUser },
-        })
-      }
-      return user
-    }),
-
   updatePublicKey: protectedProcedure
     .input(z.object({ publicKey: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -94,21 +63,19 @@ export const userRouter = createTRPCRouter({
       })
     }),
 
-  loginByPersonalToken: publicProcedure
-    .input(z.string())
-    .mutation(async ({ ctx, input }) => {
-      const token = await ctx.prisma.personalToken.findUnique({
-        where: { value: input },
+  loginByPersonalToken: publicProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
+    const token = await ctx.prisma.personalToken.findUnique({
+      where: { value: input },
+    })
+    if (!token) {
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: 'Invalid personal token',
       })
-      if (!token) {
-        throw new TRPCError({
-          code: 'BAD_REQUEST',
-          message: 'Invalid personal token',
-        })
-      }
+    }
 
-      return getMe(ctx.token.uid, true)
-    }),
+    return getMe(ctx.token.uid, true)
+  }),
 
   loginDesktop: protectedProcedure.mutation(async ({ ctx }) => {
     return getMe(ctx.token.uid, true)
