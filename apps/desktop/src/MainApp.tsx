@@ -1,18 +1,10 @@
-'use client'
-
-import { PropsWithChildren, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import { isServer, useMutation, useQuery } from '@tanstack/react-query'
-import Head from 'next/head'
-import { EditorApp } from '@penx/app'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
-import { SessionProvider, useSession } from '@penx/session'
+import { SessionProvider } from '@penx/session'
 import { getLocalSession } from '@penx/storage'
-import {
-  FirstLocalSpaceGenerator,
-  RecoveryPhraseLoginProvider,
-} from '@penx/widget'
 import { installBuiltinExtension } from '~/common/installBuiltinExtension'
 import { CommandPalette } from '~/components/CommandPalette/CommandPalette'
 import { DesktopWelcome } from '~/components/DesktopWelcome'
@@ -100,7 +92,8 @@ export function MainApp() {
           />
         )}
         {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)}
-        {/* {isBoarded && <CommandPalette />} */}
+        {isBoarded && <CommandPalette />}
+        {/* <CommandPalette /> */}
       </Box>
     </SessionProvider>
   )

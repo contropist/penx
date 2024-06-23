@@ -27,7 +27,7 @@ export async function watchExtensionDevChange() {
     const assets = JSON.parse(payload.assets || '{}')
 
     // console.log('======payload:', payload)
-    console.log('========commands:', commands)
+    // console.log('========commands:', commands)
 
     const getIcon = () => {
       try {

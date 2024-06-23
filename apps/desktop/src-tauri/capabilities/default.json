@@ -56,6 +56,7 @@
     "global-shortcut:allow-unregister-all",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
+    "webview:allow-internal-toggle-devtools",
     {
       "identifier": "http:default",
       "allow": [
