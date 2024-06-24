@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { listen, UnlistenFn } from '@tauri-apps/api/event'
-import {
-  Kbd,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  usePopoverContext,
-} from 'uikit'
+import { Kbd, Popover, PopoverContent, PopoverTrigger, usePopoverContext } from 'uikit'
 import { useAppHotkey } from '../hooks/useAppHotkey'
 import {
   convertKeysToHotkey,
@@ -67,8 +61,7 @@ function Content() {
 
       const lastKey = keys[keys.length - 1]
 
-      const isModifierKey =
-        modifierKeys.includes(lastKey) || modifierCodes.includes(lastKey)
+      const isModifierKey = modifierKeys.includes(lastKey) || modifierCodes.includes(lastKey)
 
       keys = keys.filter((key) => !modifierCodes.includes(key))
 
@@ -131,7 +124,6 @@ function Content() {
 
 export const BindAppHotkey = ({}: Props) => {
   const { data = [], isLoading } = useAppHotkey()
-  console.log('x=======data:', data)
 
   return (
     <Popover>

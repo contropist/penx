@@ -16,9 +16,10 @@ export const RecoveryPhrase: FC<Props> = () => {
   const { data } = useSession()
   const { copy } = useCopyToClipboard()
 
-  const { isLoading, data: mnemonic } = useQuery(['Mnemonic', data?.id], () =>
-    getMnemonicFromLocal(data?.id!),
-  )
+  const { isLoading, data: mnemonic } = useQuery({
+    queryKey: ['Mnemonic', data?.id],
+    queryFn: () => getMnemonicFromLocal(data?.id!),
+  })
 
   if (isLoading || !mnemonic) return null
 
@@ -55,13 +56,7 @@ export const RecoveryPhrase: FC<Props> = () => {
               WebkitBackdropFilter: 'blur(5px)',
             }}
           >
-            <Button
-              relative
-              isSquare
-              size="sm"
-              zIndex-10
-              onClick={() => setBlur(!blur)}
-            >
+            <Button relative isSquare size="sm" zIndex-10 onClick={() => setBlur(!blur)}>
               <Eye></Eye>
             </Button>
           </Box>

@@ -4,9 +4,10 @@ import { db } from '@penx/local-db'
 
 export function FirstLocalSpaceGenerator({ children }: PropsWithChildren) {
   const initedRef = useRef(false)
-  const { isLoading, data, refetch } = useQuery(['localSpaces'], () =>
-    db.listLocalSpaces(),
-  )
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: ['localSpaces'],
+    queryFn: () => db.listLocalSpaces(),
+  })
 
   useEffect(() => {
     if (data?.length || initedRef.current) return

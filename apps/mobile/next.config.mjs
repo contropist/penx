@@ -32,7 +32,6 @@ const nextConfig = {
     '@penx/hooks',
     '@penx/node-hooks',
     '@penx/local-db',
-    '@penx/wagmi',
     '@penx/editor',
     '@penx/editor-queries',
     '@penx/editor-shared',

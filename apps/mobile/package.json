@@ -45,16 +45,14 @@
     "@penx/session": "workspace:*",
     "@penx/widget": "workspace:*",
     "@penx/encryption": "workspace:*",
-    "@penx/wagmi": "workspace:*",
     "@penx/storage": "workspace:*",
     "@penx/store": "workspace:*",
     "@penx/trpc-client": "workspace:*",
-    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query": "^5.45.1",
     "idb-keyval": "^6.2.1",
     "jotai": "^2.6.0",
     "lucide-react": "^0.344.0",
-    "uikit": "workspace:*",
-    "wagmi": "^2.6.0"
+    "uikit": "workspace:*"
   },
   "devDependencies": {
     "@penx/tsconfig": "workspace:*",

@@ -14,10 +14,10 @@ interface ExtensionItemProps {
 
 export function ExtensionItem({ extension }: ExtensionItemProps) {
   const { refetch } = useExtensions()
-  const { mutateAsync, isLoading } = useMutation(
-    ['extension', extension.id],
-    () => db.deleteExtension(extension.id),
-  )
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ['extension', extension.id],
+    mutationFn: () => db.deleteExtension(extension.id),
+  })
   const assets = extension?.assets || {}
 
   const isBuiltin = extension.name.startsWith('$penx_builtin_extension')
@@ -49,7 +49,7 @@ export function ExtensionItem({ extension }: ExtensionItemProps) {
             mr--4
             roundedFull
             isSquare
-            disabled={isLoading || isBuiltin}
+            disabled={isPending || isBuiltin}
             onClick={async () => {
               if (isBuiltin) return
               await mutateAsync()

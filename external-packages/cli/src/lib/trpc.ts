@@ -1,4 +1,4 @@
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
+import { createTRPCClient, httpBatchLink } from '@trpc/client'
 import fetch from 'node-fetch'
 import superjson from 'superjson'
 import { Env } from '../types'
@@ -15,8 +15,7 @@ export async function getTRPC(env?: Env) {
 
   const config = readConfig()
 
-  const trpc: any = createTRPCProxyClient({
-    transformer: superjson,
+  const trpc: any = createTRPCClient({
     links: [
       httpBatchLink({
         url: `${BASE_URL}/api/trpc`,

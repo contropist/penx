@@ -33,7 +33,7 @@
     "@penx/store": "workspace:*",
     "@penx/sync": "workspace:*",
     "@penx/trpc-client": "workspace:*",
-    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query": "^5.45.1",
     "idb-keyval": "^6.2.1",
     "ky": "^1.1.3",
     "react-hook-form": "^7.48.2",

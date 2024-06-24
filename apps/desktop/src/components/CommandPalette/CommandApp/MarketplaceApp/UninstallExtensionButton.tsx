@@ -16,10 +16,10 @@ export function UninstallExtensionButton({ localExtensionId }: Props) {
 
   const { refetch: refetchCommands } = useLoadCommands()
 
-  const { mutateAsync, isLoading } = useMutation(
-    ['extension', localExtensionId],
-    () => db.deleteExtension(localExtensionId),
-  )
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ['extension', localExtensionId],
+    mutationFn: () => db.deleteExtension(localExtensionId),
+  })
 
   return (
     <Button
@@ -27,14 +27,14 @@ export function UninstallExtensionButton({ localExtensionId }: Props) {
       w-90
       size="sm"
       // w-80
-      disabled={isLoading}
+      disabled={isPending}
       onClick={async () => {
         await mutateAsync()
         refetchExtensions()
         refetchCommands()
       }}
     >
-      {isLoading && <Spinner white square4 />}
+      {isPending && <Spinner white square4 />}
       <Box>Uninstall</Box>
     </Button>
   )

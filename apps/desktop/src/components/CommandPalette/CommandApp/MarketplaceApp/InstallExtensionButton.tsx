@@ -24,7 +24,7 @@ export function InstallExtensionButton({ item }: Props) {
 
   const { refetch: refetchCommands } = useLoadCommands()
 
-  const { mutateAsync, isLoading } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationKey: ['extension', item.id],
     mutationFn: async () => {
       const json = await fetchInstallationJSON(manifest.name)
@@ -42,7 +42,7 @@ export function InstallExtensionButton({ item }: Props) {
       colorScheme="black"
       w-90
       size="sm"
-      disabled={isLoading}
+      disabled={isPending}
       onClick={async () => {
         try {
           await mutateAsync()
@@ -55,7 +55,7 @@ export function InstallExtensionButton({ item }: Props) {
         }
       }}
     >
-      {isLoading && <Spinner white square4 />}
+      {isPending && <Spinner white square4 />}
       <Box>Install</Box>
     </Button>
   )

@@ -10,17 +10,20 @@ interface Props {
 }
 
 export const InitUserToStore = ({ userId }: Props) => {
-  const { data, error } = useQuery(['localUser', userId], async () => {
-    let user = await getAuthorizedUser()
+  const { data, error } = useQuery({
+    queryKey: ['localUser', userId],
+    queryFn: async () => {
+      let user = await getAuthorizedUser()
 
-    // if (!user) {
-    // }
+      // if (!user) {
+      // }
 
-    user = await api.user.me.query()
+      user = await api.user.me.query()
 
-    // console.log('user===========:', user)
+      // console.log('user===========:', user)
 
-    return user
+      return user
+    },
   })
 
   useEffect(() => {

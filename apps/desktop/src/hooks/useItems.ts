@@ -3,10 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { invoke } from '@tauri-apps/api/core'
 import { BaseDirectory, readDir } from '@tauri-apps/plugin-fs'
 import { atom, useAtom, useSetAtom } from 'jotai'
-import {
-  getAllApps,
-  refreshApplicationsList,
-} from 'tauri-plugin-jarvis-api/commands'
+import { getAllApps, refreshApplicationsList } from 'tauri-plugin-jarvis-api/commands'
 import { AppInfo } from 'tauri-plugin-jarvis-api/models'
 import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
@@ -48,10 +45,7 @@ export function useItems() {
             return true
           }
         }
-        return item.title
-          .toString()
-          .toLowerCase()
-          .includes(search.toLowerCase())
+        return item.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     databaseItems: items
@@ -63,10 +57,7 @@ export function useItems() {
             return true
           }
         }
-        return item.title
-          .toString()
-          .toLowerCase()
-          .includes(search.toLowerCase())
+        return item.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     applicationItems: items
@@ -78,10 +69,7 @@ export function useItems() {
             return true
           }
         }
-        return item.title
-          .toString()
-          .toLowerCase()
-          .includes(search.toLowerCase())
+        return item.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     setItems,
@@ -96,12 +84,13 @@ export function useCommands() {
 }
 
 export function useLoadCommands() {
-  return useQuery(['commands'], async () => {
-    try {
-      await refreshApplicationsList()
-      // const [extensions, databases, applicationsRes, entries] =
-      const [extensions, databases, applicationsRes, allApps] =
-        await Promise.all([
+  return useQuery({
+    queryKey: ['commands'],
+    queryFn: async () => {
+      try {
+        await refreshApplicationsList()
+        // const [extensions, databases, applicationsRes, entries] =
+        const [extensions, databases, applicationsRes, allApps] = await Promise.all([
           db.listExtensions(),
           db.listDatabases(),
           invoke('handle_input', {
@@ -113,118 +102,119 @@ export function useLoadCommands() {
           //   // recursive: true,
           // }),
         ])
-      // console.log('applicationsRes', applicationsRes)
-      // console.log('allApps', allApps)
+        // console.log('applicationsRes', applicationsRes)
+        // console.log('allApps', allApps)
 
-      // console.log('=========extensions:', extensions)
+        // console.log('=========extensions:', extensions)
 
-      const commands = extensions.reduce((acc, cur) => {
-        return [
-          ...acc,
-          ...cur.commands.map<ICommandItem>((item) => {
-            function getIcon() {
-              if (!item.icon) {
-                return cur.icon
+        const commands = extensions.reduce((acc, cur) => {
+          return [
+            ...acc,
+            ...cur.commands.map<ICommandItem>((item) => {
+              function getIcon() {
+                if (!item.icon) {
+                  return cur.icon
+                }
+
+                if (isIconify(item.icon)) return item.icon
+
+                if (typeof item.icon === 'string') {
+                  if (item.icon?.startsWith('/')) return item.icon
+                  const commandIcon = cur.assets?.[item.icon]
+                  return commandIcon
+                }
+                return ''
               }
 
-              if (isIconify(item.icon)) return item.icon
+              return {
+                type: 'list-item',
+                title: item.title,
+                subtitle: cur.title,
+                icon: getIcon(),
+                keywords: [],
+                data: {
+                  type: 'Command',
+                  alias: item.alias,
+                  assets: cur.assets,
+                  filters: item.filters,
+                  runtime: item.runtime,
+                  commandName: item.name,
+                  extensionSlug: cur.name,
+                  extensionIcon: cur.assets?.[cur.icon as string],
+                  isDeveloping: cur.isDeveloping,
+                } as ICommandItem['data'],
+              } as ICommandItem
+            }),
+          ]
+        }, [] as ICommandItem[])
 
-              if (typeof item.icon === 'string') {
-                if (item.icon?.startsWith('/')) return item.icon
-                const commandIcon = cur.assets?.[item.icon]
-                return commandIcon
-              }
-              return ''
-            }
-
-            return {
+        const databaseItems = databases.reduce((acc, item) => {
+          const node = new Node(item)
+          if (node.isSpecialDatabase) return acc
+          return [
+            ...acc,
+            {
               type: 'list-item',
-              title: item.title,
-              subtitle: cur.title,
-              icon: getIcon(),
+              title: node.tagName,
+              subtitle: '',
+              icon: {
+                value: '#',
+                bg: node.tagColor,
+              },
               keywords: [],
               data: {
-                type: 'Command',
-                alias: item.alias,
-                assets: cur.assets,
-                filters: item.filters,
-                runtime: item.runtime,
-                commandName: item.name,
-                extensionSlug: cur.name,
-                extensionIcon: cur.assets?.[cur.icon as string],
-                isDeveloping: cur.isDeveloping,
+                alias: item.props.commandAlias,
+                type: 'Database',
+                database: item,
               } as ICommandItem['data'],
-            } as ICommandItem
-          }),
-        ]
-      }, [] as ICommandItem[])
+            } as ICommandItem,
+          ]
+        }, [] as ICommandItem[])
 
-      const databaseItems = databases.reduce((acc, item) => {
-        const node = new Node(item)
-        if (node.isSpecialDatabase) return acc
-        return [
-          ...acc,
-          {
+        // const applicationPaths = (applicationsRes[0] as string[]) || []
+
+        // const applicationItems = allApps.reduce((acc, item) => {
+        //   const appName = getFileName(item).replace(/.app$/, '')
+
+        //   return [
+        //     ...acc,
+        //     {
+        //       type: 'list-item',
+        //       title: acc,
+        //       subtitle: '',
+        //       icon: appName,
+        //       keywords: [],
+        //       data: {
+        //         type: 'Application',
+        //         applicationPath: acc.app_desktop_path,
+        //         isApplication: true,
+        //         appIconPath: acc.icon_path,
+        //       } as ICommandItem['data'],
+        //     } as ICommandItem,
+        //   ]
+        // }, [] as ICommandItem[])
+        const applicationItems = allApps.map((appInfo: AppInfo) => {
+          return {
             type: 'list-item',
-            title: node.tagName,
+            title: appInfo.name,
             subtitle: '',
-            icon: {
-              value: '#',
-              bg: node.tagColor,
-            },
+            icon: appInfo.icon_path,
             keywords: [],
             data: {
-              alias: item.props.commandAlias,
-              type: 'Database',
-              database: item,
+              type: 'Application',
+              applicationPath: appInfo.app_desktop_path,
+              isApplication: true,
             } as ICommandItem['data'],
-          } as ICommandItem,
-        ]
-      }, [] as ICommandItem[])
+          } as ICommandItem
+        })
+        return [...commands, ...databaseItems, ...applicationItems]
+        // return [...commands, ...databaseItems]
+      } catch (error) {
+        console.log('==============error:', error)
 
-      // const applicationPaths = (applicationsRes[0] as string[]) || []
-
-      // const applicationItems = allApps.reduce((acc, item) => {
-      //   const appName = getFileName(item).replace(/.app$/, '')
-
-      //   return [
-      //     ...acc,
-      //     {
-      //       type: 'list-item',
-      //       title: acc,
-      //       subtitle: '',
-      //       icon: appName,
-      //       keywords: [],
-      //       data: {
-      //         type: 'Application',
-      //         applicationPath: acc.app_desktop_path,
-      //         isApplication: true,
-      //         appIconPath: acc.icon_path,
-      //       } as ICommandItem['data'],
-      //     } as ICommandItem,
-      //   ]
-      // }, [] as ICommandItem[])
-      const applicationItems = allApps.map((appInfo: AppInfo) => {
-        return {
-          type: 'list-item',
-          title: appInfo.name,
-          subtitle: '',
-          icon: appInfo.icon_path,
-          keywords: [],
-          data: {
-            type: 'Application',
-            applicationPath: appInfo.app_desktop_path,
-            isApplication: true,
-          } as ICommandItem['data'],
-        } as ICommandItem
-      })
-      return [...commands, ...databaseItems, ...applicationItems]
-      // return [...commands, ...databaseItems]
-    } catch (error) {
-      console.log('==============error:', error)
-
-      return []
-    }
+        return []
+      }
+    },
   })
 }
 

@@ -43,7 +43,6 @@
     "@penx/local-db",
     "@penx/session",
     "@penx/app",
-    "@penx/wagmi",
     "@penx/widget",
     "@penx/mnemonic",
     "@penx/math",

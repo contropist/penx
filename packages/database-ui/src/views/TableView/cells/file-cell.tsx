@@ -52,13 +52,7 @@ export const fileCellRenderer: CustomRenderer<FileCell> = {
       ctx.arc(drawX + radius, rect.y + rect.height / 2, radius, 0, Math.PI * 2)
       // ctx.clip()
 
-      ctx.drawImage(
-        imageResult,
-        drawX,
-        rect.y + rect.height / 2 - radius,
-        radius * 2,
-        radius * 2,
-      )
+      ctx.drawImage(imageResult, drawX, rect.y + rect.height / 2 - radius, radius * 2, radius * 2)
 
       ctx.restore()
     }
@@ -89,20 +83,23 @@ function ImagePreview(props: FileCellProps) {
   const { fileHash, googleDriveFileId } = props
   // console.log('=========ImagePreview props:', props)
 
-  const { data, isLoading, error } = useQuery(['file', fileHash], async () => {
-    if (props.url) return props.url
-    let rawFile: File
-    const file = await db.file.where({ fileHash }).first()
-    if (file) {
-      rawFile = file.value
-    } else {
-      const { google } = await getAuthorizedUser()
-      const drive = new GoogleDrive(google.access_token)
-      rawFile = await drive.getFile(googleDriveFileId)
-    }
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['file', fileHash],
+    queryFn: async () => {
+      if (props.url) return props.url
+      let rawFile: File
+      const file = await db.file.where({ fileHash }).first()
+      if (file) {
+        rawFile = file.value
+      } else {
+        const { google } = await getAuthorizedUser()
+        const drive = new GoogleDrive(google.access_token)
+        rawFile = await drive.getFile(googleDriveFileId)
+      }
 
-    const url = URL.createObjectURL(rawFile)
-    return url
+      const url = URL.createObjectURL(rawFile)
+      return url
+    },
   })
 
   // console.log('==============error:', error)

@@ -12,10 +12,10 @@ export function AddDatabase() {
   const [value, setValue] = useState('')
   const { refetch } = useDatabases()
   const { activeSpace } = useActiveSpace()
-  const { mutateAsync, isLoading } = useMutation(
-    ['createDatabase', activeSpace?.id],
-    (name: string) => store.node.createDatabase(activeSpace.id, name),
-  )
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ['createDatabase', activeSpace?.id],
+    mutationFn: (name: string) => store.node.createDatabase(activeSpace.id, name),
+  })
 
   return (
     <Popover placement="bottom-start">
@@ -34,7 +34,7 @@ export function AddDatabase() {
               onChange={(e) => setValue(e.target.value)}
             />
             <Button
-              disabled={!value || isLoading}
+              disabled={!value || isPending}
               onClick={async () => {
                 if (!value) return
                 await mutateAsync(formatTagName(value))

@@ -36,7 +36,7 @@ export function ExtensionItem({ item, extensions, onSelect }: ExtensionItemProps
     queryFn: () => db.listExtensions(),
   })
 
-  const { mutateAsync, isLoading } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationKey: ['extension', item.id],
     mutationFn: async () => {
       const json = await fetchInstallationJSON(manifest.name)

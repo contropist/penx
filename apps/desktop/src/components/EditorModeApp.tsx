@@ -27,9 +27,12 @@ const OnlineProvider = ({ children }: PropsWithChildren) => {
 }
 
 export function EditorModeApp() {
-  const { isLoading, data, refetch } = useQuery(['session'], async () => {
-    const session = await getLocalSession()
-    return session ? session : null
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: ['session'],
+    queryFn: async () => {
+      const session = await getLocalSession()
+      return session ? session : null
+    },
   })
 
   useEffect(() => {

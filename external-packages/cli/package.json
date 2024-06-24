@@ -32,7 +32,7 @@
     "@iconify/tailwind": "^1.1.1",
     "@inquirer/prompts": "^4.3.0",
     "@inquirer/select": "^2.2.0",
-    "@trpc/client": "^10.45.1",
+    "@trpc/client": "11.0.0-rc.421",
     "@types/fs-extra": "^11.0.4",
     "@types/tmp": "^0.2.6",
     "@types/yargs": "^17.0.10",

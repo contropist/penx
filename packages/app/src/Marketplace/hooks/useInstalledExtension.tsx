@@ -13,10 +13,10 @@ export function useInstalledExtensions() {
 }
 
 export function useQueryExtensions() {
-  const { isLoading, data: extensions } = useQuery(
-    ['installedExtensions'],
-    () => db.listExtensions(),
-  )
+  const { isLoading, data: extensions } = useQuery({
+    queryKey: ['installedExtensions'],
+    queryFn: () => db.listExtensions(),
+  })
 
   useEffect(() => {
     if (!extensions) return
