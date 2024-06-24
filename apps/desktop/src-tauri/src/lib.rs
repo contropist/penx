@@ -95,12 +95,12 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_clipboard::init())
         .plugin(tauri_plugin_jarvis::init())
-        // .register_uri_scheme_protocol("appicon", |_app, request| {
-        //     let url = &request.uri().path()[1..];
-        //     let url = urlencoding::decode(url).unwrap().to_string();
-        //     let path = PathBuf::from(url);
-        //     return tauri_plugin_jarvis::utils::icns::load_icon(path);
-        // })
+        .register_uri_scheme_protocol("appicon", |_app, request| {
+            let url = &request.uri().path()[1..];
+            let url = urlencoding::decode(url).unwrap().to_string();
+            let path = PathBuf::from(url);
+            return tauri_plugin_jarvis::utils::icns::load_icon(path);
+        })
         .invoke_handler(tauri::generate_handler![
             menu::on_button_clicked,
             greet,
