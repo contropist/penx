@@ -10,6 +10,7 @@ export const api = createTRPCClient<any>({
   links: [
     httpBatchLink({
       url: `${BASE_URL}/api/trpc`,
+      transformer: superjson,
       async headers() {
         return await getHeaders()
       },
@@ -17,4 +18,4 @@ export const api = createTRPCClient<any>({
   ],
 }) as any // TODO: handle any
 
-export const trpc = createTRPCReact<any>() as any // TODO: handle any
+export const trpc = createTRPCReact<any>() as any

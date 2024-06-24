@@ -52,6 +52,8 @@ export function handleDetail(event: MessageEvent<{ type: string; isLoading: bool
 
 export function handleEscape(event: MessageEvent<{ type: string }>) {
   if (event.data.type === 'escape') {
+    console.log('name......---')
+
     store.set(positionAtom, 'ROOT')
     store.set(currentCommandAtom, null as any)
     store.set(commandUIAtom, {} as any)

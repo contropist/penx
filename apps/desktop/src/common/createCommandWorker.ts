@@ -3,6 +3,7 @@ import { Command } from '@penx/model-types'
 export function createCommandWorker(command: Command, input = '') {
   const extraCode = `
     self.addEventListener('message', async (event) => {
+      // console.log('=======event:', event.data)
       if (event.data === 'BACK_TO_ROOT') {
         self.close()
       }

@@ -104,7 +104,7 @@ export function useHandleSelect() {
       workerStore.currentWorker = worker
 
       item.data.commandName && worker.postMessage(item.data.commandName)
-      worker.onmessage = onMessage
+      worker.addEventListener('message', onMessage)
     }
   }
 }

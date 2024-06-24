@@ -27,8 +27,7 @@ export function useCommandPosition() {
 
   return {
     isRoot: position === 'ROOT',
-    isCommandApp:
-      position === 'COMMAND_APP' || position === 'COMMAND_APP_DETAIL',
+    isCommandApp: position === 'COMMAND_APP' || position === 'COMMAND_APP_DETAIL',
     isCommandAppDetail: position === 'COMMAND_APP_DETAIL',
     position,
     backToRoot,
