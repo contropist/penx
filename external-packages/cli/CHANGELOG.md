@@ -1,5 +1,12 @@
 # penx-cli
 
+## 0.5.0
+
+### Minor Changes
+
+- f451e18: release @penxio/react
+- release worker-ui
+
 ## 0.4.0
 
 ### Minor Changes

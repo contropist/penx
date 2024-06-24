@@ -9,7 +9,6 @@ import { trpc } from './trpc'
 const queryClient = new QueryClient()
 const trpcClient = trpc.createClient({
   transformer: superjson,
-
   links: [
     httpBatchLink({
       url: `${BASE_URL}/api/trpc`,

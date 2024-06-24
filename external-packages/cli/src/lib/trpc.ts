@@ -1,6 +1,5 @@
 import { createTRPCClient, httpBatchLink } from '@trpc/client'
 import fetch from 'node-fetch'
-import superjson from 'superjson'
 import { Env } from '../types'
 import { getBaseURL, readConfig } from './utils'
 
