@@ -1,4 +1,3 @@
-import * as Comlink from '@huakunshen/comlink'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { comlink } from 'penx'
@@ -18,6 +17,27 @@ import { useCurrentDatabase } from './useCurrentDatabase'
 import { useOnMessage } from './useOnMessage'
 import { useSearch } from './useSearch'
 
+function useHandleBuiltinCommand() {
+  const { setUI } = useCommandAppUI()
+  const { setPosition } = useCommandPosition()
+  const { setCurrentCommand } = useCurrentCommand()
+  const { setSearch } = useSearch()
+  return (item: ICommandItem) => {
+    if (
+      ['marketplace', 'installed-extensions', 'about', 'settings'].includes(item.data.commandName)
+    ) {
+      setSearch('')
+      setCurrentCommand(item)
+      setUI({ type: item.data.commandName as any })
+      setPosition('COMMAND_APP')
+
+      appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
+      return true
+    }
+    return false
+  }
+}
+
 export function useHandleSelect() {
   const { setUI } = useCommandAppUI()
   const { setPosition } = useCommandPosition()
@@ -26,15 +46,13 @@ export function useHandleSelect() {
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
   const onMessage = useOnMessage()
+  const handleBuiltinCommand = useHandleBuiltinCommand()
 
   return async (item: ICommandItem, input = '') => {
-    if (item.data.commandName === 'marketplace') {
-      setSearch('')
-      setCurrentCommand(item)
-      setUI({ type: 'marketplace' })
-      setPosition('COMMAND_APP')
+    const handled = handleBuiltinCommand(item)
+    if (handled) return
 
-      appEmitter.emit('FOCUS_SEARCH_BAR_INPUT')
+    if (item.data.commandName === 'marketplace') {
       return
     }
 

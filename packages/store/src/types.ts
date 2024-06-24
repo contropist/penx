@@ -7,13 +7,10 @@ export type RouteName =
   | 'WEB3_PROFILE'
   | 'RESTORE_BACKUP'
   | 'SETTINGS'
-  | 'EXTENSIONS'
   | 'MARKETPLACE'
   | 'LOCAL_BACKUP'
   | 'ACCOUNT_SETTINGS'
   | 'RECOVER_PHRASE'
-  | 'GENERAL'
-  | 'ABOUT'
   | 'ACCOUNT'
 
 export type IRouterStore = {

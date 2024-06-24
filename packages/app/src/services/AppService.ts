@@ -122,10 +122,8 @@ export class AppService {
         //   store.node.setActiveNodes(activeNodes)
         // }
 
-        console.log('====store.router.getName():', store.router.getName())
-
         if (!store.router.getName()) {
-          store.router.routeTo('GENERAL')
+          store.router.routeTo('DATABASES')
         }
       }
 

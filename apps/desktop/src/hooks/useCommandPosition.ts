@@ -16,7 +16,10 @@ export function useCommandPosition() {
     setCurrentCommand(null as any)
     setUI({} as any)
 
+    console.log('back top root.......')
+
     if (workerStore.currentWorker) {
+      console.log('worker back to root.......')
       workerStore.currentWorker.postMessage('BACK_TO_ROOT')
     }
   }

@@ -41,13 +41,10 @@ export const Sidebar = memo(
 
     const isTodosActive = name === 'TODOS'
     const isDatabasesActive = name === 'DATABASES'
-    const isExtensionsActive = name === 'EXTENSIONS'
     const isMarketplaceActive = name === 'MARKETPLACE'
     const isAccountSettingsActive = name === 'ACCOUNT_SETTINGS'
     const isRecoveryPhraseActive = name === 'RECOVER_PHRASE'
     const isLocalBackupActive = name === 'LOCAL_BACKUP'
-    const isGeneralActive = name === 'GENERAL'
-    const isAboutActive = name === 'ABOUT'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -86,42 +83,6 @@ export const Sidebar = memo(
         {/* <SidebarHeader /> */}
 
         <Box px3 column gap2 pb3 toCenterY>
-          <SidebarItem
-            neutral500
-            isActive={isGeneralActive}
-            icon={
-              <Box neutral500 inlineFlex>
-                <Settings2 size={20} />
-              </Box>
-            }
-            label="General"
-            onClick={() => {
-              store.router.routeTo('GENERAL')
-            }}
-          />
-
-          <SidebarItem
-            neutral500
-            icon={
-              <Box
-                inlineFlex
-                neutral500
-                // square5
-                // roundedLG
-                // bgGradientX={['pink500', 'purple500']}
-                // white
-                // toCenter
-              >
-                <LayoutGridIcon size={20} />
-              </Box>
-            }
-            label="Extensions"
-            isActive={isExtensionsActive}
-            onClick={() => {
-              store.router.routeTo('EXTENSIONS')
-            }}
-          />
-
           {session && (
             <SidebarItem
               neutral500
@@ -178,20 +139,6 @@ export const Sidebar = memo(
             label="Feedback"
             onClick={() => {
               open('https://github.com/penxio/penx/issues')
-            }}
-          />
-
-          <SidebarItem
-            neutral500
-            isActive={isAboutActive}
-            icon={
-              <Box neutral500 inlineFlex>
-                <Info size={20} />
-              </Box>
-            }
-            label="About"
-            onClick={() => {
-              store.router.routeTo('ABOUT')
             }}
           />
         </Box>

@@ -12,16 +12,13 @@ import { getAuthorizedUser } from '@penx/storage'
 import { Fallback } from '../Fallback/Fallback'
 import { LoginByTokenModal } from '../LoginByTokenModal/LoginByTokenModal'
 import { CommandPanel } from '../Palette'
-import { About } from './About/About'
 import { Account } from './Account/Account'
 import { BackupMnemonicTips } from './BackupMnemonicTips'
 import { BottomBar } from './BottomBar'
-import { General } from './General/General'
 import { MobileNav } from './NodeNav/MobileNav'
 import { PCNav } from './NodeNav/PCNav'
 import { NodePanels } from './NodePanels'
 import { PageDatabases } from './PageDatabases/PageDatabases'
-import { PageExtensions } from './PageExtensions/PageExtensions'
 import { PageTodo } from './PageTodo/PageTodo'
 import { RecoveryPhrase } from './RecoveryPhrase/RecoveryPhrase'
 import { RowModal } from './RowModal'
@@ -107,10 +104,7 @@ export const Workbench = () => {
                 {name === 'SETTINGS' && <PageSettings />}
                 {name === 'TODOS' && <PageTodo />}
                 {name === 'DATABASES' && <PageDatabases />}
-                {name === 'GENERAL' && <General />}
-                {name === 'ABOUT' && <About />}
                 {name === 'ACCOUNT' && <Account />}
-                {name === 'EXTENSIONS' && <PageExtensions />}
                 {name === 'RECOVER_PHRASE' && (
                   <Box p5>
                     <RecoveryPhrase />

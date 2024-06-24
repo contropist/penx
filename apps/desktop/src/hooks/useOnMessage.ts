@@ -25,7 +25,6 @@ export function useOnMessage() {
     //   console.error('No ports found in message event:', event)
     //   return
     // }
-    console.log('event.data=======:', event.data)
 
     handlers.forEach((handler) => handler(event))
   }

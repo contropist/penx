@@ -27,6 +27,41 @@ export async function installBuiltinExtension() {
         code: '',
         isBuiltIn: true,
       },
+      {
+        name: 'installed-extensions',
+        title: 'Installed Extensions',
+        icon: {
+          name: 'lucide--layout-grid',
+        },
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+      {
+        name: 'about',
+        title: 'About PenX',
+        icon: {
+          name: 'lucide--info',
+        },
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+
+      {
+        name: 'settings',
+        title: 'PenX Settings',
+        icon: {
+          name: 'lucide--settings',
+        },
+        subtitle: '',
+        description: '',
+        code: '',
+        isBuiltIn: true,
+      },
+
       // {
       //   name: 'create-database',
       //   title: 'Create Database',

@@ -98,7 +98,6 @@ export function MainApp() {
           />
         )}
         {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)}
-        {isBoarded && <CommandPalette />}
         {/* <CommandPalette /> */}
       </Box>
     </SessionProvider>

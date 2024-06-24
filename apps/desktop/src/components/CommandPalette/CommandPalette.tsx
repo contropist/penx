@@ -135,7 +135,7 @@ export const CommandPalette = () => {
               />
             </Box>
           ) : (
-            <StyledCommandList p2>
+            <StyledCommandList p2 minH-100p relative>
               <CommandApp ui={ui} currentCommand={currentCommand} />
             </StyledCommandList>
           ))}

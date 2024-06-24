@@ -5,6 +5,18 @@ type MarketplaceUI = {
   type: 'marketplace'
 }
 
+type AboutUI = {
+  type: 'about'
+}
+
+type InstalledExtensionsUI = {
+  type: 'installed-extensions'
+}
+
+type SettingsUI = {
+  type: 'settings'
+}
+
 type ClipboardHistoryUI = {
   type: 'clipboard-history'
 }
@@ -40,6 +52,9 @@ export type CommandAppUI =
   | DatabaseUI
   | ClipboardHistoryUI
   | RenderUI
+  | AboutUI
+  | InstalledExtensionsUI
+  | SettingsUI
 
 export const commandUIAtom = atom<CommandAppUI>({} as CommandAppUI)
 

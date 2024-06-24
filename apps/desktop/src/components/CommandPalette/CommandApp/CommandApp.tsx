@@ -7,8 +7,11 @@ import { store } from '@penx/store'
 import { Markdown } from '~/components/Markdown'
 import { commandLoadingAtom } from '~/hooks/useCommandAppLoading'
 import { CommandAppUI } from '~/hooks/useCommandAppUI'
+import { AboutApp } from './AboutApp'
 import { ClipboardHistoryApp } from './ClipboardHistoryApp'
 import { DatabaseApp } from './DatabaseApp/DatabaseApp'
+import { GeneralSettings } from './GeneralSettings/GeneralSettings'
+import { InstalledExtensionsApp } from './InstalledExtensionsApp/InstalledExtensionsApp'
 import { ListApp } from './ListApp/ListApp'
 import { MarketplaceApp } from './MarketplaceApp/MarketplaceApp'
 import { TodayApp } from './TodayApp'
@@ -35,6 +38,18 @@ export const CommandApp = memo(
 
     if (ui.type === 'marketplace') {
       return <MarketplaceApp />
+    }
+
+    if (ui.type === 'about') {
+      return <AboutApp />
+    }
+
+    if (ui.type === 'settings') {
+      return <GeneralSettings />
+    }
+
+    if (ui.type === 'installed-extensions') {
+      return <InstalledExtensionsApp />
     }
 
     // if (ui.type === 'today') {
