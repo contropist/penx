@@ -72,7 +72,7 @@ export function useHandleSelect() {
 
       const command = ext.commands.find((c) => c.name === item.data.commandName)!
 
-      if (command.runtime === 'iframe') {
+      if (command.mode === 'custom-ui') {
         const $iframe = document.getElementById('command-app-iframe')! as HTMLIFrameElement
         if (!$iframe) return
         const currentWindow = $iframe.contentWindow as Window

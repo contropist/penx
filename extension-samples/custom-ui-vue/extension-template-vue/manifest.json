@@ -7,13 +7,13 @@
     {
       "name": "hello",
       "title": "Hello Vue",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "vue"
     },
     {
       "name": "count",
       "title": "Vue Count",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "vue"
     }
   ]

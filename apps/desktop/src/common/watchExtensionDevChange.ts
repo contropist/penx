@@ -64,7 +64,7 @@ export async function watchExtensionDevChange() {
     }
 
     // iframe hot reload
-    if (command.runtime === 'iframe') {
+    if (command.mode === 'custom-ui') {
       const $iframe = document.getElementById('command-app-iframe')!
       if (!$iframe) return
       const currentWindow = ($iframe as any).contentWindow as Window

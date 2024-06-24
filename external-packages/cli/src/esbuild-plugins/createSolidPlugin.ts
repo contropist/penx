@@ -98,7 +98,7 @@ export function createSolidPlugin(commands: CommandItem[], options?: Options) {
         const path = args.path as string
 
         const cmd = commands.find((item) => {
-          return `${item.name}.command.tsx` === path.split('/').pop()! && item.runtime === 'iframe'
+          return `${item.name}.command.tsx` === path.split('/').pop()! && item.mode === 'custom-ui'
         })
 
         if (!cmd) return null

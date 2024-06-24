@@ -137,7 +137,7 @@ export function useLoadCommands() {
                   alias: item.alias,
                   assets: cur.assets,
                   filters: item.filters,
-                  runtime: item.runtime,
+                  mode: item.mode,
                   commandName: item.name,
                   extensionSlug: cur.name,
                   extensionIcon: cur.assets?.[cur.icon as string],

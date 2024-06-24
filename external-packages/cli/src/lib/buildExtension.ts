@@ -28,7 +28,7 @@ interface Options {
 
 function findCommandFile(item: CommandItem) {
   const cwd = process.cwd()
-  if (item?.runtime !== 'iframe') {
+  if (item?.mode !== 'custom-ui') {
     return join(cwd, 'src', `${item.name}.command.ts`)
   }
 
@@ -70,7 +70,7 @@ export async function buildExtension({ watch = false, onSuccess }: Options) {
     }
   }
 
-  const hasIframeRuntime = manifest.commands.some((item) => item.runtime === 'iframe')
+  const hasIframeRuntime = manifest.commands.some((item) => item.mode === 'custom-ui')
   if (hasIframeRuntime) {
     createStyleFile()
   }

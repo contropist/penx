@@ -7,13 +7,13 @@
     {
       "name": "hello",
       "title": "Hello Solid",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "solid"
     },
     {
       "name": "count",
       "title": "Solid Count",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "solid"
     }
   ]

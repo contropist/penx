@@ -1,6 +1,6 @@
 {
   "index": "Introduction",
-  "build-extension": "Build a plugin",
+  "build-extension": "Build a Extension",
   "preset-ui": "Preset UI (Worker)",
   "custom-ui": "Custom UI (IFrame)",
   "examples": "Examples",

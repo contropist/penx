@@ -7,13 +7,13 @@
     {
       "name": "hello",
       "title": "Hello Svelte",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "svelte"
     },
     {
       "name": "count",
       "title": "Svelte Count",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "svelte"
     }
   ]

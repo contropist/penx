@@ -10,7 +10,7 @@
     {
       "name": "hello",
       "title": "Hello React",
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     },
     {
@@ -20,7 +20,7 @@
         "name": "lucide--list",
         "className": "bg-gradient-to-r from-rose-500 to-purple-500"
       },
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     },
     {
@@ -30,7 +30,7 @@
         "name": "lucide--github",
         "className": "bg-gradient-to-r from-rose-500 to-purple-500"
       },
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     },
     {
@@ -40,7 +40,7 @@
         "name": "mdi--user",
         "className": "bg-gradient-to-r from-green-500 to-blue-500"
       },
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     },
     {
@@ -50,7 +50,7 @@
         "name": "lucide--list",
         "className": "bg-gradient-to-r from-green-500 to-blue-500"
       },
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     },
     {
@@ -60,7 +60,7 @@
         "name": "lucide--grid-3x3",
         "className": "bg-gradient-to-r from-red-500 to-orange-500"
       },
-      "runtime": "iframe",
+      "mode": "custom-ui",
       "framework": "react"
     }
   ]

@@ -14,7 +14,7 @@
       "icon": {
         "name": "lucide--clock"
       },
-      "runtime": "worker"
+      "mode": "preset-ui"
     }
   ]
 }

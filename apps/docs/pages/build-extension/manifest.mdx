@@ -16,7 +16,7 @@ Here is a typical manifest file example:
       "name": "hello",
       "title": "Hello world",
       "icon": "hello.svg",
-      "runtime": "worker"
+      "mode": "preset-ui"
     }
   ]
 }
@@ -38,11 +38,11 @@ Defines the basic information of the extension.
 
 Defines the detailed information of each command within the extension.
 
-| Property    | Required | Description                                                              |
-| ----------- | -------- | ------------------------------------------------------------------------ |
-| name        | Yes      | A unique identifier for the command                                      |
-| title       | Yes      | The title of the command                                                 |
-| description | Yes      | A brief description of the command                                       |
-| icon        | Yes      | The icon of the extension                                                |
-| runtime     | Yes      | The runtime environment for the command, either `worker` or `iframe`     |
-| framework   | No       | If runtime is iframe, it's required, value can be react,vue,solid,svelte |
+| Property    | Required | Description                                                                  |
+| ----------- | -------- | ---------------------------------------------------------------------------- |
+| name        | Yes      | A unique identifier for the command                                          |
+| title       | Yes      | The title of the command                                                     |
+| description | Yes      | A brief description of the command                                           |
+| icon        | Yes      | The icon of the extension                                                    |
+| mode        | Yes      | The render mode for the command: `preset-ui`, `custom-ui`, `no-view`         |
+| framework   | No       | If mode is `custom-ui`, this's required, value can be react,vue,solid,svelte |

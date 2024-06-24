@@ -11,7 +11,7 @@ export interface Command {
   filters?: Record<string, FilterItem[]>
   icon?: string | Record<string, string>
   code: string
-  runtime?: string
+  mode?: 'preset-ui' | 'custom-ui' | 'no-view'
   isBuiltIn?: boolean
   alias?: string
 }

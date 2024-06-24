@@ -11,7 +11,7 @@ export function createWorkerPlugin(commands: CommandItem[]) {
 
         const path = args.path as string
 
-        const every = commands.every((item) => item.runtime !== 'iframe')
+        const every = commands.every((item) => item.mode !== 'custom-ui')
 
         if (!every) return null
 

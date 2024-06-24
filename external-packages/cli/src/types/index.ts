@@ -5,7 +5,7 @@ export type CommandItem = {
   description: string
   icon?: string | Record<string, string>
   code?: string
-  runtime: 'iframe' | 'worker'
+  mode: 'preset-ui' | 'custom-ui' | 'no-view'
   framework: 'vue' | 'react' | 'solid' | 'svelte'
 }
 

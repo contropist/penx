@@ -48,7 +48,7 @@ export const CommandPalette = () => {
   useOnWindowMessage()
 
   useReset(setValue)
-  const isIframe = isCommandApp && currentCommand?.data?.runtime === 'iframe'
+  const isIframe = isCommandApp && currentCommand?.data?.mode === 'custom-ui'
 
   const bodyHeight = isIframe ? windowHeight : windowHeight - searchBarHeight - footerHeight
 
@@ -119,7 +119,7 @@ export const CommandPalette = () => {
       >
         {isCommandApp &&
           currentCommand &&
-          (currentCommand.data.runtime === 'iframe' ? (
+          (currentCommand.data.mode === 'custom-ui' ? (
             <Box relative h-100p>
               <Box
                 as="iframe"
