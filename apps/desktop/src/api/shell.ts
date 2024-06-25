@@ -1,5 +1,5 @@
+import { EventType, PenxAPIRequestMessageEvent } from '@penxio/api'
 import { Channel, invoke } from '@tauri-apps/api/core'
-import { EventType, PenxAPIRequestMessageEvent } from 'penx'
 import * as shellx from 'tauri-plugin-shellx-api'
 
 export function handleShellxSpawn(

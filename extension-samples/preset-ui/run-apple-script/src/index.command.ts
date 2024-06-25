@@ -1,4 +1,4 @@
-import { MarkdownBuilder, render, runAppleScript } from 'penx'
+import { MarkdownBuilder, render, runAppleScript } from '@penxio/api'
 
 export async function main() {
   // const script = 'return "unicorn"'

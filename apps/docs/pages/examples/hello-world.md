@@ -37,7 +37,7 @@ The manifest.json file contains metadata about the project, we create a command 
 The index.ts file contains the main logic to render the "Hello World" markdown string:
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownBuilder, render } from '@penxio/api'
 
 export async function main() {
   render(new MarkdownBuilder('# Hello world'))

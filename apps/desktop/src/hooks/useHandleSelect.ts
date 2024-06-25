@@ -1,6 +1,6 @@
+import { comlink } from '@penxio/api'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
-import { comlink } from 'penx'
 import { appEmitter } from '@penx/event'
 import { themeModeAtom } from '@penx/hooks'
 import { db } from '@penx/local-db'

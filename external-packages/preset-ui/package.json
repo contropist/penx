@@ -1,5 +1,5 @@
 {
-  "name": "@penxio/worker-ui",
+  "name": "@penxio/preset-ui",
   "version": "0.5.0",
   "type": "module",
   "main": "dist/index.cjs",

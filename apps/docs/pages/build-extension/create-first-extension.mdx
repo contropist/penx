@@ -70,7 +70,7 @@ The **command name** is associated with the `[commandName].command.ts` file, whi
 The `hello.command.ts` file will render the "Hello World" string:
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownBuilder, render } from '@penxio/api'
 
 export async function main() {
   render(new MarkdownBuilder('# Hello world'))

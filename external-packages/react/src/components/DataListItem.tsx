@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
-import { IDataListItem } from 'penx'
+import { IDataListItem } from '@penxio/api'
 
 interface DataListItemProps {
   item: IDataListItem

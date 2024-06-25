@@ -11,7 +11,7 @@ Render Markdown to Command App.
 Render a markdonwn string.
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownBuilder, render } from '@penxio/api'
 
 export async function main() {
   render(new MarkdownBuilder('Hello **world**'))
@@ -23,7 +23,7 @@ export async function main() {
 Render a iamge.
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownBuilder, render } from '@penxio/api'
 
 export async function main() {
   const md = new MarkdownBuilder(
@@ -37,7 +37,7 @@ export async function main() {
 ### Support all markdown syntax
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownBuilder, render } from '@penxio/api'
 
 const content = `
 # hello world!

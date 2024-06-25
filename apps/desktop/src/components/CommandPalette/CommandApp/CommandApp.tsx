@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import isEqual from 'react-fast-compare'
 import { Box } from '@fower/react'
-import { IListItem, isListApp, isMarkdownJSON } from '@penxio/worker-ui'
+import { IListItem, isListApp, isMarkdownJSON } from '@penxio/preset-ui'
 import { Spinner } from 'uikit'
 import { store } from '@penx/store'
 import { Markdown } from '~/components/Markdown'

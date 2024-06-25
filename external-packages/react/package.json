@@ -27,7 +27,7 @@
     "cmdk": "^1.0.0",
     "jotai": "^2.6.0",
     "mitt": "^3.0.1",
-    "penx": "workspace:*",
+    "@penxio/api": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-fast-compare": "^3.2.2"

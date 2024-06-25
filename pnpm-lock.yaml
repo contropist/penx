@@ -138,9 +138,12 @@ importers:
       '@penx/worker':
         specifier: workspace:*
         version: link:../../packages/worker
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../external-packages/worker-ui
+        version: link:../../external-packages/api
+      '@penxio/preset-ui':
+        specifier: workspace:*
+        version: link:../../external-packages/preset-ui
       '@tanstack/react-query':
         specifier: ^5.45.1
         version: 5.45.1(react@18.2.0)
@@ -195,9 +198,6 @@ importers:
       next:
         specifier: 14.1.4
         version: 14.1.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0)
-      penx:
-        specifier: workspace:*
-        version: link:../../external-packages/penx
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -888,6 +888,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../../../external-packages/api
       '@penxio/react':
         specifier: workspace:*
         version: link:../../../external-packages/react
@@ -897,9 +900,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -919,15 +919,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../../../external-packages/api
       '@types/react':
         specifier: ^18.2.61
         version: 18.2.73
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -950,6 +950,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../../../external-packages/api
       '@penxio/react':
         specifier: workspace:*
         version: link:../../../external-packages/react
@@ -959,9 +962,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -984,6 +984,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../../../external-packages/api
       '@penxio/react':
         specifier: workspace:*
         version: link:../../../external-packages/react
@@ -993,9 +996,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      penx:
-        specifier: workspace:*
-        version: link:../../../external-packages/penx
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1012,9 +1012,9 @@ importers:
         specifier: ^1.8.17
         version: 1.8.17
     devDependencies:
-      penx:
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/api
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1031,9 +1031,9 @@ importers:
         specifier: ^4.2.17
         version: 4.2.17
     devDependencies:
-      penx:
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/api
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1050,9 +1050,9 @@ importers:
         specifier: ^3.4.27
         version: 3.4.27(typescript@5.4.5)
     devDependencies:
-      penx:
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/api
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1065,12 +1065,12 @@ importers:
 
   extension-samples/preset-ui/base64:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1083,12 +1083,12 @@ importers:
 
   extension-samples/preset-ui/counter:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1101,12 +1101,12 @@ importers:
 
   extension-samples/preset-ui/github-trending:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1119,12 +1119,12 @@ importers:
 
   extension-samples/preset-ui/hacker-news:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1137,12 +1137,12 @@ importers:
 
   extension-samples/preset-ui/hello-word:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1155,12 +1155,12 @@ importers:
 
   extension-samples/preset-ui/run-apple-script:
     devDependencies:
-      '@penxio/worker-ui':
+      '@penxio/api':
         specifier: workspace:*
-        version: link:../../../external-packages/worker-ui
-      penx:
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
         specifier: workspace:*
-        version: link:../../../external-packages/penx
+        version: link:../../../external-packages/preset-ui
       penx-cli:
         specifier: workspace:*
         version: link:../../../external-packages/cli
@@ -1169,6 +1169,61 @@ importers:
         version: 3.2.5
       typescript:
         specifier: ^5.3.2
+        version: 5.4.5
+
+  external-packages/api:
+    dependencies:
+      '@huakunshen/comlink':
+        specifier: ^4.4.1
+        version: 4.4.1
+      '@tanstack/react-query':
+        specifier: ^5.45.1
+        version: 5.45.1(react@18.2.0)
+      '@tauri-apps/api':
+        specifier: 2.0.0-beta.13
+        version: 2.0.0-beta.13
+      '@tauri-apps/plugin-dialog':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-fs':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-http':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-notification':
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
+      '@tauri-apps/plugin-os':
+        specifier: 2.0.0-beta.3
+        version: 2.0.0-beta.3
+      '@tauri-apps/plugin-shell':
+        specifier: 2.0.0-beta.6
+        version: 2.0.0-beta.6
+      tauri-plugin-clipboard-api:
+        specifier: ^2.0.2
+        version: 2.0.2
+      tauri-plugin-shellx-api:
+        specifier: ^2.0.7
+        version: 2.0.7
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.6
+        version: 11.1.6(rollup@4.13.2)(tslib@2.6.2)(typescript@5.4.5)
+      '@types/node':
+        specifier: ^18.19.33
+        version: 18.19.33
+      rollup:
+        specifier: ^4.9.6
+        version: 4.13.2
+      typedoc:
+        specifier: ^0.25.13
+        version: 0.25.13(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
         version: 5.4.5
 
   external-packages/cli:
@@ -1373,44 +1428,7 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  external-packages/penx:
-    dependencies:
-      '@huakunshen/comlink':
-        specifier: ^4.4.1
-        version: 4.4.1
-      '@tanstack/react-query':
-        specifier: ^5.45.1
-        version: 5.45.1(react@18.2.0)
-      '@tauri-apps/api':
-        specifier: 2.0.0-beta.13
-        version: 2.0.0-beta.13
-      '@tauri-apps/plugin-dialog':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-fs':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-http':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-notification':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-os':
-        specifier: 2.0.0-beta.3
-        version: 2.0.0-beta.3
-      '@tauri-apps/plugin-shell':
-        specifier: 2.0.0-beta.6
-        version: 2.0.0-beta.6
-      tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
-      tauri-plugin-shellx-api:
-        specifier: ^2.0.7
-        version: 2.0.7
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
+  external-packages/preset-ui:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
@@ -1430,6 +1448,9 @@ importers:
 
   external-packages/react:
     dependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../api
       '@radix-ui/react-popover':
         specifier: ^1.0.7
         version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.2.73)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1445,9 +1466,6 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
-      penx:
-        specifier: workspace:*
-        version: link:../penx
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1470,24 +1488,6 @@ importers:
       tsup:
         specifier: ^7.2.0
         version: 7.3.0(@swc/core@1.4.11(@swc/helpers@0.5.8))(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.4.11(@swc/helpers@0.5.8))(@types/node@18.19.33)(typescript@5.4.5))(typescript@5.4.5)
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
-  external-packages/worker-ui:
-    devDependencies:
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.6
-        version: 11.1.6(rollup@4.13.2)(tslib@2.6.2)(typescript@5.4.5)
-      '@types/node':
-        specifier: ^18.19.33
-        version: 18.19.33
-      rollup:
-        specifier: ^4.9.6
-        version: 4.13.2
-      typedoc:
-        specifier: ^0.25.13
-        version: 0.25.13(typescript@5.4.5)
       typescript:
         specifier: ^5.4.5
         version: 5.4.5

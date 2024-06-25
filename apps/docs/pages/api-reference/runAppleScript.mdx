@@ -11,7 +11,7 @@ This can be particularly useful for automating tasks on macOS, as AppleScript ca
 Here is a simple example of how to use runAppleScript to run a basic AppleScript command and get the result:
 
 ```ts
-import { runAppleScript } from 'penx'
+import { runAppleScript } from '@penxio/api'
 
 const result = await runAppleScript('return "unicorn"')
 
@@ -26,7 +26,7 @@ n this example, the AppleScript command return "unicorn" is executed, and the re
 You can also pass arguments to your AppleScript. This is useful when you need to customize the script's behavior based on dynamic input:
 
 ```ts
-import { runAppleScript } from 'penx'
+import { runAppleScript } from '@penxio/api'
 
 const res = await runAppleScript(
   `
