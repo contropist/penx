@@ -1,4 +1,5 @@
 import { createTRPCClient, httpBatchLink } from '@trpc/client'
+import superjson from 'superjson'
 import fetch from 'node-fetch'
 import { Env } from '../types'
 import { getBaseURL, readConfig } from './utils'
@@ -18,6 +19,7 @@ export async function getTRPC(env?: Env) {
     links: [
       httpBatchLink({
         url: `${BASE_URL}/api/trpc`,
+        transformer: superjson,
         fetch: fetch as any,
         async headers() {
           return {

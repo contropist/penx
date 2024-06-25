@@ -1,4 +1,4 @@
-# List
+# ListApp
 
 Render a List to Command App.
 
@@ -9,15 +9,16 @@ Render a List to Command App.
 Render a basic list with title.
 
 ```ts
-import { ListBuilder, render } from '@penxio/api'
+import { IListItem, ListApp } from '@penxio/preset-ui'
 
 export async function main() {
-  const list = new ListBuilder([
+  const items: IListItem = [
     { title: 'First Item' },
     { title: 'Second Item' },
     { title: 'Third Item' },
-  ])
-  render(list)
+  ]
+
+  new ListApp({ items }).run()
 }
 ```
 
@@ -26,15 +27,16 @@ export async function main() {
 Render a list with title and subtitle.
 
 ```ts
-import { render } from '@penxio/api'
+import { IListItem, ListApp } from '@penxio/preset-ui'
 
 export async function main() {
-  const list = new ListBuilder([
+  const items: IListItem = [
     { title: 'First Item', subtitle: 'This is the first item' },
     { title: 'Second Item', subtitle: 'This is the second item' },
     { title: 'Third Item', subtitle: 'This is the third item' },
-  ])
-  render(list)
+  ]
+
+  new ListApp({ items }).run()
 }
 ```
 
@@ -43,20 +45,21 @@ export async function main() {
 Render a list with detail.
 
 ```ts
-import { ListBuilder, render } from '@penxio/api'
+import { IListItem, ListApp } from '@penxio/preset-ui'
 
 export async function main() {
-  const list = new ListBuilder([
+  const items: IListItem = [
     {
       title: 'First Item',
       subtitle: 'This is the first item',
-      detail: new DataListBuilder([
+      detail: [
         { label: 'name', value: 'Item 1' },
         { label: 'Color', value: 'Red' },
-      ]),
+      ],
     },
-  ])
-  render(list)
+  ]
+
+  new ListApp({ items }).run()
 }
 ```
 
@@ -65,10 +68,10 @@ export async function main() {
 Render a list with Extra.
 
 ```ts
-import { DataListBuilder, ListBuilder, render } from '@penxio/api'
+import { IListItem, ListApp } from '@penxio/preset-ui'
 
 export async function main() {
-  const list = new ListBuilder([
+  const items: IListItem = [
     {
       title: 'First Item',
       subtitle: 'This is the first item',
@@ -83,7 +86,8 @@ export async function main() {
         },
       ],
     },
-  ])
-  render(list)
+  ]
+
+  new ListApp({ items }).run()
 }
 ```

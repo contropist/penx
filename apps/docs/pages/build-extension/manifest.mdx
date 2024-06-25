@@ -9,13 +9,18 @@ Here is a typical manifest file example:
   "name": "hello-world",
   "title": "Hello world",
   "description": "This is a hello wold demo.",
-  "icon": "logo.svg",
-  "repo": "0xzion/kill-process",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello world",
-      "icon": "hello.svg",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
       "mode": "preset-ui"
     }
   ]

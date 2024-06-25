@@ -45,16 +45,23 @@ The project consists of the following key files:
 
 The manifest.json file contains metadata about the project.
 
-```json {8,10}
+```json {14,17}
 {
   "name": "hello-world",
   "title": "Hello world",
   "description": "This is a hello wold demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello world",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
       "mode": "preset-ui"
     }
   ]
@@ -70,10 +77,10 @@ The **command name** is associated with the `[commandName].command.ts` file, whi
 The `hello.command.ts` file will render the "Hello World" string:
 
 ```ts
-import { MarkdownBuilder, render } from '@penxio/api'
+import { MarkdownApp } from '@penxio/preset-ui'
 
 export async function main() {
-  render(new MarkdownBuilder('# Hello world'))
+  new MarkdownApp({ content: '# Hello world' }).run()
 }
 ```
 
