@@ -26,7 +26,6 @@ const nextConfig = {
     '@octokit/app',
     '@penx/app',
     '@penx/constants',
-    '@penx/db',
     '@penx/math',
     '@penx/catalogue',
     '@penx/hooks',

@@ -49,7 +49,6 @@
     "@penx/database": "workspace:*",
     "@penx/database-context": "workspace:*",
     "@penx/database-ui": "workspace:*",
-    "@penx/db": "workspace:*",
     "@penx/dnd-projection": "workspace:*",
     "@penx/editor": "workspace:*",
     "@penx/editor-common": "workspace:*",

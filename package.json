@@ -2,8 +2,6 @@
   "name": "penx",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
-    "dev:web": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
     "build": "turbo run build",
     "build:packages": "turbo run build --filter=./external-packages/*",
     "build:web": "turbo run build --filter=web...",

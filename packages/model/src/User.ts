@@ -1,4 +1,3 @@
-import { User as IUser } from '@prisma/client'
 import { RoleType } from '@penx/constants'
 
 export type GithubInfo = {
@@ -22,8 +21,10 @@ export type GoogleInfo = {
   picture: string
 }
 
+type UserJSON = any
+
 export class User {
-  constructor(public raw: IUser) {}
+  constructor(public raw: UserJSON) {}
 
   get id() {
     return this.raw?.id as string
