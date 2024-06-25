@@ -52,10 +52,6 @@ export function useHandleSelect() {
     const handled = handleBuiltinCommand(item)
     if (handled) return
 
-    if (item.data.commandName === 'marketplace') {
-      return
-    }
-
     if (item.data?.type === 'Database') {
       setSearch('')
       setDatabase(item.data.database)
