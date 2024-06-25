@@ -5,14 +5,12 @@ import { Plus } from 'lucide-react'
 import { Button } from 'uikit'
 import { db } from '@penx/local-db'
 import { store } from '@penx/store'
-import { useAppMode } from '~/hooks/useAppMode'
 import { currentDatabaseAtom } from '~/hooks/useCurrentDatabase'
 import { isAddRowAtom } from '~/hooks/useIsAddRow'
 
 interface Props {}
 
 export const AddRowButton = ({}: Props) => {
-  const { isEditor, setMode } = useAppMode()
   return (
     <Button
       size={36}
@@ -24,7 +22,6 @@ export const AddRowButton = ({}: Props) => {
       gap1
       onClick={async () => {
         const appWindow = getCurrent()
-        setMode('EDITOR')
 
         await invoke('set_window_properties', {
           resizable: true,

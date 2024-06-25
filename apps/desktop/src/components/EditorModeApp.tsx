@@ -8,7 +8,6 @@ import { SessionProvider, useSession } from '@penx/session'
 import { getLocalSession } from '@penx/storage'
 // import { RecoveryPhraseLoginProvider } from '@penx/widget'
 import { FirstLocalSpaceGenerator } from './FirstLocalSpaceGenerator/FirstLocalSpaceGenerator'
-import { ToggleModeButton } from './ToggleModeButton'
 
 const OnlineProvider = ({ children }: PropsWithChildren) => {
   const { data, loading } = useSession()
@@ -51,7 +50,6 @@ export function EditorModeApp() {
       <OnlineProvider>
         <Box relative>
           <EditorApp />
-          <ToggleModeButton absolute top4 right4 />
         </Box>
       </OnlineProvider>
     </SessionProvider>

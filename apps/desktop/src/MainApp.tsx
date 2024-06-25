@@ -8,13 +8,9 @@ import { getLocalSession } from '@penx/storage'
 import { installBuiltinExtension } from '~/common/installBuiltinExtension'
 import { CommandPalette } from '~/components/CommandPalette/CommandPalette'
 import { DesktopWelcome } from '~/components/DesktopWelcome'
-import { EditorModeApp } from '~/components/EditorModeApp'
 import { InitUserToStore } from '~/components/InitUserToStore'
-import { useAppMode } from '~/hooks/useAppMode'
 
 export function MainApp() {
-  const { isEditor } = useAppMode()
-
   const {
     isLoading,
     data: isBoarded,
@@ -97,8 +93,7 @@ export function MainApp() {
             }}
           />
         )}
-        {isBoarded && (isEditor ? <EditorModeApp /> : <CommandPalette />)}
-        {/* <CommandPalette /> */}
+        {isBoarded && <CommandPalette />}
       </Box>
     </SessionProvider>
   )
