@@ -29,7 +29,14 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const isDatabaseApp = currentCommand?.data?.type === 'Database'
 
   return (
-    <Box data-tauri-drag-region toCenterY borderBottom borderGray200 relative h={searchBarHeight}>
+    <Box
+      data-tauri-drag-region
+      toCenterY
+      borderBottom
+      borderNeutral200
+      relative
+      h={searchBarHeight}
+    >
       {isCommandApp && <BackRootButton pl3 mr--8 />}
 
       {isDatabaseApp && <DatabaseName />}

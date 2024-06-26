@@ -1,14 +1,119 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri + React + Typescript</title>
-  </head>
 
-  <body>
-    <div id="root"></div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tauri + React + Typescript</title>
+</head>
+<style>
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    /* font-size: 14px; */
+    font-family: 'Inter-local', 'Helvetica Neue', Helvetica, Arial, 'Roboto',
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
+  }
+
+  #prerender {
+    font-family: 'Inter-local', 'Helvetica Neue', Helvetica, Arial, 'Roboto',
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* background-color: antiquewhite; */
+    color: #171717;
+    display: none;
+    flex-direction: column;
+  }
+
+  #prerender .input-container {
+    position: relative;
+    height: 54px;
+    border: none;
+    padding: 0;
+    /* border-bottom: 1px solid #e5e5e5; */
+    overflow: hidden;
+    width: 100%;
+
+  }
+
+  #prerender input {
+    outline: none;
+    user-select: none;
+    display: flex;
+    height: 54px;
+    flex: 1;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 12px;
+  }
+
+  #prerender input::placeholder {
+    color: #737373;
+  }
+
+  #prerender .prerender-divider {
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #e5e5e5;
+    display: none;
+  }
+
+
+  #prerender .prerender-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  #prerender svg {
+    width: 48px;
+    height: 48px;
+  }
+</style>
+
+
+<body>
+  <div id="root">
+    <div id="prerender">
+      <div class="input-container">
+        <input placeholder="Search something..." />
+        <hr class="prerender-divider" />
+      </div>
+      <div class="prerender-body">
+        <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1024" height="1024" rx="245" fill="black" />
+          <path
+            d="M274.104 903.591C267.486 906.569 260 901.728 260 894.472V537.281C260 446.344 275 373.375 305 318.375C357.5 222.125 430.312 174 523.438 174C601.25 174 662.656 202.75 707.656 260.25C744.844 307.75 763.438 361.031 763.438 420.094C763.438 473.844 744.531 524 706.719 570.562C659.844 628.062 590.938 656.812 500 656.812H363.75C358.227 656.812 353.75 661.29 353.75 666.812V861.284C353.75 865.219 351.442 868.789 347.854 870.403L274.104 903.591ZM353.75 567.125C353.75 572.648 358.227 577.125 363.75 577.125H500C558.75 577.125 600.781 562.75 626.094 534C655.156 500.875 669.688 462.906 669.688 420.094C669.688 369.469 654.688 328.531 624.688 297.281C596.562 268.219 562.812 253.688 523.438 253.688C465.938 253.688 420 287.438 385.625 354.938C364.375 396.812 353.75 457.594 353.75 537.281V567.125Z"
+            fill="white" stroke="white" stroke-width="30" />
+        </svg>
+
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+    <script>
+
+      if (localStorage.getItem('PENX_IS_BOARDED') === 'yes') {
+        const $prerender = document.getElementById('prerender')
+        $prerender.style.display = 'flex'
+        setTimeout(() => {
+          const $divider = document.querySelector('.prerender-divider')
+          $divider.style.display = 'flex'
+        }, 300);
+      }
+    </script>
+</body>
+
 </html>
