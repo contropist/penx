@@ -11,6 +11,10 @@ import { DesktopWelcome } from '~/components/DesktopWelcome'
 import { InitUserToStore } from '~/components/InitUserToStore'
 
 export function MainApp() {
+  useEffect(() => {
+    installBuiltinExtension()
+  }, [])
+
   const {
     isLoading,
     data: isBoarded,

@@ -38,24 +38,32 @@ The project consists of the following key files:
 
 The manifest.json file contains metadata about the project.
 
-```json {8,14}
+```json
 {
-  "name": "extension-template-vue",
-  "title": "Extension Template Vue",
+  "name": "extension-template-svelte",
+  "title": "Extension Template Svelte",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "lucide--globe"
+  },
   "commands": [
     {
       "name": "hello",
-      "title": "Hello Vue",
+      "title": "Hello Svelte",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
-      "framework": "vue"
+      "framework": "svelte"
     },
     {
       "name": "count",
-      "title": "Vue Count",
+      "title": "Svelte Count",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
-      "framework": "vue"
+      "framework": "svelte"
     }
   ]
 }
@@ -91,9 +99,7 @@ The `count.command.svelte` file shows a basic counter demo:
   }
 </script>
 
-<div
-  class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500"
->
+<div class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
   <button
     class="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70"
     on:click="{increment}"

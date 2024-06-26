@@ -96,24 +96,34 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
 }
 
 function IconifyIcon(icon: IconifyIconType) {
-  // TODO: parse className to fower props
+  // TODO: parse className to fower props, improvement needed
   let props: Record<string, any> = {}
   const bgGradientX: string[] = []
   const classNames = icon.className?.split(/\s+/) || []
 
+  let hasBg = false
+
   for (const item of classNames) {
     if (item.startsWith('from-')) {
       bgGradientX[0] = item.replace('from-', '').split('-').join('')
+      hasBg = true
     }
     if (item.startsWith('to-')) {
       bgGradientX[1] = item.replace('to-', '').split('-').join('')
+      hasBg = true
+    }
+    //
+    if (item.startsWith('bg-')) {
+      const arr = item.split('-')
+      props[arr.join('')] = true
+      hasBg = true
     }
   }
 
   props.bgGradientX = bgGradientX
-  if (props.bgGradientX?.length > 0) {
+  if (hasBg) {
     props.white = true
-    props.p = 2
+    props.p = 3
   }
 
   return (

@@ -2,17 +2,28 @@
   "name": "extension-template-vue",
   "title": "Extension Template Vue",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--vuejs",
+    "className": "bg-emerald-500"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello Vue",
       "mode": "custom-ui",
+      "icon": {
+        "name": "mdi--vuejs",
+        "className": "bg-emerald-500"
+      },
       "framework": "vue"
     },
     {
       "name": "count",
       "title": "Vue Count",
+      "icon": {
+        "name": "lucide--clock",
+        "className": "bg-gradient-to-r from-teal-500 to-cyan-500"
+      },
       "mode": "custom-ui",
       "framework": "vue"
     }

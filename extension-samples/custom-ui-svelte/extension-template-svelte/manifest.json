@@ -2,17 +2,25 @@
   "name": "extension-template-svelte",
   "title": "Extension Template Svelte",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "lucide--globe"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello Svelte",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
       "framework": "svelte"
     },
     {
       "name": "count",
       "title": "Svelte Count",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
       "framework": "svelte"
     }

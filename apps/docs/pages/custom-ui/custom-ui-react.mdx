@@ -38,21 +38,32 @@ The project consists of the following key files:
 
 The manifest.json file contains metadata about the project.
 
-```json {8,14}
+```json
 {
   "name": "extension-template-react",
   "title": "Extension Template React",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-blue-500"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello React",
+      "icon": {
+        "name": "mdi--react",
+        "className": "bg-blue-500"
+      },
       "mode": "custom-ui",
       "framework": "react"
     },
     {
       "name": "count",
+      "icon": {
+        "name": "lucide--clock",
+        "className": "bg-gradient-to-r from-teal-500 to-cyan-500"
+      },
       "title": "React Count",
       "mode": "custom-ui",
       "framework": "react"
@@ -70,7 +81,7 @@ The **command name** is associated with the `[commandName].command.tsx` file, wh
 
 The `hello.command.tsx` file will render the "Hello World" string:
 
-```ts
+```tsx
 export function Main() {
   return (
     <div className="flex justify-center items-center h-full">
@@ -86,7 +97,7 @@ export function Main() {
 
 The `count.command.tsx` file shows a basic counter demo:
 
-```ts
+```tsx
 import { useState } from 'react'
 
 export function Main() {
@@ -105,7 +116,6 @@ export function Main() {
     </div>
   )
 }
-
 ```
 
 ![hello](/images/custom-ui-count.png)

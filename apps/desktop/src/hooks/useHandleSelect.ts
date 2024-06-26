@@ -74,7 +74,6 @@ export function useHandleSelect() {
 
     if (item.data?.type === 'Command') {
       setSearch('')
-      setLoading(true)
       setCurrentCommand(item)
 
       setPosition('COMMAND_APP')
@@ -114,7 +113,6 @@ export function useHandleSelect() {
         worker = createCommandWorker(command, input)
       }
 
-      setLoading(false)
       workerStore.currentWorker = worker
 
       item.data.commandName && worker.postMessage(item.data.commandName)
