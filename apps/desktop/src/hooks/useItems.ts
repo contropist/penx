@@ -193,20 +193,44 @@ export function useLoadCommands() {
         //     } as ICommandItem,
         //   ]
         // }, [] as ICommandItem[])
-        const applicationItems = allApps.map((appInfo: AppInfo) => {
-          return {
-            type: 'list-item',
-            title: appInfo.name,
-            subtitle: '',
-            icon: appInfo.icon_path,
-            keywords: [],
-            data: {
-              type: 'Application',
-              applicationPath: appInfo.app_desktop_path,
-              isApplication: true,
-            } as ICommandItem['data'],
-          } as ICommandItem
-        })
+
+        const applicationItems = allApps
+          .filter((i) => {
+            if (i.app_desktop_path.startsWith('/System/Library/')) {
+              return false
+            }
+
+            if (i.app_desktop_path.startsWith('/Library/Application Support/')) {
+              return false
+            }
+            return true
+          })
+          .sort((a, b) => {
+            const nameA = a.name.split('/').pop()!
+            const nameB = b.name.split('/').pop()!
+            const isChineseA = /[\u4e00-\u9fa5]/.test(nameA)
+            const isChineseB = /[\u4e00-\u9fa5]/.test(nameB)
+
+            if (isChineseA && !isChineseB) return 1
+            if (!isChineseA && isChineseB) return -1
+
+            return nameA.localeCompare(nameB)
+          })
+          .map((appInfo: AppInfo) => {
+            return {
+              type: 'list-item',
+              title: appInfo.name,
+              subtitle: appInfo.app_desktop_path,
+              icon: appInfo.icon_path,
+              keywords: [],
+              data: {
+                type: 'Application',
+                applicationPath: appInfo.app_desktop_path,
+                isApplication: true,
+              } as ICommandItem['data'],
+            } as ICommandItem
+          })
+
         return [...commands, ...databaseItems, ...applicationItems]
         // return [...commands, ...databaseItems]
       } catch (error) {

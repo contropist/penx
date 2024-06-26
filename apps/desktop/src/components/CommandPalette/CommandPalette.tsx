@@ -173,7 +173,7 @@ export const CommandPalette = () => {
             <ListGroup
               heading="Applications"
               isApplication
-              items={applicationItems.splice(0, 10)}
+              items={applicationItems.slice(0, 20)}
               onSelect={(item) => handleSelect(item)}
             />
           </StyledCommandList>

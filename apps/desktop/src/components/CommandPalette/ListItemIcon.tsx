@@ -17,8 +17,16 @@ interface ListItemIconProps extends FowerHTMLProps<'div'> {
 
 export const ListItemIcon = memo(
   function ListItemIcon({ icon, bg, isApplication, size = 20, ...rest }: ListItemIconProps) {
-    if (!icon) {
-      return <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
+    if (typeof icon === 'number' || !icon) {
+      const colorName = bg || getRandomColor('500')
+
+      const arr = [colorName.replace('500', '400'), colorName, colorName.replace('500', '600')]
+
+      return (
+        <Box square={size} flexShrink-0 rounded-6 toCenter textXS white bgGradientX={arr}>
+          {icon || ''}
+        </Box>
+      )
     }
 
     if (isIconify(icon)) {
@@ -27,18 +35,6 @@ export const ListItemIcon = memo(
 
     if (isApplication) {
       return <AppIcon size={size} icon={icon as string} />
-    }
-
-    if (typeof icon === 'number') {
-      const colorName = bg || getRandomColor('500')
-
-      const arr = [colorName.replace('500', '400'), colorName, colorName.replace('500', '600')]
-
-      return (
-        <Box square={size} flexShrink-0 rounded-6 toCenter textXS white bgGradientX={arr}>
-          {icon}
-        </Box>
-      )
     }
 
     // TODO: handle other icon value
