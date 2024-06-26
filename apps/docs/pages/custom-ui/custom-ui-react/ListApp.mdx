@@ -1,33 +1,81 @@
-# Custom UI Mode
+# React ListApp
 
-## Introduction
+`todos.command.tsx`
 
-PenX extension support Custom UI Mode, it allows you to create fully customizable user interfaces tailored to your specific needs.
+```tsx
+import { Action, ActionPanel, ListApp, ListItem, useQuery } from '@penxio/react'
+import { getTodos } from './libs/getTodos'
 
-This mode is particularly useful when preset UIs do not meet the requirements of a project, providing the flexibility to design and implement unique UI elements and interactions.
+export function Main() {
+  const { data = [], isLoading } = useQuery({
+    queryKey: ['todos'],
+    queryFn: () => getTodos(20),
+  })
 
-## When To Use Custom UI
+  return (
+    <ListApp isLoading={isLoading} isDetailVisible>
+      {data.map((item, index) => (
+        <ListItem
+          key={index}
+          title={item.title}
+          icon={{
+            // name: 'tabler--brand-mysql',
+            name: index + 1,
+            className: 'text-white bg-gradient-to-tl from-blue-500 to-green-500',
+          }}
+          accessories={[
+            {
+              text: {
+                value: item.completed ? 'Done' : 'Doing',
+                color: item.completed ? 'text-green-500' : 'text-orange-500',
+              },
+            },
+          ]}
+          detail={
+            <div>
+              <div>id: {item.id}</div>
+              <div>title: {item.title}</div>
+            </div>
+          }
+          actions={
+            <ActionPanel>
+              <Action.CopyToClipboard
+                content="Hello"
+                shortcut={{
+                  modifiers: ['cmd'],
+                  key: 'enter',
+                }}
+              />
+              <Action.OpenInBrowser
+                url="https://iconify.design/docs/usage/css/tailwind/iconify/"
+                shortcut={{
+                  modifiers: ['cmd', 'shift'],
+                  key: 'enter',
+                }}
+              />
+            </ActionPanel>
+          }
+        />
+      ))}
+    </ListApp>
+  )
+}
+```
 
-In most cases, you should use Preset UI for its higher development efficiency and better performance.
+`getTodos`
 
-If Preset UI doesn't meet your complex UI needs, consider using Custom UI.
+```ts
+interface Item {
+  userId: number
+  id: number
+  title: string
+  completed: boolean
+}
 
-## Developer Experience (DX)
+export async function getTodos(limit = 20) {
+  let url = `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
 
-PenX ensures a smooth and efficient development experience for Custom UI Mode with the following features:
-
-- Out-of-the-box support for popular frameworks
-
-  - React
-  - Vue
-  - Solid
-  - Svelte
-
-- Built-in Tailwind CSS support
-
-## Guide
-
-- [Custom UI React](custom-ui-react.mdx)
-- [Custom UI Vue](custom-ui-vue.mdx)
-- [Custom UI Solid](custom-ui-solid.mdx)
-- [Custom UI Svelte](custom-ui-svelte.mdx)
+  const items: Item[] = await fetch(url).then((response) => response.json())
+  return items
+}
+```

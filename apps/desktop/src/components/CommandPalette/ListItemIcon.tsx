@@ -123,6 +123,7 @@ function IconifyIcon(icon: IconifyIconType) {
   props.bgGradientX = bgGradientX
   if (hasBg) {
     props.white = true
+    props['white--dark'] = true
     props.p = 3
   }
 

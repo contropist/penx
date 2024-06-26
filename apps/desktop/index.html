@@ -6,6 +6,15 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tauri + React + Typescript</title>
+  <script>
+    let mode = localStorage.getItem('fower-mode')
+    if (!mode) {
+      const media = window.matchMedia('(prefers-color-scheme: dark)')
+      mode = media.matches ? 'dark' : 'light'
+    }
+    document.documentElement.className = mode
+
+  </script>
 </head>
 <style>
   html,
@@ -16,6 +25,14 @@
     font-family: 'Inter-local', 'Helvetica Neue', Helvetica, Arial, 'Roboto',
       sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
       'Noto Color Emoji';
+  }
+
+  body {
+    background: white;
+  }
+
+  .dark body {
+    background: #171717;
   }
 
   #prerender {
@@ -54,6 +71,7 @@
     width: 100%;
     font-size: 16px;
     padding: 0 12px;
+    background-color: transparent;
   }
 
   #prerender input::placeholder {
@@ -67,6 +85,10 @@
     width: 100%;
     background-color: #e5e5e5;
     display: none;
+  }
+
+  .dark #prerender .prerender-divider {
+    background-color: #404040;
   }
 
 
@@ -105,13 +127,15 @@
 
     <script>
 
+
       if (localStorage.getItem('PENX_IS_BOARDED') === 'yes') {
         const $prerender = document.getElementById('prerender')
-        $prerender.style.display = 'flex'
+        if ($prerender) $prerender.style.display = 'flex'
+
         setTimeout(() => {
           const $divider = document.querySelector('.prerender-divider')
-          $divider.style.display = 'flex'
-        }, 300);
+          if ($divider) $divider.style.display = 'flex'
+        }, 400);
       }
     </script>
 </body>
