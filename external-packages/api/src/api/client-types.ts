@@ -1,16 +1,46 @@
-import * as dialog from '@tauri-apps/plugin-dialog'
-import * as fs from '@tauri-apps/plugin-fs'
+/**
+ * This file defines API interfaces for client. The client is the side that calls the API.
+ * For example, the client can call the APIs from an iframe.
+ */
+import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
+import _event from '@tauri-apps/api/event'
+import dialog from '@tauri-apps/plugin-dialog'
+import fs from '@tauri-apps/plugin-fs'
 import notification from '@tauri-apps/plugin-notification'
-import * as os from '@tauri-apps/plugin-os'
-import * as clipboard from 'tauri-plugin-clipboard-api'
-import * as shellx from 'tauri-plugin-shellx-api'
-import { FetchOptions, FetchSendResponse } from './fetch/types'
+import os from '@tauri-apps/plugin-os'
+import clipboard from 'tauri-plugin-clipboard-api'
+import shellx from 'tauri-plugin-shellx-api'
 
+/* -------------------------------------------------------------------------- */
+/*                                    Event                                   */
+/* -------------------------------------------------------------------------- */
+export interface IEventInternal {
+  rawListen<T>(
+    event: _event.EventName,
+    target: _event.EventTarget,
+    handler: _event.EventCallback<T>,
+  ): Promise<number>
+  rawUnlisten(event: string, eventId: number): Promise<void>
+  emit: typeof _event.emit
+  emitTo: typeof _event.emitTo
+  once: typeof _event.once
+}
+
+export interface IEvent {
+  emit: typeof _event.emit
+  emitTo: typeof _event.emitTo
+  once: typeof _event.once
+  listen: typeof _event.listen
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Dialog                                   */
+/* -------------------------------------------------------------------------- */
 export interface IDialog {
   ask: typeof dialog.ask
   confirm: typeof dialog.confirm
   message: typeof dialog.message
-  open: (options?: dialog.OpenDialogOptions) => ReturnType<typeof dialog.open>
+  open(options?: dialog.OpenDialogOptions): ReturnType<typeof dialog.open>
   save: typeof dialog.save
 }
 
@@ -35,17 +65,6 @@ export interface IClipboard {
   hasFiles: typeof clipboard.hasFiles
   startMonitor: typeof clipboard.startMonitor
 }
-// clipboard.isMonitorRunning
-// clipboard.listenToClipboard
-// clipboard.listenToMonitorStatusUpdate
-// clipboard.stopMonitor
-// clipboard.onClipboardUpdate
-// clipboard.onTextUpdate
-// clipboard.onSomethingUpdate
-// clipboard.onHTMLUpdate
-// clipboard.onRTFUpdate
-// clipboard.onFilesUpdate
-// clipboard.onImageUpdate
 
 export interface INotification {
   isPermissionGranted: typeof notification.isPermissionGranted
@@ -93,7 +112,7 @@ export interface IOs {
   locale: typeof os.locale
 }
 
-export interface IShell {
+export interface IShellInternal {
   execute(
     program: string,
     args: string[],
@@ -122,6 +141,26 @@ export interface IShell {
   executeNodeScript: typeof shellx.executeNodeScript
   hasCommand: typeof shellx.hasCommand
   likelyOnWindows: typeof shellx.likelyOnWindows
+}
+
+export interface IShell {
+  open: typeof shellx.open
+  makeBashScript: typeof shellx.makeBashScript
+  makePowershellScript: typeof shellx.makePowershellScript
+  makeAppleScript: typeof shellx.makeAppleScript
+  makePythonScript: typeof shellx.makePythonScript
+  makeZshScript: typeof shellx.makeZshScript
+  makeNodeScript: typeof shellx.makeNodeScript
+  executeBashScript: typeof shellx.executeBashScript
+  executePowershellScript: typeof shellx.executePowershellScript
+  executeAppleScript: typeof shellx.executeAppleScript
+  executePythonScript: typeof shellx.executePythonScript
+  executeZshScript: typeof shellx.executeZshScript
+  executeNodeScript: typeof shellx.executeNodeScript
+  hasCommand: typeof shellx.hasCommand
+  likelyOnWindows: typeof shellx.likelyOnWindows
+  Command: typeof shellx.Command
+  Child: typeof shellx.Child
 }
 
 export interface IFetch {

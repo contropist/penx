@@ -1204,8 +1204,8 @@ importers:
         specifier: 2.0.0-beta.6
         version: 2.0.0-beta.6
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.4
+        version: 2.0.4
       tauri-plugin-shellx-api:
         specifier: ^2.0.7
         version: 2.0.7
@@ -1431,44 +1431,7 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  external-packages/penx:
-    dependencies:
-      '@huakunshen/comlink':
-        specifier: ^4.4.1
-        version: 4.4.1
-      '@tanstack/react-query':
-        specifier: ^5.45.1
-        version: 5.45.1(react@18.2.0)
-      '@tauri-apps/api':
-        specifier: 2.0.0-beta.13
-        version: 2.0.0-beta.13
-      '@tauri-apps/plugin-dialog':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-fs':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-http':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-notification':
-        specifier: 2.0.0-beta.5
-        version: 2.0.0-beta.5
-      '@tauri-apps/plugin-os':
-        specifier: 2.0.0-beta.3
-        version: 2.0.0-beta.3
-      '@tauri-apps/plugin-shell':
-        specifier: 2.0.0-beta.6
-        version: 2.0.0-beta.6
-      tauri-plugin-clipboard-api:
-        specifier: ^2.0.4
-        version: 2.0.4
-      tauri-plugin-shellx-api:
-        specifier: ^2.0.7
-        version: 2.0.7
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
+  external-packages/preset-ui:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6

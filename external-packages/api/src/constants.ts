@@ -1,13 +1,5 @@
 export enum EventType {
-  RunAppleScript = 'RunAppleScript',
-  RunAppleScriptResult = 'RunAppleScriptResult',
-
-  InitOnSearchChange = 'InitOnSearchChange',
-  OnSearchChange = 'OnSearchChange',
-
-  InitOnFilterChange = 'InitOnFilterChange',
-  OnFilterChange = 'OnFilterChange',
-
+  // Http Request
   HttpRequestInited = 'HttpRequestInited',
   HttpRequestResult = 'HttpRequestResult',
   HttpRawFetch = 'HttpRawFetch',

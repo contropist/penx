@@ -1,16 +1,58 @@
-import * as Comlink from '@huakunshen/comlink'
-import { Channel, invoke } from '@tauri-apps/api/core'
-import * as dialog from '@tauri-apps/plugin-dialog'
-import * as fs from '@tauri-apps/plugin-fs'
-import * as notification from '@tauri-apps/plugin-notification'
-import * as os from '@tauri-apps/plugin-os'
-import * as clipboard from 'tauri-plugin-clipboard-api'
-import * as shellx from 'tauri-plugin-shellx-api'
-import { FetchOptions, FetchSendResponse } from '../fetch/types'
-import { IApi } from './types'
+/**
+ * This file is the server-side implementation of Tauri API Adapter
+ * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
+ * Client from iframe or web worker can call APIs exposed from here
+ */
+import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
+import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
+import _event from '@tauri-apps/api/event'
+import dialog from '@tauri-apps/plugin-dialog'
+import fs from '@tauri-apps/plugin-fs'
+import notification from '@tauri-apps/plugin-notification'
+import os from '@tauri-apps/plugin-os'
+import clipboard from 'tauri-plugin-clipboard-api'
+import shellx from 'tauri-plugin-shellx-api'
+import {
+  IClipboardServer,
+  IDialogServer,
+  IEventServer,
+  IFetchServer,
+  IFsServer,
+  IFullAPI,
+  INotificationServer,
+  IOsServer,
+  IShellServer,
+} from './api/server-types'
 
-const api: IApi = {
-  // Clipboard
+/* -------------------------------------------------------------------------- */
+/*                                    Event                                   */
+/* -------------------------------------------------------------------------- */
+export const eventApi: IEventServer = {
+  eventRawListen<T>(
+    event: _event.EventName,
+    target: _event.EventTarget,
+    handler: _event.EventCallback<T>,
+  ): Promise<number> {
+    return invoke<number>('plugin:event|listen', {
+      event,
+      target,
+      handler: transformCallback(handler),
+    })
+  },
+  eventRawUnlisten: (event: string, eventId: number): Promise<void> =>
+    invoke<void>('plugin:event|unlisten', {
+      event,
+      eventId,
+    }),
+  eventEmit: _event.emit,
+  eventEmitTo: _event.emitTo,
+  eventOnce: _event.once,
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Clipboard                                 */
+/* -------------------------------------------------------------------------- */
+export const clipboardApi: IClipboardServer = {
   clipboardReadText: clipboard.readText,
   clipboardWriteText: clipboard.writeText,
   clipboardReadImageBase64: clipboard.readImageBase64,
@@ -30,13 +72,23 @@ const api: IApi = {
   clipboardHasImage: clipboard.hasImage,
   clipboardHasFiles: clipboard.hasFiles,
   clipboardStartMonitor: clipboard.startMonitor,
-  // Dialog
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Dialog                                   */
+/* -------------------------------------------------------------------------- */
+export const dialogApi: IDialogServer = {
   dialogAsk: dialog.ask,
   dialogConfirm: dialog.confirm,
   dialogMessage: dialog.message,
   dialogOpen: dialog.open,
   dialogSave: dialog.save,
-  // Notification
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Notification                                */
+/* -------------------------------------------------------------------------- */
+export const notificationApi: INotificationServer = {
   notificationIsPermissionGranted: notification.isPermissionGranted,
   notificationRequestPermission: notification.requestPermission,
   notificationSendNotification: notification.sendNotification,
@@ -52,7 +104,12 @@ const api: IApi = {
   notificationChannels: notification.channels,
   notificationOnNotificationReceived: notification.onNotificationReceived,
   notificationOnAction: notification.onAction,
-  // File System
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 File System                                */
+/* -------------------------------------------------------------------------- */
+export const fsApi: IFsServer = {
   fsReadDir: fs.readDir,
   fsReadFile: fs.readFile,
   fsReadTextFile: fs.readTextFile,
@@ -67,7 +124,12 @@ const api: IApi = {
   fsTruncate: fs.truncate,
   fsWriteFile: fs.writeFile,
   fsWriteTextFile: fs.writeTextFile,
-  // OS
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                     OS                                     */
+/* -------------------------------------------------------------------------- */
+export const osApi: IOsServer = {
   osPlatform: os.platform,
   osArch: os.arch,
   osExeExtension: os.exeExtension,
@@ -76,7 +138,12 @@ const api: IApi = {
   osEol: () => Promise.resolve(os.eol()),
   osVersion: os.version,
   osLocale: os.locale,
-  // Shell
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Shell                                   */
+/* -------------------------------------------------------------------------- */
+export const shellApi: IShellServer = {
   shellExecute: (
     program: string,
     args: string[],
@@ -97,7 +164,7 @@ const api: IApi = {
       buffer: buffer,
       pid: pid,
     }),
-  shellOpen: (path: string, openWith?: string) => shellx.open(path, openWith),
+  shellOpen: shellx.open,
   shellRawSpawn: <O extends shellx.IOPayload>(
     program: string,
     args: string[],
@@ -121,7 +188,12 @@ const api: IApi = {
   shellExecuteNodeScript: shellx.executeNodeScript,
   shellHasCommand: shellx.hasCommand,
   shellLikelyOnWindows: shellx.likelyOnWindows,
-  // Fetch
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Fetch                                   */
+/* -------------------------------------------------------------------------- */
+export const fetchApi: IFetchServer = {
   fetchRawFetch: (options: FetchOptions) => invoke<number>('plugin:http|fetch', options),
   fetchFetchCancel: (rid: number) => invoke<void>('plugin:http|fetch_cancel', { rid }),
   fetchFetchSend: (rid: number) => invoke<FetchSendResponse>('plugin:http|fetch_send', { rid }),
@@ -129,11 +201,13 @@ const api: IApi = {
     invoke<ArrayBuffer | number[]>('plugin:http|fetch_read_body', { rid }),
 }
 
-/**
- *
- * @param window for example: iframe.contentWindow
- * @returns
- */
-export function exposeApiToWindow(win: Window) {
-  return Comlink.expose(api, Comlink.windowEndpoint(win))
+export const defaultServerAPI: IFullAPI = {
+  ...clipboardApi,
+  ...dialogApi,
+  ...notificationApi,
+  ...fsApi,
+  ...osApi,
+  ...shellApi,
+  ...fetchApi,
+  ...eventApi,
 }
