@@ -1,4 +1,4 @@
-import { IListItem, ListApp, onSearchChange } from '@penxio/worker-ui'
+import { IListItem, ListApp, onSearchChange } from '@penxio/preset-ui'
 import { toBase64 } from './libs/toBase64'
 import { toString } from './libs/toString'
 

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { shellOpen } from 'penx'
+import { shellOpen } from '@penxio/api'
 import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 

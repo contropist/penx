@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react'
 import { Box } from '@fower/react'
-import { ListJSON } from '@penxio/worker-ui'
+import { ListJSON } from '@penxio/preset-ui'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { open } from '@tauri-apps/plugin-shell'
 import clipboard from 'tauri-plugin-clipboard-api'

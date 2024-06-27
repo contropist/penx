@@ -1,4 +1,4 @@
-import { MarkdownApp } from '@penxio/worker-ui'
+import { MarkdownApp } from '@penxio/preset-ui'
 
 export function main() {
   let counter = 1

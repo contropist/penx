@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 export function Main() {
   return (
     <div className="flex justify-center items-center h-full">

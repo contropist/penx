@@ -1,6 +1,6 @@
+import { comlink } from '@penxio/api'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
-import { comlink } from 'penx'
 import { appEmitter } from '@penx/event'
 import { themeModeAtom } from '@penx/hooks'
 import { db } from '@penx/local-db'
@@ -52,10 +52,6 @@ export function useHandleSelect() {
     const handled = handleBuiltinCommand(item)
     if (handled) return
 
-    if (item.data.commandName === 'marketplace') {
-      return
-    }
-
     if (item.data?.type === 'Database') {
       setSearch('')
       setDatabase(item.data.database)
@@ -78,7 +74,6 @@ export function useHandleSelect() {
 
     if (item.data?.type === 'Command') {
       setSearch('')
-      setLoading(true)
       setCurrentCommand(item)
 
       setPosition('COMMAND_APP')
@@ -118,7 +113,6 @@ export function useHandleSelect() {
         worker = createCommandWorker(command, input)
       }
 
-      setLoading(false)
       workerStore.currentWorker = worker
 
       item.data.commandName && worker.postMessage(item.data.commandName)

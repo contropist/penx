@@ -49,7 +49,7 @@ function Detail() {
 
   return (
     <Box flex-1 overflowAuto p3 column gap1>
-      <Box flex-1>
+      <Box flex-1 column gap2>
         {extension.commands.map((command) => {
           return (
             <Box key={command.name} toCenterY gap2>

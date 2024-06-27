@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react'
 import { Box, css, FowerHTMLProps } from '@fower/react'
-import { IAccessory, isAccessoryObjectText } from '@penxio/worker-ui'
+import { IAccessory, isAccessoryObjectText } from '@penxio/preset-ui'
 import { ICommandItem } from '~/common/types'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { StyledCommandItem } from './CommandComponents'

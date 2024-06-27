@@ -6,7 +6,7 @@
     "release": "penx release"
   },
   "devDependencies": {
-    "penx": "workspace:*",
+    "@penxio/api": "workspace:*",
     "penx-cli": "workspace:*",
     "prettier": "^3.2.5",
     "typescript": "^5.3.2"

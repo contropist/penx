@@ -1,4 +1,4 @@
-# Markdown
+# MarkdownApp
 
 Render Markdown to Command App.
 
@@ -11,10 +11,10 @@ Render Markdown to Command App.
 Render a markdonwn string.
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownApp } from '@penxio/preset-ui'
 
 export async function main() {
-  render(new MarkdownBuilder('Hello **world**'))
+  new MarkdownApp({ content: '# Hello world' }).run()
 }
 ```
 
@@ -23,21 +23,17 @@ export async function main() {
 Render a iamge.
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownApp } from '@penxio/preset-ui'
 
 export async function main() {
-  const md = new MarkdownBuilder(
-    '![penx-logo](https://www.penx.io/images/logo-128.png)',
-  )
-
-  render(md)
+  new MarkdownApp({ content: '![penx-logo](https://www.penx.io/images/logo-128.png)' }).run()
 }
 ```
 
 ### Support all markdown syntax
 
 ```ts
-import { MarkdownBuilder, render } from 'penx'
+import { MarkdownApp } from '@penxio/preset-ui'
 
 const content = `
 # hello world!
@@ -54,6 +50,6 @@ The Markdown elements outlined in the original design document.
 ![penx-logo](https://www.penx.io/images/logo-128.png)
 `
 export async function main() {
-  render(new MarkdownBuilder(conteng))
+  new MarkdownApp({ content }).run()
 }
 ```

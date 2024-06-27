@@ -1,4 +1,4 @@
-import { IListItem, ListApp } from '@penxio/worker-ui'
+import { IListItem, ListApp } from '@penxio/preset-ui'
 import { getTodos } from './libs/getTodos'
 
 export async function main() {

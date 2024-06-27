@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { DetailItem } from '@penxio/worker-ui'
+import { DetailItem } from '@penxio/preset-ui'
 import { Divider, Spinner } from 'uikit'
 import { useDetail } from '~/hooks/useDetail'
 import { DataListItem } from '../DataListItem'

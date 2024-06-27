@@ -77,13 +77,7 @@ Defines the extension's metadata and commands.
 The main logic for rendering the news list and handling filter changes.
 
 ```ts
-import {
-  IListItem,
-  ListBuilder,
-  onFilterChange,
-  render,
-  renderLoading,
-} from 'penx'
+import { IListItem, ListBuilder, onFilterChange, render, renderLoading } from '@penxio/api'
 import { getData } from './libs/getData'
 
 export async function main() {
@@ -159,8 +153,8 @@ export async function getData(type: string) {
       const newsPromises = topStoryIds
         .slice(0, 10)
         .map((id) =>
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-            (response) => response.json(),
+          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((response) =>
+            response.json(),
           ),
         )
 

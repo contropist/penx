@@ -1,4 +1,4 @@
-import { IListItem } from '@penxio/worker-ui'
+import { IListItem } from '@penxio/preset-ui'
 import { atom, useAtom } from 'jotai'
 
 type MarketplaceUI = {

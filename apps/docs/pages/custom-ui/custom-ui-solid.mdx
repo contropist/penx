@@ -38,22 +38,30 @@ The project consists of the following key files:
 
 The manifest.json file contains metadata about the project.
 
-```json {8,14}
+```json
 {
   "name": "extension-template-solid",
   "title": "Extension Template Solid",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "lucide--globe"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello Solid",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
       "framework": "solid"
     },
     {
       "name": "count",
       "title": "Solid Count",
+      "icon": {
+        "name": "lucide--globe"
+      },
       "mode": "custom-ui",
       "framework": "solid"
     }
@@ -70,7 +78,7 @@ The **command name** is associated with the `[commandName].command.tsx` file, wh
 
 The `hello.command.tsx` file will render the "Hello World" string:
 
-```ts
+```tsx
 export function Main() {
   return (
     <div class="flex justify-center items-center h-full">
@@ -86,7 +94,7 @@ export function Main() {
 
 The `count.command.tsx` file shows a basic counter demo:
 
-```ts
+```tsx
 import { createSignal } from 'solid-js'
 
 export function Main() {

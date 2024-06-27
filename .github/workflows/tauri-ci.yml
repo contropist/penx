@@ -6,7 +6,10 @@ name: "Tauri App Publish"
 #       - "v*"
 #   workflow_dispatch:
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   publish-tauri:

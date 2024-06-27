@@ -1,4 +1,4 @@
-import { constructAPICallbackExecuter, EventType } from '@penxio/worker-ui'
+import { constructAPICallbackExecuter, EventType } from '@penxio/preset-ui'
 import { appEmitter } from '@penx/event'
 import { store } from '@penx/store'
 import { commandUIAtom } from '~/hooks/useCommandAppUI'

@@ -8,7 +8,7 @@ import {
   Command,
   shell,
   fetch,
-} from 'penx'
+} from '@penxio/api'
 import { useEffect } from 'react'
 
 export function Main() {

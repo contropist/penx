@@ -38,22 +38,33 @@ The project consists of the following key files:
 
 The manifest.json file contains metadata about the project.
 
-```json {8,14}
+```json
 {
   "name": "extension-template-vue",
   "title": "Extension Template Vue",
   "description": "This is a custom UI demo.",
-  "icon": "logo.svg",
+  "icon": {
+    "name": "mdi--vuejs",
+    "className": "bg-emerald-500"
+  },
   "commands": [
     {
       "name": "hello",
       "title": "Hello Vue",
       "mode": "custom-ui",
+      "icon": {
+        "name": "mdi--vuejs",
+        "className": "bg-emerald-500"
+      },
       "framework": "vue"
     },
     {
       "name": "count",
       "title": "Vue Count",
+      "icon": {
+        "name": "lucide--clock",
+        "className": "bg-gradient-to-r from-teal-500 to-cyan-500"
+      },
       "mode": "custom-ui",
       "framework": "vue"
     }
@@ -92,9 +103,7 @@ The `count.command.vue` file shows a basic counter demo:
 </script>
 
 <template>
-  <div
-    class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500"
-  >
+  <div class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
     <button
       class="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70"
       @click="count++"

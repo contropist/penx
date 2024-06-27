@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { clipboard } from 'penx'
+import { clipboard } from '@penxio/api'
 import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 

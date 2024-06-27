@@ -17,7 +17,7 @@ export async function getData(type: string) {
     .then((response) => response.json())
     .then((topStoryIds: number[]) => {
       const newsPromises = topStoryIds
-        .slice(0, 10)
+        .slice(0, 20)
         .map((id) =>
           fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
             (response) => response.json(),

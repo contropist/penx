@@ -1,14 +1,14 @@
-import { ReactNode } from 'react'
-import { clipboard } from 'penx'
+import { clipboard } from '@penxio/api'
 import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 
 interface CopyToClipboardProps extends BaseActionProps {
-  title: string
+  content: string
+  title?: string
 }
 
 export function CopyToClipboard({
-  title: content,
+  content,
   title = 'Copy to Clipboard',
   shortcut,
   icon = { name: 'lucide--copy' },

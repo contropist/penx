@@ -2,7 +2,7 @@ import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import { Icon } from '@iconify/react'
-import { isObjectIcon } from '@penxio/worker-ui'
+import { isObjectIcon } from '@penxio/preset-ui'
 import { useQuery } from '@tanstack/react-query'
 import { getRandomColor } from '@penx/local-db'
 import { getIcon } from '~/common/icon'
@@ -17,8 +17,16 @@ interface ListItemIconProps extends FowerHTMLProps<'div'> {
 
 export const ListItemIcon = memo(
   function ListItemIcon({ icon, bg, isApplication, size = 20, ...rest }: ListItemIconProps) {
-    if (!icon) {
-      return <Box flexShrink-0 square={size} bgNeutral300 rounded-6 {...rest}></Box>
+    if (typeof icon === 'number' || !icon) {
+      const colorName = bg || getRandomColor('500')
+
+      const arr = [colorName.replace('500', '400'), colorName, colorName.replace('500', '600')]
+
+      return (
+        <Box square={size} flexShrink-0 rounded-6 toCenter textXS white bgGradientX={arr}>
+          {icon || ''}
+        </Box>
+      )
     }
 
     if (isIconify(icon)) {
@@ -27,18 +35,6 @@ export const ListItemIcon = memo(
 
     if (isApplication) {
       return <AppIcon size={size} icon={icon as string} />
-    }
-
-    if (typeof icon === 'number') {
-      const colorName = bg || getRandomColor('500')
-
-      const arr = [colorName.replace('500', '400'), colorName, colorName.replace('500', '600')]
-
-      return (
-        <Box square={size} flexShrink-0 rounded-6 toCenter textXS white bgGradientX={arr}>
-          {icon}
-        </Box>
-      )
     }
 
     // TODO: handle other icon value
@@ -96,24 +92,35 @@ function AppIcon({ icon, size = 20 }: { icon: string; size: number }) {
 }
 
 function IconifyIcon(icon: IconifyIconType) {
-  // TODO: parse className to fower props
+  // TODO: parse className to fower props, improvement needed
   let props: Record<string, any> = {}
   const bgGradientX: string[] = []
   const classNames = icon.className?.split(/\s+/) || []
 
+  let hasBg = false
+
   for (const item of classNames) {
     if (item.startsWith('from-')) {
       bgGradientX[0] = item.replace('from-', '').split('-').join('')
+      hasBg = true
     }
     if (item.startsWith('to-')) {
       bgGradientX[1] = item.replace('to-', '').split('-').join('')
+      hasBg = true
+    }
+    //
+    if (item.startsWith('bg-')) {
+      const arr = item.split('-')
+      props[arr.join('')] = true
+      hasBg = true
     }
   }
 
   props.bgGradientX = bgGradientX
-  if (props.bgGradientX?.length > 0) {
+  if (hasBg) {
     props.white = true
-    props.p = 2
+    props['white--dark'] = true
+    props.p = 3
   }
 
   return (

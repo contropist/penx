@@ -1,4 +1,4 @@
-import { IListItem, ListApp, onFilterChange } from '@penxio/worker-ui'
+import { IListItem, ListApp, onFilterChange } from '@penxio/preset-ui'
 import { getTrendingData } from './libs/getTrendingData'
 
 export async function main() {
