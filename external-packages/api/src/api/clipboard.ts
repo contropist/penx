@@ -1,5 +1,3 @@
-import { type IClipboard } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { type Remote } from '@huakunshen/comlink'
 import {
   hasFiles,
@@ -22,6 +20,8 @@ import {
   writeRtf,
   writeText,
 } from 'tauri-plugin-clipboard-api'
+import { type IClipboard } from '../api/client-types'
+import { defaultClientAPI, isMain } from '../client'
 import { type IClipboardServer } from './server-types'
 
 export function constructAPI(api: Remote<IClipboardServer>): IClipboard {

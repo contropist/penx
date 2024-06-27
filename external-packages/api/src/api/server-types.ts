@@ -1,4 +1,11 @@
 import type {
+  EventCallback,
+  EventName,
+  Options as EventOptions,
+  EventTarget,
+  UnlistenFn,
+} from '@tauri-apps/api/event'
+import type {
   IClipboard,
   IDialog,
   IEventInternal,
@@ -7,14 +14,7 @@ import type {
   INotification,
   IOs,
   IShellInternal,
-} from '@/api/client-types'
-import type {
-  EventCallback,
-  EventName,
-  Options as EventOptions,
-  EventTarget,
-  UnlistenFn,
-} from '@tauri-apps/api/event'
+} from '../api/client-types'
 
 export interface IEventServer {
   eventRawListen<T>(

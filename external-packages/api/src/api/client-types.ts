@@ -2,7 +2,6 @@
  * This file defines API interfaces for client. The client is the side that calls the API.
  * For example, the client can call the APIs from an iframe.
  */
-import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import type {
   emit,
   emitTo,
@@ -106,6 +105,7 @@ import type {
   makeZshScript,
   open as shellxOpen,
 } from 'tauri-plugin-shellx-api'
+import type { FetchOptions, FetchSendResponse } from '../api/fetch/types'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Event                                   */

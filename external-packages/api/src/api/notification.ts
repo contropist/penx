@@ -1,5 +1,3 @@
-import { type INotification } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import { PluginListener } from '@tauri-apps/api/core'
 import {
@@ -20,6 +18,8 @@ import {
   sendNotification,
   type Options as NotificationOptions,
 } from '@tauri-apps/plugin-notification'
+import { type INotification } from '../api/client-types'
+import { defaultClientAPI, isMain } from '../client'
 import { type INotificationServer } from './server-types'
 
 export function constructAPI(api: Remote<INotificationServer>): INotification {

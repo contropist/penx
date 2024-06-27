@@ -1,5 +1,3 @@
-import { type IEvent, type IEventInternal } from '@/api/client-types'
-import { defaultClientAPI, isMain } from '@/client'
 import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
 import {
   emit,
@@ -12,6 +10,8 @@ import {
   type Options,
   type UnlistenFn,
 } from '@tauri-apps/api/event'
+import { type IEvent, type IEventInternal } from '../api/client-types'
+import { defaultClientAPI, isMain } from '../client'
 import { type IEventServer } from './server-types'
 
 export function constructAPI(api: Remote<IEventServer>): IEventInternal {

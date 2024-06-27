@@ -17,7 +17,7 @@ export function OpenInBrowser({
       shortcut={shortcut}
       icon={icon}
       onSelect={() => {
-        shell.shellOpen(url)
+        shell.open(url)
       }}
     >
       {title}

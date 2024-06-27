@@ -1,4 +1,4 @@
-import { EventType } from '@/constants'
+import { EventType } from './constants'
 
 export type PenxAPIResponseMessageEvent<T> = MessageEvent<{
   type: string
