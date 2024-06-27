@@ -136,7 +136,7 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
 
             // // manage state so it is accessible by the commands
             // app.manage(JarvisState::default());
-            // app.manage(commands::apps::ApplicationsState::default());
+            app.manage(commands::apps::ApplicationsState::default());
 
             // let mut store = StoreBuilder::new("appConfig.bin").build(app.clone());
             // let _ = store.load();

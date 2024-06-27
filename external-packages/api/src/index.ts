@@ -1,4 +1,4 @@
-export * from '@/comlink'
+export * as comlink from '@/comlink'
 export { defaultClientAPI, hasWindow, isInWorker, isInIframe, isMain } from '@/client'
 export { defaultServerAPI } from '@/server'
 export * from '@/api/server-types'

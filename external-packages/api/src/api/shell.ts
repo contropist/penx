@@ -2,7 +2,8 @@ import { IShell, IShellInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Comlink } from '@/comlink'
 import { Remote } from '@huakunshen/comlink'
-import shellx, { IOPayload } from 'tauri-plugin-shellx-api'
+// import { IOPayload } from 'tauri-plugin-shellx-api'
+import * as shellx from 'tauri-plugin-shellx-api'
 import { IShellServer } from './server-types'
 
 export function constructAPI(api: Remote<IShellServer>): IShellInternal {
@@ -32,7 +33,7 @@ export function constructAPI(api: Remote<IShellServer>): IShellInternal {
 const _comlinkShell: IShellInternal = constructAPI(defaultClientAPI)
 
 export class Child extends shellx.Child {
-  write(data: IOPayload): Promise<void> {
+  write(data: shellx.IOPayload): Promise<void> {
     return _comlinkShell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
   }
 
@@ -41,8 +42,8 @@ export class Child extends shellx.Child {
   }
 }
 
-export class Command<O extends IOPayload> extends shellx.Command<O> {
-  static create<O extends IOPayload>(
+export class Command<O extends shellx.IOPayload> extends shellx.Command<O> {
+  static create<O extends shellx.IOPayload>(
     program: string,
     args: string | string[] = [],
     options?: shellx.SpawnOptions,

@@ -8,7 +8,7 @@ import {
   IOs,
   IShellInternal,
 } from '@/api/client-types'
-import _event from '@tauri-apps/api/event'
+import * as _event from '@tauri-apps/api/event'
 
 export interface IEventServer {
   eventRawListen<T>(

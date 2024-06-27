@@ -1,7 +1,7 @@
 import { IDialog } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
 import { Remote } from '@huakunshen/comlink'
-import _dialogApi from '@tauri-apps/plugin-dialog'
+import * as _dialogApi from '@tauri-apps/plugin-dialog'
 import { IDialogServer } from './server-types'
 
 export function constructAPI(api: Remote<IDialogServer>): IDialog {
