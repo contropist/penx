@@ -130,29 +130,29 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
         .setup(|app, api| {
             // #[cfg(mobile)]
             // let jarvis = mobile::init(app, api)?;
-            #[cfg(desktop)]
-            let jarvis = desktop::init(app, api)?;
-            app.manage(jarvis);
+            // #[cfg(desktop)]
+            // let jarvis = desktop::init(app, api)?;
+            // app.manage(jarvis);
 
-            // manage state so it is accessible by the commands
-            app.manage(JarvisState::default());
-            app.manage(commands::apps::ApplicationsState::default());
+            // // manage state so it is accessible by the commands
+            // app.manage(JarvisState::default());
+            // app.manage(commands::apps::ApplicationsState::default());
 
-            let mut store = StoreBuilder::new("appConfig.bin").build(app.clone());
-            let _ = store.load();
+            // let mut store = StoreBuilder::new("appConfig.bin").build(app.clone());
+            // let _ = store.load();
 
-            let app_settings = match AppSettings::load_from_store(&store) {
-                Ok(settings) => settings,
-                Err(_) => AppSettings::default(),
-            };
-            let ext_folder: Option<PathBuf> = get_default_extensions_dir(app).ok();
-            app.manage(commands::server::Server::new(
-                ext_folder,
-                app_settings.dev_extention_path,
-            ));
-            utils::setup::setup_server(app); // start the server
-            utils::setup::setup_app_path(app);
-            utils::setup::setup_extension_storage(app);
+            // let app_settings = match AppSettings::load_from_store(&store) {
+            //     Ok(settings) => settings,
+            //     Err(_) => AppSettings::default(),
+            // };
+            // let ext_folder: Option<PathBuf> = get_default_extensions_dir(app).ok();
+            // app.manage(commands::server::Server::new(
+            //     ext_folder,
+            //     app_settings.dev_extention_path,
+            // ));
+            // utils::setup::setup_server(app); // start the server
+            // utils::setup::setup_app_path(app);
+            // utils::setup::setup_extension_storage(app);
             Ok(())
         })
         .build()

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import { Command as ShellCmd } from '@tauri-apps/plugin-shell'
+import { clipboard } from '@penxio/api'
 import { Command } from 'cmdk'
 import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
 import { store } from '@penx/store'
@@ -28,7 +28,9 @@ export const CommandPalette = () => {
   const { value, setValue } = useValue()
 
   const { developingItems, commandItems, databaseItems, applicationItems } = useItems()
-
+  useEffect(() => {
+    clipboard.readText().then(console.log)
+  }, [])
   // console.log('========items:', items)
 
   // console.log(

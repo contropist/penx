@@ -5,7 +5,6 @@ import {
   fs,
   os,
   notification,
-  Command,
   shell,
   fetch,
 } from '@penxio/api'
@@ -24,7 +23,7 @@ export function Main() {
       // console.log(await cmd.execute())
       // const cmd = Command.create('echo', ['hello'])
       // let start = Date.now()
-      const cmd = Command.create('ffmpeg', [
+      const cmd = shell.Command.create('ffmpeg', [
         '-i',
         '/Users/hacker/Downloads/video.mp4',
         '/Users/hacker/Downloads/video.mov',
