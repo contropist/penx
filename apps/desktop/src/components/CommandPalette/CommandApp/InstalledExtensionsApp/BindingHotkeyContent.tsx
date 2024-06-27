@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { listen, UnlistenFn } from '@tauri-apps/api/event'
-import { Kbd, Popover, PopoverContent, PopoverTrigger, usePopoverContext } from 'uikit'
-import { useAppHotkey } from '../hooks/useAppHotkey'
-import {
-  convertKeysToHotkey,
-  getAppHotkey,
-  registerAppHotkey,
-  saveAppHotkey,
-  unregisterHotkey,
-} from '../utils'
+import { Kbd, usePopoverContext } from 'uikit'
+import { db } from '@penx/local-db'
+import { IExtension } from '@penx/model-types'
+import { useExtensions } from './useExtensions'
+import { convertKeysToHotkey, registerCommandHotkey, unregisterHotkey } from './utils'
 
-interface Props {}
+interface Props {
+  command: IExtension['commands'][0]
+  extension: IExtension
+}
 
 const modifierKeys = ['Control', 'Meta', 'Shift', 'Alt']
 const modifierCodes = [
@@ -25,9 +24,9 @@ const modifierCodes = [
   'AltRight',
 ]
 
-function Content() {
+export function BindingHotkeyContent({ extension, command }: Props) {
+  const { refetch } = useExtensions()
   const ctx = usePopoverContext()
-  const { refetch } = useAppHotkey()
   const [keys, setKeys] = useState<string[]>([])
 
   useEffect(() => {
@@ -65,14 +64,14 @@ function Content() {
       keys = keys.filter((key) => !modifierCodes.includes(key))
 
       if (!isModifierKey) {
-        const oldKeys = await getAppHotkey()
-
-        const oldHotkey = convertKeysToHotkey(oldKeys)
+        const oldHotkey = command.hotkey ? convertKeysToHotkey(command.hotkey) : undefined
         const newHotkey = convertKeysToHotkey(keys)
 
-        await unregisterHotkey(oldHotkey)
-        await registerAppHotkey(newHotkey)
-        await saveAppHotkey(keys)
+        console.log('111111111:', oldHotkey)
+
+        oldHotkey && (await unregisterHotkey(oldHotkey))
+        await registerCommandHotkey(extension, command, newHotkey)
+        await db.updateCommandHotkey(extension.id, command.name, keys)
         await refetch()
         ctx.close()
       } else {
@@ -89,7 +88,7 @@ function Content() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <Box column toBetween h-100p toCenterX>
+    <Box column toBetween h-100p toCenterX gap3>
       {!keys.length && (
         <Box toCenterY leadingNone gap2>
           <Box textSM neutral500>
@@ -99,7 +98,7 @@ function Content() {
           <Box toCenterY gap1>
             <Kbd>⌘</Kbd>
             <Kbd>⇧</Kbd>
-            <Kbd>Space</Kbd>
+            <Kbd>9</Kbd>
           </Box>
         </Box>
       )}
@@ -114,26 +113,5 @@ function Content() {
         Recording...
       </Box>
     </Box>
-  )
-}
-
-export const BindAppHotkey = ({}: Props) => {
-  const { data = [], isLoading } = useAppHotkey()
-
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Box bgNeutral100 h-40 w-200 rounded2XL toCenter cursorPointer>
-          <Box toCenterY gap1>
-            {data.map((item) => (
-              <Kbd key={item}>{item}</Kbd>
-            ))}
-          </Box>
-        </Box>
-      </PopoverTrigger>
-      <PopoverContent w-200 h-100 p4 column toCenterX>
-        <Content />
-      </PopoverContent>
-    </Popover>
   )
 }

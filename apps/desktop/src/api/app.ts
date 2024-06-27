@@ -30,15 +30,15 @@ export function handleFilterChange(event: MessageEvent) {
 
 type ComponentJSON = string
 
-export function useHandleRender(setUI: (ui: { type: 'render'; component: ComponentJSON }) => void) {
-  return (event: MessageEvent) => {
-    return constructAPICallbackExecuter<ComponentJSON>(EventType.Render, (payload) => {
-      setUI({
+export function handleRender(event: MessageEvent) {
+  return constructAPICallbackExecuter<ComponentJSON>(EventType.Render, (payload) => {
+    if (event.data.type === EventType.Render) {
+      store.set(commandUIAtom, {
         type: 'render',
         component: payload,
       })
-    })(event)
-  }
+    }
+  })(event)
 }
 
 export function handleDetail(event: MessageEvent<{ type: string; isLoading: boolean; data: any }>) {
@@ -52,8 +52,6 @@ export function handleDetail(event: MessageEvent<{ type: string; isLoading: bool
 
 export function handleEscape(event: MessageEvent<{ type: string }>) {
   if (event.data.type === 'escape') {
-    console.log('name......---')
-
     store.set(positionAtom, 'ROOT')
     store.set(currentCommandAtom, null as any)
     store.set(commandUIAtom, {} as any)

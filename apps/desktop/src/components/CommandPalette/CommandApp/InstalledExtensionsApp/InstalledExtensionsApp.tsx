@@ -62,7 +62,7 @@ function Detail() {
                 <SetAlias extension={extension} command={command} />
               </Box>
               <Box flex-1>
-                <BindingHotkey />
+                <BindingHotkey extension={extension} command={command} />
               </Box>
 
               <Box w-30 toRight>

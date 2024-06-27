@@ -9,12 +9,12 @@ import { createBuiltinWorker } from '~/common/createBuiltinWorker'
 import { createCommandWorker } from '~/common/createCommandWorker'
 import { ICommandItem } from '~/common/types'
 import { workerStore } from '~/common/workerStore'
+import { handleOnMessage } from './handleOnMessage'
 import { useCommandAppLoading } from './useCommandAppLoading'
 import { useCommandAppUI } from './useCommandAppUI'
 import { useCommandPosition } from './useCommandPosition'
 import { useCurrentCommand } from './useCurrentCommand'
 import { useCurrentDatabase } from './useCurrentDatabase'
-import { useOnMessage } from './useOnMessage'
 import { useSearch } from './useSearch'
 
 function useHandleBuiltinCommand() {
@@ -45,7 +45,6 @@ export function useHandleSelect() {
   const { setDatabase } = useCurrentDatabase()
   const { setLoading } = useCommandAppLoading()
   const { setSearch } = useSearch()
-  const onMessage = useOnMessage()
   const handleBuiltinCommand = useHandleBuiltinCommand()
 
   return async (item: ICommandItem, input = '') => {
@@ -117,7 +116,7 @@ export function useHandleSelect() {
       workerStore.currentWorker = worker
 
       item.data.commandName && worker.postMessage(item.data.commandName)
-      worker.addEventListener('message', onMessage)
+      worker.addEventListener('message', handleOnMessage)
     }
   }
 }

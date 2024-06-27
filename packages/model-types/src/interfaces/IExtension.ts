@@ -14,6 +14,7 @@ export interface Command {
   mode?: 'preset-ui' | 'custom-ui' | 'no-view'
   isBuiltIn?: boolean
   alias?: string
+  hotkey?: string[]
 }
 
 export interface IExtension {

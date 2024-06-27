@@ -77,10 +77,11 @@ export async function installBuiltinExtension() {
   let ext = (await db.getExtensionByName(name))!
 
   if (ext) {
-    await db.updateExtension(ext.id, {
-      ...ext,
-      commands,
-    })
+    for (const item of commands) {
+      const find = ext.commands.find((c) => c.name === item.name)
+      if (find) continue
+      await db.addCommand(ext.id, item)
+    }
     return
   }
 

@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
-import { useOnMessage } from './useOnMessage'
+import { handleOnMessage } from './handleOnMessage'
 
 export function useOnWindowMessage() {
-  const onMessage = useOnMessage()
   useEffect(() => {
-    window.addEventListener('message', onMessage)
+    window.addEventListener('message', handleOnMessage)
     return () => {
-      window.removeEventListener('message', onMessage)
+      window.removeEventListener('message', handleOnMessage)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

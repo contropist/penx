@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie'
-import { IExtension, IFile, INode, ISpace } from '@penx/model-types'
+import { Command, IExtension, IFile, INode, ISpace } from '@penx/model-types'
 import { uniqueId } from '@penx/unique-id'
 import { getNewSpace } from './libs/getNewSpace'
 
@@ -12,7 +12,7 @@ export class PenxDB extends Dexie {
   constructor() {
     // super('PenxDB')
     super('penx-local')
-    this.version(18).stores({
+    this.version(19).stores({
       // Primary key and indexed props
       space: 'id, name, userId',
       node: 'id, spaceId, databaseId, type, date, [type+spaceId+databaseId], [type+spaceId], [type+databaseId]',
@@ -57,18 +57,38 @@ export class PenxDB extends Dexie {
     return this.extension.update(extensionId, data)
   }
 
-  updateCommandAlias = async (
-    extensionId: string,
-    commandName: string,
-    alias: string,
-  ) => {
+  updateCommandAlias = async (extensionId: string, commandName: string, alias: string) => {
     const ext = await this.extension.get(extensionId)
+
     if (!ext) return
     const index = ext.commands.findIndex((c) => c.name === commandName)
+
     if (index === -1) return
     ext.commands[index]!.alias = alias
     await this.updateExtension(extensionId, {
       commands: ext.commands,
+    })
+  }
+
+  updateCommandHotkey = async (extensionId: string, commandName: string, hotkey: string[]) => {
+    const ext = await this.extension.get(extensionId)
+
+    if (!ext) return
+    const index = ext.commands.findIndex((c) => c.name === commandName)
+
+    if (index === -1) return
+    ext.commands[index]!.hotkey = hotkey
+    await this.updateExtension(extensionId, {
+      commands: ext.commands,
+    })
+  }
+
+  addCommand = async (extensionId: string, command: Command) => {
+    const ext = await this.extension.get(extensionId)
+    if (!ext) return
+
+    await this.updateExtension(extensionId, {
+      commands: [...ext.commands, command],
     })
   }
 

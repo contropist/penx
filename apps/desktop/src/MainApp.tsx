@@ -11,10 +11,6 @@ import { DesktopWelcome } from '~/components/DesktopWelcome'
 import { InitUserToStore } from '~/components/InitUserToStore'
 
 export function MainApp() {
-  useEffect(() => {
-    installBuiltinExtension()
-  }, [])
-
   const {
     isLoading,
     data: isBoarded,
@@ -53,6 +49,7 @@ export function MainApp() {
     mutationKey: ['init_data_fist_time'],
     mutationFn: async () => {
       localStorage.setItem('PENX_IS_BOARDED', 'yes')
+
       await installBuiltinExtension()
 
       const localSpaces = await db.listLocalSpaces()

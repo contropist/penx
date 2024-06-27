@@ -1,28 +1,46 @@
 import { Box } from '@fower/react'
-import { Input, Popover, PopoverContent, PopoverTrigger } from 'uikit'
-import { IDatabaseNode } from '@penx/model-types'
+import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
+import { IExtension } from '@penx/model-types'
+import { BindingHotkeyContent } from './BindingHotkeyContent'
 
-interface BindingHotkeyProps {}
+interface BindingHotkeyProps {
+  command: IExtension['commands'][0]
+  extension: IExtension
+}
 
-export const BindingHotkey = ({}: BindingHotkeyProps) => {
+export const BindingHotkey = (props: BindingHotkeyProps) => {
+  const { command } = props
+
   return (
-    <Popover>
+    <Popover placement="top">
       <PopoverTrigger>
         {({ isOpen }) => (
-          <Input
-            size={28}
+          <Box
+            h-28
+            rounded-4
             textXS
-            placeholder="Set Hotkey"
+            neutral400
             maxW-160
-            borderBrand500={isOpen}
             border
-            bgAmber100--i={isOpen}
-            // ring-1={isOpen}
-          />
+            px2
+            borderBrand500={isOpen}
+            toCenterY
+          >
+            {command.hotkey && (
+              <Box toCenterX gap1>
+                {command.hotkey.map((key) => (
+                  <Kbd key={key} bgNeutral200--T40>
+                    {key}
+                  </Kbd>
+                ))}
+              </Box>
+            )}
+            {!command.hotkey && 'Set Hotkey'}
+          </Box>
         )}
       </PopoverTrigger>
       <PopoverContent p4>
-        <Box>Coming soon</Box>
+        <BindingHotkeyContent {...props} />
       </PopoverContent>
     </Popover>
   )

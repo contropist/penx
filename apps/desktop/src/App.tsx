@@ -11,6 +11,7 @@ import '~/styles/command.scss'
 import { fixPathEnv } from 'tauri-plugin-shellx-api'
 import { registerDefaultAppHotkey } from '@penx/app'
 import { handleEscape } from './common/handleEscape'
+import { installBuiltinExtension } from './common/installBuiltinExtension'
 import { watchDesktopLogin } from './common/watchDesktopLogin'
 import { watchExtensionDevChange } from './common/watchExtensionDevChange'
 import { useInitThemeMode } from './hooks/useInitThemeMode'
@@ -22,6 +23,7 @@ async function init() {
   watchExtensionDevChange()
   watchDesktopLogin()
   registerDefaultAppHotkey()
+  installBuiltinExtension()
 }
 
 init()

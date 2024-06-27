@@ -220,7 +220,7 @@ export function useLoadCommands() {
             return {
               type: 'list-item',
               title: appInfo.name,
-              subtitle: appInfo.app_desktop_path,
+              subtitle: '',
               icon: appInfo.icon_path,
               keywords: [],
               data: {
