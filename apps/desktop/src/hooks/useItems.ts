@@ -248,13 +248,6 @@ export function useQueryCommands() {
   const { data, refetch } = useLoadCommands()
 
   useEffect(() => {
-    appEmitter.on('ON_APPLICATION_DIR_CHANGE', refetch)
-    return () => {
-      appEmitter.off('ON_APPLICATION_DIR_CHANGE', refetch)
-    }
-  }, [])
-
-  useEffect(() => {
     if (data?.length) {
       setItems(data)
       setCommands(data)

@@ -1,5 +1,5 @@
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
-import { isRegistered, register, unregister } from '@tauri-apps/plugin-global-shortcut'
+import { register, unregister } from '@tauri-apps/plugin-global-shortcut'
 import { get, set } from 'idb-keyval'
 import { APP_HOTKEY, appDefaultHotkey } from './constants'
 

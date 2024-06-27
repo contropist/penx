@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
 import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
 import { appEmitter } from '@penx/event'
+import { handleSelect } from '~/common/handleSelect'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
-import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems } from '~/hooks/useItems'
 import { useValue } from '~/hooks/useValue'
 import {
@@ -53,8 +53,6 @@ export const ActionPopover = ({}: Props) => {
       return !o
     })
   })
-
-  const handleSelect = useHandleSelect()
 
   return (
     <Popover

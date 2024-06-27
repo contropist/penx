@@ -45,8 +45,6 @@ type AppEvents = {
   ON_COMMAND_PALETTE_FILTER_CHANGE: any
 
   FOCUS_SEARCH_BAR_INPUT: undefined
-
-  ON_APPLICATION_DIR_CHANGE: undefined
 }
 
 export const appEmitter = mitt<AppEvents>()

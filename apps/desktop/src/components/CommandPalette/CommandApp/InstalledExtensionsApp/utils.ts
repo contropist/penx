@@ -1,23 +1,5 @@
-import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { isRegistered, register, unregister } from '@tauri-apps/plugin-global-shortcut'
 import { Command, IExtension } from '@penx/model-types'
-
-export async function unregisterHotkey(hotkey: string) {
-  try {
-    await unregister(hotkey)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export function convertKeysToHotkey(keys: string[]) {
-  return keys
-    .map((k) => {
-      if (k === 'Meta') return 'Command'
-      return k
-    })
-    .join('+')
-}
 
 export async function registerCommandHotkey(
   extension: IExtension,

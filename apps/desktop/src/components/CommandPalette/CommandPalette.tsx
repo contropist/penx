@@ -4,11 +4,11 @@ import { clipboard } from '@penxio/api/native'
 import { Command } from 'cmdk'
 import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
 import { store } from '@penx/store'
+import { handleSelect } from '~/common/handleSelect'
 import { ICommandItem } from '~/common/types'
 import { commandUIAtom, useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { positionAtom, useCommandPosition } from '~/hooks/useCommandPosition'
 import { currentCommandAtom, useCurrentCommand } from '~/hooks/useCurrentCommand'
-import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useOnWindowMessage } from '~/hooks/useOnWindowMessage'
 import { useReset } from '~/hooks/useReset'
@@ -42,8 +42,6 @@ export const CommandPalette = () => {
   const { isRoot, isCommandApp } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()
   const { ui } = useCommandAppUI()
-
-  const handleSelect = useHandleSelect()
 
   useQueryCommands()
 

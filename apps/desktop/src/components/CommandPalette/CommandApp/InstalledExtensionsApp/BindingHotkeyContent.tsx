@@ -4,8 +4,9 @@ import { listen, UnlistenFn } from '@tauri-apps/api/event'
 import { Kbd, usePopoverContext } from 'uikit'
 import { db } from '@penx/local-db'
 import { IExtension } from '@penx/model-types'
+import { convertKeysToHotkey, unregisterHotkey } from '~/common/hotkey.util'
 import { useExtensions } from './useExtensions'
-import { convertKeysToHotkey, registerCommandHotkey, unregisterHotkey } from './utils'
+import { registerCommandHotkey } from './utils'
 
 interface Props {
   command: IExtension['commands'][0]

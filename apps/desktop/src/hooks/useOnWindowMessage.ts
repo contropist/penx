@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { handleOnMessage } from './handleOnMessage'
+import { handleOnMessage } from '../common/handleOnMessage'
 
 export function useOnWindowMessage() {
   useEffect(() => {

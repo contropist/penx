@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { appEmitter } from '@penx/event'
+import { handleSelect } from '~/common/handleSelect'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
-import { useHandleSelect } from '~/hooks/useHandleSelect'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
 import { AddRowButton } from './AddRowButton'
@@ -20,7 +20,6 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { items, setItems } = useItems()
   const { commands } = useCommands()
   const { isCommandApp, isCommandAppDetail, backToRoot, backToCommandApp } = useCommandPosition()
-  const handleSelect = useHandleSelect()
   const { currentCommand } = useCurrentCommand()
 
   const currentCommandName = currentCommand?.data?.commandName

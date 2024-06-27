@@ -111,7 +111,7 @@
     <div id="prerender">
       <div class="input-container">
         <input placeholder="Search something..." />
-        <hr class="prerender-divider" />
+        <!-- <hr class="prerender-divider" /> -->
       </div>
       <div class="prerender-body">
         <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,10 +132,10 @@
         const $prerender = document.getElementById('prerender')
         if ($prerender) $prerender.style.display = 'flex'
 
-        setTimeout(() => {
-          const $divider = document.querySelector('.prerender-divider')
-          if ($divider) $divider.style.display = 'flex'
-        }, 400);
+        // setTimeout(() => {
+        //   const $divider = document.querySelector('.prerender-divider')
+        //   if ($divider) $divider.style.display = 'flex'
+        // }, 400);
       }
     </script>
 </body>

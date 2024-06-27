@@ -3,7 +3,7 @@ import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { db } from '@penx/local-db'
 import { store } from '@penx/store'
 import { createCommandWorker } from '~/common/createCommandWorker'
-import { handleOnMessage } from '~/hooks/handleOnMessage'
+import { handleOnMessage } from '~/common/handleOnMessage'
 import { currentCommandAtom } from '~/hooks/useCurrentCommand'
 import { workerStore } from './workerStore'
 
