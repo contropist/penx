@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie'
-import { Command, IExtension, IFile, INode, ISpace } from '@penx/model-types'
+import { ICommand, IExtension, IFile, INode, ISpace } from '@penx/model-types'
 import { uniqueId } from '@penx/unique-id'
 import { getNewSpace } from './libs/getNewSpace'
 
@@ -83,7 +83,7 @@ export class PenxDB extends Dexie {
     })
   }
 
-  addCommand = async (extensionId: string, command: Command) => {
+  addCommand = async (extensionId: string, command: ICommand) => {
     const ext = await this.extension.get(extensionId)
     if (!ext) return
 

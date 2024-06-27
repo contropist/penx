@@ -5,6 +5,7 @@ import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
+import { CommandService } from '~/services/CommandService'
 import { AddRowButton } from './AddRowButton'
 import { BackRootButton } from './BackRootButton'
 import { CommandAppLoading } from './CommandAppLoading'
@@ -22,10 +23,10 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
   const { isCommandApp, isCommandAppDetail, backToRoot, backToCommandApp } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()
 
-  const currentCommandName = currentCommand?.data?.commandName
+  const currentCommandName = currentCommand?.name
   const isMarketplaceDetail = currentCommandName === 'marketplace' && isCommandAppDetail
 
-  const isDatabaseApp = currentCommand?.data?.type === 'Database'
+  const isDatabaseApp = currentCommand?.isDatabase
 
   return (
     <Box
@@ -51,9 +52,10 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
             // trigger alias
             if (/^\S+\s$/.test(v)) {
               const alias = v.trim()
-              const find = items.find((item) => item.data.alias === alias)
+              const find = items.find((item) => item.alias === alias)
               if (find) {
-                handleSelect(find)
+                const commandService = new CommandService(find)
+                commandService.handleSelect()
                 setSearch('')
                 return
               }
@@ -84,8 +86,8 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
           }}
         />
       )}
-      {isCommandApp && currentCommand?.data?.filters && (
-        <SearchBarFilter filters={currentCommand?.data?.filters} />
+      {isCommandApp && currentCommand?.filters && (
+        <SearchBarFilter filters={currentCommand?.filters} />
       )}
 
       <CommandAppLoading />

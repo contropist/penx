@@ -3,6 +3,7 @@ import isEqual from 'react-fast-compare'
 import { Box } from '@fower/react'
 import { IListItem, isListApp, isMarkdownJSON } from '@penxio/preset-ui'
 import { Spinner } from 'uikit'
+import { Command } from '@penx/model'
 import { store } from '@penx/store'
 import { Markdown } from '~/components/Markdown'
 import { commandLoadingAtom } from '~/hooks/useCommandAppLoading'
@@ -17,7 +18,7 @@ import { MarketplaceApp } from './MarketplaceApp/MarketplaceApp'
 import { TodayApp } from './TodayApp'
 
 interface CommandAppProps {
-  currentCommand: IListItem
+  currentCommand: Command
   ui: CommandAppUI
 }
 
@@ -81,11 +82,7 @@ export const CommandApp = memo(
   (prev, next) => {
     if (!next.ui || Object.keys(next.ui).length === 0) return true
 
-    if (
-      // prev.loading === next.loading &&
-      prev.currentCommand?.data?.commandName === next.currentCommand?.data?.commandName &&
-      isEqual(prev.ui, next.ui)
-    ) {
+    if (prev.currentCommand?.name === next.currentCommand.name && isEqual(prev.ui, next.ui)) {
       return true
     }
     return false

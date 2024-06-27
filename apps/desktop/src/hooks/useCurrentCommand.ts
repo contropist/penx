@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai'
-import { ICommandItem } from '~/common/types'
+import { Command } from '@penx/model'
 
-export const currentCommandAtom = atom<ICommandItem>(null as any as ICommandItem)
+export const currentCommandAtom = atom<Command>(null as any as Command)
 
 export function useCurrentCommand() {
   const [currentCommand, setCurrentCommand] = useAtom(currentCommandAtom)

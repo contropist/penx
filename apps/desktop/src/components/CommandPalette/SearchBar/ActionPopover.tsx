@@ -8,6 +8,7 @@ import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useItems } from '~/hooks/useItems'
 import { useValue } from '~/hooks/useValue'
+import { CommandService } from '~/services/CommandService'
 import {
   StyledCommand,
   StyledCommandGroup,
@@ -45,7 +46,7 @@ export const ActionPopover = ({}: Props) => {
   const { isRoot } = useCommandPosition()
   const { ui } = useCommandAppUI()
 
-  const selectItem = items.find((item) => item.data.commandName === value)
+  const selectItem = items.find((item) => item.name === value)
 
   useOnCmdK(() => {
     setOpen((o) => {
@@ -101,9 +102,7 @@ export const ActionPopover = ({}: Props) => {
             }}
           >
             <StyledCommandGroup
-              heading={
-                currentCommand?.data?.commandName || (selectItem?.title as string) || 'Actions'
-              }
+              heading={currentCommand?.name || (selectItem?.title as string) || 'Actions'}
             >
               {ui?.type === 'render' && (
                 <CommandAppActions
@@ -116,7 +115,10 @@ export const ActionPopover = ({}: Props) => {
               {isRoot && (
                 <RootActions
                   onSelect={() => {
-                    selectItem && handleSelect(selectItem)
+                    if (selectItem) {
+                      const commandService = new CommandService(selectItem)
+                      commandService.handleSelect()
+                    }
                     setOpen(false)
                   }}
                 />

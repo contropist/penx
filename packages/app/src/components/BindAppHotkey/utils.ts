@@ -36,8 +36,6 @@ export async function registerAppHotkey(hotkey: string) {
 
   await register(hotkey, async (event) => {
     if (event.state === 'Pressed') {
-      console.log('event== app:', event)
-
       await appWindow?.show()
       // await appWindow?.center()
       await appWindow?.setFocus()

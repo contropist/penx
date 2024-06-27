@@ -1,54 +1,47 @@
 import { ReactNode, useMemo } from 'react'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import { IAccessory, isAccessoryObjectText } from '@penxio/preset-ui'
-import { ICommandItem } from '~/common/types'
+import { Command } from '@penx/model'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { CommandService } from '~/services/CommandService'
 import { StyledCommandItem } from './CommandComponents'
 import { ListItemIcon } from './ListItemIcon'
 
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
-  value?: any
-  item: ICommandItem
+  item: Command
   isListApp?: boolean
   titleLayout?: 'column' | 'row'
   showIcon?: boolean
-  onSelect?: (item: ICommandItem) => void
+  onSelect?: () => Promise<void>
 }
 
 export const ListItemUI = ({
   item,
-  onSelect,
   index,
   titleLayout = 'row',
-  isListApp = false,
   showIcon = true,
-  value,
+  onSelect,
   ...rest
 }: ListItemUIProps) => {
   const { currentCommand } = useCurrentCommand()
 
-  const itemIcon = useMemo(() => {
-    if (!isListApp) return item.icon
-    const assets = currentCommand?.data?.assets || {}
-    return assets[item.icon as string] || item.icon
-  }, [isListApp, item, currentCommand])
+  // if (item.type === 'list-heading') {
+  //   return (
+  //     <Box textXS gray400 pl-10 mb-2 mt2={index > 0}>
+  //       {title}
+  //     </Box>
+  //   )
+  // }
 
-  const title = typeof item.title === 'string' ? item.title : item.title.value
+  const commandService = new CommandService(item)
 
-  const subtitle = typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.value
-
-  if (item.type === 'list-heading') {
-    return (
-      <Box textXS gray400 pl-10 mb-2 mt2={index > 0}>
-        {title}
-      </Box>
-    )
-  }
-
-  const keywords = [title, subtitle] as string[]
-  if (item?.data?.alias) {
-    keywords.push(item.data.alias)
+  function select() {
+    if (onSelect) {
+      onSelect()
+    } else {
+      commandService.handleSelect()
+    }
   }
 
   return (
@@ -61,35 +54,29 @@ export const ListItemUI = ({
       gap4
       roundedLG
       black
-      value={value || title}
-      keywords={keywords}
-      onSelect={() => {
-        onSelect?.(item)
-      }}
-      onClick={() => {
-        onSelect?.(item)
-      }}
+      value={item.value}
+      keywords={item.keywords}
+      onSelect={select}
+      onClick={select}
       {...rest}
     >
       <Box toCenterY gap2>
-        {showIcon && (
-          <ListItemIcon isApplication={item.data?.isApplication} icon={itemIcon as string} />
-        )}
+        {showIcon && <ListItemIcon isApplication={item.isApplication} icon={item.icon} />}
         <Box flexDirection={titleLayout} gapY1 toCenterY gapX2>
-          <Box text-14>{title}</Box>
+          <Box text-14>{item.title}</Box>
           <Box text-12 zinc400>
-            {subtitle}
+            {item.subtitle}
           </Box>
-          {item?.data?.alias && (
+          {item?.alias && (
             <Box rounded textXS border borderNeutral200 gray400 h-20 px-6 toCenterY>
-              {item.data.alias}
+              {item.alias}
             </Box>
           )}
         </Box>
       </Box>
-      {!!item.data?.type && (
+      {!!item?.typeName && (
         <Box textXS gray400>
-          {item.data?.type}
+          {item?.typeName}
         </Box>
       )}
       {item?.extra && (
@@ -108,7 +95,7 @@ interface AccessoryProps {
 }
 function Accessory({ item }: AccessoryProps) {
   const { currentCommand } = useCurrentCommand()
-  const assets = currentCommand?.data?.assets || {}
+  const assets = currentCommand?.extension?.assets || {}
 
   let text: ReactNode = useMemo(() => {
     if (typeof item.text === 'string' || typeof item.text === 'number') {

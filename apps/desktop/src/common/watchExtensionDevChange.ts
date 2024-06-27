@@ -50,10 +50,10 @@ export async function watchExtensionDevChange() {
 
     const item = store.get(currentCommandAtom)
 
-    const ext = await db.getExtensionByName(item.data.extensionSlug)
+    const ext = await db.getExtensionByName(item.extension.name)
     if (!ext) return
 
-    const command = ext.commands.find((c) => c.name === item.data.commandName)!
+    const command = ext.commands.find((c) => c.name === item.name)!
 
     // worker hot reload
     if (workerStore.currentWorker) {

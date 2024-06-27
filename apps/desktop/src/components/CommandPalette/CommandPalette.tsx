@@ -1,20 +1,17 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
 import { clipboard } from '@penxio/api/native'
-import { Command } from 'cmdk'
-import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
+import { Command } from '@penx/model'
 import { store } from '@penx/store'
-import { handleSelect } from '~/common/handleSelect'
-import { ICommandItem } from '~/common/types'
-import { commandUIAtom, useCommandAppUI } from '~/hooks/useCommandAppUI'
-import { positionAtom, useCommandPosition } from '~/hooks/useCommandPosition'
-import { currentCommandAtom, useCurrentCommand } from '~/hooks/useCurrentCommand'
+import { useCommandAppUI } from '~/hooks/useCommandAppUI'
+import { useCommandPosition } from '~/hooks/useCommandPosition'
+import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useItems, useQueryCommands } from '~/hooks/useItems'
 import { useOnWindowMessage } from '~/hooks/useOnWindowMessage'
 import { useReset } from '~/hooks/useReset'
 import { useValue } from '~/hooks/useValue'
 import { CommandApp } from './CommandApp/CommandApp'
-import { StyledCommand, StyledCommandList } from './CommandComponents'
+import { StyledCommand, StyledCommandGroup, StyledCommandList } from './CommandComponents'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
 import { ListItemUI } from './ListItemUI'
 import { BackRootButton } from './SearchBar/BackRootButton'
@@ -27,7 +24,7 @@ const footerHeight = 40
 export const CommandPalette = () => {
   const { value, setValue } = useValue()
 
-  const { developingItems, commandItems, databaseItems, applicationItems } = useItems()
+  const { developingItems, commandItems, applicationItems } = useItems()
   useEffect(() => {
     clipboard.readText().then(console.log)
   }, [])
@@ -48,7 +45,7 @@ export const CommandPalette = () => {
   useOnWindowMessage()
 
   useReset(setValue)
-  const isIframe = isCommandApp && currentCommand?.data?.mode === 'custom-ui'
+  const isIframe = isCommandApp && currentCommand?.mode === 'custom-ui'
 
   const bodyHeight = isIframe ? windowHeight : windowHeight - searchBarHeight - footerHeight
 
@@ -119,7 +116,7 @@ export const CommandPalette = () => {
       >
         {isCommandApp &&
           currentCommand &&
-          (currentCommand.data.mode === 'custom-ui' ? (
+          (currentCommand.mode === 'custom-ui' ? (
             <Box relative h-100p>
               <Box
                 as="iframe"
@@ -142,40 +139,22 @@ export const CommandPalette = () => {
         {isRoot && (
           <StyledCommandList p2>
             {developingItems.length > 0 && (
-              <Command.Group heading="Development">
+              <StyledCommandGroup heading="Development">
                 {developingItems.map((item, index) => {
-                  return (
-                    <ListItemUI
-                      key={index}
-                      index={index}
-                      value={`${item.data.extensionSlug}__${item.data.commandName}`}
-                      item={item}
-                      onSelect={(item) => handleSelect(item)}
-                    />
-                  )
+                  return <ListItemUI key={index} index={index} item={item} />
                 })}
-              </Command.Group>
+              </StyledCommandGroup>
             )}
-            <ListGroup
-              heading="Commands"
-              items={commandItems}
-              onSelect={(item) => handleSelect(item)}
-            />
+            <ListGroup heading="Commands" items={commandItems} />
 
             {/* Support databases in future  */}
             {/* 
             <ListGroup
               heading="Databases"
               items={databaseItems}
-              onSelect={(item) => handleSelect(item)}
             /> */}
 
-            <ListGroup
-              heading="Applications"
-              isApplication
-              items={applicationItems.slice(0, 20)}
-              onSelect={(item) => handleSelect(item)}
-            />
+            <ListGroup heading="Applications" items={applicationItems.slice(0, 20)} />
           </StyledCommandList>
         )}
       </Box>
@@ -186,22 +165,15 @@ export const CommandPalette = () => {
 
 interface ListGroupProps {
   heading: string
-  items: ICommandItem[]
-  isApplication?: boolean
-  onSelect?: (item: ICommandItem) => void
+  items: Command[]
 }
 
-function ListGroup({ heading, items, onSelect, isApplication = false }: ListGroupProps) {
+function ListGroup({ heading, items }: ListGroupProps) {
   return (
-    <Command.Group heading={heading}>
+    <StyledCommandGroup heading={heading}>
       {items.map((item, index) => {
-        const value = isApplication
-          ? item.data.applicationPath
-          : `${item.data.extensionSlug}__${item.data.commandName}`
-        return (
-          <ListItemUI key={index} index={index} value={value} item={item} onSelect={onSelect} />
-        )
+        return <ListItemUI key={index} index={index} item={item} />
       })}
-    </Command.Group>
+    </StyledCommandGroup>
   )
 }

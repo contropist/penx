@@ -1,8 +1,9 @@
+import { getCurrent } from '@tauri-apps/api/window'
 import { isRegistered, register, unregister } from '@tauri-apps/plugin-global-shortcut'
-import { Command, IExtension } from '@penx/model-types'
-import { handleSelect } from './handleSelect'
+import { Command } from '@penx/model'
+import { ICommand, IExtension } from '@penx/model-types'
+import { CommandService } from '~/services/CommandService'
 import { isIconify } from './isIconify'
-import { ICommandItem } from './types'
 
 export async function unregisterHotkey(hotkey: string) {
   try {
@@ -23,7 +24,7 @@ export function convertKeysToHotkey(keys: string[]) {
 
 export async function registerCommandHotkey(
   extension: IExtension,
-  command: Command,
+  command: ICommand,
   keys: string[],
 ) {
   const hotkey = convertKeysToHotkey(keys)
@@ -33,40 +34,23 @@ export async function registerCommandHotkey(
   }
 
   await register(hotkey, async (event) => {
+    const appWindow = getCurrent()
     if (event.state === 'Pressed') {
-      function getIcon() {
-        if (!extension.icon) {
-          return command.icon
-        }
+      const isFocused = await appWindow?.isFocused()
 
-        if (isIconify(extension.icon)) return extension.icon
+      if (!isFocused) {
+        await appWindow?.show()
+        // await appWindow?.center()
+        await appWindow?.setFocus()
 
-        if (typeof extension.icon === 'string') {
-          if (extension.icon?.startsWith('/')) return extension.icon
-          const commandIcon = extension.assets?.[extension.icon]
-          return commandIcon
-        }
-        return ''
+        setTimeout(() => {
+          document.getElementById('searchBarInput')?.focus()
+        }, 0)
       }
 
-      handleSelect({
-        type: 'list-item',
-        title: command.title,
-        subtitle: extension.title,
-        icon: getIcon() as any, // TODO: handle any
-        keywords: [],
-        data: {
-          type: 'Command',
-          alias: command.alias,
-          assets: extension.assets,
-          filters: command.filters,
-          mode: command.mode,
-          commandName: command.name,
-          extensionSlug: extension.name,
-          extensionIcon: extension.assets?.[extension.icon as string],
-          isDeveloping: extension.isDeveloping,
-        } as ICommandItem['data'],
-      })
+      const commandService = new CommandService(Command.formExtension(extension, command))
+
+      commandService.handleSelect()
     }
   })
 }

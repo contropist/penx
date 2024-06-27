@@ -1,11 +1,11 @@
 import isEqual from 'react-fast-compare'
 import { db } from '@penx/local-db'
-import { Command } from '@penx/model-types'
+import { ICommand } from '@penx/model-types'
 import { uniqueId } from '@penx/unique-id'
 
 const name = '$penx_builtin_extension'
 
-const commands: Command[] = [
+const commands: ICommand[] = [
   {
     name: 'marketplace',
     title: 'marketplace',

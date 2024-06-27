@@ -24,8 +24,8 @@ export const CommandPaletteFooter = ({ footerHeight }: Props) => {
       px3
       toBetween
     >
-      {currentCommand && currentCommand.data.extensionIcon ? (
-        <ListItemIcon icon={currentCommand.data.extensionIcon} />
+      {currentCommand && currentCommand.icon ? (
+        <ListItemIcon icon={currentCommand.icon} />
       ) : (
         <IconLogo fillBlack stroke="black" />
       )}

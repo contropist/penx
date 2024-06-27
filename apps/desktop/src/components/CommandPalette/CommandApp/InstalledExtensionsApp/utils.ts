@@ -1,9 +1,9 @@
 import { isRegistered, register, unregister } from '@tauri-apps/plugin-global-shortcut'
-import { Command, IExtension } from '@penx/model-types'
+import { ICommand, IExtension } from '@penx/model-types'
 
 export async function registerCommandHotkey(
   extension: IExtension,
-  command: Command,
+  command: ICommand,
   hotkey: string,
 ) {
   await unregister(hotkey)

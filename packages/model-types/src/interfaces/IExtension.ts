@@ -3,7 +3,7 @@ export interface FilterItem {
   value: string | number
   selected?: boolean
 }
-export interface Command {
+export interface ICommand {
   name: string
   title: string
   subtitle: string
@@ -28,7 +28,7 @@ export interface IExtension {
 
   version: string
 
-  commands: Command[]
+  commands: ICommand[]
 
   assets: Record<string, string>
 

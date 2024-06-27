@@ -1,4 +1,4 @@
-import { Command } from '@penx/model-types'
+import { Command } from '@penx/model'
 
 export function createCommandWorker(command: Command, input = '') {
   const extraCode = `

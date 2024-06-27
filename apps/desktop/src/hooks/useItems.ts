@@ -1,82 +1,73 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { invoke } from '@tauri-apps/api/core'
-import { BaseDirectory, readDir } from '@tauri-apps/plugin-fs'
 import { atom, useAtom, useSetAtom } from 'jotai'
 import { getAllApps, refreshApplicationsList } from 'tauri-plugin-jarvis-api/commands'
 import { AppInfo } from 'tauri-plugin-jarvis-api/models'
-import { appEmitter } from '@penx/event'
 import { db } from '@penx/local-db'
-import { Node } from '@penx/model'
-import { isIconify } from '~/common/isIconify'
-import { ICommandItem } from '~/common/types'
+import { Command, Node } from '@penx/model'
 import { useSearch } from './useSearch'
 
-const isDeveloping = (item: ICommandItem) => item.data?.isDeveloping
-const isProduction = (item: ICommandItem) => !item.data?.isDeveloping
-
-const getFileName = (path: string) => {
-  return path.split('/').pop() as string
-}
-
-export const itemsAtom = atom<ICommandItem[]>([])
+export const itemsAtom = atom<Command[]>([])
 
 export function useItems() {
   const { search } = useSearch()
   const [items, setItems] = useAtom(itemsAtom)
   return {
     items,
-    developingItems: items.filter(isDeveloping).filter((item) => {
-      if (!search) return true
-      if (item.data?.alias) {
-        if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
-          return true
-        }
-      }
-      return item.title.toString().toLowerCase().includes(search.toLowerCase())
-    }),
-
-    commandItems: items
-      .filter((item) => isProduction(item) && item.data?.type == 'Command')
-      .filter((item) => {
+    developingItems: items
+      .filter((i) => i.isDeveloping)
+      .filter((i) => {
         if (!search) return true
-        if (item.data?.alias) {
-          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+        if (i.alias) {
+          if (i.alias.toLowerCase().includes(search.toLowerCase())) {
             return true
           }
         }
-        return item.title.toString().toLowerCase().includes(search.toLowerCase())
+        return i.title.toString().toLowerCase().includes(search.toLowerCase())
+      }),
+
+    commandItems: items
+      .filter((i) => !i.isDeveloping && i.isCommand)
+      .filter((i) => {
+        if (!search) return true
+        if (i.alias) {
+          if (i.alias.toLowerCase().includes(search.toLowerCase())) {
+            return true
+          }
+        }
+        return i.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     databaseItems: items
-      .filter((item) => item.data?.type == 'Database')
-      .filter((item) => {
+      .filter((i) => i.isDatabase)
+      .filter((i) => {
         if (!search) return true
-        if (item.data?.alias) {
-          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+        if (i.alias) {
+          if (i.alias.toLowerCase().includes(search.toLowerCase())) {
             return true
           }
         }
-        return item.title.toString().toLowerCase().includes(search.toLowerCase())
+        return i.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     applicationItems: items
-      .filter((item) => item.data?.type == 'Application')
-      .filter((item) => {
+      .filter((i) => i.isApplication)
+      .filter((i) => {
         if (!search) return true
-        if (item.data?.alias) {
-          if (item.data?.alias.toLowerCase().includes(search.toLowerCase())) {
+        if (i.alias) {
+          if (i.alias.toLowerCase().includes(search.toLowerCase())) {
             return true
           }
         }
-        return item.title.toString().toLowerCase().includes(search.toLowerCase())
+        return i.title.toString().toLowerCase().includes(search.toLowerCase())
       }),
 
     setItems,
   }
 }
 
-export const commandsAtom = atom<ICommandItem[]>([])
+export const commandsAtom = atom<Command[]>([])
 
 export function useCommands() {
   const [commands, setCommands] = useAtom(itemsAtom)
@@ -97,102 +88,17 @@ export function useLoadCommands() {
             input: '',
           }) as Promise<any[]>,
           getAllApps(),
-          // readDir('appIcons', {
-          //   baseDir: BaseDirectory.AppData,
-          //   // recursive: true,
-          // }),
         ])
-        // console.log('applicationsRes', applicationsRes)
-        // console.log('allApps', allApps)
-
-        // console.log('=========extensions:', extensions)
 
         const commands = extensions.reduce((acc, cur) => {
-          return [
-            ...acc,
-            ...cur.commands.map<ICommandItem>((item) => {
-              function getIcon() {
-                if (!item.icon) {
-                  return cur.icon
-                }
-
-                if (isIconify(item.icon)) return item.icon
-
-                if (typeof item.icon === 'string') {
-                  if (item.icon?.startsWith('/')) return item.icon
-                  const commandIcon = cur.assets?.[item.icon]
-                  return commandIcon
-                }
-                return ''
-              }
-
-              return {
-                type: 'list-item',
-                title: item.title,
-                subtitle: cur.title,
-                icon: getIcon(),
-                keywords: [],
-                data: {
-                  type: 'Command',
-                  alias: item.alias,
-                  assets: cur.assets,
-                  filters: item.filters,
-                  mode: item.mode,
-                  commandName: item.name,
-                  extensionSlug: cur.name,
-                  extensionIcon: cur.assets?.[cur.icon as string],
-                  isDeveloping: cur.isDeveloping,
-                } as ICommandItem['data'],
-              } as ICommandItem
-            }),
-          ]
-        }, [] as ICommandItem[])
+          return [...acc, ...cur.commands.map((item) => Command.formExtension(cur, item))]
+        }, [] as Command[])
 
         const databaseItems = databases.reduce((acc, item) => {
           const node = new Node(item)
           if (node.isSpecialDatabase) return acc
-          return [
-            ...acc,
-            {
-              type: 'list-item',
-              title: node.tagName,
-              subtitle: '',
-              icon: {
-                value: '#',
-                bg: node.tagColor,
-              },
-              keywords: [],
-              data: {
-                alias: item.props.commandAlias,
-                type: 'Database',
-                database: item,
-              } as ICommandItem['data'],
-            } as ICommandItem,
-          ]
-        }, [] as ICommandItem[])
-
-        // const applicationPaths = (applicationsRes[0] as string[]) || []
-
-        // const applicationItems = allApps.reduce((acc, item) => {
-        //   const appName = getFileName(item).replace(/.app$/, '')
-
-        //   return [
-        //     ...acc,
-        //     {
-        //       type: 'list-item',
-        //       title: acc,
-        //       subtitle: '',
-        //       icon: appName,
-        //       keywords: [],
-        //       data: {
-        //         type: 'Application',
-        //         applicationPath: acc.app_desktop_path,
-        //         isApplication: true,
-        //         appIconPath: acc.icon_path,
-        //       } as ICommandItem['data'],
-        //     } as ICommandItem,
-        //   ]
-        // }, [] as ICommandItem[])
+          return [...acc, Command.formDatabase(item)]
+        }, [] as Command[])
 
         const applicationItems = allApps
           .filter((i) => {
@@ -216,23 +122,9 @@ export function useLoadCommands() {
 
             return nameA.localeCompare(nameB)
           })
-          .map((appInfo: AppInfo) => {
-            return {
-              type: 'list-item',
-              title: appInfo.name,
-              subtitle: '',
-              icon: appInfo.icon_path,
-              keywords: [],
-              data: {
-                type: 'Application',
-                applicationPath: appInfo.app_desktop_path,
-                isApplication: true,
-              } as ICommandItem['data'],
-            } as ICommandItem
-          })
+          .map((appInfo: AppInfo) => Command.formApp(appInfo))
 
         return [...commands, ...databaseItems, ...applicationItems]
-        // return [...commands, ...databaseItems]
       } catch (error) {
         console.log('==============error:', error)
 

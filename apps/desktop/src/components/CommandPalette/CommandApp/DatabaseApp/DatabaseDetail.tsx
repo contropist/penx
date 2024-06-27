@@ -48,9 +48,7 @@ export function DatabaseDetail(props: Props) {
         const rowCells = cells.filter((cell) => cell.props.rowId === row.id)
 
         if (!text) {
-          const cell = rowCells.find(
-            (cell) => cell.props.columnId === sortedColumns[0].id,
-          )!
+          const cell = rowCells.find((cell) => cell.props.columnId === sortedColumns[0].id)!
           return { row, rowCells, cell }
         }
 
@@ -88,18 +86,13 @@ export function DatabaseDetail(props: Props) {
         {filteredRows.map((item, index) => {
           // console.log('=======item:', item)
 
+          // TODO: handle any
           const listItem = {
             title: dataToString(item.cell.props.data),
-          } as ICommandItem
-          return (
-            <ListItemUI
-              key={index}
-              index={index}
-              showIcon={false}
-              value={item.row.id}
-              item={listItem}
-            />
-          )
+            value: item.row.id,
+          } as any
+
+          return <ListItemUI key={index} index={index} showIcon={false} item={listItem} />
         })}
       </StyledCommandGroup>
 
@@ -125,7 +118,6 @@ function dataToString(data: any) {
 }
 
 function isUuidV4(uuid: string): boolean {
-  const uuidV4Regex =
-    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  const uuidV4Regex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
   return uuidV4Regex.test(uuid)
 }
