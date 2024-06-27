@@ -1,3 +1,4 @@
+import { clipboard } from '@penxio/api'
 import { IListItem, ListApp } from '@penxio/preset-ui'
 import { getData } from './libs/getData'
 
@@ -8,6 +9,9 @@ export async function main() {
     app.setState({ items })
   })
 
+  clipboard.readText().then((text) => {
+    console.log('Clipboard text from worker:', text)
+  })
   // onFilterChange(async (filters) => {
   // const newItems = await getItems(filters.type)
   // app.setItems(newItems)

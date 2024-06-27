@@ -1,4 +1,4 @@
-import { exposeApiToWindow } from '@penxio/api'
+import { defaultServerAPI, exposeApiToWindow, exposeApiToWorker } from '@penxio/api'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { appEmitter } from '@penx/event'
@@ -111,6 +111,7 @@ export function useHandleSelect() {
         worker = createBuiltinWorker(command)
       } else {
         worker = createCommandWorker(command, input)
+        exposeApiToWorker(worker, defaultServerAPI)
       }
 
       workerStore.currentWorker = worker
