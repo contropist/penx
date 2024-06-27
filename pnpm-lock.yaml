@@ -214,8 +214,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.2.73)(react@18.2.0)
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.4
+        version: 2.0.4
       tauri-plugin-jarvis-api:
         specifier: workspace:*
         version: link:../../packages/tauri-plugin-jarvis
@@ -1403,8 +1403,8 @@ importers:
         specifier: 2.0.0-beta.6
         version: 2.0.0-beta.6
       tauri-plugin-clipboard-api:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.4
+        version: 2.0.4
       tauri-plugin-shellx-api:
         specifier: ^2.0.7
         version: 2.0.7
@@ -19118,8 +19118,8 @@ packages:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
 
-  tauri-plugin-clipboard-api@2.0.2:
-    resolution: {integrity: sha512-52KUG3E6/ebYCvXDS1KeGWSnHYnQaK868GtC+MFF4SeZrBX6LGe7ZuWtSC0B56LK8A3OXfZbH70hdEtHHbRgtA==}
+  tauri-plugin-clipboard-api@2.0.4:
+    resolution: {integrity: sha512-vBwp1l/Y3Y/digh/XuN3/wA2NeReNBYnWN9/w3OCgT360lNV62IObfyvMnxfFtA2HqSLAwKsuw3VocJiTh9pkA==}
 
   tauri-plugin-shellx-api@2.0.7:
     resolution: {integrity: sha512-yYV546xhOn4Z9bRLUpyQp89k0U32jR6nmgfg0W+JOjnunabgwwStilIo2wUyeTcGs89GAZIRSBeBhgVnF8/E7w==}
@@ -36940,7 +36940,7 @@ snapshots:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  tauri-plugin-clipboard-api@2.0.2:
+  tauri-plugin-clipboard-api@2.0.4:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.11
       zod: 3.23.8
