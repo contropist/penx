@@ -1,4 +1,9 @@
-export * as comlink from '@/comlink'
+export {
+  exposeApiToWindow,
+  exposeApiToWorker,
+  getWindowApiClient,
+  getWorkerApiClient,
+} from '@/comlink'
 export { defaultClientAPI, hasWindow, isInWorker, isInIframe, isMain } from '@/client'
 export { defaultServerAPI } from '@/server'
 export * from '@/api/server-types'

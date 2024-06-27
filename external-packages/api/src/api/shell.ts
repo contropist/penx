@@ -1,10 +1,29 @@
-import { IShell, IShellInternal } from '@/api/client-types'
+import type { IShell, IShellInternal } from '@/api/client-types'
 import { defaultClientAPI, isMain } from '@/client'
-import { Comlink } from '@/comlink'
-import { Remote } from '@huakunshen/comlink'
-// import { IOPayload } from 'tauri-plugin-shellx-api'
-import * as shellx from 'tauri-plugin-shellx-api'
-import { IShellServer } from './server-types'
+import { proxy as comlinkProxy, type Remote } from '@huakunshen/comlink'
+import {
+  Child as ShellxChild,
+  Command as ShellxCommand,
+  executeAppleScript as shellxExecuteAppleScript,
+  executeBashScript as shellxExecuteBashScript,
+  executeNodeScript as shellxExecuteNodeScript,
+  executePowershellScript as shellxExecutePowershellScript,
+  executePythonScript as shellxExecutePythonScript,
+  executeZshScript as shellxExecuteZshScript,
+  hasCommand as shellxHasCommand,
+  likelyOnWindows as shellxLikelyOnWindows,
+  makeAppleScript as shellxMakeAppleScript,
+  makeBashScript as shellxMakeBashScript,
+  makeNodeScript as shellxMakeNodeScript,
+  makePowershellScript as shellxMakePowershellScript,
+  makePythonScript as shellxMakePythonScript,
+  makeZshScript as shellxMakeZshScript,
+  open as shellxOpen,
+  type ChildProcess,
+  type IOPayload,
+  type SpawnOptions,
+} from 'tauri-plugin-shellx-api'
+import { type IShellServer } from './server-types'
 
 export function constructAPI(api: Remote<IShellServer>): IShellInternal {
   return {
@@ -32,8 +51,8 @@ export function constructAPI(api: Remote<IShellServer>): IShellInternal {
 
 const _comlinkShell: IShellInternal = constructAPI(defaultClientAPI)
 
-export class Child extends shellx.Child {
-  write(data: shellx.IOPayload): Promise<void> {
+export class Child extends ShellxChild {
+  write(data: IOPayload): Promise<void> {
     return _comlinkShell.stdinWrite(typeof data === 'string' ? data : Array.from(data), this.pid)
   }
 
@@ -42,11 +61,11 @@ export class Child extends shellx.Child {
   }
 }
 
-export class Command<O extends shellx.IOPayload> extends shellx.Command<O> {
-  static create<O extends shellx.IOPayload>(
+export class Command<O extends IOPayload> extends ShellxCommand<O> {
+  static create<O extends IOPayload>(
     program: string,
     args: string | string[] = [],
-    options?: shellx.SpawnOptions,
+    options?: SpawnOptions,
   ): Command<O> {
     return new Command(program, args, options)
   }
@@ -63,7 +82,7 @@ export class Command<O extends shellx.IOPayload> extends shellx.Command<O> {
         this.program,
         args,
         this.options,
-        Comlink.proxy((evt) => {
+        comlinkProxy((evt) => {
           switch (evt.event) {
             case 'Error':
               this.emit('error', evt.payload)
@@ -83,7 +102,7 @@ export class Command<O extends shellx.IOPayload> extends shellx.Command<O> {
       .then((pid) => new Child(pid))
   }
 
-  async execute(): Promise<shellx.ChildProcess<O>> {
+  async execute(): Promise<ChildProcess<O>> {
     const program = this.program
     const args = this.args
     const options = this.options
@@ -91,7 +110,7 @@ export class Command<O extends shellx.IOPayload> extends shellx.Command<O> {
     if (typeof args === 'object') {
       Object.freeze(args)
     }
-    return _comlinkShell.execute(program, args, options) as Promise<shellx.ChildProcess<O>>
+    return _comlinkShell.execute(program, args, options) as Promise<ChildProcess<O>>
   }
 }
 
@@ -128,23 +147,23 @@ export const comlinkShell: IShell = {
 }
 
 export const nativeShell: IShell = {
-  open: shellx.open,
-  makeBashScript: shellx.makeBashScript,
-  makePowershellScript: shellx.makePowershellScript,
-  makeAppleScript: shellx.makeAppleScript,
-  makePythonScript: shellx.makePythonScript,
-  makeZshScript: shellx.makeZshScript,
-  makeNodeScript: shellx.makeNodeScript,
-  executeBashScript: shellx.executeBashScript,
-  executePowershellScript: shellx.executePowershellScript,
-  executeAppleScript: shellx.executeAppleScript,
-  executePythonScript: shellx.executePythonScript,
-  executeZshScript: shellx.executeZshScript,
-  executeNodeScript: shellx.executeNodeScript,
-  hasCommand: shellx.hasCommand,
-  likelyOnWindows: shellx.likelyOnWindows,
-  Command: shellx.Command,
-  Child: shellx.Child,
+  open: shellxOpen,
+  makeBashScript: shellxMakeBashScript,
+  makePowershellScript: shellxMakePowershellScript,
+  makeAppleScript: shellxMakeAppleScript,
+  makePythonScript: shellxMakePythonScript,
+  makeZshScript: shellxMakeZshScript,
+  makeNodeScript: shellxMakeNodeScript,
+  executeBashScript: shellxExecuteBashScript,
+  executePowershellScript: shellxExecutePowershellScript,
+  executeAppleScript: shellxExecuteAppleScript,
+  executePythonScript: shellxExecutePythonScript,
+  executeZshScript: shellxExecuteZshScript,
+  executeNodeScript: shellxExecuteNodeScript,
+  hasCommand: shellxHasCommand,
+  likelyOnWindows: shellxLikelyOnWindows,
+  Command: ShellxCommand,
+  Child: ShellxChild,
 }
 
 export const shell = isMain ? nativeShell : comlinkShell

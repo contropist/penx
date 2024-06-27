@@ -1,4 +1,4 @@
-import { comlink } from '@penxio/api'
+import { exposeApiToWindow } from '@penxio/api'
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { appEmitter } from '@penx/event'
@@ -89,7 +89,7 @@ export function useHandleSelect() {
         const $iframe = document.getElementById('command-app-iframe')! as HTMLIFrameElement
         if (!$iframe) return
         const currentWindow = $iframe.contentWindow as Window
-        comlink.exposeApiToWindow(currentWindow)
+        exposeApiToWindow(currentWindow)
         const theme = store.get(themeModeAtom)
         currentWindow.document.documentElement.className = theme
 

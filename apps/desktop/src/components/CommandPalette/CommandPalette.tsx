@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import { clipboard } from '@penxio/api'
+import { clipboard } from '@penxio/api/native'
 import { Command } from 'cmdk'
 import { Command as ShellxCmd } from 'tauri-plugin-shellx-api'
 import { store } from '@penx/store'

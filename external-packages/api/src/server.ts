@@ -3,16 +3,83 @@
  * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
  * Client from iframe or web worker can call APIs exposed from here
  */
-import { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
+import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
-import * as _event from '@tauri-apps/api/event'
-import * as dialog from '@tauri-apps/plugin-dialog'
-import * as fs from '@tauri-apps/plugin-fs'
-import * as notification from '@tauri-apps/plugin-notification'
-import * as os from '@tauri-apps/plugin-os'
-import * as clipboard from 'tauri-plugin-clipboard-api'
-import * as shellx from 'tauri-plugin-shellx-api'
 import {
+  emit,
+  emitTo,
+  once,
+  type EventCallback,
+  type EventName,
+  type EventTarget,
+} from '@tauri-apps/api/event'
+import {
+  ask as dialogAsk,
+  confirm as dialogConfirm,
+  message as dialogMessage,
+  open as dialogOpen,
+  save as dialogSave,
+} from '@tauri-apps/plugin-dialog'
+import {
+  copyFile as fsCopyFile,
+  create as fsCreate,
+  exists as fsExists,
+  lstat as fsLstat,
+  mkdir as fsMkdir,
+  readDir as fsReadDir,
+  readFile as fsReadFile,
+  readTextFile as fsReadTextFile,
+  remove as fsRemove,
+  rename as fsRename,
+  stat as fsStat,
+  truncate as fsTruncate,
+  writeFile as fsWriteFile,
+  writeTextFile as fsWriteTextFile,
+} from '@tauri-apps/plugin-fs'
+import {
+  active as notificationActive,
+  cancel as notificationCancel,
+  cancelAll as notificationCancelAll,
+  channels as notificationChannels,
+  createChannel as notificationCreateChannel,
+  isPermissionGranted as notificationIsPermissionGranted,
+  onAction as notificationOnAction,
+  onNotificationReceived as notificationOnNotificationReceived,
+  pending as notificationPending,
+  registerActionTypes as notificationRegisterActionTypes,
+  removeActive as notificationRemoveActive,
+  removeAllActive as notificationRemoveAllActive,
+  removeChannel as notificationRemoveChannel,
+  requestPermission as notificationRequestPermission,
+  sendNotification as notificationSendNotification,
+} from '@tauri-apps/plugin-notification'
+import {
+  arch as osArch,
+  eol as osEol,
+  exeExtension as osExeExtension,
+  family as osFamily,
+  hostname as osHostname,
+  locale as osLocale,
+  platform as osPlatform,
+  version as osVersion,
+} from '@tauri-apps/plugin-os'
+import clipboard from 'tauri-plugin-clipboard-api'
+import {
+  executeAppleScript as shellExecuteAppleScript,
+  executeBashScript as shellExecuteBashScript,
+  executeNodeScript as shellExecuteNodeScript,
+  executePowershellScript as shellExecutePowershellScript,
+  executePythonScript as shellExecutePythonScript,
+  executeZshScript as shellExecuteZshScript,
+  hasCommand as shellHasCommand,
+  likelyOnWindows as shellLikelyOnWindows,
+  open as shellOpen,
+  type ChildProcess,
+  type CommandEvent,
+  type InternalSpawnOptions,
+  type IOPayload,
+} from 'tauri-plugin-shellx-api'
+import type {
   IClipboardServer,
   IDialogServer,
   IEventServer,
@@ -29,9 +96,9 @@ import {
 /* -------------------------------------------------------------------------- */
 export const eventApi: IEventServer = {
   eventRawListen<T>(
-    event: _event.EventName,
-    target: _event.EventTarget,
-    handler: _event.EventCallback<T>,
+    event: EventName,
+    target: EventTarget,
+    handler: EventCallback<T>,
   ): Promise<number> {
     return invoke<number>('plugin:event|listen', {
       event,
@@ -44,9 +111,9 @@ export const eventApi: IEventServer = {
       event,
       eventId,
     }),
-  eventEmit: _event.emit,
-  eventEmitTo: _event.emitTo,
-  eventOnce: _event.once,
+  eventEmit: emit,
+  eventEmitTo: emitTo,
+  eventOnce: once,
 }
 
 /* -------------------------------------------------------------------------- */
@@ -78,66 +145,66 @@ export const clipboardApi: IClipboardServer = {
 /*                                   Dialog                                   */
 /* -------------------------------------------------------------------------- */
 export const dialogApi: IDialogServer = {
-  dialogAsk: dialog.ask,
-  dialogConfirm: dialog.confirm,
-  dialogMessage: dialog.message,
-  dialogOpen: dialog.open,
-  dialogSave: dialog.save,
+  dialogAsk,
+  dialogConfirm,
+  dialogMessage,
+  dialogOpen,
+  dialogSave,
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                Notification                                */
 /* -------------------------------------------------------------------------- */
 export const notificationApi: INotificationServer = {
-  notificationIsPermissionGranted: notification.isPermissionGranted,
-  notificationRequestPermission: notification.requestPermission,
-  notificationSendNotification: notification.sendNotification,
-  notificationRegisterActionTypes: notification.registerActionTypes,
-  notificationPending: notification.pending,
-  notificationCancel: notification.cancel,
-  notificationCancelAll: notification.cancelAll,
-  notificationActive: notification.active,
-  notificationRemoveActive: notification.removeActive,
-  notificationRemoveAllActive: notification.removeAllActive,
-  notificationCreateChannel: notification.createChannel,
-  notificationRemoveChannel: notification.removeChannel,
-  notificationChannels: notification.channels,
-  notificationOnNotificationReceived: notification.onNotificationReceived,
-  notificationOnAction: notification.onAction,
+  notificationIsPermissionGranted,
+  notificationRequestPermission,
+  notificationSendNotification,
+  notificationRegisterActionTypes,
+  notificationPending,
+  notificationCancel,
+  notificationCancelAll,
+  notificationActive,
+  notificationRemoveActive,
+  notificationRemoveAllActive,
+  notificationCreateChannel,
+  notificationRemoveChannel,
+  notificationChannels,
+  notificationOnNotificationReceived,
+  notificationOnAction,
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                 File System                                */
 /* -------------------------------------------------------------------------- */
 export const fsApi: IFsServer = {
-  fsReadDir: fs.readDir,
-  fsReadFile: fs.readFile,
-  fsReadTextFile: fs.readTextFile,
-  fsStat: fs.stat,
-  fsLstat: fs.lstat,
-  fsExists: fs.exists,
-  fsMkdir: fs.mkdir,
-  fsCreate: fs.create,
-  fsCopyFile: fs.copyFile,
-  fsRemove: fs.remove,
-  fsRename: fs.rename,
-  fsTruncate: fs.truncate,
-  fsWriteFile: fs.writeFile,
-  fsWriteTextFile: fs.writeTextFile,
+  fsReadDir,
+  fsReadFile,
+  fsReadTextFile,
+  fsStat,
+  fsLstat,
+  fsExists,
+  fsMkdir,
+  fsCreate,
+  fsCopyFile,
+  fsRemove,
+  fsRename,
+  fsTruncate,
+  fsWriteFile,
+  fsWriteTextFile,
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                     OS                                     */
 /* -------------------------------------------------------------------------- */
 export const osApi: IOsServer = {
-  osPlatform: os.platform,
-  osArch: os.arch,
-  osExeExtension: os.exeExtension,
-  osFamily: os.family,
-  osHostname: os.hostname,
-  osEol: () => Promise.resolve(os.eol()),
-  osVersion: os.version,
-  osLocale: os.locale,
+  osPlatform,
+  osArch,
+  osExeExtension,
+  osFamily,
+  osHostname,
+  osEol: () => Promise.resolve(osEol()),
+  osVersion,
+  osLocale,
 }
 
 /* -------------------------------------------------------------------------- */
@@ -147,9 +214,9 @@ export const shellApi: IShellServer = {
   shellExecute: (
     program: string,
     args: string[],
-    options: shellx.InternalSpawnOptions,
-  ): Promise<shellx.ChildProcess<shellx.IOPayload>> =>
-    invoke<shellx.ChildProcess<shellx.IOPayload>>('plugin:shellx|execute', {
+    options: InternalSpawnOptions,
+  ): Promise<ChildProcess<IOPayload>> =>
+    invoke<ChildProcess<IOPayload>>('plugin:shellx|execute', {
       program: program,
       args: args,
       options: options,
@@ -164,14 +231,14 @@ export const shellApi: IShellServer = {
       buffer: buffer,
       pid: pid,
     }),
-  shellOpen: shellx.open,
-  shellRawSpawn: <O extends shellx.IOPayload>(
+  shellOpen,
+  shellRawSpawn: <O extends IOPayload>(
     program: string,
     args: string[],
-    options: shellx.InternalSpawnOptions,
-    cb: (evt: shellx.CommandEvent<O>) => void,
+    options: InternalSpawnOptions,
+    cb: (evt: CommandEvent<O>) => void,
   ): Promise<number> => {
-    const onEvent = new Channel<shellx.CommandEvent<O>>()
+    const onEvent = new Channel<CommandEvent<O>>()
     onEvent.onmessage = cb
     return invoke<number>('plugin:shellx|spawn', {
       program: program,
@@ -180,14 +247,14 @@ export const shellApi: IShellServer = {
       onEvent,
     })
   },
-  shellExecuteBashScript: shellx.executeBashScript,
-  shellExecutePowershellScript: shellx.executePowershellScript,
-  shellExecuteAppleScript: shellx.executeAppleScript,
-  shellExecutePythonScript: shellx.executePythonScript,
-  shellExecuteZshScript: shellx.executeZshScript,
-  shellExecuteNodeScript: shellx.executeNodeScript,
-  shellHasCommand: shellx.hasCommand,
-  shellLikelyOnWindows: shellx.likelyOnWindows,
+  shellExecuteBashScript,
+  shellExecutePowershellScript,
+  shellExecuteAppleScript,
+  shellExecutePythonScript,
+  shellExecuteZshScript,
+  shellExecuteNodeScript,
+  shellHasCommand,
+  shellLikelyOnWindows,
 }
 
 /* -------------------------------------------------------------------------- */

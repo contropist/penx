@@ -5,7 +5,7 @@ import {
   fs,
   os,
   notification,
-  shell,
+  // shell,
   fetch,
 } from '@penxio/api'
 import { useEffect } from 'react'
@@ -23,21 +23,21 @@ export function Main() {
       // console.log(await cmd.execute())
       // const cmd = Command.create('echo', ['hello'])
       // let start = Date.now()
-      const cmd = shell.Command.create('ffmpeg', [
-        '-i',
-        '/Users/hacker/Downloads/video.mp4',
-        '/Users/hacker/Downloads/video.mov',
-      ])
-      cmd.on('close', (data) => {
-        console.log(
-          `command finished with code ${data.code} and signal ${data.signal}`,
-        )
-      })
-      cmd.on('error', (error) => console.error(`command error: "${error}"`))
-      cmd.stdout.on('data', (line) => console.log(`command stdout: "${line}"`))
-      cmd.stderr.on('data', (line) => console.log(`command stderr: "${line}"`))
-      const child = await cmd.spawn()
-      console.log('pid:', child.pid)
+      // const cmd = shell.Command.create('ffmpeg', [
+      //   '-i',
+      //   '/Users/hacker/Downloads/video.mp4',
+      //   '/Users/hacker/Downloads/video.mov',
+      // ])
+      // cmd.on('close', (data) => {
+      //   console.log(
+      //     `command finished with code ${data.code} and signal ${data.signal}`,
+      //   )
+      // })
+      // cmd.on('error', (error) => console.error(`command error: "${error}"`))
+      // cmd.stdout.on('data', (line) => console.log(`command stdout: "${line}"`))
+      // cmd.stderr.on('data', (line) => console.log(`command stderr: "${line}"`))
+      // const child = await cmd.spawn()
+      // console.log('pid:', child.pid)
       // const out = await cmd.execute()
       // console.log(out.stdout)
       // console.log((await cmd.execute()).stdout.toString())
@@ -68,9 +68,9 @@ export function Main() {
       // fs.remove('/Users/hacker/Desktop/c.txt')
       // fs.rename('/Users/hacker/Desktop/a.txt', '/Users/hacker/Desktop/q.txt')
       // fs.rename('/Users/hacker/Desktop/b.txt', '/Users/hacker/Desktop/d.txt')
-      // await clipboard.writeText('Hello from huakun')
-      // const cbText = await clipboard.readText()
-      // console.log('Clipboard text:', cbText)
+      await clipboard.writeText('Hello from huakun')
+      const cbText = await clipboard.readText()
+      console.log('Clipboard text:', cbText)
       // console.log(await clipboard.readImageBase64())
       // const ans = await dialog.ask('????')
       // console.log(ans)
