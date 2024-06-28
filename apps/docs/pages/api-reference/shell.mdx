@@ -7,7 +7,7 @@ The main entrypoint is `shell.Command`. You can construct a command and execute/
 Some other handy functions like `executeBashScript`, `makePythonScript` are provided so you don't have to construct `Command`.
 
 ```ts
-import { shell } from '@penxio/api/native'
+import { shell } from '@penxio/api'
 
 const output = await shell.Command.create('echo', ['Hello World!']).execute()
 console.log(output.stdout) // Hello World!
@@ -36,6 +36,8 @@ If you are running a long-running command, and need to get the stdout/stderr str
 you can use `.spawn()` to get the child process object.
 
 ```ts
+import { shell } from '@penxio/api'
+
 // Convert video file to another format
 const cmd = shell.Command.create('ffmpeg', [
   '-i',
