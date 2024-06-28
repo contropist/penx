@@ -1,0 +1,21 @@
+# OS
+
+OS API provides information about the operating system, such as CPU architecture, end-of-line, platform, hostname.
+
+https://penx-api.penx.io/interfaces/IOs.html
+
+```ts
+import { os } from '@penxio/api/native'
+
+console.log(await os.arch()) // aarch64
+console.log(await os.hostname())
+```
+
+- `arch`
+- `eol`
+- `exeExtension`
+- `family`
+- `hostname`
+- `locale`
+- `platform`
+- `version`

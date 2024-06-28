@@ -3,7 +3,6 @@
  * Code from here should run in regular Tauri webview environment, not iframe or web worker. i.e. needs access to Tauri APIs (invoke is called here)
  * Client from iframe or web worker can call APIs exposed from here
  */
-import type { FetchOptions, FetchSendResponse } from '@/api/fetch/types'
 import { Channel, invoke, transformCallback } from '@tauri-apps/api/core'
 import {
   emit,
@@ -79,6 +78,7 @@ import {
   type InternalSpawnOptions,
   type IOPayload,
 } from 'tauri-plugin-shellx-api'
+import type { FetchOptions, FetchSendResponse } from './api/fetch/types'
 import type {
   IClipboardServer,
   IDialogServer,

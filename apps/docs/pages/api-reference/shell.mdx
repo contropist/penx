@@ -1,0 +1,78 @@
+# Shell
+
+With the Shell API, you can execute arbitrary shell scripts on the host machine.
+
+The main entrypoint is `shell.Command`. You can construct a command and execute/spawn it.
+
+Some other handy functions like `executeBashScript`, `makePythonScript` are provided so you don't have to construct `Command`.
+
+```ts
+import { shell } from '@penxio/api/native'
+
+const output = await shell.Command.create('echo', ['Hello World!']).execute()
+console.log(output.stdout) // Hello World!
+
+await shell.executeAppleScript('display dialog "Hello, world!"')
+
+await shell.executeBashScript('echo "Hello, world!"') // Hello, world!
+
+const cmd = shell.makePythonScript("import platform; print(platform.system())")
+console.log((await cmd.execute()).stdout) // Darwin
+
+
+// Open URL in default browser
+shell.open('https://penx.io')
+// Open URL in specific browser
+shell.open('https://penx.io', 'safari')
+// Open file in default app
+shell.open('/home/file.txt')
+```
+
+## Spawn
+
+The `.execute()` function returns after the command is finished. 
+
+If you are running a long-running command, and need to get the stdout/stderr stream in realtime,
+you can use `.spawn()` to get the child process object.
+
+```ts
+// Convert video file to another format
+const cmd = shell.Command.create('ffmpeg', [
+  '-i',
+  '/home/video.mp4',
+  '/home/video.mov',
+])
+cmd.on('close', (data) => {
+  console.log(
+    `command finished with code ${data.code} and signal ${data.signal}`,
+  )
+})
+cmd.on('error', (error) => console.error(`command error: "${error}"`))
+cmd.stdout.on('data', (line) => console.log(`command stdout: "${line}"`))
+cmd.stderr.on('data', (line) => console.log(`command stderr: "${line}"`))
+const child = await cmd.spawn()
+console.log('pid:', child.pid)
+setTimeout(() => {
+    await child.kill()
+}, 10_000);
+```
+
+## APIs
+
+https://penx-api.penx.io/interfaces/IShell.html
+
+- `executeAppleScript`
+- `executeBashScript`
+- `executeNodeScript`
+- `executePowershellScript`
+- `executePythonScript`
+- `executeZshScript`
+- `hasCommand`
+- `likelyOnWindows`
+- `makeAppleScript`
+- `makeBashScript`
+- `makeNodeScript`
+- `makePowershellScript`
+- `makePythonScript`
+- `makeZshScript`
+- `open`

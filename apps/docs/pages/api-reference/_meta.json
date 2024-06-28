@@ -1,5 +1,5 @@
 {
-  "clipboard": "clipboard",
+  "clipboard": "Clipboard",
   "http": "Http",
-  "runAppleScript": "runAppleScript"
+  "fs": "File System"
 }
