@@ -1,0 +1,14 @@
+# Notification
+
+Display system notification.
+
+https://penx-api.penx.io/interfaces/INotification.html
+
+```ts
+import { notification } from '@penxio/api'
+
+const permissionGranted = await notification.isPermissionGranted()
+if (permissionGranted) {
+    await notification.sendNotification('Hello from Penx')
+}
+```

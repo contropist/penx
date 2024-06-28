@@ -1,3 +1,37 @@
-# clipboard
+# Clipboard
 
-wip...
+Access clipboard text/image/files/HTML/RTF.
+
+## Sample Code
+
+```ts
+import { clipboard } from '@penxio/api'
+
+await clipboard.writeText('Hello, PenX!')
+const text = await clipboard.readText()
+
+const imageBase64 = await clipboard.readImageBase64()
+```
+
+## APIs
+
+https://penx-api.penx.io/interfaces/IClipboard.html
+
+- `hasFiles`
+- `hasHTML`
+- `hasImage`
+- `hasRTF`
+- `hasText`
+- `readFiles`
+- `readHtml`
+- `readImageBase64`
+- `readImageBinary`
+- `readRtf`
+- `readText`
+- `writeFiles`
+- `writeHtml`
+- `writeHtmlAndText`
+- `writeImageBase64`
+- `writeImageBinary`
+- `writeRtf`
+- `writeText`

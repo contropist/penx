@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
-import { clipboard } from '@penxio/api/native'
 import { Spinner } from 'uikit'
 import { Command } from '@penx/model'
 import { store } from '@penx/store'
@@ -26,16 +25,6 @@ export const CommandPalette = () => {
   const { value, setValue } = useValue()
 
   const { developingItems, commandItems, applicationItems } = useItems()
-  useEffect(() => {
-    clipboard.readText().then(console.log)
-  }, [])
-  // console.log('========items:', items)
-
-  // console.log(
-  //   '=========developingItems, commandItems:',
-  //   developingItems,
-  //   commandItems,
-  // )
 
   const { isRoot, isCommandApp } = useCommandPosition()
   const { currentCommand } = useCurrentCommand()

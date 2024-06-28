@@ -1,0 +1,25 @@
+# Dialog
+
+Dialog API provides functions to interact with user, get user input, and more.
+
+https://penx-api.penx.io/interfaces/IDialog.html
+
+
+```ts
+import { dialog } from '@penxio/api'
+
+const name = await dialog.ask("What's your name?")
+const confirmed = await dialog.confirm('Are you sure you want to delete this file?')
+
+// Ask for save path
+const savePath = await dialog.save()
+console.log(savePath);
+```
+
+## APIs
+
+- `ask`
+- `confirm`
+- `message`
+- `open`
+- `save`

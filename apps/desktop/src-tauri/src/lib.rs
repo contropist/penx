@@ -3,6 +3,7 @@ mod hello;
 mod menu;
 mod server;
 mod util;
+mod tray;
 
 use rusqlite::{Connection, ParamsFromIter, Result, ToSql};
 use std::{path::PathBuf, thread};
@@ -113,10 +114,10 @@ pub fn run() {
             open_command,
             handle_input
         ])
-        .setup(|mut app| {
+        .setup(|app| {
             let handle = app.handle();
             let conn = Connection::open_in_memory();
-
+            tray::create_tray(handle)?;
             // let boxed_handle = Box::new(handle);
             let boxed_conn = Box::new(conn.unwrap());
 
