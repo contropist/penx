@@ -1,11 +1,12 @@
 import { Box } from '@fower/react'
 import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
+import { Command } from '@penx/model'
 import { IExtension } from '@penx/model-types'
 import { BindingHotkeyContent } from './BindingHotkeyContent'
 
 interface BindingHotkeyProps {
-  command: IExtension['commands'][0]
-  extension: IExtension
+  command: Command
+  extension?: IExtension
 }
 
 export const BindingHotkey = (props: BindingHotkeyProps) => {

@@ -12,9 +12,11 @@ export interface ICommand {
   icon?: string | Record<string, string>
   code: string
   mode?: 'preset-ui' | 'custom-ui' | 'no-view'
+  source?: 'application' | 'extension' | 'system' | 'database'
   isBuiltIn?: boolean
   alias?: string
   hotkey?: string[]
+  data?: Record<string, any>
 }
 
 export interface IExtension {

@@ -1,9 +1,7 @@
-import isEqual from 'react-fast-compare'
 import { db } from '@penx/local-db'
 import { ICommand } from '@penx/model-types'
 import { uniqueId } from '@penx/unique-id'
-
-const name = '$penx_builtin_extension'
+import { initApplicationCommands } from './initApplicationCommands'
 
 const commands: ICommand[] = [
   {
@@ -73,8 +71,10 @@ const commands: ICommand[] = [
   // },
 ]
 
+const penxExtension = 'penx/penx'
+
 export async function installBuiltinExtension() {
-  let ext = (await db.getExtensionByName(name))!
+  let ext = (await db.getExtensionByName(penxExtension))!
 
   if (ext) {
     for (const item of commands) {
@@ -88,7 +88,7 @@ export async function installBuiltinExtension() {
   await db.createExtension({
     id: uniqueId(),
     spaceId: '',
-    name,
+    name: penxExtension,
     title: 'PenX',
     version: '0.0.0',
     assets: {},
@@ -98,4 +98,20 @@ export async function installBuiltinExtension() {
     createdAt: new Date(),
     updatedAt: new Date(),
   })
+
+  await db.createExtension({
+    id: uniqueId(),
+    spaceId: '',
+    name: 'penx/applications',
+    title: 'Applications',
+    version: '0.0.0',
+    assets: {},
+    isDeveloping: false,
+    icon: '/logo/128x128.png',
+    commands: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  })
+
+  await initApplicationCommands()
 }

@@ -3,14 +3,14 @@ import { Box } from '@fower/react'
 import { listen, UnlistenFn } from '@tauri-apps/api/event'
 import { Kbd, usePopoverContext } from 'uikit'
 import { db } from '@penx/local-db'
+import { Command } from '@penx/model'
 import { IExtension } from '@penx/model-types'
-import { convertKeysToHotkey, unregisterHotkey } from '~/common/hotkey.util'
+import { convertKeysToHotkey, registerCommandHotkey, unregisterHotkey } from '~/common/hotkey.util'
 import { useExtensions } from './useExtensions'
-import { registerCommandHotkey } from './utils'
 
 interface Props {
-  command: IExtension['commands'][0]
-  extension: IExtension
+  command: Command
+  extension?: IExtension
 }
 
 const modifierKeys = ['Control', 'Meta', 'Shift', 'Alt']
@@ -68,11 +68,11 @@ export function BindingHotkeyContent({ extension, command }: Props) {
         const oldHotkey = command.hotkey ? convertKeysToHotkey(command.hotkey) : undefined
         const newHotkey = convertKeysToHotkey(keys)
 
-        console.log('111111111:', oldHotkey)
-
         oldHotkey && (await unregisterHotkey(oldHotkey))
-        await registerCommandHotkey(extension, command, newHotkey)
-        await db.updateCommandHotkey(extension.id, command.name, keys)
+        if (extension && command) {
+          await registerCommandHotkey(extension, command.commandRaw, newHotkey)
+          await db.updateCommandHotkey(extension.id, command.name, keys)
+        }
         await refetch()
         ctx.close()
       } else {

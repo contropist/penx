@@ -10,7 +10,6 @@ import { ListItemIcon } from './ListItemIcon'
 interface ListItemUIProps extends Omit<FowerHTMLProps<'div'>, 'onSelect'> {
   index: number
   item: Command
-  isListApp?: boolean
   titleLayout?: 'column' | 'row'
   showIcon?: boolean
   onSelect?: () => Promise<void>
@@ -54,6 +53,7 @@ export const ListItemUI = ({
       gap4
       roundedLG
       black
+      bgNeutral100--hover
       value={item.value}
       keywords={item.keywords}
       onSelect={select}

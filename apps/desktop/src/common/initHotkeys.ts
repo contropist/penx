@@ -1,5 +1,5 @@
 import { db } from '@penx/local-db'
-import { registerCommandHotkey } from './hotkey.util'
+import { convertKeysToHotkey, registerCommandHotkey } from './hotkey.util'
 
 export async function initHotkeys() {
   const extensions = await db.listExtensions()
@@ -9,8 +9,9 @@ export async function initHotkeys() {
 
     for (const command of commands) {
       if (!command.hotkey) continue
-      console.log('======....', command.hotkey, command)
-      await registerCommandHotkey(ext, command, command.hotkey!)
+
+      const hotkey = convertKeysToHotkey(command.hotkey)
+      await registerCommandHotkey(ext, command, hotkey)
     }
   }
 }

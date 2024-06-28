@@ -1,6 +1,5 @@
 import { Box } from '@fower/react'
 import { appEmitter } from '@penx/event'
-import { handleSelect } from '~/common/handleSelect'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useCommands, useItems } from '~/hooks/useItems'

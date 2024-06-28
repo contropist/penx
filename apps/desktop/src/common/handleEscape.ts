@@ -4,6 +4,7 @@ import { getCurrent, WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import { appEmitter } from '@penx/event'
 import { store } from '@penx/store'
 import { positionAtom } from '~/hooks/useCommandPosition'
+import { initApplicationCommands } from './initApplicationCommands'
 
 const isDev = import.meta.env.MODE === 'development'
 
@@ -22,9 +23,15 @@ export async function handleEscape() {
     }
   })
 
+  // TODO: move this logic to other files
+
   listen('tauri://blur', () => {
     if (!isDev) {
       appWindow.hide()
     }
+  })
+
+  listen('tauri://focus', () => {
+    initApplicationCommands()
   })
 }

@@ -8,25 +8,18 @@ interface DesktopWelcomeProps {
   isLoading: boolean
   onGetStarted: () => void
 }
-export function DesktopWelcome({
-  onGetStarted,
-  isLoading,
-}: DesktopWelcomeProps) {
+export function DesktopWelcome({ onGetStarted, isLoading }: DesktopWelcomeProps) {
   useEffect(() => {
     registerDefaultAppHotkey()
   }, [])
 
+  useEffect(() => {
+    const $prerender = document.getElementById('prerender')
+    if ($prerender) $prerender.style.display = 'none'
+  }, [])
+
   return (
-    <Box
-      data-tauri-drag-region
-      w-100p
-      h-100p
-      toCenter
-      bgWhite
-      column
-      gap3
-      black
-    >
+    <Box data-tauri-drag-region w-100p h-100p toCenter bgWhite column gap3 black>
       <Box data-tauri-drag-region toCenterY gap2>
         <Box data-tauri-drag-region text2XL fontLight neutral400>
           Welcome to

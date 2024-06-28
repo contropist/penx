@@ -9,7 +9,7 @@ interface ExtensionItemProps {
 }
 
 export function ExtensionItem({ extension }: ExtensionItemProps) {
-  const isBuiltin = extension.name.startsWith('$penx_builtin_extension')
+  const isBuiltin = extension.name.startsWith('penx/penx')
   const isDeveloping = extension.name.startsWith('$DEVELOPING-')
 
   return (

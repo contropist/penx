@@ -1,6 +1,7 @@
 import { listen } from '@tauri-apps/api/event'
 import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { db } from '@penx/local-db'
+import { Command } from '@penx/model'
 import { store } from '@penx/store'
 import { createCommandWorker } from '~/common/createCommandWorker'
 import { handleOnMessage } from '~/common/handleOnMessage'
@@ -59,7 +60,7 @@ export async function watchExtensionDevChange() {
     if (workerStore.currentWorker) {
       workerStore.currentWorker.terminate()
 
-      workerStore.currentWorker = createCommandWorker(command)
+      workerStore.currentWorker = createCommandWorker(Command.formExtension(ext, command))
 
       workerStore.currentWorker.addEventListener('message', handleOnMessage)
     }

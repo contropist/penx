@@ -78,58 +78,13 @@ export function useLoadCommands() {
   return useQuery({
     queryKey: ['commands'],
     queryFn: async () => {
-      try {
-        await refreshApplicationsList()
-        // const [extensions, databases, applicationsRes, entries] =
-        const [extensions, databases, applicationsRes, allApps] = await Promise.all([
-          db.listExtensions(),
-          db.listDatabases(),
-          invoke('handle_input', {
-            input: '',
-          }) as Promise<any[]>,
-          getAllApps(),
-        ])
+      const extensions = await db.listExtensions()
 
-        const commands = extensions.reduce((acc, cur) => {
-          return [...acc, ...cur.commands.map((item) => Command.formExtension(cur, item))]
-        }, [] as Command[])
+      const commands = extensions.reduce((acc, cur) => {
+        return [...acc, ...cur.commands.map((item) => Command.formExtension(cur, item))]
+      }, [] as Command[])
 
-        const databaseItems = databases.reduce((acc, item) => {
-          const node = new Node(item)
-          if (node.isSpecialDatabase) return acc
-          return [...acc, Command.formDatabase(item)]
-        }, [] as Command[])
-
-        const applicationItems = allApps
-          .filter((i) => {
-            if (i.app_desktop_path.startsWith('/System/Library/')) {
-              return false
-            }
-
-            if (i.app_desktop_path.startsWith('/Library/Application Support/')) {
-              return false
-            }
-            return true
-          })
-          .sort((a, b) => {
-            const nameA = a.name.split('/').pop()!
-            const nameB = b.name.split('/').pop()!
-            const isChineseA = /[\u4e00-\u9fa5]/.test(nameA)
-            const isChineseB = /[\u4e00-\u9fa5]/.test(nameB)
-
-            if (isChineseA && !isChineseB) return 1
-            if (!isChineseA && isChineseB) return -1
-
-            return nameA.localeCompare(nameB)
-          })
-          .map((appInfo: AppInfo) => Command.formApp(appInfo))
-
-        return [...commands, ...databaseItems, ...applicationItems]
-      } catch (error) {
-        console.log('==============error:', error)
-
-        return []
-      }
+      return [...commands]
     },
   })
 }
@@ -137,7 +92,7 @@ export function useLoadCommands() {
 export function useQueryCommands() {
   const setItems = useSetAtom(itemsAtom)
   const setCommands = useSetAtom(commandsAtom)
-  const { data, refetch } = useLoadCommands()
+  const { data, refetch, isLoading } = useLoadCommands()
 
   useEffect(() => {
     if (data?.length) {
@@ -145,4 +100,5 @@ export function useQueryCommands() {
       setCommands(data)
     }
   }, [data, setItems, setCommands])
+  return { isLoading }
 }

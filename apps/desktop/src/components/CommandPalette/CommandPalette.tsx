@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Box } from '@fower/react'
 import { clipboard } from '@penxio/api/native'
+import { Spinner } from 'uikit'
 import { Command } from '@penx/model'
 import { store } from '@penx/store'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
@@ -40,7 +41,7 @@ export const CommandPalette = () => {
   const { currentCommand } = useCurrentCommand()
   const { ui } = useCommandAppUI()
 
-  useQueryCommands()
+  const { isLoading } = useQueryCommands()
 
   useOnWindowMessage()
 
@@ -49,8 +50,16 @@ export const CommandPalette = () => {
 
   const bodyHeight = isIframe ? windowHeight : windowHeight - searchBarHeight - footerHeight
 
+  useEffect(() => {
+    const $prerender = document.getElementById('prerender')
+    if ($prerender && !isLoading) $prerender.style.display = 'none'
+  }, [isLoading])
+
+  // if (isLoading || !commandItems.length) return null
+
   return (
     <StyledCommand
+      disablePointerSelection
       id="command-palette"
       label="Command Menu"
       className="command-panel"

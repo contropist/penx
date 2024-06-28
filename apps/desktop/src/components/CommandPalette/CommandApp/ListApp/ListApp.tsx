@@ -68,7 +68,6 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
             key={item.title.toString()}
             index={index}
             titleLayout={titleLayout}
-            isListApp={true}
             item={item as any} // TODO: handle any
             onSelect={async () => {
               if (item.actions?.[0]) {
