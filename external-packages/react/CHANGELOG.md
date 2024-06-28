@@ -1,5 +1,13 @@
 # @penxio/react
 
+## 0.6.1
+
+### Patch Changes
+
+- improve api
+- Updated dependencies
+  - @penxio/api@0.6.1
+
 ## 0.6.0
 
 ### Minor Changes
