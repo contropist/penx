@@ -5,6 +5,7 @@ import { useCurrentCommand } from '~/hooks/useCurrentCommand'
 import { useCommands, useItems } from '~/hooks/useItems'
 import { useSearch } from '~/hooks/useSearch'
 import { CommandService } from '~/services/CommandService'
+import { WalletConnect } from '~/wallet/WalletConnect'
 import { AddRowButton } from './AddRowButton'
 import { BackRootButton } from './BackRootButton'
 import { CommandAppLoading } from './CommandAppLoading'
@@ -35,6 +36,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
       borderNeutral200
       relative
       h={searchBarHeight}
+      mr2
     >
       {isCommandApp && <BackRootButton pl3 mr--8 />}
 
@@ -88,7 +90,7 @@ export const SearchBar = ({ searchBarHeight }: Props) => {
       {isCommandApp && currentCommand?.filters && (
         <SearchBarFilter filters={currentCommand?.filters} />
       )}
-
+      <WalletConnect></WalletConnect>
       <CommandAppLoading />
     </Box>
   )

@@ -9,6 +9,7 @@ import { installBuiltinExtension } from '~/common/installBuiltinExtension'
 import { CommandPalette } from '~/components/CommandPalette/CommandPalette'
 import { DesktopWelcome } from '~/components/DesktopWelcome'
 import { InitUserToStore } from '~/components/InitUserToStore'
+import { SiweModal } from './wallet/SiweModal'
 
 export function MainApp() {
   const {
@@ -71,6 +72,7 @@ export function MainApp() {
       }}
     >
       {session && <InitUserToStore userId={session?.userId} />}
+      <SiweModal />
 
       <Box
         relative

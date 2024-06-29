@@ -82,6 +82,6 @@
     "uikit": "workspace:*",
     "use-debounce": "^9.0.4",
     "vaul": "^0.9.0",
-    "viem": "^2.9.28"
+    "viem": "^2.16.4"
   }
 }
