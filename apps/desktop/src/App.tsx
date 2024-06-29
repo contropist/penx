@@ -5,6 +5,7 @@ import { appEmitter } from '@penx/event'
 import { StoreProvider } from '@penx/store'
 import { TrpcProvider } from '@penx/trpc-client'
 import '@glideapps/glide-data-grid/dist/index.css'
+import { Fomir } from 'fomir'
 import { fixPathEnv } from 'tauri-plugin-shellx-api'
 import { registerDefaultAppHotkey } from '@penx/app'
 import { handleEscape } from './common/handleEscape'
@@ -18,9 +19,11 @@ import { useInitThemeMode } from './hooks/useInitThemeMode'
 import { MainApp } from './MainApp'
 import '~/styles/globals.css'
 import '~/styles/command.scss'
+import FomirUIkit from './fomir-uikit'
 import { config } from './config'
 
 initFower()
+Fomir.use(FomirUIkit)
 
 async function init() {
   handleEscape()

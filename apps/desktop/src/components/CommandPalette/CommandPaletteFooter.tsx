@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Box } from '@fower/react'
 import { appEmitter } from '@penx/event'
 import { IconLogo } from '@penx/icons'

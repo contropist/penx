@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Box } from '@fower/react'
-import { Spinner } from 'uikit'
 import { Command } from '@penx/model'
-import { store } from '@penx/store'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
 import { useCommandPosition } from '~/hooks/useCommandPosition'
 import { useCurrentCommand } from '~/hooks/useCurrentCommand'
@@ -11,9 +10,10 @@ import { useOnWindowMessage } from '~/hooks/useOnWindowMessage'
 import { useReset } from '~/hooks/useReset'
 import { useValue } from '~/hooks/useValue'
 import { CommandApp } from './CommandApp/CommandApp'
+import { ListItemUI } from './CommandApp/ListApp/ListItemUI'
 import { StyledCommand, StyledCommandGroup, StyledCommandList } from './CommandComponents'
+import { CommandItemUI } from './CommandItemUI'
 import { CommandPaletteFooter } from './CommandPaletteFooter'
-import { ListItemUI } from './ListItemUI'
 import { BackRootButton } from './SearchBar/BackRootButton'
 import { SearchBar } from './SearchBar/SearchBar'
 
@@ -44,7 +44,7 @@ export const CommandPalette = () => {
     if ($prerender && !isLoading) $prerender.style.display = 'none'
   }, [isLoading])
 
-  // if (isLoading || !commandItems.length) return null
+  if (isLoading) return null
 
   return (
     <StyledCommand
@@ -132,6 +132,13 @@ export const CommandPalette = () => {
           ) : (
             <StyledCommandList p2 minH-100p relative>
               <CommandApp ui={ui} currentCommand={currentCommand} />
+              <ErrorBoundary
+                fallback={
+                  <Box toCenter h-100p red500>
+                    Please reload App
+                  </Box>
+                }
+              ></ErrorBoundary>
             </StyledCommandList>
           ))}
         {isRoot && (
@@ -139,7 +146,7 @@ export const CommandPalette = () => {
             {developingItems.length > 0 && (
               <StyledCommandGroup heading="Development">
                 {developingItems.map((item, index) => {
-                  return <ListItemUI key={index} index={index} item={item} />
+                  return <CommandItemUI key={index} index={index} item={item} />
                 })}
               </StyledCommandGroup>
             )}
@@ -170,7 +177,7 @@ function ListGroup({ heading, items }: ListGroupProps) {
   return (
     <StyledCommandGroup heading={heading}>
       {items.map((item, index) => {
-        return <ListItemUI key={index} index={index} item={item} />
+        return <CommandItemUI key={index} index={index} item={item} />
       })}
     </StyledCommandGroup>
   )

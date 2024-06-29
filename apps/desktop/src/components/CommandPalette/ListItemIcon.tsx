@@ -2,7 +2,6 @@ import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 import { Box, css, FowerHTMLProps } from '@fower/react'
 import { Icon } from '@iconify/react'
-import { isObjectIcon } from '@penxio/preset-ui'
 import { useQuery } from '@tanstack/react-query'
 import { getRandomColor } from '@penx/local-db'
 import { getIcon } from '~/common/icon'
@@ -35,26 +34,6 @@ export const ListItemIcon = memo(
 
     if (isApplication) {
       return <AppIcon size={size} icon={icon as string} />
-    }
-
-    // TODO: handle other icon value
-    if (isObjectIcon(icon)) {
-      if (icon.value === '#') {
-        return (
-          <Box
-            square={size}
-            flexShrink-0
-            rounded-6
-            toCenter
-            textXS
-            white
-            // bgGradientX={['green500', 'blue500']}
-            bg={icon.bg || 'gray500'}
-          >
-            {icon.value}
-          </Box>
-        )
-      }
     }
 
     if (icon.startsWith('/')) {

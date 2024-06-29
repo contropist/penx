@@ -1,22 +1,9 @@
 import { EventType } from '../constants'
-import { ActionItem, IAccessory, isCustomAction } from '../types'
-
-type URL = string
-type Asset = string
-type Icon = string
-
-export type ImageLike = URL | Asset | Icon | number
+import { ActionItem, IAccessory, IconifyIconType, isCustomAction } from '../types'
 
 export interface ListHeading {
   type: 'list-heading'
   title: string
-}
-
-export interface ObjectIcon {
-  value: ImageLike | undefined | null
-  tooltip?: string
-  color?: string
-  bg?: string
 }
 
 export interface IListItem {
@@ -28,17 +15,17 @@ export interface IListItem {
     | string
     | {
         value: string
-        tooltip?: string | null
+        tooltip?: string
       }
 
   subtitle?:
     | string
     | {
-        value?: string | null
-        tooltip?: string | null
+        value?: string
+        tooltip?: string
       }
 
-  icon?: ImageLike | ObjectIcon
+  icon?: string | number | IconifyIconType
 
   actions?: ActionItem[]
 
@@ -49,18 +36,23 @@ export interface IListItem {
   data?: any
 }
 
-export function isObjectIcon(icon: any): icon is ObjectIcon {
-  return typeof icon === 'object' && icon?.value !== undefined
+interface TooltipValue {
+  value: string
+  tooltip?: string
+}
+
+export function isTooltipValue(value: any): value is TooltipValue {
+  return typeof value === 'object' && Reflect.has(value, 'value')
 }
 
 interface CustomActionPayload {
-  type: 'customAction'
+  type: 'action--custom-action'
   itemIndex: number
   actionIndex: number
 }
 
 export function isCustomActionPayload(value: any): value is CustomActionPayload {
-  return value?.type === 'customAction' && Reflect.has(value, 'itemIndex')
+  return value?.type === 'action--custom-action' && Reflect.has(value, 'itemIndex')
 }
 
 interface OnItemSelectPayload {

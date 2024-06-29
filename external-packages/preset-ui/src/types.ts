@@ -8,6 +8,10 @@ export type IconifyIconType = {
   className?: string
 }
 
+export function isIconify(icon: any): icon is IconifyIconType {
+  return typeof icon === 'object' && icon.name
+}
+
 export type IAccessory = {
   text?: (string | number) | AccessoryObjectText
 
@@ -44,6 +48,16 @@ export function isCopyToClipboard(obj: any): obj is CopyToClipboard {
   return obj.type === 'CopyToClipboard'
 }
 
+export type SubmitForm = {
+  type: 'SubmitForm'
+  title?: string
+  onSubmit: (values: any) => Promise<void> | void
+}
+
+export function isSubmitForm(obj: any): obj is SubmitForm {
+  return obj.type === 'SubmitForm'
+}
+
 export type CustomAction = {
   type: 'CustomAction'
   title?: string
@@ -54,4 +68,4 @@ export function isCustomAction(obj: any): obj is CustomAction {
   return obj.type === 'CustomAction'
 }
 
-export type ActionItem = OpenInBrowser | CopyToClipboard | CustomAction
+export type ActionItem = OpenInBrowser | CopyToClipboard | SubmitForm | CustomAction

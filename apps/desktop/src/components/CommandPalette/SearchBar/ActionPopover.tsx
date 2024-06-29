@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@fower/react'
+import { getCurrent } from '@tauri-apps/api/webviewWindow'
 import { Kbd, Popover, PopoverContent, PopoverTrigger } from 'uikit'
 import { appEmitter } from '@penx/event'
 import { useCommandAppUI } from '~/hooks/useCommandAppUI'
@@ -107,6 +108,10 @@ export const ActionPopover = ({}: Props) => {
                 <CommandAppActions
                   onSelect={() => {
                     setOpen(false)
+                    setTimeout(() => {
+                      // const appWindow = getCurrent()
+                      // appWindow.hide()
+                    }, 0)
                   }}
                 />
               )}

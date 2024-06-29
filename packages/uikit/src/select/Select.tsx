@@ -10,53 +10,44 @@ const sizes: Record<SelectSize, number> = {
   lg: 48,
 }
 
-export const Select = forwardRef<HTMLDivElement, SelectProps>(
-  function Select(props, ref) {
-    const {
-      children,
-      onChange,
-      value,
-      size = 'md',
-      placement = 'bottom',
-      portal,
-    } = props
+export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(props, ref) {
+  const { children, onChange, value, size = 'md', placement = 'bottom', portal } = props
 
-    const [selectedValue, setSelectedValue] = useState<any>(value)
-    const [selectedItem, setSelectedItem] = useState<any>('')
+  const [selectedValue, setSelectedValue] = useState<any>(value)
+  const [selectedItem, setSelectedItem] = useState<any>('')
 
-    useEffect(() => {
-      if (selectedValue !== value) {
-        setSelectedValue(value)
-      }
-    }, [value, setSelectedValue, selectedValue])
-
-    function setValue(value: any) {
+  useEffect(() => {
+    if (selectedValue !== value) {
       setSelectedValue(value)
-      onChange && onChange(value)
     }
+  }, [value, setSelectedValue, selectedValue])
 
-    const ctxValue = {
-      value: selectedValue,
-      setValue,
-    }
+  function setValue(value: any) {
+    setSelectedValue(value)
+    onChange && onChange(value)
+  }
 
-    const height: any = sizes[size] || size
+  const ctxValue = {
+    value: selectedValue,
+    setValue,
+  }
 
-    return (
-      <SelectProvider
-        value={{
-          ...props,
-          height,
-          selectedItem,
-          setSelectedItem,
-        }}
-      >
-        <RadioGroupProvider value={ctxValue as any}>
-          <Popover placement={placement} portal={portal}>
-            {children}
-          </Popover>
-        </RadioGroupProvider>
-      </SelectProvider>
-    )
-  },
-)
+  const height: any = sizes[size] || size
+
+  return (
+    <SelectProvider
+      value={{
+        ...props,
+        height,
+        selectedItem,
+        setSelectedItem,
+      }}
+    >
+      <RadioGroupProvider value={ctxValue as any}>
+        <Popover placement={placement} portal={portal}>
+          {children}
+        </Popover>
+      </RadioGroupProvider>
+    </SelectProvider>
+  )
+})

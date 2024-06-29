@@ -1,22 +1,21 @@
-import { shell } from '@penxio/api'
 import { BaseActionProps } from '../../types'
 import { ListActionItem } from './ListActionItem'
 
-interface OpenInBrowserProps extends BaseActionProps {
-  url: string
+interface SubmitFormProps extends BaseActionProps {
+  onSubmit: (values: any) => Promise<void> | void
 }
-export function OpenInBrowser({
-  url,
+export function SubmitForm({
   title = 'Open in Browser',
   shortcut,
   icon = { name: 'lucide--globe' },
-}: OpenInBrowserProps) {
+  onSubmit,
+}: SubmitFormProps) {
   return (
     <ListActionItem
       shortcut={shortcut}
       icon={icon}
       onSelect={() => {
-        shell.open(url)
+        onSubmit({ foo: 'bar' })
       }}
     >
       {title}

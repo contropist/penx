@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import isEqual from 'react-fast-compare'
 import { Box } from '@fower/react'
-import { IListItem, isListApp, isMarkdownJSON } from '@penxio/preset-ui'
+import { isFormApp, isListApp, isMarkdownJSON } from '@penxio/preset-ui'
 import { Spinner } from 'uikit'
 import { Command } from '@penx/model'
 import { store } from '@penx/store'
@@ -11,6 +11,7 @@ import { CommandAppUI } from '~/hooks/useCommandAppUI'
 import { AboutApp } from './AboutApp'
 import { ClipboardHistoryApp } from './ClipboardHistoryApp'
 import { DatabaseApp } from './DatabaseApp/DatabaseApp'
+import { FormApp } from './FormApp/FormApp'
 import { GeneralSettings } from './GeneralSettings/GeneralSettings'
 import { InstalledExtensionsApp } from './InstalledExtensionsApp/InstalledExtensionsApp'
 import { ListApp } from './ListApp/ListApp'
@@ -74,6 +75,10 @@ export const CommandApp = memo(
 
       if (isListApp(component)) {
         return <ListApp component={component} />
+      }
+
+      if (isFormApp(component)) {
+        return <FormApp component={component} />
       }
     }
 

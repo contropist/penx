@@ -11,10 +11,9 @@ import {
   IViewNode,
 } from '@penx/model-types'
 import { mappedByKey } from '@penx/shared'
-import { ICommandItem } from '~/common/types'
 import { useValue } from '~/hooks/useValue'
 import { StyledCommandEmpty, StyledCommandGroup } from '../../CommandComponents'
-import { ListItemUI } from '../../ListItemUI'
+import { CommandItemUI } from '../../CommandItemUI'
 import { RowForm } from './RowForm'
 
 interface Props {
@@ -92,7 +91,7 @@ export function DatabaseDetail(props: Props) {
             value: item.row.id,
           } as any
 
-          return <ListItemUI key={index} index={index} showIcon={false} item={listItem} />
+          return <CommandItemUI key={index} index={index} showIcon={false} item={listItem} />
         })}
       </StyledCommandGroup>
 

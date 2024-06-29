@@ -7,3 +7,4 @@ export * from './onFilterChange'
 
 export * from './components/MarkdownApp'
 export * from './components/ListApp'
+export * from './components/FormApp'

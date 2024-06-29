@@ -25,7 +25,10 @@ async function getItems(text: string = '') {
   const items: IListItem[] = [
     {
       title: 'Encoded',
-      icon: 'code.svg',
+      icon: {
+        name: 'lucide--code',
+        className: 'bg-gradient-to-r from-rose-500 to-purple-500',
+      },
       subtitle: encoded,
       actions: [
         {
@@ -36,7 +39,10 @@ async function getItems(text: string = '') {
     },
     {
       title: 'Decoded',
-      icon: 'code.svg',
+      icon: {
+        name: 'lucide--code',
+        className: 'bg-gradient-to-r from-rose-500 to-purple-500',
+      },
       subtitle: decoded,
       actions: [
         {

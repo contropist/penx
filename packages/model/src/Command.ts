@@ -87,11 +87,6 @@ export class Command {
     return this.name || ''
   }
 
-  // TODO:
-  get extra(): any[] | null {
-    return null as any
-  }
-
   get filters() {
     return this.commandRaw.filters
   }

@@ -8,8 +8,9 @@ import { workerStore } from '~/common/workerStore'
 import { useSearch } from '~/hooks/useSearch'
 import { useValue } from '~/hooks/useValue'
 import { StyledCommandGroup } from '../../CommandComponents'
-import { ListItemUI } from '../../ListItemUI'
 import { Detail } from './Detail'
+import { ListItem } from './domains/ListItem.domain'
+import { ListItemUI } from './ListItemUI'
 
 interface ListAppProps {
   component: ListJSON
@@ -23,17 +24,20 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
 
   const filteredItems = !filtering
     ? items
-    : items.filter((item) => {
-        return item.title.toString().toLowerCase().includes(search.toLowerCase())
+    : items.filter((item, index) => {
+        const listItem = new ListItem(item, index)
+        return listItem.title.toLowerCase().includes(search.toLowerCase())
       })
 
   useEffect(() => {
-    const find = component.items.find((item) => item.title === value)
+    if (!items.length) return
+    const find = items.find((_, index) => String(index) === value)
+
     if (!find) {
-      const firstItem = component.items.find((item) => !item.type)
-      firstItem && setValue(firstItem.title as string)
+      const firstItem = new ListItem(items[0], 0)
+      firstItem && setValue(firstItem.value)
     }
-  }, [component, value, setValue])
+  }, [items, value, setValue])
 
   useEffect(() => {
     if (value && isShowingDetail && items.length) {
@@ -61,17 +65,17 @@ export const ListApp = memo(function ListApp({ component }: ListAppProps) {
         scrollPaddingBlockStart: 8,
       }}
     >
-      {filteredItems.sort().map((item, index) => {
+      {filteredItems.sort().map((raw, index) => {
+        const item = new ListItem(raw, index)
         return (
           <ListItemUI
-            // key={index}
-            key={item.title.toString()}
+            key={index}
             index={index}
             titleLayout={titleLayout}
-            item={item as any} // TODO: handle any
+            item={item}
             onSelect={async () => {
-              if (item.actions?.[0]) {
-                const defaultAction = item.actions?.[0]
+              if (raw.actions?.[0]) {
+                const defaultAction = raw.actions?.[0]
                 if (defaultAction.type === 'OpenInBrowser') {
                   open(defaultAction.url)
                   const appWindow = getCurrent()

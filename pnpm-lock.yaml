@@ -186,6 +186,9 @@ importers:
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      fomir:
+        specifier: ^0.22.0
+        version: 0.22.0
       idb-keyval:
         specifier: ^6.2.1
         version: 6.2.1
@@ -207,6 +210,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
+      react-error-boundary:
+        specifier: ^4.0.11
+        version: 4.0.13(react@18.3.1)
       react-fast-compare:
         specifier: ^3.2.2
         version: 3.2.2
@@ -589,7 +595,7 @@ importers:
         version: 3.2.1
       plasmo:
         specifier: ^0.84.1
-        version: 0.84.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(underscore@1.13.6)
+        version: 0.84.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(terser@5.31.1)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(underscore@1.13.6)
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -1097,6 +1103,24 @@ importers:
         version: 5.5.2
 
   extension-samples/preset-ui/counter:
+    devDependencies:
+      '@penxio/api':
+        specifier: workspace:*
+        version: link:../../../external-packages/api
+      '@penxio/preset-ui':
+        specifier: workspace:*
+        version: link:../../../external-packages/preset-ui
+      penx-cli:
+        specifier: workspace:*
+        version: link:../../../external-packages/cli
+      prettier:
+        specifier: ^3.2.5
+        version: 3.3.2
+      typescript:
+        specifier: ^5.3.2
+        version: 5.5.2
+
+  extension-samples/preset-ui/developer:
     devDependencies:
       '@penxio/api':
         specifier: workspace:*
@@ -1950,7 +1974,7 @@ importers:
     dependencies:
       '@udecode/plate-common':
         specifier: 24.3.1
-        version: 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+        version: 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2555,7 +2579,7 @@ importers:
         version: link:../unique-id
       '@udecode/plate-common':
         specifier: ^24.5.2
-        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
@@ -2968,7 +2992,7 @@ importers:
         version: link:../../store
       '@udecode/plate-common':
         specifier: ^24.5.2
-        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -3181,7 +3205,7 @@ importers:
         version: link:../../slate-lists
       '@udecode/plate-common':
         specifier: ^24.5.2
-        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+        version: 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       lucide-react:
         specifier: ^0.344.0
         version: 0.344.0(react@18.3.1)
@@ -3338,7 +3362,7 @@ importers:
         version: 5.48.0(react@18.3.1)
       '@udecode/plate-common':
         specifier: ^25.0.1
-        version: 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+        version: 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -12234,6 +12258,10 @@ packages:
     resolution: {integrity: sha512-itaWrbYbqpGXkGhZPGUulwnhVf5Hpy1xiCFsGqyIGglbBxmG5vSjxQen3/WGOjPpNEv1RtBLKxbmVXm8HpJStQ==}
     engines: {node: '>= 0.4'}
 
+  array-move@3.0.1:
+    resolution: {integrity: sha512-H3Of6NIn2nNU1gsVDqDnYKY/LCdWvCMMOWifNGhKcVQgiZ6nOek39aESOvro6zmueP07exSl93YLvkN4fZOkSg==}
+    engines: {node: '>=10'}
+
   array-move@4.0.0:
     resolution: {integrity: sha512-+RY54S8OuVvg94THpneQvFRmqWdAHeqtMzgMW6JNurHxe8rsS07cHQdfGkXnTUXiBcyZ0j3SiDIxxj0RPiqCkQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -14424,6 +14452,10 @@ packages:
       debug:
         optional: true
 
+  fomir@0.22.0:
+    resolution: {integrity: sha512-otQGCwN5LztkrTzuGa87Xe1rRVuzhiLYsyPWYS0T7ksZYKxGv5bbv++s14cCe8rXTys3Medjt8Eu5AuwX4rRtw==}
+    engines: {node: '>=14.0.0'}
+
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
 
@@ -15460,6 +15492,9 @@ packages:
   is-plain-object@5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
+
+  is-promise@4.0.0:
+    resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
 
   is-reference@3.0.2:
     resolution: {integrity: sha512-v3rht/LgVcsdZa3O2Nqs+NMowLOxeOm7Ay9+/ARQ2F+qEoANRcqrjAZKGN0v8ymUetZGgkp26LTnGT7H0Qo9Pg==}
@@ -23943,14 +23978,14 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@parcel/config-default@2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(typescript@5.2.2)':
+  '@parcel/config-default@2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(terser@5.31.1)(typescript@5.2.2)':
     dependencies:
       '@parcel/bundler-default': 2.9.3(@parcel/core@2.9.3)
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
       '@parcel/core': 2.9.3
       '@parcel/namer-default': 2.9.3(@parcel/core@2.9.3)
       '@parcel/optimizer-css': 2.9.3(@parcel/core@2.9.3)
-      '@parcel/optimizer-htmlnano': 2.9.3(@parcel/core@2.9.3)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(typescript@5.2.2)
+      '@parcel/optimizer-htmlnano': 2.9.3(@parcel/core@2.9.3)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(terser@5.31.1)(typescript@5.2.2)
       '@parcel/optimizer-image': 2.9.3(@parcel/core@2.9.3)
       '@parcel/optimizer-svgo': 2.9.3(@parcel/core@2.9.3)
       '@parcel/optimizer-swc': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)
@@ -24124,10 +24159,10 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@parcel/optimizer-htmlnano@2.9.3(@parcel/core@2.9.3)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(typescript@5.2.2)':
+  '@parcel/optimizer-htmlnano@2.9.3(@parcel/core@2.9.3)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(terser@5.31.1)(typescript@5.2.2)':
     dependencies:
       '@parcel/plugin': 2.9.3(@parcel/core@2.9.3)
-      htmlnano: 2.1.1(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(svgo@2.8.0)(typescript@5.2.2)
+      htmlnano: 2.1.1(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(svgo@2.8.0)(terser@5.31.1)(typescript@5.2.2)
       nullthrows: 1.1.1
       posthtml: 0.16.6
       svgo: 2.8.0
@@ -24667,10 +24702,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@plasmohq/consolidate@0.17.0(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)':
+  '@plasmohq/consolidate@0.17.0(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)':
     dependencies:
       bluebird: 3.7.2
     optionalDependencies:
+      babel-core: 7.0.0-bridge.0(@babel/core@7.24.7)
       handlebars: 4.7.8
       lodash: 4.17.21
       react: 18.3.1
@@ -24695,10 +24731,10 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@plasmohq/parcel-config@0.40.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(typescript@5.2.2)(underscore@1.13.6)':
+  '@plasmohq/parcel-config@0.40.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(terser@5.31.1)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(typescript@5.2.2)(underscore@1.13.6)':
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
-      '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(typescript@5.2.2)
+      '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(terser@5.31.1)(typescript@5.2.2)
       '@parcel/core': 2.9.3
       '@parcel/optimizer-data-url': 2.9.3(@parcel/core@2.9.3)
       '@parcel/reporter-bundle-buddy': 2.9.3(@parcel/core@2.9.3)
@@ -24731,7 +24767,7 @@ snapshots:
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
       '@plasmohq/parcel-transformer-manifest': 0.17.9
       '@plasmohq/parcel-transformer-svelte': 0.5.2
-      '@plasmohq/parcel-transformer-vue': 0.5.0(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)
+      '@plasmohq/parcel-transformer-vue': 0.5.0(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/helpers'
@@ -24912,7 +24948,7 @@ snapshots:
       '@parcel/utils': 2.9.3
       svelte: 4.0.1
 
-  '@plasmohq/parcel-transformer-vue@0.5.0(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)':
+  '@plasmohq/parcel-transformer-vue@0.5.0(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)':
     dependencies:
       '@parcel/core': 2.9.3
       '@parcel/diagnostic': 2.9.3
@@ -24920,7 +24956,7 @@ snapshots:
       '@parcel/source-map': 2.1.1
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      '@plasmohq/consolidate': 0.17.0(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)
+      '@plasmohq/consolidate': 0.17.0(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(handlebars@4.7.8)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(underscore@1.13.6)
       '@vue/compiler-sfc': 3.3.4
       nullthrows: 1.1.1
       semver: 7.5.4
@@ -27051,10 +27087,10 @@ snapshots:
       '@typescript-eslint/types': 7.14.1
       eslint-visitor-keys: 3.4.3
 
-  '@udecode/plate-common@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-common@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
-      '@udecode/plate-core': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
-      '@udecode/plate-utils': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-utils': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27079,10 +27115,10 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-common@24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-common@24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
-      '@udecode/plate-core': 24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
-      '@udecode/plate-utils': 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-utils': 24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27107,10 +27143,10 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-common@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-common@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
-      '@udecode/plate-core': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
-      '@udecode/plate-utils': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-utils': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 25.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27135,13 +27171,13 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-core@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-core@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@udecode/slate': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/utils': 24.3.0
-      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(zustand@3.7.2(react@18.3.1))
+      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@3.7.2(react@18.3.1))
       clsx: 1.2.1
       is-hotkey: 0.2.0
       jotai: 1.7.2(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react@18.3.1)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
@@ -27169,13 +27205,13 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-core@24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-core@24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@udecode/slate': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/utils': 24.3.0
-      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(zustand@3.7.2(react@18.3.1))
+      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@3.7.2(react@18.3.1))
       clsx: 1.2.1
       is-hotkey: 0.2.0
       jotai: 1.7.2(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react@18.3.1)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
@@ -27203,13 +27239,13 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-core@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-core@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@udecode/slate': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 25.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/utils': 24.3.0
-      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(zustand@3.7.2(react@18.3.1))
+      '@udecode/zustood': 1.1.3(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@3.7.2(react@18.3.1))
       clsx: 1.2.1
       is-hotkey: 0.2.0
       jotai: 1.7.2(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react@18.3.1)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
@@ -27237,10 +27273,10 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-utils@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-utils@24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.3)(react@18.3.1)
-      '@udecode/plate-core': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 24.3.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.1(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27267,10 +27303,10 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-utils@24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-utils@24.5.2(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.3)(react@18.3.1)
-      '@udecode/plate-core': 24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 24.4.0(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 24.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 24.3.6(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27297,10 +27333,10 @@ snapshots:
       - wonka
       - xstate
 
-  '@udecode/plate-utils@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
+  '@udecode/plate-utils@25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(@types/react@18.3.3)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))':
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.3)(react@18.3.1)
-      '@udecode/plate-core': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
+      '@udecode/plate-core': 25.0.1(@babel/core@7.24.7)(@babel/template@7.24.7)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.103.0))(slate-hyperscript@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)(valtio@1.11.2(@types/react@18.3.3)(react@18.3.1))
       '@udecode/slate': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-react': 25.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.103.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.103.0))(slate@0.103.0)
       '@udecode/slate-utils': 25.0.0(slate-history@0.100.0(slate@0.103.0))(slate@0.103.0)
@@ -27401,10 +27437,10 @@ snapshots:
 
   '@udecode/utils@24.3.0': {}
 
-  '@udecode/zustood@1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(zustand@3.7.2(react@18.3.1))':
+  '@udecode/zustood@1.1.3(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@3.7.2(react@18.3.1))':
     dependencies:
       immer: 9.0.21
-      react-tracked: 1.7.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+      react-tracked: 1.7.14(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)
       zustand: 3.7.2(react@18.3.1)
     transitivePeerDependencies:
       - react
@@ -28265,6 +28301,8 @@ snapshots:
       es-object-atoms: 1.0.0
       get-intrinsic: 1.2.4
       is-string: 1.0.7
+
+  array-move@3.0.1: {}
 
   array-move@4.0.0: {}
 
@@ -30787,7 +30825,7 @@ snapshots:
 
   extension-port-stream@3.0.0:
     dependencies:
-      readable-stream: 3.6.2
+      readable-stream: 4.5.2
       webextension-polyfill: 0.10.0
 
   external-editor@3.1.0:
@@ -30798,7 +30836,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.5(supports-color@5.5.0)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -30937,6 +30975,12 @@ snapshots:
   focus-visible@5.2.0: {}
 
   follow-redirects@1.15.6: {}
+
+  fomir@0.22.0:
+    dependencies:
+      array-move: 3.0.1
+      is-promise: 4.0.0
+      react-fast-compare: 3.2.2
 
   for-each@0.3.3:
     dependencies:
@@ -31766,7 +31810,7 @@ snapshots:
 
   html5-qrcode@2.3.8: {}
 
-  htmlnano@2.1.1(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(svgo@2.8.0)(typescript@5.2.2):
+  htmlnano@2.1.1(cssnano@6.1.2(postcss@8.4.38))(postcss@8.4.38)(srcset@4.0.0)(svgo@2.8.0)(terser@5.31.1)(typescript@5.2.2):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.2.2)
       posthtml: 0.16.6
@@ -31776,6 +31820,7 @@ snapshots:
       postcss: 8.4.38
       srcset: 4.0.0
       svgo: 2.8.0
+      terser: 5.31.1
     transitivePeerDependencies:
       - typescript
 
@@ -32191,6 +32236,8 @@ snapshots:
       isobject: 3.0.1
 
   is-plain-object@5.0.0: {}
+
+  is-promise@4.0.0: {}
 
   is-reference@3.0.2:
     dependencies:
@@ -34794,7 +34841,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
 
-  plasmo@0.84.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(underscore@1.13.6):
+  plasmo@0.84.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(terser@5.31.1)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(underscore@1.13.6):
     dependencies:
       '@expo/spawn-async': 1.7.2
       '@parcel/core': 2.9.3
@@ -34802,7 +34849,7 @@ snapshots:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.40.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(typescript@5.2.2)(underscore@1.13.6)
+      '@plasmohq/parcel-config': 0.40.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(babel-core@7.0.0-bridge.0(@babel/core@7.24.7))(cssnano@6.1.2(postcss@8.4.38))(handlebars@4.7.8)(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(terser@5.31.1)(ts-node@10.9.2(@swc/core@1.6.5(@swc/helpers@0.5.11))(@types/node@20.14.9)(typescript@5.2.2))(typescript@5.2.2)(underscore@1.13.6)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -35431,7 +35478,7 @@ snapshots:
   proxy-agent@6.3.1:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.4
+      debug: 4.3.5(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.5
       lru-cache: 7.18.3
@@ -35926,14 +35973,15 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-tracked@1.7.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2):
+  react-tracked@1.7.14(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505):
     dependencies:
       proxy-compare: 2.6.0
       react: 18.3.1
-      scheduler: 0.23.2
-      use-context-selector: 1.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+      scheduler: 0.24.0-canary-efb381bbf-20230505
+      use-context-selector: 1.4.4(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
+      react-native: 0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4)
 
   react-virtuoso@4.7.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -36641,7 +36689,7 @@ snapshots:
   socks-proxy-agent@8.0.4:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.4
+      debug: 4.3.5(supports-color@5.5.0)
       socks: 2.8.3
     transitivePeerDependencies:
       - supports-color
@@ -37774,12 +37822,13 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  use-context-selector@1.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2):
+  use-context-selector@1.4.4(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505):
     dependencies:
       react: 18.3.1
-      scheduler: 0.23.2
+      scheduler: 0.24.0-canary-efb381bbf-20230505
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
+      react-native: 0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@6.0.4)
 
   use-debounce@9.0.4(react@18.3.1):
     dependencies:
