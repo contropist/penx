@@ -3,10 +3,8 @@ const path = require('path')
 module.exports = {
   reactStrictMode: true,
   transpilePackages: [
-    '@penx/api',
     '@penx/app',
     '@penx/constants',
-    '@penx/db',
     '@penx/hooks',
     '@penx/node-hooks',
     '@penx/local-db',

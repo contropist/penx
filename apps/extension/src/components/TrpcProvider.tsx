@@ -13,9 +13,9 @@ export function TrpcProvider({ children, token }: PropsWithChildren<Props>) {
   const [queryClient] = useState(() => new QueryClient())
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      transformer: superjson,
       links: [
         httpBatchLink({
+          transformer: superjson,
           url: `${process.env.PLASMO_PUBLIC_BASE_URL}/api/trpc`,
           // You can pass any HTTP headers you wish here
           async headers() {

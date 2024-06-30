@@ -1,0 +1,67 @@
+{
+  "name": "extension-react-example",
+  "title": "extension react example",
+  "description": "This is a custom UI demo.",
+  "icon": {
+    "name": "mdi--react",
+    "className": "bg-gradient-to-r from-violet-500 to-fuchsia-500"
+  },
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello React",
+      "mode": "custom-ui",
+      "framework": "react"
+    },
+    {
+      "name": "list",
+      "title": "React List App",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "mode": "custom-ui",
+      "framework": "react"
+    },
+    {
+      "name": "github-trending",
+      "title": "Github trending",
+      "icon": {
+        "name": "lucide--github",
+        "className": "bg-gradient-to-r from-rose-500 to-purple-500"
+      },
+      "mode": "custom-ui",
+      "framework": "react"
+    },
+    {
+      "name": "detail",
+      "title": "React Detail App",
+      "icon": {
+        "name": "mdi--user",
+        "className": "bg-gradient-to-r from-green-500 to-blue-500"
+      },
+      "mode": "custom-ui",
+      "framework": "react"
+    },
+    {
+      "name": "todos",
+      "title": "React Todos App",
+      "icon": {
+        "name": "lucide--list",
+        "className": "bg-gradient-to-r from-green-500 to-blue-500"
+      },
+      "mode": "custom-ui",
+      "framework": "react"
+    },
+    {
+      "name": "form",
+      "title": "React Form App",
+      "icon": {
+        "name": "lucide--grid-3x3",
+        "className": "bg-gradient-to-r from-red-500 to-orange-500"
+      },
+      "mode": "custom-ui",
+      "framework": "react"
+    }
+  ]
+}

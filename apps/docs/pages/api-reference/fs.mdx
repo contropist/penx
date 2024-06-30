@@ -1,0 +1,34 @@
+# File System
+
+https://penx-api.penx.io/interfaces/IFs.html
+
+```ts
+import { fs } from '@penxio/api'
+
+const fileContent = await fs.readFile('/home/penx/package.json')
+
+const fileExists = await fs.exists('/home/penx/package.json')
+
+await fs.rename('/home/a.txt', '/home/q.txt')
+
+await fs.writeTextFile('/home/b.txt', 'Hello from PenX!')
+
+await fs.copyFile('/home/b.txt', '/home/c.txt')
+```
+
+## APIs
+
+- `copyFile`
+- `create`
+- `exists`
+- `lstat`
+- `mkdir`
+- `readDir`
+- `readFile`
+- `readTextFile`
+- `remove`
+- `rename`
+- `stat`
+- `truncate`
+- `writeFile`
+- `writeTextFile`

@@ -1,0 +1,20 @@
+{
+  "name": "counter",
+  "title": "Counter",
+  "description": "Counter Example",
+  "icon": {
+    "name": "lucide--clock"
+  },
+  "commands": [
+    {
+      "name": "index",
+      "title": "Counter",
+      "subtitle": "",
+      "description": "",
+      "icon": {
+        "name": "lucide--clock"
+      },
+      "mode": "preset-ui"
+    }
+  ]
+}

@@ -93,7 +93,7 @@ export class Node {
 
     if (this.isInbox) return 'Inbox'
     if (this.isTrash) return 'Trash'
-    if (this.isDatabaseRoot) return 'Meta tags'
+    if (this.isDatabaseRoot) return 'Databases'
     if (this.isDailyRoot) return 'Daily notes'
     if (this.isDatabase) {
       if (this.isTodoDatabase) return 'PenX todos'
@@ -224,6 +224,12 @@ export class Node {
   get isToday() {
     const today = format(new Date(), 'yyyy-MM-dd')
     return today === this.date
+  }
+
+  get isSpecialDatabase() {
+    if (this.tagName === '__FILE__' || this.tagName === '__TODO__') return true
+    if (this.tagName.startsWith('$template__')) return true
+    return false
   }
 
   get fileHash() {

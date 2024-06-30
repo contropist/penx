@@ -236,3 +236,8 @@ pre[class*='language-'] {
   background-color: #ddd;
   color: black;
 }
+
+/* This makes sure the scroll bar is also dark in dark mode */
+.dark {
+  color-scheme: dark;
+}

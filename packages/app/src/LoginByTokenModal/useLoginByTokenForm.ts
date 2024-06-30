@@ -29,7 +29,6 @@ export function useLoginByTokenForm() {
 
       await setLocalSession({
         userId: user.id,
-        address: user.address as string,
         earlyAccessCode: user.earlyAccessCode as string,
         publicKey: user.publicKey as string,
         email: user.email as string,

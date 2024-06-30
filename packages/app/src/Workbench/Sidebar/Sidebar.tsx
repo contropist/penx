@@ -1,22 +1,33 @@
 import { memo, useMemo } from 'react'
 import { Box } from '@fower/react'
-import { Boxes, BoxIcon, Hash } from 'lucide-react'
-import { Bullet, Button, modalController } from 'uikit'
-import { isProd, ModalNames } from '@penx/constants'
-import { useActiveSpace, useRouterName, useSidebarDrawer } from '@penx/hooks'
+import { open } from '@tauri-apps/plugin-shell'
+import {
+  DatabaseBackup,
+  Hash,
+  Info,
+  InfoIcon,
+  Key,
+  LayoutGridIcon,
+  LayoutIcon,
+  MessageCircle,
+  MessageCircleCode,
+  Settings,
+  Settings2,
+  User,
+} from 'lucide-react'
+import { Bullet } from 'uikit'
+import { useRouterName, useUser } from '@penx/hooks'
 import { IconCalendar, IconTodo } from '@penx/icons'
 import { Node } from '@penx/model'
 import { INode } from '@penx/model-types'
-import { useNodes } from '@penx/node-hooks'
 import { useSession } from '@penx/session'
 import { store } from '@penx/store'
 import { SyncPopover } from '../StatusBar/SyncPopover'
-import { CatalogueBox } from './CatalogueBox/CatalogueBox'
-import { CreateDemoDatabaseButton } from './CreateDemoDatabaseButton'
 import { FavoriteBox } from './FavoriteBox/FavoriteBox'
 import { LoginButton } from './LoginButton'
+import { SettingsButton } from './SettingsButton'
+import { SidebarHeader } from './SidebarHeader'
 import { SidebarItem } from './SidebarItem'
-import { SpacePopover } from './SpacePopover/SpacePopover'
 
 interface Props {
   activeNode: INode
@@ -26,11 +37,14 @@ export const Sidebar = memo(
   function Sidebar({ activeNode }: Props) {
     const { loading, data: session } = useSession()
 
-    // console.log('=========loading:', loading, 'session:', session)
-
     const name = useRouterName()
 
     const isTodosActive = name === 'TODOS'
+    const isDatabasesActive = name === 'DATABASES'
+    const isMarketplaceActive = name === 'MARKETPLACE'
+    const isAccountSettingsActive = name === 'ACCOUNT_SETTINGS'
+    const isRecoveryPhraseActive = name === 'RECOVER_PHRASE'
+    const isLocalBackupActive = name === 'LOCAL_BACKUP'
 
     const isTodayActive = useMemo(() => {
       if (name !== 'NODE' || !activeNode) return false
@@ -55,114 +69,78 @@ export const Sidebar = memo(
 
     return (
       <Box
+        data-tauri-drag-region
         column
         // borderRight
         // borderGray100
         flex-1
         display={['none', 'none', 'flex']}
-        bgZinc100--T40
         gap3
         h-100vh
         overflowAuto
+        toCenterY
       >
-        <Box px2>
-          <Box mt2>
-            <SpacePopover />
-          </Box>
-          <Box column gap-1 flex-1 mt3>
-            <SidebarItem
-              icon={
-                <IconCalendar
-                  size={20}
-                  stroke={isTodayActive ? 'brand500' : 'gray500'}
-                />
-              }
-              label="Today"
-              isActive={isTodayActive}
-              onClick={() => {
-                store.node.selectDailyNote()
-              }}
-            />
+        {/* <SidebarHeader /> */}
 
-            {/* <SidebarItem
-              icon={<Inbox size={18} />}
-              label="Inbox"
-              onClick={() => {
-                store.node.selectInbox()
-              }}
-            /> */}
-
+        <Box px3 column gap2 pb3 toCenterY>
+          {session && (
             <SidebarItem
+              neutral500
+              isActive={isAccountSettingsActive}
               icon={
-                <IconTodo
-                  size={20}
-                  stroke={isTodosActive ? 'brand500' : 'gray500'}
-                />
-              }
-              label="Tasks"
-              isActive={isTodosActive}
-              onClick={() => {
-                store.router.routeTo('TODOS')
-              }}
-            />
-
-            <SidebarItem
-              icon={
-                <Box gray500 inlineFlex brand500={isTagsActive}>
-                  <Hash size={20} strokeWidth={1.5} />
+                <Box neutral500 inlineFlex>
+                  <User size={20} />
                 </Box>
               }
-              label="Tags"
-              isActive={isTagsActive}
+              label="Account settings"
               onClick={() => {
-                store.node.selectTagBox()
+                store.router.routeTo('ACCOUNT_SETTINGS')
               }}
             />
+          )}
 
+          {/* {session && (
             <SidebarItem
+              neutral500
+              isActive={isRecoveryPhraseActive}
               icon={
-                <Bullet
-                  mr-4
-                  innerColor={isRootActive ? 'brand500' : undefined}
-                />
-              }
-              label="Nodes"
-              isActive={isRootActive}
-              onClick={() => {
-                store.node.selectSpaceNode()
-              }}
-            />
-
-            <SidebarItem
-              icon={
-                <Box gray500 inlineFlex>
-                  <BoxIcon size={20} strokeWidth={1.5} />
+                <Box neutral500 inlineFlex>
+                  <Key size={20} />
                 </Box>
               }
-              label="TagHub"
+              label="Recovery phrase"
               onClick={() => {
-                modalController.open(ModalNames.TAG_HUB)
+                store.router.routeTo('RECOVER_PHRASE')
               }}
             />
-          </Box>
-        </Box>
+          )} */}
 
-        <Box flex-1 zIndex-1 overflowYAuto px2>
-          <FavoriteBox />
+          {/* <SidebarItem
+            neutral500
+            isActive={isLocalBackupActive}
+            icon={
+              <Box neutral500 inlineFlex>
+                <DatabaseBackup size={20} />
+              </Box>
+            }
+            label="Local auto backup"
+            onClick={() => {
+              store.router.routeTo('LOCAL_BACKUP')
+            }}
+          /> */}
 
-          {/* {!activeSpace.isOutliner && <CatalogueBox />}
-            {!activeSpace.isOutliner && <PageList />}
-            {activeSpace.isOutliner && <TreeView nodeList={nodeList} />} */}
-        </Box>
-
-        <Box px4 column gap2>
-          {/* {!isProd && <CreateDemoDatabaseButton></CreateDemoDatabaseButton>} */}
-
-          {/* <SetupGitHubButton /> */}
-          <LoginButton />
-        </Box>
-        <Box px2 toBetween toCenterY pb2>
-          {session && !loading && <SyncPopover />}
+          <SidebarItem
+            neutral500
+            icon={
+              <Box neutral500 inlineFlex>
+                <MessageCircle size={18} />
+              </Box>
+            }
+            label="Feedback"
+            onClick={() => {
+              open('https://github.com/penxio/penx/issues')
+            }}
+          />
         </Box>
       </Box>
     )

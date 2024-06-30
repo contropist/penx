@@ -12,7 +12,7 @@ export function getColorNames(postfix = '500') {
 }
 
 export function getRandomColor(postfix = '500'): string {
-  const keys = getColorNames()
+  const keys = getColorNames(postfix)
   const index = Math.floor(Math.random() * keys.length)
 
   return keys[index]!

@@ -1,0 +1,55 @@
+# MarkdownApp
+
+Render Markdown to Command App.
+
+![](/images/render-markdown.png)
+
+## Usage
+
+### Basic
+
+Render a markdonwn string.
+
+```ts
+import { MarkdownApp } from '@penxio/preset-ui'
+
+export async function main() {
+  new MarkdownApp({ content: '# Hello world' }).run()
+}
+```
+
+### Image
+
+Render a iamge.
+
+```ts
+import { MarkdownApp } from '@penxio/preset-ui'
+
+export async function main() {
+  new MarkdownApp({ content: '![penx-logo](https://www.penx.io/images/logo-128.png)' }).run()
+}
+```
+
+### Support all markdown syntax
+
+```ts
+import { MarkdownApp } from '@penxio/preset-ui'
+
+const content = `
+# hello world!
+
+The Markdown elements outlined in the original design document.
+
+## Lists
+
+- First item
+- Second item
+- Third item
+- Fourth item
+
+![penx-logo](https://www.penx.io/images/logo-128.png)
+`
+export async function main() {
+  new MarkdownApp({ content }).run()
+}
+```

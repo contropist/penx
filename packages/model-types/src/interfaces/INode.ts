@@ -116,6 +116,8 @@ export interface IDatabaseNode extends INode {
     color: string
     activeViewId: string
     viewIds: string[]
+    commandAlias?: string
+    hotkey?: string
   }
 }
 

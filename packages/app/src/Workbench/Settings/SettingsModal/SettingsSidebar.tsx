@@ -4,6 +4,8 @@ import { Box, FowerHTMLProps, styled } from '@fower/react'
 import {
   ChevronRightIcon,
   Cloud,
+  ComputerIcon,
+  DatabaseBackup,
   GitCompare,
   Key,
   LogOut,
@@ -102,23 +104,24 @@ export const SettingsSidebar = () => {
 
   const name = useMemo(() => {
     if (!session) return ''
-    if (session.user.email) return session.user.email
-    if (session.user.name) return session.user.name
-    if (session.address) {
-      return `${session.address.slice(0, 6)}...${session.address.slice(-4)}`
-    }
-    return 'Unknown'
+    // if (session.user.email) return session.user.email
+    // if (session.user.name) return session.user.name
+    // if (session.address) {
+    //   return `${session.address.slice(0, 6)}...${session.address.slice(-4)}`
+    // }
+    return 'TODO:'
   }, [session])
 
   if (loading) return null
 
-  const image = session?.user?.image || ''
+  // const image = session?.user?.image || ''
+  const image = ''
 
   return (
     <Box
       column
       w={['100%', '100%', 260]}
-      bgGray100
+      bgStone100
       p={[20, 20, 24]}
       // flexShrink-0
       flex-1={isMobile}
@@ -132,7 +135,7 @@ export const SettingsSidebar = () => {
           <Box textSM>{name}</Box>
         </Box>
         <Box py4>
-          <Title>General</Title>
+          {/* <Title>General</Title> */}
           <Section column gap-1>
             <SidebarItem type={SettingsType.ACCOUNT_SETTINGS}>
               <User size={20} />
@@ -143,6 +146,11 @@ export const SettingsSidebar = () => {
               {/* <IconPassword size={20} /> */}
               <Key size={20} />
               <Box>Recovery Phrase</Box>
+            </SidebarItem>
+
+            <SidebarItem type={SettingsType.LOCAL_BACKUP}>
+              <DatabaseBackup size={20} />
+              <Box>Local auto backup</Box>
             </SidebarItem>
 
             <SidebarItem type={SettingsType.SYNC_BACKUP}>
@@ -159,7 +167,7 @@ export const SettingsSidebar = () => {
           </Section>
         </Box>
 
-        <Box py4>
+        {/* <Box py4>
           <Title>Space</Title>
           <Section column gap-1>
             {spaces.map((space, index) => (
@@ -173,7 +181,7 @@ export const SettingsSidebar = () => {
               </SidebarItem>
             ))}
           </Section>
-        </Box>
+        </Box> */}
       </Box>
       <Box>
         <Button

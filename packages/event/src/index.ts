@@ -30,9 +30,23 @@ type AppEvents = {
 
   SIGN_OUT: undefined
 
+  SIGN_OUT_SUCCESSFULLY: undefined
+
+  SIGN_IN_DESKTOP: undefined
+
   LOGIN_BY_PERSONAL_TOKEN_SUCCESSFULLY: undefined
 
   LOAD_CLOUD_SPACES: undefined
+
+  ON_ESCAPE_IN_COMMAND: undefined
+
+  ON_COMMAND_PALETTE_SEARCH_CHANGE: string
+
+  ON_COMMAND_PALETTE_FILTER_CHANGE: any
+
+  FOCUS_SEARCH_BAR_INPUT: undefined
+
+  SUBMIT_FORM_APP: number
 }
 
 export const appEmitter = mitt<AppEvents>()

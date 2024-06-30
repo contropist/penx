@@ -139,9 +139,9 @@ export const TagMenu = () => {
             >
               #
             </Box>
-            <Box textLG fontBold>
+            {/* <Box textLG fontBold>
               {node.title}
-            </Box>
+            </Box> */}
           </Box>
         </PopoverTrigger>
         <PopoverContent w-220>

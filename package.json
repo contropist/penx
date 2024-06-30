@@ -2,10 +2,8 @@
   "name": "penx",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
-    "dev:web": "turbo run dev --filter=@penx/db && turbo run dev --filter=web",
     "build": "turbo run build",
-    "build:packages": "turbo run build --filter=./packages/*",
+    "build:packages": "turbo run build --filter=./external-packages/*",
     "build:web": "turbo run build --filter=web...",
     "build:home": "turbo run build --filter=home...",
     "build:ink": "turbo run build --filter=ink...",
@@ -44,5 +42,8 @@
     "prisma": "^5.6.0",
     "turbo": "^1.12.5"
   },
-  "packageManager": "pnpm@9.0.5"
+  "packageManager": "pnpm@9.0.5",
+  "dependencies": {
+    "@trpc/server": "11.0.0-rc.421"
+  }
 }

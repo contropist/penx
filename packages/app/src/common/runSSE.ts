@@ -26,7 +26,7 @@ async function pull(spaceInfo: SpaceInfo) {
     // )
 
     if (spaceInfo.lastModifiedTime > localLastUpdatedAt) {
-      await store.sync.pullFromCloud(space)
+      // await store.sync.pullFromCloud(space)
     }
   }
 }

@@ -31,7 +31,7 @@ export function useCreateSpaceForm() {
 
     ctx?.setData?.(true)
 
-    const userId = session?.userId
+    const userId = session?.id
 
     const newSpace = getNewSpace({
       userId,

@@ -6,7 +6,8 @@ function OnlineProvider({ children }: PropsWithChildren) {
   const { data: session } = useSession()
 
   useEffect(() => {
-    setLocalSession(session)
+    // TODO:
+    // setLocalSession(session)
   }, [session])
 
   return (

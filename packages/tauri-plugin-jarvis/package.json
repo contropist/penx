@@ -1,0 +1,36 @@
+{
+  "name": "tauri-plugin-jarvis-api",
+  "version": "0.0.1-alpha.3",
+  "author": "Huakun",
+  "description": "",
+  "type": "module",
+  "exports": {
+    "./commands": {
+      "import": "./guest-js/commands/index.ts"
+    },
+    "./models": {
+      "import": "./guest-js/models/index.ts"
+    }
+  },
+  "files": [
+    "dist-js",
+    "README.md"
+  ],
+  "scripts": {
+    "prepublishOnly": "pnpm build",
+    "pretest": "pnpm build",
+    "develop": "rollup -c --watch"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.0.0-beta.13",
+    "@tauri-apps/plugin-log": "2.0.0-beta.4",
+    "@tauri-apps/plugin-os": "2.0.0-beta.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.9.6",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  }
+}

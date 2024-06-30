@@ -91,12 +91,7 @@ function getSizeStyle(size: Size) {
 }
 
 export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
-  const {
-    colorScheme = 'brand500',
-    size = 'md',
-    variant = 'outline',
-    ...rest
-  } = props
+  const { colorScheme = 'brand500', size = 'md', variant = 'outline', ...rest } = props
   const { disabled } = props
   const sizesStyle = getSizeStyle(size)
   const attrs = useStyles(props, sizesStyle.h)
@@ -108,14 +103,14 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const variants = {
     outline: {
       border: 1,
-      'borderGray200--T30': true,
-      'borderGray700--dark': true,
+      'borderNeutral200--T30': true,
+      'borderNeutral700--dark': true,
       'borderTransparent--dark--focus': true,
     },
     filled: {
-      bgGray100: true,
+      bgNeutral100: true,
       borderColor: 'transparent',
-      'bgGray100--D4--hover': !disabled,
+      'bgNeutral100--D4--hover': !disabled,
     },
     unstyled: {
       'shadow--focus': 'none',
@@ -129,11 +124,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       className="uikit-input"
       ref={ref}
       w-100p
-      gray800
+      neutral800
       bgTransparent--focus
       bgTransparent--dark
       outlineNone
-      placeholderGray400
+      placeholderNeutral400
       opacity-40={!!disabled}
       cursorNotAllowed={!!disabled}
       transitionCommon

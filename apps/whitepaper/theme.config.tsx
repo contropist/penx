@@ -10,9 +10,7 @@ const config: DocsThemeConfig = {
     link: 'https://discord.gg/nyVpH9njDu',
   },
   docsRepositoryBase: 'https://github.com/penxio/penx',
-  footer: {
-    text: 'PenX Whitepaper',
-  },
+  footer: (() => null) as any,
 }
 
 export default config

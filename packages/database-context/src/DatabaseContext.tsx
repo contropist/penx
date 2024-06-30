@@ -25,9 +25,9 @@ import {
   ViewColumn,
   ViewType,
 } from '@penx/model-types'
-import { useDatabase } from '@penx/node-hooks'
 import { store } from '@penx/store'
 import { TableSearch } from '@penx/table-search'
+import { DatabaseInfo } from './types'
 
 export interface IDatabaseContext {
   database: IDatabaseNode
@@ -99,16 +99,16 @@ export const databaseContext = createContext<IDatabaseContext>(
   {} as IDatabaseContext,
 )
 
-interface DatabaseProviderProps {
-  databaseId: string
+interface DatabaseProviderProps extends DatabaseInfo {
+  isReloadNodes?: boolean
 }
 
-export const DatabaseProvider = ({
-  children,
-  databaseId,
-}: PropsWithChildren<DatabaseProviderProps>) => {
+export const DatabaseProvider = (
+  props: PropsWithChildren<DatabaseProviderProps>,
+) => {
   const { Provider } = databaseContext
-  const database = useDatabase(databaseId)
+  const { isReloadNodes = true, children, ...database } = props
+  const databaseId = database.database.id
 
   const [activeViewId, setActiveViewId] = useState(() => {
     const view = database.views.find(
@@ -118,6 +118,7 @@ export const DatabaseProvider = ({
   })
 
   async function reloadNodes() {
+    if (!isReloadNodes) return
     const nodes = await db.listNodesBySpaceId(database.database.spaceId)
     store.node.setNodes(nodes)
   }

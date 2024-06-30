@@ -1,0 +1,92 @@
+[command-palette-loader] {
+  border: 0;
+  width: 100%;
+  height: 1px;
+  background: transparent;
+  position: absolute;
+  bottom: -2px;
+  overflow: visible;
+  display: block;
+  margin: 0;
+  z-index: 10;
+}
+
+[command-palette-loader]:after {
+  content: '';
+  width: 50%;
+  height: 1px;
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #888 40%,
+    transparent 100%
+  );
+  top: -1px;
+  opacity: 0;
+  animation-duration: 1.5s;
+  animation-delay: 1s;
+  animation-timing-function: ease;
+  animation-name: loading;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+    opacity: 0;
+  }
+}
+
+@keyframes border {
+  to {
+    box-shadow: 0 0 0 1px var(--gray6);
+  }
+}
+
+@keyframes showTopShine {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

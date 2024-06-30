@@ -1,45 +1,38 @@
 # Introduction
 
-A structured knowledge base for geeks
+Welcome, developers! This guide will help you build a PenX extension using the PenX API.
 
-## About PenX
+## What is PenX?
 
-An elegant App designed to help you capture, organize, and store your thoughts, tasks, ideas, and information.
+Before diving into extension building, let's first understand what PenX is:
 
-## Features
+A cross-platform productivity App built on open-source and Web3.
 
-- **Local-First** - You own your data, in spite of the cloud
-- **Privacy-First** - Use End-To-End Encryption to sync data
-- **Open Source** - Trust our code, not our words
+{/* Here is the architecture of PenX: */}
 
-## About the maker
+{/* ![architecture](/images//penx-architecture-1x.png) */}
 
-I'm 0xZion, a freelancer, a full-stack developer, love open-source, now focusing on this application PenX. There's no massive team, no investors, just me currently. If someone is interested in PenX development, can send me a email: 0xzion.penx@gmail.com
-.
+## Web Standards
 
-## Primary tech stack
+PenX is built on top of web technologies, allowing you to build extensions using standard web APIs. This ensures compatibility and ease of development across different platforms and devices.
 
-- Next.js
-- TypeScript
-- tRPC
-- Prisma
-- NextAuth.js
-- Slate.js
-- IndexedDB
+## Developer **Experience**
 
-# Development
+PenX ensures a smooth and efficient development experience for Custom UI Mode with the following features:
 
-After clone the repo, in the root dir:
+- Out-of-the-box support for popular frameworks
 
-```bash
-# Install the dependencies
-pnpm install
+  - React
+  - Vue
+  - Solid
+  - Svelte
 
-# copy .env.local.example to .env.local copy
-copy apps/web/.env.local.example apps/web/.env.local
+- Built-in Tailwind CSS support
 
-# start web service
-pnpm dev
-```
+## Guides
 
-Go to: http://localhost:3000/
+- [Create First Extension](/build-extension/create-first-extension)
+- [Preset UI](/preset-ui/overview)
+- [Custom UI](/custom-ui/overview)
+- [Examples](/examples/hello-world)
+- [API Reference](/api-reference/render)

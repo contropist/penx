@@ -9,7 +9,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       <Box
         className={`uikit-skeleton`}
         ref={ref}
-        bgGray200
+        bgNeutral200
         animatePulse
         rounded
         w-100p

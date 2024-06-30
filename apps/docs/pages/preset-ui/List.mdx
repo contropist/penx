@@ -1,0 +1,93 @@
+# ListApp
+
+Render a List to Command App.
+
+## Usage
+
+### Basic
+
+Render a basic list with title.
+
+```ts
+import { IListItem, ListApp } from '@penxio/preset-ui'
+
+export async function main() {
+  const items: IListItem = [
+    { title: 'First Item' },
+    { title: 'Second Item' },
+    { title: 'Third Item' },
+  ]
+
+  new ListApp({ items }).run()
+}
+```
+
+### With subtitle
+
+Render a list with title and subtitle.
+
+```ts
+import { IListItem, ListApp } from '@penxio/preset-ui'
+
+export async function main() {
+  const items: IListItem = [
+    { title: 'First Item', subtitle: 'This is the first item' },
+    { title: 'Second Item', subtitle: 'This is the second item' },
+    { title: 'Third Item', subtitle: 'This is the third item' },
+  ]
+
+  new ListApp({ items }).run()
+}
+```
+
+### With Detail
+
+Render a list with detail.
+
+```ts
+import { IListItem, ListApp } from '@penxio/preset-ui'
+
+export async function main() {
+  const items: IListItem = [
+    {
+      title: 'First Item',
+      subtitle: 'This is the first item',
+      detail: [
+        { label: 'name', value: 'Item 1' },
+        { label: 'Color', value: 'Red' },
+      ],
+    },
+  ]
+
+  new ListApp({ items }).run()
+}
+```
+
+### With Extra
+
+Render a list with Extra.
+
+```ts
+import { IListItem, ListApp } from '@penxio/preset-ui'
+
+export async function main() {
+  const items: IListItem = [
+    {
+      title: 'First Item',
+      subtitle: 'This is the first item',
+      extra: [
+        {
+          icon: 'comment.svg',
+          text: '150',
+        },
+        {
+          icon: 'star.svg',
+          text: '200',
+        },
+      ],
+    },
+  ]
+
+  new ListApp({ items }).run()
+}
+```

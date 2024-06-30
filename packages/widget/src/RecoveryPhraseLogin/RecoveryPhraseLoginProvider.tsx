@@ -13,10 +13,10 @@ import { RecoveryPhraseLogin } from './RecoveryPhraseLogin'
 export function RecoveryPhraseLoginProvider({ children }: PropsWithChildren) {
   const { data: session } = useSession()
 
-  const { data, isLoading, refetch } = useQuery(
-    ['mnemonic', session?.userId],
-    () => getMnemonicFromLocal(session?.userId!),
-  )
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['mnemonic', session?.id],
+    queryFn: () => getMnemonicFromLocal(session?.id!),
+  })
 
   useEffect(() => {
     if (data) {

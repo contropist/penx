@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie'
-import { IExtension, IFile, INode, ISpace } from '@penx/model-types'
+import { ICommand, IExtension, IFile, INode, ISpace } from '@penx/model-types'
 import { uniqueId } from '@penx/unique-id'
 import { getNewSpace } from './libs/getNewSpace'
 
@@ -12,16 +12,16 @@ export class PenxDB extends Dexie {
   constructor() {
     // super('PenxDB')
     super('penx-local')
-    this.version(13).stores({
+    this.version(19).stores({
       // Primary key and indexed props
       space: 'id, name, userId',
       node: 'id, spaceId, databaseId, type, date, [type+spaceId+databaseId], [type+spaceId], [type+databaseId]',
       file: 'id, googleDriveFileId, fileHash',
-      extension: 'id, slug',
+      extension: 'id, name, isDeveloping',
     })
   }
 
-  createExtension(extension: IExtension) {
+  createExtension = (extension: IExtension) => {
     return this.extension.add(extension)
   }
 
@@ -29,34 +29,67 @@ export class PenxDB extends Dexie {
     return this.extension.get(extensionId)
   }
 
-  getExtensionBySlug = (slug: string) => {
-    return this.extension.where({ slug }).first()
+  getExtensionByName = (name: string) => {
+    return this.extension.where({ name }).first()
   }
 
-  upsertExtension = async (slug: string, data: Partial<IExtension>) => {
-    const ext = await this.extension.where({ slug }).first()
+  upsertExtension = async (name: string, data: Partial<IExtension>) => {
+    const ext = await this.extension.where({ name }).first()
 
     if (!ext) {
       await this.createExtension({
         id: uniqueId(),
         spaceId: '',
-        slug,
+        name,
+        isDeveloping: false,
         createdAt: new Date(),
         updatedAt: new Date(),
         ...data,
       } as IExtension)
     } else {
-      console.log('=========data:', 'slug:', slug, data)
       await this.updateExtension(ext.id, {
         ...data,
       })
     }
-
-    console.log('upsertExtension', slug, data)
   }
 
   updateExtension = (extensionId: string, data: Partial<IExtension>) => {
     return this.extension.update(extensionId, data)
+  }
+
+  updateCommandAlias = async (extensionId: string, commandName: string, alias: string) => {
+    const ext = await this.extension.get(extensionId)
+
+    if (!ext) return
+    const index = ext.commands.findIndex((c) => c.name === commandName)
+
+    if (index === -1) return
+    ext.commands[index]!.alias = alias
+    await this.updateExtension(extensionId, {
+      commands: ext.commands,
+    })
+  }
+
+  updateCommandHotkey = async (extensionId: string, commandName: string, hotkey: string[]) => {
+    const ext = await this.extension.get(extensionId)
+
+    if (!ext) return
+    const index = ext.commands.findIndex((c) => c.name === commandName)
+
+    if (index === -1) return
+    ext.commands[index]!.hotkey = hotkey
+    await this.updateExtension(extensionId, {
+      commands: ext.commands,
+    })
+  }
+
+  addCommand = async (extensionId: string, command: ICommand) => {
+    const ext = await this.extension.get(extensionId)
+    if (!ext) return
+
+    await this.updateExtension(extensionId, {
+      commands: [...ext.commands, command],
+    })
   }
 
   listExtensions = async () => {
@@ -68,7 +101,7 @@ export class PenxDB extends Dexie {
     const list = await this.extension
       .where({
         spaceId: extension.spaceId!,
-        slug: extension.slug!,
+        name: extension.name!,
       })
       .toArray()
 
@@ -84,6 +117,10 @@ export class PenxDB extends Dexie {
       id: uniqueId(),
       ...extension,
     } as IExtension)
+  }
+
+  deleteExtension = async (id: string) => {
+    return this.extension.delete(id)
   }
 
   createFile = async (data: Omit<IFile, 'id'>): Promise<IFile> => {

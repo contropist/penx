@@ -10,7 +10,7 @@ import {
   useModalContext,
 } from 'uikit'
 import { ModalNames } from '@penx/constants'
-import { DatabaseProvider } from '@penx/database-context'
+import { DatabaseProvider, WithStoreDatabase } from '@penx/database-context'
 import { RowForm } from '@penx/database-ui'
 import { Node } from '@penx/model'
 import { INode } from '@penx/model-types'
@@ -28,9 +28,13 @@ const Content = () => {
   return (
     <Box>
       <ModalHeader mb2># {database.tagName}</ModalHeader>
-      <DatabaseProvider databaseId={database.id}>
-        <RowForm rowId={cell.props.rowId} databaseId={database.id} />
-      </DatabaseProvider>
+      <WithStoreDatabase databaseId={database.id}>
+        {(databaseInfo) => (
+          <DatabaseProvider {...databaseInfo}>
+            <RowForm rowId={cell.props.rowId} databaseId={database.id} />
+          </DatabaseProvider>
+        )}
+      </WithStoreDatabase>
     </Box>
   )
 }

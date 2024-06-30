@@ -21,7 +21,7 @@ export class AppService {
     spaces: ISpace[]
   }> {
     const session = await getLocalSession()
-    let spaces = await db.listSpaces(session?.userId, session)
+    let spaces = await db.listSpaces(session?.id, session)
     let activeSpace: ISpace
 
     if (session) {
@@ -78,13 +78,15 @@ export class AppService {
 
         const user = await getAuthorizedUser()
 
-        const client = new SyncServerClient(
-          activeSpace,
-          mnemonic,
-          user.syncServerUrl,
-          user.syncServerAccessToken,
-        )
-        nodes = await client.getAllNodes()
+        if (user) {
+          const client = new SyncServerClient(
+            activeSpace,
+            mnemonic,
+            user.syncServerUrl,
+            user.syncServerAccessToken,
+          )
+          nodes = await client.getAllNodes()
+        }
 
         // console.log('all nodes======:', nodes)
 
@@ -112,12 +114,16 @@ export class AppService {
 
         store.node.setNodes(nodes)
 
-        if (!activeNodes.length) {
-          const rootNode = nodes.find((n) => new Node(n).isRootNode)!
+        // if (!activeNodes.length) {
+        //   const rootNode = nodes.find((n) => new Node(n).isRootNode)!
 
-          store.node.selectNode(rootNode)
-        } else {
-          store.node.setActiveNodes(activeNodes)
+        //   store.node.selectNode(rootNode)
+        // } else {
+        //   store.node.setActiveNodes(activeNodes)
+        // }
+
+        if (!store.router.getName()) {
+          store.router.routeTo('DATABASES')
         }
       }
 

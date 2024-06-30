@@ -1,0 +1,27 @@
+{
+  "@penxio/api": {
+    "title": "@penxio/api",
+    "href": "https://penx-api.penx.io",
+    "newWindow": true
+  },
+  "@penxio/react": {
+    "title": "@penxio/react",
+    "href": "https://penx-api.penx.io",
+    "newWindow": true
+  },
+  "@penxio/vue": {
+    "title": "@penxio/vue",
+    "href": "https://penx-api.penx.io",
+    "newWindow": true
+  },
+  "@penxio/solid": {
+    "title": "@penxio/solid",
+    "href": "https://penx-api.penx.io",
+    "newWindow": true
+  },
+  "@penxio/svelte": {
+    "title": "@penxio/svelte",
+    "href": "https://penx-api.penx.io",
+    "newWindow": true
+  }
+}

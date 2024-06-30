@@ -7,7 +7,7 @@ export interface PopoverMaskProps {
   close: any
 }
 export const PopoverMask = memo(
-  ({ showMask, isOpen, close }: PopoverMaskProps) => {
+  function PopoverMask({ showMask, isOpen, close }: PopoverMaskProps) {
     if (showMask && isOpen) {
       return (
         <Box

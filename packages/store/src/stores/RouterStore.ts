@@ -3,7 +3,7 @@ import { StoreType } from '../store-types'
 import { IRouterStore, RouteName } from '../types'
 
 export const routerAtom = atomWithStorage('Router', {
-  name: 'NODE',
+  name: '' as any,
 } as IRouterStore)
 
 export class RouterStore {
@@ -44,6 +44,11 @@ export class RouterStore {
     return routerName === 'TODOS'
   }
 
+  isDatabases = () => {
+    const routerName = this.getName()
+    return routerName === 'DATABASES'
+  }
+
   isSettings = () => {
     const routerName = this.getName()
     return routerName === 'SETTINGS'
@@ -56,9 +61,9 @@ export class RouterStore {
       'NODE',
       'SETTINGS',
       'TODOS',
+      'DATABASES',
       'CREATE_SPACE',
       'WEB3_PROFILE',
-      'TASK_BOARD',
     ].includes(routerName)
   }
 }

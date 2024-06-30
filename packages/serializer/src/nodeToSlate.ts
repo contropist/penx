@@ -347,7 +347,7 @@ function getDatabaseRootEditorValue(node: Node, nodeMap: Map<string, INode>) {
       children: [
         {
           type: 'p',
-          children: [{ text: 'Meta tags' }],
+          children: [{ text: 'Databases' }],
         },
       ],
     },

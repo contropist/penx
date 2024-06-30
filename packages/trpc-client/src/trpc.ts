@@ -1,20 +1,21 @@
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
+import { createTRPCClient, httpBatchLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import superjson from 'superjson'
-import type { AppRouter } from '@penx/api'
 import { BASE_URL } from '@penx/constants'
 import { getHeaders } from './getHeaders'
 
-export const api = createTRPCProxyClient<AppRouter>({
-  transformer: superjson,
+// TODO: handle any
+
+export const api = createTRPCClient<any>({
   links: [
     httpBatchLink({
       url: `${BASE_URL}/api/trpc`,
+      transformer: superjson,
       async headers() {
         return await getHeaders()
       },
     }),
   ],
-})
+}) as any // TODO: handle any
 
-export const trpc = createTRPCReact<AppRouter>()
+export const trpc = createTRPCReact<any>() as any

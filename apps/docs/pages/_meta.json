@@ -1,10 +1,10 @@
 {
   "index": "Introduction",
-  "self-hosted": "Self hosted",
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://discord.gg/nyVpH9njDu",
-    "newWindow": true
-  }
+  "build-extension": "Build a Extension",
+  "preset-ui": "Preset UI (Worker)",
+  "custom-ui": "Custom UI (IFrame)",
+  "examples": "Examples",
+  "api-reference": "API reference",
+  "api-typedoc": "API Typedoc",
+  "contributing": "Contributing"
 }

@@ -1,0 +1,123 @@
+# Custom UI Vue
+
+This guide walks you through creating a custom UI Command App using [Vue](https://vuejs.org/).
+
+## Start with Vue template
+
+Clone the sample plugin using Git.
+
+```bash
+git clone git@github.com:penxio/extension-template-vue.git
+```
+
+## Develop extension
+
+After cloning the repository, navigate to the project directory and install the dependencies:
+
+```bash
+cd penx-extension-vue
+npm install # install the dependencies
+npm run dev # compile the source code
+```
+
+Running npm run dev will compile the source code and automatically load the sample extension in PenX.
+
+Open the PenX Command palette, and you will see two commands:
+
+![commands](/images/commands-vue.png)
+
+## Important files
+
+The project consists of the following key files:
+
+- `manifest.json`
+- `hello.command.vue`
+- `count.command.vue`
+
+### `manifest.json`
+
+The manifest.json file contains metadata about the project.
+
+```json
+{
+  "name": "extension-template-vue",
+  "title": "Extension Template Vue",
+  "description": "This is a custom UI demo.",
+  "icon": {
+    "name": "mdi--vuejs",
+    "className": "bg-emerald-500"
+  },
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello Vue",
+      "mode": "custom-ui",
+      "icon": {
+        "name": "mdi--vuejs",
+        "className": "bg-emerald-500"
+      },
+      "framework": "vue"
+    },
+    {
+      "name": "count",
+      "title": "Vue Count",
+      "icon": {
+        "name": "lucide--clock",
+        "className": "bg-gradient-to-r from-teal-500 to-cyan-500"
+      },
+      "mode": "custom-ui",
+      "framework": "vue"
+    }
+  ]
+}
+```
+
+The **command name** is associated with the `[commandName].command.vue` file, which is a very important convention.
+
+- hello -> `src/hello.command.vue`
+- count -> `src/count.command.vue`
+
+### `hello.command.vue`
+
+The `hello.command.vue` file will render the "Hello World" string:
+
+```html
+<template>
+  <div class="flex justify-center items-center h-full">
+    <h1 class="text-4xl">Hello World!</h1>
+  </div>
+</template>
+```
+
+![hello](/images/custom-ui-hello.png)
+
+### `count.command.vue`
+
+The `count.command.vue` file shows a basic counter demo:
+
+```html
+<script setup>
+  import { ref } from 'vue'
+
+  const count = ref(0)
+</script>
+
+<template>
+  <div class="flex justify-center items-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
+    <button
+      class="outline-none p-3 text-lg rounded-3xl bg-blue-300 hover:opacity-70"
+      @click="count++"
+    >
+      Count is {{ count }}
+    </button>
+  </div>
+</template>
+```
+
+![hello](/images/custom-ui-count.png)
+
+## Style
+
+[Tailwind CSS](https://tailwindcss.com) is supported out of the box with no configuration needed.
+
+Of course, you can choose to use plain CSS or CSS-in-JS, but we recommend using Tailwind CSS for its simplicity and efficiency.

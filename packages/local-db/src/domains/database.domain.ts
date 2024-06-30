@@ -47,6 +47,14 @@ export class DatabaseDomain {
     return node as IDatabaseNode
   }
 
+  listDatabases = async () => {
+    const nodes = (await this.penx.node
+      .where({ type: NodeType.DATABASE })
+      .toArray()) as IDatabaseNode[]
+
+    return nodes
+  }
+
   listDatabaseBySpace = async (spaceId: string) => {
     const nodes = (await this.penx.node
       .where({
@@ -357,6 +365,19 @@ export class DatabaseDomain {
       cells,
       options,
     }
+  }
+
+  updateDatabaseProps = async (
+    id: string,
+    props: Partial<IDatabaseNode['props']>,
+  ) => {
+    const database = (await this.node.getNode(id)) as IDatabaseNode
+    await this.node.updateNode(id, {
+      props: {
+        ...database.props,
+        ...props,
+      },
+    })
   }
 
   getDatabaseByName = async (spaceId: string, name: string) => {

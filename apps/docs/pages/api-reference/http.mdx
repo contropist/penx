@@ -1,0 +1,21 @@
+# HTTP
+
+Sending HTTP requests and bypass CORS restrictions.
+
+https://penx-api.penx.io/functions/fetch.html
+
+> Sending request from browser may be restricted by CORS policy. You can use the provided `fetch` API to bypass this restriction.
+> 
+> The `fetch` API works just like a regular `fetch` function provided in browser.
+>
+> If you don't need to bypass CORS, you can use the regular `fetch` function provided by the browser, or other libraries like `axios`.
+
+```ts
+import { fetch } from '@penxio/api'
+
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(console.log)
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+}).then(console.log)
+```
+

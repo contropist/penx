@@ -21,7 +21,7 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "@penx/editor-shared": "workspace:^",
+    "@penx/editor-shared": "workspace:*",
     "@penx/extension-typings": "workspace:*",
     "lodash": "^4.17.21"
   }

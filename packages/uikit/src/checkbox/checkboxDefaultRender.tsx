@@ -16,19 +16,18 @@ export const checkboxDefaultRender = ({
   return (
     <Box
       toCenter
-      square-18
-      roundedFull
+      square-20
+      roundedLG
       border-1
       borderGray400={!checked}
       bgBrand500={checked}
-      // white={}
       {...atomicProps}
     >
       <Check
         size={12}
         style={{
           strokeWidth: '2px',
-          display: checked ? 'block' : 'none',
+          opacity: checked ? 100 : 0,
         }}
       />
     </Box>

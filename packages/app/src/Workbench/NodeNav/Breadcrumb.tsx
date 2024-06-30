@@ -1,6 +1,7 @@
 import { Box } from '@fower/react'
 import { useNodeContext, useNodes } from '@penx/node-hooks'
 import { NodeService } from '@penx/service'
+import { store } from '@penx/store'
 import { BreadcrumbPopover } from './BreadcrumbPopover'
 
 export const Breadcrumb = () => {
@@ -20,7 +21,13 @@ export const Breadcrumb = () => {
           <Box key={node.id} toCenterY textSM gap1>
             <Box
               cursorPointer
-              onClick={() => nodeService.selectNode(node)}
+              onClick={() => {
+                if (node.isDatabaseRoot) {
+                  store.router.routeTo('DATABASES')
+                } else {
+                  nodeService.selectNode(node)
+                }
+              }}
               gray600
               maxW-160
               style={{

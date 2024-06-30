@@ -6,10 +6,8 @@ import { Button, toast } from 'uikit'
 import { getMnemonicFromLocal } from '@penx/mnemonic'
 import { useSession } from '@penx/session'
 import { useCopyToClipboard } from '@penx/shared'
-import { trpc } from '@penx/trpc-client'
 import { CloudBackup } from './CloudBackup'
 import { HaveBackedUpButton } from './HaveBackedUpButton'
-import { PasswordOnChain } from './PasswordOnChain'
 
 interface Props {}
 
@@ -18,10 +16,10 @@ export const RecoveryPhrase: FC<Props> = () => {
   const { data } = useSession()
   const { copy } = useCopyToClipboard()
 
-  const { isLoading, data: mnemonic } = useQuery(
-    ['Mnemonic', data?.userId],
-    () => getMnemonicFromLocal(data?.userId!),
-  )
+  const { isLoading, data: mnemonic } = useQuery({
+    queryKey: ['Mnemonic', data?.id],
+    queryFn: () => getMnemonicFromLocal(data?.id!),
+  })
 
   if (isLoading || !mnemonic) return null
 
@@ -53,15 +51,12 @@ export const RecoveryPhrase: FC<Props> = () => {
             right0
             left0
             toCenter
-            style={{ backdropFilter: 'blur(5px)' }}
+            style={{
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
+            }}
           >
-            <Button
-              relative
-              isSquare
-              size="sm"
-              zIndex-10
-              onClick={() => setBlur(!blur)}
-            >
+            <Button relative isSquare size="sm" zIndex-10 onClick={() => setBlur(!blur)}>
               <Eye></Eye>
             </Button>
           </Box>
@@ -85,8 +80,6 @@ export const RecoveryPhrase: FC<Props> = () => {
         </Button>
       </Box>
       <Box toCenter gap4 column>
-        {/* <PasswordOnChain mnemonic={mnemonic} /> */}
-
         <CloudBackup />
         <HaveBackedUpButton />
       </Box>

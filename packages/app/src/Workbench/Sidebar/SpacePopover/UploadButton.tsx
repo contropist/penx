@@ -11,7 +11,7 @@ export const UploadButton = ({ ...rest }: Props) => {
   const [uploading, setUploading] = useState(false)
   const hiddenFileInput = useRef<HTMLInputElement>(null)
   const { data: session } = useSession()
-  const userId = session?.user?.id ?? ''
+  const userId = session?.id ?? ''
 
   const handleClick = () => {
     hiddenFileInput.current?.click?.()

@@ -1,0 +1,28 @@
+{
+  "name": "extension-template-solid",
+  "title": "Extension Template Solid",
+  "description": "This is a custom UI demo.",
+  "icon": {
+    "name": "lucide--globe"
+  },
+  "commands": [
+    {
+      "name": "hello",
+      "title": "Hello Solid",
+      "icon": {
+        "name": "lucide--globe"
+      },
+      "mode": "custom-ui",
+      "framework": "solid"
+    },
+    {
+      "name": "count",
+      "title": "Solid Count",
+      "icon": {
+        "name": "lucide--globe"
+      },
+      "mode": "custom-ui",
+      "framework": "solid"
+    }
+  ]
+}

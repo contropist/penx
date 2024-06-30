@@ -8,7 +8,7 @@ import { EditorStore } from './stores/EditorStore'
 import { NodeStore } from './stores/NodeStore'
 import { RouterStore } from './stores/RouterStore'
 import { SpaceStore } from './stores/SpaceStore'
-import { SyncStore } from './stores/SyncStore'
+// import { SyncStore } from './stores/SyncStore'
 import { UserStore } from './stores/UserStore'
 import { Command } from './types'
 
@@ -47,9 +47,9 @@ export const store = Object.assign(baseStore, {
     return new CatalogueStore(this)
   },
 
-  get sync() {
-    return new SyncStore(this)
-  },
+  // get sync() {
+  //   return new SyncStore(this)
+  // },
 
   get user() {
     return new UserStore(this)

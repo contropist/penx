@@ -2,11 +2,16 @@ export type RouteName =
   | 'TRASH'
   | 'NODE'
   | 'TODOS'
+  | 'DATABASES'
   | 'CREATE_SPACE'
   | 'WEB3_PROFILE'
-  | 'TASK_BOARD'
   | 'RESTORE_BACKUP'
   | 'SETTINGS'
+  | 'MARKETPLACE'
+  | 'LOCAL_BACKUP'
+  | 'ACCOUNT_SETTINGS'
+  | 'RECOVER_PHRASE'
+  | 'ACCOUNT'
 
 export type IRouterStore = {
   name: RouteName

@@ -20,9 +20,9 @@
   "dependencies": {
     "@floating-ui/react": "^0.24.8",
     "@floating-ui/react-dom": "^2.0.4",
-    "@fower/atomic-props": "^2.0.0",
-    "@fower/react": "^2.0.0",
-    "@fower/utils": "^2.0.0",
+    "@fower/atomic-props": "^2.1.1",
+    "@fower/react": "^2.1.1",
+    "@fower/utils": "^2.1.1",
     "framer-motion": "^10.16.14",
     "lucide-react": "^0.344.0",
     "mitt": "^3.0.1",

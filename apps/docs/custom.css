@@ -1,0 +1,13 @@
+.dark p,
+.dark ol,
+.dark li {
+  color: #e3e3e3;
+}
+
+.nx-text-primary-800 {
+  /* color: black !important; */
+}
+
+.nx-bg-primary-100 {
+  /* background-color: #eee !important; */
+}

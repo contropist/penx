@@ -3,7 +3,7 @@ import { useSelected } from 'slate-react'
 import { ELEMENT_P } from '@penx/constants'
 import { ContextMenu, MenuItem, useContextMenu } from '@penx/context-menu'
 // import { TagElement } from '../../types'
-import { DatabaseProvider } from '@penx/database-context'
+import { DatabaseProvider, WithStoreDatabase } from '@penx/database-context'
 import { useEditorStatic } from '@penx/editor-common'
 import { findNodePath } from '@penx/editor-queries'
 import { genId } from '@penx/editor-shared'
@@ -79,11 +79,15 @@ export const Tag = ({ element, attributes, children }: ElementProps<any>) => {
       {children}
       {tagJSX}
 
-      <DatabaseProvider databaseId={element.databaseId}>
-        <ContextMenu id={menuId} w-400>
-          <TagForm databaseId={element.databaseId} path={path} />
-        </ContextMenu>
-      </DatabaseProvider>
+      <WithStoreDatabase databaseId={element.databaseId}>
+        {(databaseInfo) => (
+          <DatabaseProvider {...databaseInfo}>
+            <ContextMenu id={menuId} w-400>
+              <TagForm databaseId={element.databaseId} path={path} />
+            </ContextMenu>
+          </DatabaseProvider>
+        )}
+      </WithStoreDatabase>
     </Box>
   )
 }

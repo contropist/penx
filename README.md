@@ -5,7 +5,7 @@
 
 <h1 style="border-bottom: none">
     <b>PenX</b><br />
-     A structured knowledge base for geeks
+    A cross-platform productivity App
     <br>
 </h1>
 
@@ -15,11 +15,7 @@
 
 ## Introduction
 
-An elegant App designed to help you capture, organize, and store your thoughts, tasks, ideas, and information.
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpenxio%2Fpenx&env=DATABASE_URL&project-name=penx&repository-name=penx&root-directory=apps%2Fweb&install-command=pnpm%20install&build-command=npx%20turbo%20run%20build%20--filter=web...&ignore-command=npx%20turbo-ignore)
+PenX is a cross-platform productivity App built on open-source and Web3.
 
 ## Features
 
@@ -29,6 +25,7 @@ An elegant App designed to help you capture, organize, and store your thoughts, 
 
 ## Primary tech stack
 
+- Tauri
 - Next.js
 - TypeScript
 - tRPC
@@ -45,15 +42,23 @@ After clone the repo, in the root dir:
 # Install the dependencies
 pnpm install
 
-# copy .env.local.example to .env.local copy
-copy apps/web/.env.local.example apps/web/.env.local
+pnpm run build:packages
 
-# start web service
+cd apps/desktop
+
 pnpm dev
 ```
 
 Go to: http://localhost:3000
 
-## ⚖️ License
+## Mac OS installation issue
 
-AGPL 3.0
+If hit [“PenX.app” is damaged and can’t be opened. You should move it to the Trash.]
+
+To fix it:
+
+```bash
+xattr -cr /Applications/PenX.app
+```
+
+## ⚖️ License

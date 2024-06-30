@@ -1,0 +1,65 @@
+{
+  "name": "@penxio/api",
+  "version": "0.6.1",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./preset-ui": {
+      "import": "./dist/worker.js",
+      "require": "./dist/worker.cjs",
+      "types": "./dist/worker.d.ts"
+    },
+    "./native": {
+      "import": "./dist/native.js",
+      "require": "./dist/native.cjs",
+      "types": "./dist/native.d.ts"
+    },
+    "./custom-ui": {
+      "import": "./dist/iframe.js",
+      "require": "./dist/iframe.cjs",
+      "types": "./dist/iframe.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build:docs": "typedoc src/index.ts",
+    "build": "rimraf dist && rollup -c"
+  },
+  "dependencies": {
+    "@huakunshen/comlink": "^4.4.1",
+    "@tanstack/react-query": "^5.45.1",
+    "@tauri-apps/api": "2.0.0-beta.13",
+    "@tauri-apps/plugin-dialog": "2.0.0-beta.5",
+    "@tauri-apps/plugin-fs": "2.0.0-beta.5",
+    "@tauri-apps/plugin-http": "2.0.0-beta.5",
+    "@tauri-apps/plugin-notification": "2.0.0-beta.5",
+    "@tauri-apps/plugin-os": "2.0.0-beta.3",
+    "@tauri-apps/plugin-shell": "2.0.0-beta.6",
+    "tauri-plugin-clipboard-api": "^2.0.4",
+    "tauri-plugin-shellx-api": "^2.0.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^18.19.33",
+    "rimraf": "^5.0.7",
+    "rollup": "^4.9.6",
+    "typedoc": "^0.25.13",
+    "typescript": "^5.4.5"
+  }
+}

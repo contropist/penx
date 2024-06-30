@@ -1,0 +1,92 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "permissions": [
+    "path:default",
+    "event:default",
+    "window:default",
+    "window:allow-hide",
+    "window:allow-show",
+    "window:allow-set-focus",
+    "window:allow-center",
+    "window:allow-start-dragging",
+    "window:allow-start-resize-dragging",
+    "webview:default",
+    "app:default",
+    "resources:default",
+    "image:default",
+    "menu:default",
+    "menu:allow-new",
+    "menu:allow-items",
+    "tray:default",
+    "tray:allow-new",
+    "tray:allow-set-icon",
+    "tray:allow-set-menu",
+    "tray:allow-set-title",
+    "tray:allow-set-tooltip",
+    "tray:allow-set-visible",
+    "tray:allow-set-show-menu-on-left-click",
+    "fs:default",
+    "fs:read-all",
+    "fs:write-all",
+    "fs:scope-home-recursive",
+    "shell:default",
+    "shell:allow-open",
+    "shellx:allow-execute",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "echo",
+          "cmd": "echo",
+          "args": true,
+          "sidecar": false
+        }
+      ]
+    },
+    "shellx:allow-spawn",
+    "shellx:allow-kill",
+    "shellx:allow-open",
+    "shellx:allow-stdin-write",
+    "shellx:allow-fix-path-env",
+    "os:default",
+    "os:allow-platform",
+    "os:allow-arch",
+    "os:allow-exe-extension",
+    "os:allow-family",
+    "os:allow-hostname",
+    "os:allow-os-type",
+    "os:allow-version",
+    "os:allow-locale",
+    "global-shortcut:default",
+    "global-shortcut:allow-register-all",
+    "global-shortcut:allow-unregister-all",
+    "global-shortcut:allow-register",
+    "global-shortcut:allow-unregister",
+    "global-shortcut:allow-is-registered",
+    "webview:allow-internal-toggle-devtools",
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://*"
+        },
+        {
+          "url": "http://*"
+        }
+      ]
+    },
+    "jarvis:allow-all",
+    "clipboard:read-all",
+    "clipboard:write-all",
+    "dialog:default",
+    "dialog:allow-ask",
+    "dialog:allow-open",
+    "dialog:allow-confirm",
+    "dialog:allow-save",
+    "dialog:allow-message",
+    "notification:default"
+  ]
+}

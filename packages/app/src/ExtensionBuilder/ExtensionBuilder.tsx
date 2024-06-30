@@ -51,43 +51,7 @@ export function ExtensionBuilder() {
         </Box>
       </Box>
 
-      <Box toCenter gap3 sticky bottom0>
-        <Button
-          onClick={async () => {
-            await db.installExtension({
-              spaceId: activeSpace.id,
-              code: value.code,
-              slug: value.id,
-              name: value.name,
-              description: value.description,
-              version: value.version,
-            })
-
-            toast.success(`Extension ${value.name} installed`)
-          }}
-        >
-          Install to space
-        </Button>
-        <Button
-          onClick={async () => {
-            try {
-              await trpc.extension.publishExtension.mutate({
-                uniqueId: value.id,
-                name: value.name,
-                version: value.version,
-                code: value.code,
-                description: value.description,
-              })
-              toast.success('publish successfully')
-            } catch (error) {
-              toast.warning('publish failed')
-              console.log('error:', error)
-            }
-          }}
-        >
-          Publish to PenX
-        </Button>
-      </Box>
+      <Box toCenter gap3 sticky bottom0></Box>
     </Box>
   )
 }

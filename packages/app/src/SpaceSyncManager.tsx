@@ -10,24 +10,24 @@ interface Props {
   userId: string
 }
 
-export const SpaceSyncManager = ({
-  children,
-  userId,
-}: PropsWithChildren<Props>) => {
-  const { isLoading, data = [] } = useQuery(['spaces', userId], async () => {
-    let localSpaces = await db.listSpaces(userId)
-    if (localSpaces.length) return localSpaces
+export const SpaceSyncManager = ({ children, userId }: PropsWithChildren<Props>) => {
+  const { isLoading, data = [] } = useQuery({
+    queryKey: ['spaces', userId],
+    queryFn: async () => {
+      let localSpaces = await db.listSpaces(userId)
+      if (localSpaces.length) return localSpaces
 
-    const remoteSpaces = await api.space.mySpaces.query()
-    console.log('======remoteSpaces:', remoteSpaces)
+      const remoteSpaces = await api.space.mySpaces.query()
+      console.log('======remoteSpaces:', remoteSpaces)
 
-    for (const space of remoteSpaces) {
-      await db.createSpace(space as any, false)
-    }
+      for (const space of remoteSpaces) {
+        await db.createSpace(space as any, false)
+      }
 
-    const spaces = await db.listSpaces()
+      const spaces = await db.listSpaces()
 
-    return spaces
+      return spaces
+    },
   })
 
   useEffect(() => {

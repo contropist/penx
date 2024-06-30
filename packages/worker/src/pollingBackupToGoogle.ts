@@ -34,7 +34,7 @@ export async function pollingBackupToGoogle() {
 
   if (timeMap[interval]) pollingInterval = timeMap[interval]
 
-  console.log('=======pollingInterval:', pollingInterval, 'interval:', interval)
+  // console.log('=======pollingInterval:', pollingInterval, 'interval:', interval)
 
   while (true) {
     const data = await getAuthorizedUser()
@@ -49,7 +49,6 @@ export async function pollingBackupToGoogle() {
 }
 
 async function sync() {
-  console.log('pollingBackupToGoogle...........')
   // console.log('con==============', con, 'isMobile:', isMobile)
 
   const con = getConnectionState()
@@ -65,6 +64,8 @@ async function sync() {
 
     if (!user.google.access_token) return
     const activeSpaceId = await getActiveSpaceId()
+
+    // console.log('pollingBackupToGoogle...........')
 
     const spaces = await db.listSpaces()
 

@@ -16,7 +16,7 @@ export const RadioIndicator = forwardRef<HTMLDivElement, RadioIndicatorProps>(
         ref={ref}
         toCenter
         circle-16
-        bg={checked ? colorScheme : 'gray300'}
+        bg={checked ? colorScheme : 'neutral300'}
         border-1
         flexShrink-0
         overflowHidden
@@ -25,7 +25,7 @@ export const RadioIndicator = forwardRef<HTMLDivElement, RadioIndicatorProps>(
         <Box
           circle-12
           circle-6={checked}
-          bg={checked ? colorScheme : 'gray300'}
+          bg={checked ? colorScheme : 'neutral300'}
           bgWhite
         ></Box>
       </Box>

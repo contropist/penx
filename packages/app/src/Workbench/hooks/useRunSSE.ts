@@ -15,7 +15,7 @@ export function useRunSSE() {
 
     if (!isSyncEnabled) return
 
-    if (!sseInited.current && session?.user && activeSpace.raw) {
+    if (!sseInited.current && session?.id && activeSpace.raw) {
       setTimeout(() => {
         console.log('runSSE..............')
         runSSE()

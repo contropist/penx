@@ -3,7 +3,6 @@ import { PENX_AUTHORIZED_USER, PENX_SESSION_DATA } from '@penx/constants'
 
 export interface Session {
   userId: string
-  address: string
   earlyAccessCode: string
   publicKey: string
   email: string
@@ -17,15 +16,12 @@ export interface Session {
 
 type User = {
   id: string
-  address: string | null
   name: string | null
   bio: string | null
   avatar: string | null
-  password: string | null
   roleType: string | null
   github: any
   google: any
-  taskGithub: any
   username: string | null
   email: string | null
   emailVerified: Date | null
@@ -43,10 +39,11 @@ type User = {
 
 export async function getAuthorizedUser() {
   try {
-    return (await get(PENX_AUTHORIZED_USER)) as User
+    const user = (await get(PENX_AUTHORIZED_USER)) as User
+    return user || null
   } catch (error) {
     console.log('error0', error)
-    return undefined as any as User
+    return null as any as User
   }
 }
 
@@ -58,7 +55,8 @@ export async function setAuthorizedUser(user: any) {
   await set(PENX_AUTHORIZED_USER, user)
 }
 
-export async function getLocalSession(): Promise<Session | undefined> {
+// export async function getLocalSession(): Promise<Session | undefined> {
+export async function getLocalSession(): Promise<any> {
   try {
     return await get(PENX_SESSION_DATA)
   } catch (error) {
@@ -81,7 +79,7 @@ const spaceKey = (userId: string) => `ACTIVE_SPACE_${userId}`
 export async function getActiveSpaceId(): Promise<string> {
   const session = await getLocalSession()
   if (!session) return ''
-  const id = (await get(spaceKey(session.userId))) as string
+  const id = (await get(spaceKey(session.id))) as string
 
   return id
 }
@@ -90,5 +88,5 @@ export async function setActiveSpaceId(id: string) {
   const session = await getLocalSession()
 
   if (!session) return
-  await set(spaceKey(session.userId), id)
+  await set(spaceKey(session.id), id)
 }
