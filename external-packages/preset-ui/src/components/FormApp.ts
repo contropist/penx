@@ -1,12 +1,48 @@
 import { EventType } from '../constants'
 import { ActionItem, isCustomAction, isSubmitForm } from '../types'
-import { isCustomActionPayload } from './ListApp'
+
+type Option = {
+  value: any
+  label: any
+  disabled?: boolean
+  data?: any
+  [key: string]: any
+}
+type Options = Option[]
+
+interface Validators {
+  required?: string
+  min?: [number, string]
+  max?: [number, string]
+  minLength?: [number, string]
+  maxLength?: [number, string]
+  pattern?: [RegExp, string]
+  arrayNotEmpty?: string
+  equalTo?: [string, string]
+  [key: string]: any
+}
 
 interface IField {
   label: string
   name: string
-  component: 'Input'
+  component:
+    | 'Input'
+    | 'PasswordInput'
+    | 'NumberInput'
+    | 'CounterInput'
+    | 'Checkbox'
+    | 'CheckboxGroup'
+    | 'RadioGroup'
+    | 'Select'
+    | 'Textarea'
+    | 'Switch'
+    | 'Box'
+    | 'Divider'
   value?: any
+  required?: boolean
+  description?: any
+  options?: Options
+  validators?: Validators
 }
 
 interface OnSubmitActionPayload {

@@ -75,6 +75,10 @@ export interface BoxNode extends BaseNode {
   children?: Node[]
 }
 
+export interface DividerNode extends BaseNode {
+  component: 'Divider'
+}
+
 export type FomirUIkitNode =
   | InputNode
   | PasswordInputNode
@@ -89,3 +93,4 @@ export type FomirUIkitNode =
   | SubmitNode
   | BoxNode
   | CounterInputNode
+  | DividerNode

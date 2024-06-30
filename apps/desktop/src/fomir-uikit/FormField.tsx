@@ -16,6 +16,7 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
   ref,
 ) {
   const { children, node, showLabel = true, renderLabel, ...rest } = props
+
   const { schema } = useFormContext()
   const { layout = 'horizontal' } = schema
   const { error, label, description, touched, wrapper } = node || {}
@@ -35,16 +36,22 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
       {...rest}
       gap2
     >
-      <Box toCenterY w-190 toRight text-13>
+      <Box
+        toCenterY={node.component !== 'Textarea'}
+        toTop={node.component === 'Textarea'}
+        mt3={node.component === 'Textarea'}
+        w-190
+        toRight
+        text-13
+      >
         {renderLabel?.()}
         {showLabel && label && (
           <Box
-            toCenterY
             gap1
             mb2={layout === 'vertical'}
             toRight={layout === 'horizontal'}
             pr2={layout !== 'vertical'}
-            w-100={layout === 'horizontal'}
+            w-100p={layout === 'horizontal'}
           >
             {label && (
               <Box as="label" className="uikit-form-field-label" leading-1em toCenterY>
